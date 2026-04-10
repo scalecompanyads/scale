@@ -1,60 +1,40 @@
 // =============================================================================
-// services.ts — Dados centralizados dos 6 serviços da Scale Company
-// Edite aqui; as mudanças refletem em todo o site automaticamente.
+// services.ts — Serviços principais da Scale + páginas legadas (ex.: sites)
 // =============================================================================
 
 export interface Service {
-  /** ID único, usado para referências internas */
   id: string;
-  /** Nome completo do serviço */
   name: string;
-  /** Slug nacional: /servicos/[slug] */
   slug: string;
-  /** Slug nas páginas locais: /[cidade]/[localSlug] */
   localSlug: string;
-  /** Descrição longa para página e meta description */
   description: string;
-  /** Descrição curta para cards */
   shortDesc: string;
-  /** Emoji de ícone */
   icon: string;
-  /** Volume de busca estimado (nacional) */
   volume: string;
-  /** Tags de categoria (exibidas nos cards) */
   tags: string[];
-  /** Serviço para upsell (nome exibido) */
   upsell?: string;
-  /** Keywords principais para SEO (meta, h1, etc.) */
   keywords: string[];
+  /** Subitens exibidos no hub (ex.: artes dentro de redes) */
+  includes?: string[];
 }
 
+/**
+ * Quatro frentes principais (hub / menu / home pinned).
+ * Ordem: tráfego primeiro, depois landing, SEO e redes/conteúdo.
+ */
 export const services: Service[] = [
-  {
-    id: 'redes-sociais',
-    name: 'Gestão de Redes Sociais',
-    slug: 'gestao-redes-sociais',
-    localSlug: 'gestao-redes-sociais',
-    description:
-      'Social media completo: criação de conteúdo, calendário editorial, estratégia de crescimento e relatórios mensais de performance.',
-    shortDesc: 'Social media, criação de conteúdo e relatórios mensais',
-    icon: '📱',
-    volume: '~9.900 buscas/mês',
-    tags: ['Recorrente', 'Alto volume local'],
-    upsell: 'Tráfego Pago',
-    keywords: [
-      'gestão de redes sociais',
-      'social media para empresas',
-      'criação de conteúdo para redes sociais',
-    ],
-  },
   {
     id: 'trafego-pago',
     name: 'Tráfego Pago',
     slug: 'trafego-pago',
     localSlug: 'trafego-pago',
     description:
-      'Gestão profissional de Google Ads e Meta Ads com foco em ROAS. Relatório de performance mensal e otimização contínua.',
-    shortDesc: 'Google Ads, Meta Ads e relatório de ROAS',
+      'Gestão profissional de Google Ads e Meta Ads com foco em ROAS. Relatórios em linguagem de negócio, otimização contínua e alinhamento com o time comercial.',
+    shortDesc: 'Google Ads, Meta Ads e performance com relatórios claros.',
+    includes: [
+      'Automações de campanhas, públicos e remarketing',
+      'Treinamento comercial alinhado à captação de leads',
+    ],
     icon: '💰',
     volume: '~6.600 buscas/mês',
     tags: ['Alta conversão', 'Recorrente'],
@@ -67,17 +47,36 @@ export const services: Service[] = [
     ],
   },
   {
+    id: 'landing-pages',
+    name: 'Criação de Landing Pages',
+    slug: 'criacao-de-landing-pages',
+    localSlug: 'criacao-de-landing-pages',
+    description:
+      'Páginas de alta conversão para campanhas de tráfego, lançamentos e captação de leads — com design focado em resultado.',
+    shortDesc: 'Páginas de conversão para campanhas e lançamentos.',
+    icon: '⚡',
+    volume: '~8.100 buscas/mês est.',
+    tags: ['Alta intenção', 'Campanhas'],
+    upsell: 'Tráfego Pago',
+    keywords: [
+      'criação de landing page',
+      'landing page profissional',
+      'landing page para google ads',
+      'página de conversão',
+    ],
+  },
+  {
     id: 'seo',
     name: 'Consultoria de SEO',
     slug: 'consultoria-seo',
     localSlug: 'seo',
     description:
       'Consultoria e gestão mensal de SEO: auditoria técnica, otimização on-page, produção de conteúdo estratégico e link building.',
-    shortDesc: 'SEO técnico, conteúdo e link building',
+    shortDesc: 'SEO técnico, conteúdo e autoridade no Google.',
     icon: '🔍',
     volume: '~3.600 buscas/mês',
-    tags: ['Novo serviço', 'Recorrente'],
-    upsell: 'Criação de Conteúdo',
+    tags: ['Orgânico', 'Recorrente'],
+    upsell: 'Conteúdo para redes',
     keywords: [
       'consultoria de SEO',
       'agência de SEO',
@@ -85,6 +84,32 @@ export const services: Service[] = [
       'posicionamento no Google',
     ],
   },
+  {
+    id: 'redes-sociais',
+    name: 'Gestão de Redes Sociais',
+    slug: 'gestao-redes-sociais',
+    localSlug: 'gestao-redes-sociais',
+    description:
+      'Presença digital consistente: estratégia, calendário editorial, criação de peças e acompanhamento de métricas que importam para o negócio.',
+    shortDesc: 'Estratégia, conteúdo e criação de artes para suas redes.',
+    includes: [
+      'Criação de artes e peças para redes sociais',
+      'Calendário editorial e ritmo de publicação',
+    ],
+    icon: '📱',
+    volume: '~9.900 buscas/mês',
+    tags: ['Recorrente', 'Marca'],
+    upsell: 'Tráfego Pago',
+    keywords: [
+      'gestão de redes sociais',
+      'social media para empresas',
+      'criação de conteúdo para redes sociais',
+    ],
+  },
+];
+
+/** Páginas que seguem no ar fora dos 4 pilares (SEO / links legados) */
+export const legacyServices: Service[] = [
   {
     id: 'criacao-de-sites',
     name: 'Criação de Sites',
@@ -95,7 +120,7 @@ export const services: Service[] = [
     shortDesc: 'Sites institucionais com SEO e CMS incluso',
     icon: '🌐',
     volume: '~33.000 buscas/mês est.',
-    tags: ['Novo serviço', 'Alto volume'],
+    tags: ['Projeto', 'Alto volume'],
     upsell: 'SEO + Redes Sociais',
     keywords: [
       'criação de site para empresa',
@@ -104,50 +129,17 @@ export const services: Service[] = [
       'site institucional para empresa',
     ],
   },
-  {
-    id: 'landing-pages',
-    name: 'Landing Pages',
-    slug: 'criacao-de-landing-pages',
-    localSlug: 'criacao-de-landing-pages',
-    description:
-      'Páginas de alta conversão para campanhas de tráfego, lançamentos e captação de leads — com design focado em resultado.',
-    shortDesc: 'Páginas de conversão para campanhas e lançamentos',
-    icon: '⚡',
-    volume: '~8.100 buscas/mês est.',
-    tags: ['Novo serviço', 'Alta intenção'],
-    upsell: 'Tráfego Pago',
-    keywords: [
-      'criação de landing page',
-      'landing page profissional',
-      'landing page para google ads',
-      'página de conversão',
-    ],
-  },
-  {
-    id: 'email-marketing',
-    name: 'Email Marketing',
-    slug: 'email-marketing',
-    localSlug: 'email-marketing',
-    description:
-      'Automações de email, nutrição de leads, newsletters estratégicas e integração com CRM para aumentar retenção e LTV.',
-    shortDesc: 'Automações, newsletters e nutrição de leads',
-    icon: '📧',
-    volume: '~2.400 buscas/mês',
-    tags: ['Complementar', 'Recorrente'],
-    keywords: [
-      'email marketing para empresas',
-      'automação de email',
-      'newsletter profissional',
-    ],
-  },
 ];
 
-/** Retorna um serviço pelo slug nacional */
+const allServicesList: Service[] = [...services, ...legacyServices];
+
 export function getServiceBySlug(slug: string): Service | undefined {
-  return services.find((s) => s.slug === slug);
+  return allServicesList.find((s) => s.slug === slug);
 }
 
-/** Retorna um serviço pelo localSlug */
 export function getServiceByLocalSlug(localSlug: string): Service | undefined {
-  return services.find((s) => s.localSlug === localSlug);
+  return allServicesList.find((s) => s.localSlug === localSlug);
 }
+
+/** Select de contato: pilares + criação de sites */
+export const contactServices: Service[] = [...services, ...legacyServices];

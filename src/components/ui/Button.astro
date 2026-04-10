@@ -4,10 +4,11 @@
  * @example
  * <Button href="/contato">Falar com especialista</Button>
  * <Button variant="outline" size="sm">Saiba mais</Button>
+ * <Button href="/contato" variant="ring" size="lg">Diagnóstico gratuito</Button>
  */
 interface Props {
   href?: string;
-  variant?: 'primary' | 'outline' | 'ghost';
+  variant?: 'primary' | 'outline' | 'ghost' | 'ring';
   size?: 'sm' | 'base' | 'lg';
   full?: boolean;
   disabled?: boolean;
@@ -33,6 +34,7 @@ const variants = {
   primary: 'bg-brand-primary border-brand-primary text-ink-inverse hover:bg-brand-secondary hover:border-brand-secondary',
   outline: 'bg-transparent border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse',
   ghost:   'bg-transparent border-transparent text-brand-primary hover:bg-surface-subtle',
+  ring:    '', // tratado abaixo
 };
 
 const sizes = {
@@ -41,17 +43,32 @@ const sizes = {
   lg:   'px-8 py-4 text-lg',
 };
 
+const ringSizes = {
+  sm:   'px-4 py-2 text-sm',
+  base: 'px-6 py-3 text-base',
+  lg:   'px-8 py-4 text-base',
+};
+
+const isRing = variant === 'ring';
+
 const classes = [
-  base,
-  variants[variant],
-  sizes[size],
+  !isRing && base,
+  !isRing && variants[variant as keyof typeof variants],
+  !isRing && sizes[size],
   full && 'w-full',
   disabled && 'opacity-50 pointer-events-none',
-  className,
+  !isRing && className,
 ].filter(Boolean).join(' ');
 ---
 
-{href ? (
+{isRing && href ? (
+  <span class:list={['cta-ring-wrap', full && 'w-full flex justify-center', className]}>
+    <span class="cta-ring-spin animate-spin-slow" aria-hidden="true"></span>
+    <a href={href} class:list={['cta-ring-inner', ringSizes[size], full && 'w-full justify-center']} {...rest}>
+      <slot />
+    </a>
+  </span>
+) : href ? (
   <a href={href} class={classes} {...rest}>
     <slot />
   </a>

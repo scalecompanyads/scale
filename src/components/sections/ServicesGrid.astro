@@ -6,24 +6,37 @@ interface Props {
   title?: string;
   subtitle?: string;
   showLink?: boolean;
+  /** Sem wrapper de section — use dentro de um container pai (ex.: hub de serviços) */
+  embedded?: boolean;
 }
 
-const { title = 'Nossos Serviços', subtitle, showLink = true } = Astro.props;
+const { title = 'Nossos Serviços', subtitle, showLink = true, embedded = false } = Astro.props;
+
+const gridClass =
+  'grid grid-cols-1 gap-6 sm:grid-cols-2';
 ---
 
-<section class="section bg-surface-subtle">
-  <div class="container">
-    {(title || subtitle) && (
-      <div class="section-header">
-        {title && <h2 class="section-title">{title}</h2>}
-        {subtitle && <p class="section-subtitle">{subtitle}</p>}
-      </div>
-    )}
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {services.map((service) => (
-        <ServiceCard service={service} showLink={showLink} />
-      ))}
-    </div>
+{embedded ? (
+  <div class={gridClass}>
+    {services.map((service) => (
+      <ServiceCard service={service} showLink={showLink} />
+    ))}
   </div>
-</section>
+) : (
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      {(title || subtitle) && (
+        <div class="section-header">
+          {title && <h2 class="section-title">{title}</h2>}
+          {subtitle && <p class="section-subtitle">{subtitle}</p>}
+        </div>
+      )}
+
+      <div class={gridClass}>
+        {services.map((service) => (
+          <ServiceCard service={service} showLink={showLink} />
+        ))}
+      </div>
+    </div>
+  </section>
+)}

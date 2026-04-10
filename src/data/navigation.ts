@@ -16,12 +16,10 @@ export const mainNav: NavItem[] = [
     href: '/servicos',
     hasDropdown: true,
     children: [
-      { label: 'Criação de Sites',        href: '/servicos/criacao-de-sites' },
-      { label: 'Landing Pages',           href: '/servicos/criacao-de-landing-pages' },
       { label: 'Tráfego Pago',            href: '/servicos/trafego-pago' },
-      { label: 'Gestão de Redes Sociais', href: '/servicos/gestao-redes-sociais' },
+      { label: 'Landing Pages',           href: '/servicos/criacao-de-landing-pages' },
       { label: 'Consultoria de SEO',      href: '/servicos/consultoria-seo' },
-      { label: 'Email Marketing',         href: '/servicos/email-marketing' },
+      { label: 'Gestão de Redes Sociais', href: '/servicos/gestao-redes-sociais' },
     ],
   },
   {

@@ -39,15 +39,29 @@
     /* TIPOGRAFIA */
     --font-body:    'Inter';
     --font-heading: 'Inter';
+
+    /* HOME — space dev (seções escuras, alinhado ao footer) */
+    --home-bg: #010f1c;
+    --home-grid-line: rgba(255, 255, 255, 0.018);
+    --home-grid-size: 72px;
+    --home-border-subtle: rgba(255, 255, 255, 0.08);
+    --home-border-medium: rgba(255, 255, 255, 0.12);
+    --home-radius-panel: 10px;
+    --home-radius-card: 8px;
+    --home-glow-cyan-soft: rgba(0, 186, 255, 0.08);
+    --home-glow-blue-soft: rgba(22, 48, 223, 0.06);
+    --home-blur-glass: 10px;
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    background-color: #010f1c; /* safe area iOS herda essa cor */
   }
 
   body {
-    @apply bg-surface-page text-ink-mid font-body antialiased;
+    @apply text-ink-mid font-body antialiased;
+    background-color: #010f1c;
     overflow-x: hidden;
   }
 
@@ -106,6 +120,171 @@
   }
   .section-subtitle {
     @apply text-lg text-ink-light leading-relaxed;
+  }
+
+  /* HOME — fundo escuro + grid técnico (footer-like) */
+  .home-section-dark {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--home-bg);
+  }
+
+  .home-bg-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      linear-gradient(to right, var(--home-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--home-grid-line) 1px, transparent 1px);
+    background-size: var(--home-grid-size) var(--home-grid-size);
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  /* Atmosfera suave (sem neon pesado) */
+  .home-ambient-tl {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse 65% 55% at 0% 45%,
+      var(--home-glow-cyan-soft) 0%,
+      var(--home-glow-blue-soft) 35%,
+      transparent 65%
+    );
+  }
+
+  .home-ambient-bottom {
+    position: absolute;
+    inset-inline: 0;
+    bottom: -12%;
+    height: 55%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(
+      ellipse 75% 50% at 50% 100%,
+      rgba(0, 186, 255, 0.12) 0%,
+      transparent 58%
+    );
+    filter: blur(28px);
+    opacity: 0.55;
+  }
+
+  /* Tipografia — seções escuras (reduz estilos inline na home) */
+  .heading-display-dark {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-size: clamp(2.75rem, 6vw, 4.5rem);
+    background: linear-gradient(to bottom, #ffffff 28%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+  }
+
+  .heading-section-dark {
+    font-family: var(--font-heading), system-ui, sans-serif;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    background: linear-gradient(to bottom, #ffffff 30%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+  }
+
+  .text-body-dark-muted {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .home-label-caps {
+    @apply block text-xs font-bold uppercase tracking-[0.22em] text-brand-primary;
+  }
+
+  /* Ponte visual dark → seção clara (prova social) */
+  .home-testimonial-bridge {
+    position: relative;
+    background: #ffffff;
+    overflow: hidden;
+  }
+
+  .home-testimonial-bridge::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 5rem;
+    pointer-events: none;
+    z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      var(--home-bg) 0%,
+      rgba(248, 250, 252, 0.85) 45%,
+      #ffffff 100%
+    );
+  }
+
+  /* CTA com anel (hero) — markup no Button variant="ring" */
+  .cta-ring-wrap {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 9999px;
+    padding: 1.5px;
+  }
+
+  .cta-ring-spin {
+    position: absolute;
+    inset: -100%;
+    pointer-events: none;
+    background: conic-gradient(
+      from 90deg at 50% 50%,
+      #00baff 0%,
+      #1630df 50%,
+      #00baff 100%
+    );
+  }
+
+  .cta-ring-inner {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    background: var(--home-bg);
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .cta-ring-inner:hover {
+    opacity: 0.92;
+  }
+
+  .cta-ring-inner:focus-visible {
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: 3px;
   }
 }
 

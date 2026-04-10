@@ -1,69 +1,607 @@
 ---
-import Nav from './Nav.astro';
 import logoUrl from '../../assets/brand/logo.svg?url';
 
 const isHome = Astro.url.pathname === '/';
+
+// Nav data inline to avoid import issues
+const mainNavItems = [
+  {
+    label: 'Serviços',
+    href: '/servicos',
+    hasDropdown: true,
+    children: [
+      { label: 'Tráfego Pago',            href: '/servicos/trafego-pago' },
+      { label: 'Landing Pages',           href: '/servicos/criacao-de-landing-pages' },
+      { label: 'Consultoria de SEO',      href: '/servicos/consultoria-seo' },
+      { label: 'Gestão de Redes Sociais', href: '/servicos/gestao-redes-sociais' },
+    ],
+  },
+  { label: 'Cases', href: '/cases' },
+  { label: 'Blog',  href: '/blog'  },
+  { label: 'Sobre', href: '/sobre' },
+];
+
+const currentPath = Astro.url.pathname;
+function isActive(href: string) {
+  if (href === '/') return currentPath === '/';
+  return currentPath.startsWith(href);
+}
 ---
 
-<header
-  id="site-header"
-  class={`fixed top-0 left-0 right-0 w-full z-[200] transition-all duration-300 ${isHome ? 'is-transparent' : 'is-glass'}`}
->
-  <div class="container flex items-center justify-between h-16">
+<!-- ── Outer wrapper — tracks scroll state via JS ── -->
+<div id="header-outer" class={isHome ? 'is-home' : ''}>
+  <header id="site-header" aria-label="Cabeçalho do site">
 
-    <a href="/" class="flex items-center shrink-0" aria-label="Scale, página inicial">
-      <img src={logoUrl} alt="Scale" id="site-logo" class="h-7 w-auto" />
+    <!-- Logo -->
+    <a href="/" class="header-logo" aria-label="Scale, página inicial">
+      <img src={logoUrl} alt="Scale" id="site-logo" />
     </a>
 
-    <Nav />
+    <!-- Desktop Nav -->
+    <nav class="header-nav" role="navigation" aria-label="Menu principal">
+      {mainNavItems.map((item) =>
+        item.hasDropdown ? (
+          <div class="nav-group">
+            <button
+              class:list={['nav-link nav-trigger', isActive(item.href) && 'is-active']}
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              {item.label}
+              <svg class="nav-chevron" width="10" height="10" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"/>
+              </svg>
+            </button>
+            <div class="nav-dropdown" role="menu">
+              {item.children?.map((child) => (
+                <a
+                  href={child.href}
+                  role="menuitem"
+                  class:list={['nav-dropdown-item', isActive(child.href) && 'is-active']}
+                >
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            class:list={['nav-link', isActive(item.href) && 'is-active']}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        )
+      )}
+    </nav>
 
+    <!-- Desktop CTA -->
+    <a href="/contato" class="header-cta" aria-label="Falar com especialista">
+      Falar com especialista
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+
+    <!-- Mobile hamburger -->
+    <button id="nav-toggle" class="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-panel">
+      <span class="ham-bar"></span>
+      <span class="ham-bar"></span>
+    </button>
+
+  </header>
+</div>
+
+
+<!-- ── Mobile panel ── -->
+<div
+  id="mobile-panel"
+  role="dialog"
+  aria-label="Menu de navegação"
+  aria-modal="true"
+  class="mobile-panel"
+>
+  <!-- Panel header -->
+  <div class="mobile-panel-head">
+    <span class="mobile-panel-label">Menu</span>
+    <button id="nav-close" class="mobile-close" aria-label="Fechar menu">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+           stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
   </div>
-</header>
 
-<!--
-  Estados controlados por classe JS:
-    .is-transparent  → fundo transparente, sem border
-    .is-glass        → dark glass + blur
-  Transição suave via transition-all duration-300 no elemento.
--->
+  <!-- Links -->
+  <nav class="mobile-nav">
+    {mainNavItems.map((item) =>
+      item.hasDropdown ? (
+        <details class="mobile-details">
+          <summary class:list={['mobile-link mobile-summary', isActive(item.href) && 'is-active']}>
+            {item.label}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" class="mobile-chevron">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </summary>
+          <div class="mobile-sub">
+            {item.children?.map((child) => (
+              <a href={child.href} class:list={['mobile-sub-link', isActive(child.href) && 'is-active']}>
+                {child.label}
+              </a>
+            ))}
+          </div>
+        </details>
+      ) : (
+        <a
+          href={item.href}
+          class:list={['mobile-link', isActive(item.href) && 'is-active']}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      )
+    )}
+  </nav>
+
+  <!-- Mobile CTA -->
+  <div class="mobile-cta-wrap">
+    <a href="/contato" class="mobile-cta">
+      Falar com especialista
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<!-- Mobile overlay -->
+<div id="nav-overlay" class="nav-overlay" aria-hidden="true"></div>
+
+
 <style is:global>
-  #site-header.is-transparent {
-    background: transparent;
+  /* ── Outer wrapper ── */
+  #header-outer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    padding: 0 1rem;
+    pointer-events: none;
+    transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── Header pill ── */
+  #site-header {
+    pointer-events: auto;
+    width: 100%;
+    max-width: 72rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 1.5rem;
+    border-radius: 0;
     border-bottom: 1px solid transparent;
+    transition:
+      background 0.35s ease,
+      border-color 0.35s ease,
+      border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.35s ease,
+      height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.4s ease,
+      transform 0.4s ease;
+  }
+
+  /* Transparent (home, top) */
+  #header-outer.is-home #site-header {
+    background: transparent;
+    border-color: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+    box-shadow: none;
   }
 
-  #site-header.is-glass {
+  /* Glass (non-home OR scrolled) */
+  #header-outer.is-glass #site-header {
     background: rgba(1, 15, 28, 0.92);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.07);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
   }
 
-  /* Glow na logo enquanto transparente — mantém contraste sobre qualquer bg */
-  #site-header.is-transparent #site-logo {
-    filter: drop-shadow(0 0 16px rgba(0, 186, 255, 0.65));
+  /* Floating pill (scrolled) */
+  #header-outer.is-floating {
+    top: 0.75rem;
+    padding: 0 1.25rem;
+  }
+  #header-outer.is-floating #site-header {
+    max-width: 64rem;
+    height: 52px;
+    border-radius: 9999px;
+    padding: 0 1.25rem;
+    background: rgba(1, 15, 28, 0.94);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255,255,255,0.04);
   }
 
-  #site-header.is-glass #site-logo {
-    filter: none;
+  /* ── Logo ── */
+  .header-logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: auto;
+  }
+  #site-logo {
+    height: 1.75rem;
+    width: auto;
+  }
+
+  /* ── Desktop Nav ── */
+  .header-nav {
+    display: none;
+    align-items: center;
+    gap: 0.25rem;
+    margin-right: auto;
+  }
+  @media (min-width: 768px) {
+    .header-nav { display: flex; }
+    .header-logo { margin-right: 0; }
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+  .nav-link:hover,
+  .nav-link.is-active { color: #fff; }
+
+  .nav-chevron {
+    transition: transform 0.2s ease;
+    opacity: 0.6;
+  }
+
+  /* Dropdown group */
+  .nav-group {
+    position: relative;
+  }
+  .nav-group:hover .nav-dropdown,
+  .nav-group:focus-within .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .nav-group:hover .nav-chevron {
+    transform: rotate(180deg);
+  }
+
+  .nav-dropdown {
+    position: absolute;
+    top: calc(100% + 0.375rem);
+    left: 0;
+    min-width: 13rem;
+    z-index: 50;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.25rem);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(2, 14, 28, 0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .nav-dropdown-item {
+    display: block;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-dropdown-item:last-child { border-bottom: none; }
+  .nav-dropdown-item:hover { color: #fff; background: rgba(255, 255, 255, 0.06); }
+  .nav-dropdown-item.is-active { color: #00BAFF; background: rgba(255, 255, 255, 0.05); }
+
+  /* ── Desktop CTA ── */
+  .header-cta {
+    display: none;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 1.125rem;
+    border-radius: 9999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 768px) { .header-cta { display: inline-flex; } }
+
+  .header-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #00BAFF, #4a78ff);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    border-radius: 9999px;
+  }
+  .header-cta:hover { border-color: transparent; color: #010f1c; }
+  .header-cta:hover::before { opacity: 1; }
+  .header-cta > * { position: relative; z-index: 1; }
+
+  /* ── Hamburger ── */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    align-items: center;
+    padding: 0.6rem 0.55rem;
+    background: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    flex-shrink: 0;
+  }
+  @media (min-width: 768px) { .hamburger { display: none; } }
+  .hamburger:hover { border-color: rgba(255, 255, 255, 0.40); }
+
+  .ham-bar {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: #fff;
+    border-radius: 9999px;
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+  }
+  .hamburger.is-open .ham-bar:first-child { transform: translateY(4.5px) rotate(45deg); }
+  .hamburger.is-open .ham-bar:last-child  { transform: translateY(-4.5px) rotate(-45deg); }
+
+
+  /* ── Mobile panel ── */
+  .mobile-panel {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100dvh;
+    width: min(320px, 85vw);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(1, 12, 24, 0.98);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .mobile-panel.is-open { transform: translateX(0); }
+
+  .mobile-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    height: 4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+  }
+  .mobile-panel-label {
+    font-size: 0.625rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.25);
+  }
+  .mobile-close {
+    width: 2rem; height: 2rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex; align-items: center; justify-content: center;
+    background: none; cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .mobile-close:hover { border-color: rgba(255, 255, 255, 0.35); }
+
+  .mobile-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.25rem 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .mobile-link {
+    display: block;
+    padding: 0.75rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .mobile-link:hover, .mobile-link.is-active { color: #fff; }
+
+  .mobile-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+  .mobile-summary::-webkit-details-marker { display: none; }
+  details > summary { list-style: none; }
+
+  .mobile-chevron {
+    opacity: 0.5;
+    transition: transform 0.2s ease;
+  }
+  details[open] .mobile-chevron { transform: rotate(180deg); }
+
+  .mobile-details { border-radius: 0.75rem; }
+
+  .mobile-sub {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    padding: 0 0 0.5rem 0.75rem;
+  }
+  .mobile-sub-link {
+    display: block;
+    padding: 0.625rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.40);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .mobile-sub-link:hover { color: #fff; }
+  .mobile-sub-link.is-active { color: #00BAFF; }
+
+  .mobile-cta-wrap {
+    padding: 1rem 1rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    flex-shrink: 0;
+  }
+  .mobile-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.875rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(90deg, #1630DF, #00BAFF);
+    transition: opacity 0.2s;
+  }
+  .mobile-cta:hover { opacity: 0.88; }
+
+  /* ── Overlay ── */
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .nav-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-panel, .nav-overlay { display: none; }
   }
 </style>
 
-<script>
-  const header = document.getElementById('site-header');
 
-  // Só ativa o scroll-listener se a página começou transparente
-  if (header && header.classList.contains('is-transparent')) {
-    const update = () => {
-      if (window.scrollY > 60) {
-        header.classList.replace('is-transparent', 'is-glass');
-      } else {
-        header.classList.replace('is-glass', 'is-transparent');
-      }
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  }
+<script>
+  (() => {
+    const outer   = document.getElementById('header-outer');
+    const toggle  = document.getElementById('nav-toggle');
+    const close   = document.getElementById('nav-close');
+    const panel   = document.getElementById('mobile-panel');
+    const overlay = document.getElementById('nav-overlay');
+    const isHome  = outer?.classList.contains('is-home');
+
+    // ── Scroll: transparent → glass → floating pill ──
+    if (outer) {
+      if (!isHome) outer.classList.add('is-glass');
+
+      const update = () => {
+        const y = window.scrollY;
+        if (isHome) {
+          if (y > 60) {
+            outer.classList.add('is-glass');
+            outer.classList.remove('is-home');
+          } else {
+            outer.classList.remove('is-glass');
+            outer.classList.add('is-home');
+          }
+        }
+        if (y > 80) {
+          outer.classList.add('is-floating');
+        } else {
+          outer.classList.remove('is-floating');
+        }
+      };
+
+      window.addEventListener('scroll', update, { passive: true });
+      update();
+    }
+
+    // ── Mobile panel ──
+    function openNav() {
+      panel?.classList.add('is-open');
+      overlay?.classList.add('is-visible');
+      toggle?.classList.add('is-open');
+      toggle?.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNav() {
+      panel?.classList.remove('is-open');
+      overlay?.classList.remove('is-visible');
+      toggle?.classList.remove('is-open');
+      toggle?.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    toggle?.addEventListener('click', () =>
+      toggle.classList.contains('is-open') ? closeNav() : openNav()
+    );
+    close?.addEventListener('click', closeNav);
+    overlay?.addEventListener('click', closeNav);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNav(); });
+  })();
 </script>

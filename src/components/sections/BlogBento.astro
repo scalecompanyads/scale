@@ -1,0 +1,391 @@
+---
+const posts = [
+  {
+    slug: 'o-que-e-seo-e-por-que-sua-empresa-precisa',
+    title: 'O que é SEO e por que sua empresa precisa agora',
+    excerpt: 'Entenda como o Google decide quem aparece primeiro e como transformar isso em clientes reais.',
+    category: 'SEO',
+    readTime: '8 min',
+    color: '#00BAFF',
+    colorRgb: '0,186,255',
+  },
+  {
+    slug: 'quanto-custa-criar-um-site-profissional',
+    title: 'Quanto custa criar um site profissional em 2025',
+    excerpt: 'Comparativo honesto entre agências, freelancers e plataformas — com o que realmente importa.',
+    category: 'Sites',
+    readTime: '6 min',
+    color: '#4a78ff',
+    colorRgb: '74,120,255',
+  },
+  {
+    slug: 'como-funciona-trafego-pago-para-empresas',
+    title: 'Como funciona tráfego pago e quando vale o investimento',
+    excerpt: 'Google Ads ou Meta Ads? Aprenda a escolher o canal certo para o seu momento.',
+    category: 'Tráfego Pago',
+    readTime: '10 min',
+    color: '#a78bfa',
+    colorRgb: '167,139,250',
+  },
+  {
+    slug: 'gestao-de-redes-sociais-para-empresas',
+    title: 'Gestão de redes sociais: guia completo para empresas',
+    excerpt: 'Frequência, formatos e métricas que realmente indicam crescimento de marca.',
+    category: 'Social',
+    readTime: '7 min',
+    color: '#34d399',
+    colorRgb: '52,211,153',
+  },
+  {
+    slug: 'landing-page-ou-site-qual-escolher',
+    title: 'Landing page ou site: qual usar em cada situação',
+    excerpt: 'A escolha errada pode custar conversões. Descubra quando cada um faz sentido.',
+    category: 'Conversão',
+    readTime: '5 min',
+    color: '#f59e0b',
+    colorRgb: '245,158,11',
+  },
+  {
+    slug: 'email-marketing-ainda-funciona-em-2025',
+    title: 'Email marketing ainda funciona em 2025?',
+    excerpt: 'Dados, benchmarks e estratégias que provam que o email continua sendo o canal de maior ROI.',
+    category: 'E-mail',
+    readTime: '6 min',
+    color: '#60a5fa',
+    colorRgb: '96,165,250',
+  },
+];
+---
+
+<!-- ======================================================
+     BLOG BENTO — GSAP Flip scroll reveal
+     Initial:  3×2 equal grid
+     Final:    asymmetric bento (5 cols, 3 rows)
+     ====================================================== -->
+<section id="blog-bento-section" aria-label="Blog">
+
+  <!-- Header -->
+  <div class="bbn-header">
+    <div class="bbn-header-left">
+      <span class="bbn-label">Blog</span>
+      <h2 class="bbn-h2">
+        Conteúdo que<br />
+        <em>transforma negócios</em>
+      </h2>
+    </div>
+    <a href="/blog" class="bbn-see-all">
+      Ver todos os artigos
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Gallery wrap — gets pinned -->
+  <div id="bbn-wrap">
+    <div id="bbn-grid" class="bbn-grid bbn-final">
+
+      {posts.map((post, i) => (
+        <a
+          href={`/blog/${post.slug}`}
+          class="bbn-item"
+          data-bbn={i}
+          style={`--c: ${post.color}; --cr: ${post.colorRgb};`}
+        >
+          <!-- Gradient background layer -->
+          <div class="bbn-bg" aria-hidden="true"></div>
+
+          <!-- Noise texture overlay -->
+          <div class="bbn-noise" aria-hidden="true"></div>
+
+          <!-- Content -->
+          <div class="bbn-content">
+            <div class="bbn-body">
+              <h3 class="bbn-title">{post.title}</h3>
+              {i === 0 && (
+                <p class="bbn-excerpt">{post.excerpt}</p>
+              )}
+              <span class="bbn-meta">{post.readTime} de leitura</span>
+            </div>
+          </div>
+
+          <!-- Arrow icon -->
+          <div class="bbn-arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </div>
+        </a>
+      ))}
+
+    </div>
+  </div>
+
+</section>
+
+
+<style is:global>
+  /* ── Section ─────────────────────────────────── */
+  #blog-bento-section {
+    background: #010f1c;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  /* ── Header ────────────────────────────────────── */
+  .bbn-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 5rem 2.5rem 2.5rem;
+    max-width: 100%;
+  }
+
+  .bbn-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #00BAFF;
+    margin-bottom: 0.75rem;
+  }
+
+  .bbn-h2 {
+    font-family: var(--font-heading, serif);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin: 0;
+  }
+
+  .bbn-h2 em {
+    font-style: normal;
+    background: linear-gradient(90deg, #00BAFF 0%, #6b8fff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bbn-see-all {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-top: auto;
+  }
+  .bbn-see-all:hover {
+    color: #00BAFF;
+    border-color: rgba(0,186,255,0.35);
+  }
+
+  /* ── Wrap (pinned) ─────────────────────────────── */
+  #bbn-wrap {
+    padding: 0 0.625rem 0.625rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* ── Grid ─────────────────────────────────────── */
+  .bbn-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 360px 280px 220px;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  /* Item 0: large hero — col 1-3, row 1-2 */
+  .bbn-grid.bbn-final .bbn-item:nth-child(1) {
+    grid-column: 1 / 4;
+    grid-row: 1 / 3;
+  }
+  /* Item 1: top right a — col 4-5, row 1 */
+  .bbn-grid.bbn-final .bbn-item:nth-child(2) {
+    grid-column: 4 / 6;
+    grid-row: 1;
+  }
+  /* Item 2: top right b — col 4, row 2 */
+  .bbn-grid.bbn-final .bbn-item:nth-child(3) {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  /* Item 3: right bottom — col 5, row 2 */
+  .bbn-grid.bbn-final .bbn-item:nth-child(4) {
+    grid-column: 5;
+    grid-row: 2;
+  }
+  /* Item 4: bottom left wide — col 1-3, row 3 */
+  .bbn-grid.bbn-final .bbn-item:nth-child(5) {
+    grid-column: 1 / 3;
+    grid-row: 3;
+  }
+  /* Item 5: bottom right wide — col 3-6, row 3 */
+  .bbn-grid.bbn-final .bbn-item:nth-child(6) {
+    grid-column: 3 / 6;
+    grid-row: 3;
+  }
+
+  /* ── Item ──────────────────────────────────────── */
+  .bbn-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--home-radius-panel, 10px);
+    overflow: hidden;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.025);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    will-change: transform;
+  }
+  .bbn-item:hover {
+    border-color: rgba(var(--cr), 0.30);
+    box-shadow: 0 0 40px rgba(var(--cr), 0.12), inset 0 0 0 1px rgba(var(--cr), 0.08);
+  }
+
+  /* Gradient bg per-card */
+  .bbn-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 20% 110%, rgba(var(--cr), 0.20) 0%, transparent 60%),
+      linear-gradient(180deg, rgba(1,15,28,0.1) 0%, rgba(1,15,28,0.85) 100%);
+    z-index: 0;
+    transition: opacity 0.3s ease;
+  }
+  .bbn-item:hover .bbn-bg {
+    opacity: 1.3;
+  }
+
+  /* Subtle noise texture */
+  .bbn-noise {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+    pointer-events: none;
+  }
+
+  /* Content */
+  .bbn-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 1.25rem 1.4rem;
+  }
+
+  .bbn-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: auto;
+  }
+
+  .bbn-title {
+    font-family: var(--font-heading, serif);
+    font-size: clamp(0.9rem, 1.3vw, 1.25rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0;
+  }
+
+  /* Only for the first (large) item */
+  .bbn-grid.bbn-final .bbn-item:nth-child(1) .bbn-title {
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+  }
+
+  .bbn-excerpt {
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.45);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .bbn-meta {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.28);
+    text-transform: uppercase;
+  }
+
+  /* Arrow */
+  .bbn-arrow {
+    position: absolute;
+    z-index: 3;
+    bottom: 1.2rem;
+    right: 1.2rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.35);
+    transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.2s;
+  }
+  .bbn-item:hover .bbn-arrow {
+    color: var(--c);
+    border-color: rgba(var(--cr), 0.45);
+    background: rgba(var(--cr), 0.10);
+    transform: translate(2px, -2px);
+  }
+
+  /* ── Mobile ─────────────────────────────────────── */
+  @media (max-width: 767px) {
+    .bbn-header {
+      padding: 3.5rem 1.25rem 1.5rem;
+    }
+    #bbn-wrap {
+      padding: 0 0.375rem 0.375rem;
+    }
+    .bbn-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 220px);
+    }
+    /* Reset all final spans on mobile */
+    .bbn-grid.bbn-final .bbn-item:nth-child(1),
+    .bbn-grid.bbn-final .bbn-item:nth-child(2),
+    .bbn-grid.bbn-final .bbn-item:nth-child(3),
+    .bbn-grid.bbn-final .bbn-item:nth-child(4),
+    .bbn-grid.bbn-final .bbn-item:nth-child(5),
+    .bbn-grid.bbn-final .bbn-item:nth-child(6) {
+      grid-column: auto;
+      grid-row: auto;
+    }
+    .bbn-grid.bbn-final {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 220px);
+    }
+  }
+</style>
