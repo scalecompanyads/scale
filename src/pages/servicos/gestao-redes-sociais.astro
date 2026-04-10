@@ -1,31 +1,194 @@
 ---
 import ServiceLayout from '@layouts/ServiceLayout.astro';
-import LocalCTA from '@components/sections/LocalCTA.astro';
+import FAQ from '@components/sections/FAQ.astro';
 import { getServiceBySlug } from '@data/services';
+
 const service = getServiceBySlug('gestao-redes-sociais')!;
+
+const faqs = [
+  {
+    question: 'Quais redes sociais vocês gerenciam?',
+    answer: 'Instagram, Facebook, LinkedIn e TikTok. A escolha dos canais é feita com base no seu público-alvo e setor — não gerenciamos tudo por gerenciar.',
+  },
+  {
+    question: 'Com que frequência publicam?',
+    answer: 'A frequência de publicação é definida na estratégia inicial. Em geral, trabalhamos com 3 a 5 publicações semanais, além de stories e interações diárias com a comunidade.',
+  },
+  {
+    question: 'Quem cria o conteúdo?',
+    answer: 'Nossa equipe de criação produz textos, artes e quando necessário orientamos produção de fotos e vídeos. Você aprova o calendário antes da publicação.',
+  },
+  {
+    question: 'Como funciona o processo de aprovação?',
+    answer: 'Entregamos um calendário editorial mensal para sua aprovação. Ajustes pontuais podem ser solicitados antes das publicações. Você mantém controle total da comunicação da marca.',
+  },
+  {
+    question: 'Como medem o resultado?',
+    answer: 'Relatório mensal com alcance, engajamento, crescimento de seguidores, leads gerados via redes e benchmark do setor. Conectamos redes sociais aos seus objetivos de negócio.',
+  },
+];
+
+const benefits = [
+  {
+    title: 'Presença consistente',
+    desc: 'Publicações regulares mantêm sua marca ativa na mente do cliente. Consistência é o que separa marcas memoráveis de perfis esquecidos.',
+  },
+  {
+    title: 'Conteúdo com estratégia',
+    desc: 'Cada post tem um objetivo: gerar alcance, engajamento ou conversão. Nada é publicado por preencher calendário.',
+  },
+  {
+    title: 'Identidade visual coesa',
+    desc: 'Design alinhado à marca em todos os formatos: feed, stories, reels e carrosséis. Sua empresa transmite profissionalismo em cada detalhe.',
+  },
+  {
+    title: 'Gestão de comunidade',
+    desc: 'Respondemos comentários, mensagens e interagimos com seu público. Relacionamento ativo que transforma seguidores em clientes.',
+  },
+  {
+    title: 'Relatórios claros',
+    desc: 'Dados reais sobre o que funciona e o que deve ser ajustado. Nenhum número vago — apenas métricas ligadas aos seus objetivos.',
+  },
+  {
+    title: 'Equipe especializada',
+    desc: 'Estrategista, redator e designer dedicados à sua conta. Você contrata uma equipe completa pelo custo de um funcionário.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Diagnóstico e estratégia',
+    desc: 'Analisamos seu perfil atual, concorrência e público-alvo. Definimos canais, tom de voz, frequência e objetivos de curto e médio prazo.',
+  },
+  {
+    title: 'Calendário editorial',
+    desc: 'Criamos o planejamento mensal de conteúdo com temas, formatos e datas. Você aprova antes de qualquer publicação.',
+  },
+  {
+    title: 'Produção e publicação',
+    desc: 'Nossa equipe produz textos, artes e legendas. Publicamos nos horários de maior engajamento e monitoramos os resultados em tempo real.',
+  },
+  {
+    title: 'Relatório e otimização',
+    desc: 'Ao final de cada mês, entregamos um relatório completo e ajustamos a estratégia com base nos dados. Melhoramos continuamente.',
+  },
+];
+
+const outcomes = [
+  'Crescimento orgânico consistente de seguidores qualificados',
+  'Maior reconhecimento de marca no seu mercado de atuação',
+  'Aumento no engajamento e nas interações com o público',
+  'Geração de leads e oportunidades diretamente pelas redes',
+  'Comunicação da marca padronizada e profissional em todos os canais',
+  'Dados e relatórios para embasar decisões de marketing',
+];
 ---
+
 <ServiceLayout
   title="Gestão de Redes Sociais para Empresas | Scale"
-  description="Gestão completa de redes sociais: criação de conteúdo, calendário editorial, estratégia de crescimento e relatórios mensais. Vila Velha – ES e todo o Brasil."
+  description="Gerenciamos suas redes sociais com estratégia, consistência e criatividade. Calendário editorial, criação de conteúdo e relatórios mensais de resultado."
   service={service}
 >
+
+  <!-- HERO -->
   <section class="section bg-surface-subtle">
     <div class="container">
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Gestão de Redes Sociais que conecta sua marca ao cliente
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Conteúdo estratégico, consistente e com identidade, para Instagram, Facebook e mais.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar proposta
-        </a>
-        <a href="/vila-velha/gestao-redes-sociais" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          Social media em Vila Velha
-        </a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
+            Gestão de Redes Sociais para Empresas que querem crescer de verdade
+          </h1>
+          <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-xl">
+            Estratégia, criação de conteúdo e gestão de comunidade para Instagram, Facebook, LinkedIn e TikTok. Sua marca presente, consistente e convertendo.
+          </p>
+          <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+            Solicitar diagnóstico gratuito
+          </a>
+        </div>
       </div>
     </div>
   </section>
-  <LocalCTA city="Vila Velha" service="Gestão de Redes Sociais" />
+
+  <!-- O QUE É -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-label">O serviço</span>
+        <h2 class="section-title">O que é gestão de redes sociais para empresas</h2>
+        <p class="section-subtitle max-w-2xl mx-auto">
+          Gestão de redes sociais é o trabalho estratégico e operacional de planejar, criar, publicar e analisar conteúdo nas plataformas digitais da sua empresa. Vai muito além de postar foto com legenda: envolve calendário editorial, identidade visual, análise de desempenho e relacionamento ativo com seu público. Quando feita com método, as redes sociais deixam de ser um custo e passam a ser um canal de geração de negócios.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Por que contratar gestão de redes sociais</h2>
+        <p class="section-subtitle">O que muda quando você para de improvisar e começa a trabalhar com estratégia.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {benefits.map(item => (
+          <div class="p-6 rounded-xl border border-edge bg-surface-card">
+            <h3 class="font-semibold text-ink text-lg mb-2">{item.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Como funciona</h2>
+        <p class="section-subtitle">Processo claro, sem surpresas.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {steps.map((step, i) => (
+          <div class="flex flex-col gap-3">
+            <span class="font-heading font-bold text-5xl leading-none" style="color: rgba(14,165,233,0.15);">{String(i+1).padStart(2,'0')}</span>
+            <h3 class="font-semibold text-ink text-lg">{step.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">O que você pode esperar</h2>
+        <p class="section-subtitle">Resultados reais para quem investe com estratégia.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {outcomes.map(o => (
+          <div class="flex items-start gap-3 p-5 rounded-xl border border-edge bg-surface-card">
+            <span class="text-brand-primary font-bold mt-0.5 flex-shrink-0">✓</span>
+            <p class="text-sm text-ink leading-relaxed">{o}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="Dúvidas sobre gestão de redes sociais" />
+
+  <!-- CTA FINAL -->
+  <section class="section text-center">
+    <div class="container-narrow">
+      <h2 class="font-heading text-3xl sm:text-4xl font-bold text-ink mb-4">Pronto para escalar?</h2>
+      <p class="text-lg text-ink-light mb-8 max-w-md mx-auto">Diagnóstico gratuito, sem compromisso e sem enrolação.</p>
+      <a href="/contato" class="inline-block px-10 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+        Solicitar diagnóstico gratuito
+      </a>
+    </div>
+  </section>
+
 </ServiceLayout>

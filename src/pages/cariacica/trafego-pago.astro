@@ -1,0 +1,67 @@
+---
+import LocalLayout from '@layouts/LocalLayout.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import { getCityBySlug } from '@data/cities';
+
+const city = getCityBySlug('cariacica')!;
+
+const faqs = [
+  { question: 'Tráfego pago funciona para empresas pequenas em Cariacica?', answer: 'Sim. Com o investimento certo para o seu mercado, campanhas bem configuradas geram leads e clientes para negócios de qualquer porte.' },
+  { question: 'Qual o investimento mínimo em mídia?', answer: 'Não existe um mínimo universal. No diagnóstico gratuito, analisamos seu mercado e definimos o investimento ideal para gerar resultados sem desperdício.' },
+  { question: 'Em quanto tempo começo a ver resultado?', answer: 'Campanhas bem configuradas começam a gerar leads entre 2 e 4 semanas após o lançamento. O volume cresce conforme otimizamos com dados reais.' },
+  { question: 'Trabalham com Google Ads e Meta Ads?', answer: 'Sim. Gerenciamos Google Ads (Search, Display, YouTube) e Meta Ads (Instagram e Facebook). A escolha do canal depende do seu público e objetivo.' },
+  { question: 'Como acompanho os resultados?', answer: 'Relatório mensal com leads gerados, custo por aquisição, ROAS e principais métricas — em linguagem de negócio, não só dados técnicos.' },
+];
+---
+
+<LocalLayout
+  title="Tráfego Pago em Cariacica – ES | Google Ads e Meta Ads | Scale"
+  description="Gestão de tráfego pago para empresas em Cariacica (ES). Google Ads e Meta Ads com foco em resultado real. Diagnóstico gratuito. (27) XXXX-XXXX."
+  city={city}
+>
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+        📍 Cariacica – ES
+      </span>
+      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
+        Tráfego Pago para Empresas em Cariacica – ES
+      </h1>
+      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
+        Gestão profissional de Google Ads e Meta Ads para empresas de Cariacica. Campanhas otimizadas para gerar leads e clientes, não só cliques.
+      </p>
+      <div class="flex gap-4 flex-wrap">
+        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+          Solicitar diagnóstico gratuito
+        </a>
+        <a href="tel:+5527XXXXXXXX" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
+          (27) XXXX-XXXX
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-narrow">
+      <h2 class="font-heading text-2xl font-bold text-ink mb-4">Anúncios que geram clientes em Cariacica</h2>
+      <p class="text-ink-light leading-relaxed mb-4">
+        Empresas de Cariacica que dependem de clientes locais têm uma vantagem enorme com tráfego pago: é possível segmentar anúncios por localização, interesse e comportamento, aparecendo exatamente para quem está pronto para comprar.
+      </p>
+      <p class="text-ink-light leading-relaxed">
+        Nossa gestão cobre desde a criação dos criativos e configuração das campanhas até a otimização contínua com base nos dados de performance. Você recebe relatórios claros e acompanha cada real investido.
+      </p>
+    </div>
+  </section>
+
+  <FAQ items={faqs} title="Dúvidas sobre tráfego pago em Cariacica" />
+
+  <section class="section text-center bg-surface-subtle">
+    <div class="container-narrow">
+      <h2 class="font-heading text-3xl font-bold text-ink mb-4">Invista em tráfego que converte</h2>
+      <p class="text-lg text-ink-light mb-8">Diagnóstico gratuito para empresas de Cariacica.</p>
+      <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+        Solicitar diagnóstico gratuito
+      </a>
+    </div>
+  </section>
+</LocalLayout>

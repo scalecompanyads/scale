@@ -1,31 +1,157 @@
 ---
+/**
+ * Tráfego Pago — /servicos/trafego-pago
+ * ~6.6k buscas/mês
+ * Keywords: "tráfego pago para empresas", "gestão google ads", "gestão meta ads"
+ */
 import ServiceLayout from '@layouts/ServiceLayout.astro';
-import LocalCTA from '@components/sections/LocalCTA.astro';
+import FAQ from '@components/sections/FAQ.astro';
 import { getServiceBySlug } from '@data/services';
+
 const service = getServiceBySlug('trafego-pago')!;
+
+const faqs = [
+  { question: 'Qual o investimento mínimo em mídia paga?', answer: 'Não existe um valor mínimo universal — depende do seu mercado e objetivo. No diagnóstico mapeamos o investimento ideal para escalar seus resultados sem desperdício.' },
+  { question: 'Quanto tempo para ver resultado?', answer: 'Campanhas bem configuradas podem gerar leads entre 2 e 4 semanas após o lançamento. O volume cresce conforme otimizamos dados reais de performance.' },
+  { question: 'A gestão inclui criação dos anúncios?', answer: 'Sim. Criamos os criativos (texto e imagem), configuramos as campanhas, definimos públicos, fazemos testes A/B e otimizamos continuamente com base nos dados.' },
+  { question: 'Como acompanho os resultados?', answer: 'Você recebe relatórios mensais em linguagem de negócio — não só CTR e impressões, mas leads gerados, custo por aquisição e ROAS. Acesso ao dashboard em tempo real disponível.' },
+  { question: 'Trabalham com qual plataforma?', answer: 'Google Ads (Search, Display, YouTube, Shopping) e Meta Ads (Instagram e Facebook). A escolha do canal depende de onde seu cliente está e qual é o seu objetivo de conversão.' },
+];
+
+const beneficios = [
+  { title: 'Campanhas focadas em conversão', desc: 'Não gerenciamos por impressões ou cliques — o objetivo é gerar leads e vendas. Cada decisão é tomada com base nos dados de conversão reais do seu negócio.' },
+  { title: 'Gestão Google Ads completa', desc: 'Search, Display, YouTube e Shopping configurados com estrutura de campanhas, extensões, palavras-chave negativas e lances inteligentes para maximizar o ROAS.' },
+  { title: 'Gestão Meta Ads estratégica', desc: 'Campanhas no Instagram e Facebook com segmentação precisa de público, funil de awareness a conversão e criativos testados para reduzir o custo por lead.' },
+  { title: 'Criação de criativos inclusa', desc: 'Desenvolvemos os textos dos anúncios e os assets visuais. Você não precisa produzir nada — cuidamos de toda a criação para manter volume e qualidade nos testes.' },
+  { title: 'Testes A/B contínuos', desc: 'Testamos variações de copy, imagem, público e oferta de forma sistemática. O que performa melhor recebe mais verba; o que não converte é pausado sem hesitar.' },
+  { title: 'Relatórios em linguagem de negócio', desc: 'Nada de métricas de vaidade. Você recebe custo por lead, custo por aquisição, ROAS e receita atribuída por canal — dados para tomar decisão, não para impressionar.' },
+];
+
+const steps = [
+  { title: 'Diagnóstico e estratégia', desc: 'Analisamos o seu negócio, concorrência, histórico de campanhas e mapeamos o canal certo, o público ideal e o orçamento adequado para os seus objetivos.' },
+  { title: 'Configuração e lançamento', desc: 'Estruturamos as campanhas, criamos os anúncios, configuramos o rastreamento de conversões (pixel, tag, Google Analytics) e lançamos com monitoramento ativo.' },
+  { title: 'Otimização baseada em dados', desc: 'Com dados reais em mãos, ajustamos lances, pausamos anúncios com baixo desempenho, testamos novas variações e realocamos verba para o que converte mais.' },
+  { title: 'Relatório e ciclo de melhoria', desc: 'Relatório mensal com todos os indicadores relevantes, análise do período, aprendizados e plano de ação para o mês seguinte. Transparência total.' },
+];
+
+const outcomes = [
+  'Geração de leads qualificados de forma previsível e escalável',
+  'Custo por aquisição monitorado e reduzido progressivamente com otimizações',
+  'ROAS positivo com campanhas alinhadas ao ciclo de vendas do seu negócio',
+  'Fim do desperdício de verba com anúncios mal segmentados ou mal configurados',
+  'Visibilidade imediata para palavras-chave estratégicas enquanto o SEO matura',
+  'Inteligência de mercado gerada pelos dados das campanhas para decisões futuras',
+];
 ---
+
 <ServiceLayout
   title="Gestão de Tráfego Pago | Google Ads e Meta Ads | Scale"
-  description="Gestão profissional de Google Ads e Meta Ads com foco em ROAS. Relatórios mensais e otimização contínua. Agência de tráfego pago em Vila Velha – ES."
+  description="Gestão profissional de Google Ads e Meta Ads com foco em ROAS e resultado real. Campanhas otimizadas, relatórios claros e estratégia baseada em dados."
   service={service}
 >
+  <!-- HERO -->
   <section class="section bg-surface-subtle">
     <div class="container">
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Tráfego Pago que gera clientes, não só cliques
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Google Ads, Meta Ads e relatórios de performance com foco em ROAS, para seu investimento virar resultado real.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar diagnóstico gratuito
-        </a>
-        <a href="/vila-velha/trafego-pago" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          Tráfego pago em Vila Velha
-        </a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
+            Gestão de Tráfego Pago para Empresas: Google Ads e Meta Ads com Foco em ROAS
+          </h1>
+          <p class="text-lg text-ink-light leading-relaxed mb-8">
+            Verba em anúncio sem estratégia é desperdício. A Scale gerencia suas campanhas de Google Ads e Meta Ads do zero ao relatório, com foco em conversão real: leads qualificados, custo por aquisição controlado e crescimento previsível para o seu negócio.
+          </p>
+          <div class="flex gap-4 flex-wrap">
+            <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+              Solicitar diagnóstico gratuito
+            </a>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <!-- espaço reservado para visual de campanhas/dashboard -->
+        </div>
       </div>
     </div>
   </section>
-  <LocalCTA city="Vila Velha" service="Tráfego Pago" />
+
+  <!-- O QUE É -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">O que é gestão de tráfego pago</h2>
+        <p class="section-subtitle">Anúncios pagos não são sobre gastar mais, mas sobre gastar melhor</p>
+      </div>
+      <p class="text-ink-light leading-relaxed max-w-3xl mx-auto text-center">
+        Tráfego pago é o conjunto de estratégias que coloca o seu negócio na frente de pessoas que estão ativamente buscando o que você oferece, ou que se encaixam no perfil do seu cliente ideal. Google Ads captura a demanda existente, aparecendo quando o usuário pesquisa. Meta Ads cria demanda, exibindo seu produto ou serviço para quem ainda não te conhece, mas tem o perfil certo para comprar. Uma gestão profissional vai além de subir campanhas: envolve estrutura correta, rastreamento preciso de conversões, testes sistemáticos de criativos e públicos, e otimização contínua baseada em dados reais. Sem isso, o investimento em mídia cresce, mas o retorno não acompanha.
+      </p>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Por que contratar gestão de tráfego pago</h2>
+        <p class="section-subtitle">A diferença entre campanhas que consomem orçamento e campanhas que geram receita</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {beneficios.map(item => (
+          <div class="p-6 rounded-xl border border-edge bg-surface-card">
+            <h3 class="font-semibold text-ink mb-2">{item.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Como funciona a gestão de campanhas</h2>
+        <p class="section-subtitle">Processo estruturado da estratégia ao relatório, com ciclo de melhoria contínua</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((step, i) => (
+          <div class="flex flex-col gap-3">
+            <span class="text-4xl font-bold text-brand-primary/20 font-heading">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="font-semibold text-ink">{step.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Resultados esperados</h2>
+        <p class="section-subtitle">O que muda quando suas campanhas são gerenciadas com método e dados</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {outcomes.map(o => (
+          <div class="p-5 rounded-xl border border-edge bg-surface-card flex items-start gap-3">
+            <span class="text-brand-primary mt-0.5">✓</span>
+            <p class="text-sm text-ink leading-relaxed">{o}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="Dúvidas sobre tráfego pago" />
+
+  <!-- CTA FINAL -->
+  <section class="section text-center">
+    <div class="container-narrow">
+      <h2 class="font-heading text-3xl font-bold text-ink mb-4">Pronto para transformar verba em resultado?</h2>
+      <p class="text-ink-light mb-8">Diagnóstico gratuito, sem compromisso. Analisamos o seu cenário atual e apresentamos o plano certo para escalar.</p>
+      <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+        Solicitar diagnóstico gratuito
+      </a>
+    </div>
+  </section>
 </ServiceLayout>

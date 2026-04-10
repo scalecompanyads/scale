@@ -1,10 +1,5 @@
 ---
-/**
- * Landing Pages — /servicos/criacao-de-landing-pages
- * Keywords: "criação de landing page", "landing page profissional", "landing page para google ads"
- */
 import ServiceLayout from '@layouts/ServiceLayout.astro';
-import LocalCTA from '@components/sections/LocalCTA.astro';
 import FAQ from '@components/sections/FAQ.astro';
 import { getServiceBySlug } from '@data/services';
 
@@ -12,44 +7,188 @@ const service = getServiceBySlug('criacao-de-landing-pages')!;
 
 const faqs = [
   {
-    question: 'O que é uma landing page?',
-    answer: 'Landing page é uma página de conversão criada para uma campanha específica. Ao contrário do site, ela tem um único objetivo: fazer o visitante tomar uma ação (preencher formulário, ligar, comprar).',
+    question: 'Qual a diferença entre landing page e site?',
+    answer: 'Um site tem múltiplas páginas e objetivos. A landing page tem um único foco: converter o visitante em lead ou cliente. Sem distrações, com copy e design orientados à ação.',
   },
   {
-    question: 'Preciso de landing page se já tenho site?',
-    answer: 'Sim. Direcionar anúncios para a home do site desperdiça verba. A landing page é otimizada para conversão, com mensagem alinhada ao anúncio. O resultado é um custo por lead muito menor.',
+    question: 'Quanto tempo leva para entregar?',
+    answer: 'Landing pages padrão são entregues em 7 a 15 dias úteis após briefing aprovado. O prazo depende da complexidade e da agilidade na troca de informações.',
   },
   {
-    question: 'Quanto tempo leva para criar uma landing page?',
-    answer: 'Entregamos em 7 a 14 dias úteis após aprovação do briefing.',
+    question: 'A landing page integra com meu CRM ou automação?',
+    answer: 'Sim. Integramos com as principais ferramentas: RD Station, HubSpot, ActiveCampaign, Mailchimp, entre outras. Os leads capturados vão direto para sua ferramenta.',
   },
+  {
+    question: 'Posso fazer testes A/B na landing page?',
+    answer: 'Sim, recomendamos e apoiamos a implementação de testes A/B nos principais elementos: headline, CTA, imagem e formulário. É a forma mais eficiente de aumentar conversão.',
+  },
+  {
+    question: 'A landing page inclui SEO?',
+    answer: 'Landing pages são geralmente otimizadas para conversão via tráfego pago. Se o objetivo for tráfego orgânico, ajustamos a estrutura para incluir otimização SEO on-page.',
+  },
+];
+
+const benefits = [
+  {
+    title: 'Foco total em conversão',
+    desc: 'Cada elemento da página, do título ao botão, é projetado para conduzir o visitante a uma única ação. Sem menus desnecessários, sem distrações, sem fugas.',
+  },
+  {
+    title: 'Copy persuasiva e orientada a dados',
+    desc: 'Textos escritos com técnicas de copywriting testadas: proposta de valor clara, objeções respondidas e chamada para ação irresistível.',
+  },
+  {
+    title: 'Design profissional e responsivo',
+    desc: 'Layout limpo, hierarquia visual correta e experiência impecável em qualquer dispositivo. Mobile representa mais de 60% do tráfego das campanhas.',
+  },
+  {
+    title: 'Carregamento rápido',
+    desc: 'Páginas lentas perdem conversões. Desenvolvemos com performance em mente: imagens otimizadas, código enxuto e pontuação alta no PageSpeed.',
+  },
+  {
+    title: 'Integração com suas ferramentas',
+    desc: 'Conectamos o formulário ao seu CRM, ferramenta de automação ou planilha. Os leads chegam organizados, prontos para o seu time comercial.',
+  },
+  {
+    title: 'Suporte a testes e otimização',
+    desc: 'Acompanhamos os dados pós-lançamento e recomendamos ajustes para melhorar a taxa de conversão ao longo do tempo.',
+  },
+];
+
+const steps = [
+  {
+    title: 'Briefing e estratégia',
+    desc: 'Entendemos o objetivo da campanha, o público-alvo e a oferta. Definimos a estrutura ideal e os elementos de persuasão que vão orientar o projeto.',
+  },
+  {
+    title: 'Copy e wireframe',
+    desc: 'Produzimos o texto persuasivo e o esboço estrutural da página. Você aprova a lógica e o conteúdo antes do design começar.',
+  },
+  {
+    title: 'Design e desenvolvimento',
+    desc: 'Transformamos o wireframe aprovado em uma página responsiva, rápida e integrada às suas ferramentas de marketing e vendas.',
+  },
+  {
+    title: 'Publicação e acompanhamento',
+    desc: 'Publicamos a página, configuramos o rastreamento e monitoramos os primeiros dados para garantir que tudo está funcionando como planejado.',
+  },
+];
+
+const outcomes = [
+  'Taxa de conversão superior à da home do seu site para campanhas pagas',
+  'Custo por lead mais baixo nas campanhas de Google Ads e Meta Ads',
+  'Leads qualificados chegando direto no seu CRM, organizados e com fonte rastreada',
+  'Velocidade de carregamento acima de 90 no PageSpeed em dispositivos móveis',
+  'Redução do desperdício de verba por falta de alinhamento entre anúncio e página',
+  'Base sólida para testes A/B e otimização contínua da conversão',
 ];
 ---
 
 <ServiceLayout
-  title="Criação de Landing Pages Profissionais | Scale"
-  description="Landing pages de alta conversão para campanhas de tráfego pago, lançamentos e captação de leads. Design focado em resultado. Vila Velha e todo o Brasil."
+  title="Criação de Landing Pages que Convertem | Scale"
+  description="Criamos landing pages focadas em conversão: design orientado a CRO, copy persuasiva, carregamento rápido e integração com ferramentas de automação."
   service={service}
 >
+
+  <!-- HERO -->
   <section class="section bg-surface-subtle">
     <div class="container">
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Landing Pages que convertem visitantes em clientes
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Páginas de alta conversão para campanhas de Google Ads, Meta Ads e lançamentos, com design e copy focados em resultado.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar orçamento
-        </a>
-        <a href="/vila-velha/criacao-de-landing-pages" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          Landing page em Vila Velha
-        </a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
+            Criação de Landing Pages profissionais que convertem visitantes em clientes
+          </h1>
+          <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-xl">
+            Páginas de conversão com copy persuasiva, design orientado a CRO e carregamento rápido. Criadas para campanhas de tráfego pago, lançamentos e captação de leads.
+          </p>
+          <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+            Solicitar diagnóstico gratuito
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <FAQ items={faqs} />
-  <LocalCTA city="Vila Velha" service="Landing Pages" />
+  <!-- O QUE É -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-label">O serviço</span>
+        <h2 class="section-title">O que é uma landing page profissional</h2>
+        <p class="section-subtitle max-w-2xl mx-auto">
+          Uma landing page é uma página de destino criada com um único objetivo: converter o visitante. Diferente de um site institucional, ela elimina distrações e conduz o usuário por um caminho direto até a ação desejada, seja preencher um formulário, ligar, comprar ou solicitar um orçamento. Quando alinhada ao anúncio e ao público certo, uma landing page bem construída reduz o custo por lead e aumenta o retorno de cada real investido em mídia paga.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Por que contratar criação de landing pages</h2>
+        <p class="section-subtitle">O que acontece quando design e copy trabalham juntos com foco em conversão.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {benefits.map(item => (
+          <div class="p-6 rounded-xl border border-edge bg-surface-card">
+            <h3 class="font-semibold text-ink text-lg mb-2">{item.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Como funciona</h2>
+        <p class="section-subtitle">Processo claro, sem surpresas.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {steps.map((step, i) => (
+          <div class="flex flex-col gap-3">
+            <span class="font-heading font-bold text-5xl leading-none" style="color: rgba(14,165,233,0.15);">{String(i+1).padStart(2,'0')}</span>
+            <h3 class="font-semibold text-ink text-lg">{step.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">O que você pode esperar</h2>
+        <p class="section-subtitle">Resultados reais para quem investe com estratégia.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {outcomes.map(o => (
+          <div class="flex items-start gap-3 p-5 rounded-xl border border-edge bg-surface-card">
+            <span class="text-brand-primary font-bold mt-0.5 flex-shrink-0">✓</span>
+            <p class="text-sm text-ink leading-relaxed">{o}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="Dúvidas sobre criação de landing pages" />
+
+  <!-- CTA FINAL -->
+  <section class="section text-center">
+    <div class="container-narrow">
+      <h2 class="font-heading text-3xl sm:text-4xl font-bold text-ink mb-4">Pronto para escalar?</h2>
+      <p class="text-lg text-ink-light mb-8 max-w-md mx-auto">Diagnóstico gratuito, sem compromisso e sem enrolação.</p>
+      <a href="/contato" class="inline-block px-10 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+        Solicitar diagnóstico gratuito
+      </a>
+    </div>
+  </section>
+
 </ServiceLayout>

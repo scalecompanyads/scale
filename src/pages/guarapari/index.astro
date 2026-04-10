@@ -1,0 +1,87 @@
+---
+import LocalLayout from '@layouts/LocalLayout.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import { getCityBySlug } from '@data/cities';
+
+const city = getCityBySlug('guarapari')!;
+
+const services = [
+  { href: '/guarapari/criacao-de-sites', icon: '🌐', name: 'Criação de Sites' },
+  { href: '/guarapari/seo', icon: '🔍', name: 'SEO' },
+];
+
+const faqs = [
+  { question: 'A Scale atende empresas em Guarapari?', answer: 'Sim. Atendemos empresas em Guarapari e em toda a região do ES, de forma remota com a mesma qualidade de um atendimento presencial.' },
+  { question: 'Quais serviços estão disponíveis em Guarapari?', answer: 'Criação de sites profissionais e consultoria de SEO. Entre em contato para saber sobre outros serviços.' },
+  { question: 'Por que marketing digital é importante para empresas de Guarapari?', answer: 'Guarapari tem forte economia no turismo e comércio local. Empresas que aparecem bem no Google captam tanto o cliente local quanto o turista que pesquisa antes de viajar.' },
+];
+---
+
+<LocalLayout
+  title="Agência de Marketing Digital em Guarapari – ES | Scale"
+  description="Scale atende empresas em Guarapari (ES) com criação de sites e SEO. Presença digital para o mercado local e turístico. Diagnóstico gratuito."
+  city={city}
+>
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+        📍 Guarapari – ES
+      </span>
+      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
+        Agência de Marketing Digital em Guarapari – ES
+      </h1>
+      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
+        A Scale atende empresas em Guarapari com estratégias digitais focadas em resultado. Site profissional e SEO para aparecer no Google e captar mais clientes na região.
+      </p>
+      <div class="flex gap-4 flex-wrap">
+        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+          Falar com especialista
+        </a>
+        <a href="tel:+5528XXXXXXXX" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
+          (28) XXXX-XXXX
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Serviços em Guarapari</h2>
+        <p class="section-subtitle">Presença digital para empresas e comércio local.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+        {services.map((s) => (
+          <a href={s.href} class="block p-5 rounded-xl border border-edge bg-surface-card hover:border-brand-primary hover:shadow-md transition-all">
+            <p class="font-semibold text-ink text-lg">{s.icon} {s.name}</p>
+            <p class="text-sm text-ink-light mt-1">em Guarapari – ES</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-surface-subtle">
+    <div class="container-narrow">
+      <h2 class="font-heading text-2xl font-bold text-ink mb-4">Marketing digital para o mercado de Guarapari</h2>
+      <p class="text-ink-light leading-relaxed mb-4">
+        Guarapari é um dos destinos turísticos mais importantes do Espírito Santo, com economia ativa no comércio, gastronomia, hotelaria e serviços. Empresas que aparecem bem no Google captam tanto o cliente fixo quanto o turista que pesquisa antes de viajar.
+      </p>
+      <p class="text-ink-light leading-relaxed">
+        Com um site profissional e uma estratégia de SEO bem executada, sua empresa fica visível para quem pesquisa no Google exatamente o que você oferece, na hora certa.
+      </p>
+    </div>
+  </section>
+
+  <FAQ items={faqs} title="Dúvidas sobre nossos serviços em Guarapari" />
+
+  <section class="section text-center">
+    <div class="container-narrow">
+      <h2 class="font-heading text-3xl font-bold text-ink mb-4">Comece a crescer em Guarapari</h2>
+      <p class="text-lg text-ink-light mb-8">Diagnóstico gratuito, sem compromisso.</p>
+      <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+        Solicitar diagnóstico gratuito
+      </a>
+    </div>
+  </section>
+</LocalLayout>

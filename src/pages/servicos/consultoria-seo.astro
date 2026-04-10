@@ -1,38 +1,157 @@
 ---
 /**
  * Consultoria SEO — /servicos/consultoria-seo
+ * ~3.6k buscas/mês
  * Keywords: "consultoria de SEO", "agência de SEO", "otimização de site para Google"
  */
 import ServiceLayout from '@layouts/ServiceLayout.astro';
-import LocalCTA from '@components/sections/LocalCTA.astro';
+import FAQ from '@components/sections/FAQ.astro';
 import { getServiceBySlug } from '@data/services';
 
 const service = getServiceBySlug('consultoria-seo')!;
+
+const faqs = [
+  { question: 'Em quanto tempo o SEO começa a dar resultado?', answer: 'SEO é investimento de médio prazo. Os primeiros sinais aparecem entre 60 e 90 dias, com resultados consistentes a partir de 4 a 6 meses — dependendo do nível atual do site e da competitividade do mercado.' },
+  { question: 'O que inclui a consultoria de SEO?', answer: 'Auditoria técnica completa, otimização de páginas existentes, estratégia de conteúdo, link building e acompanhamento mensal com relatório de posicionamento e tráfego orgânico.' },
+  { question: 'Preciso já ter um site para contratar SEO?', answer: 'Sim, o SEO é aplicado sobre um site existente. Se você ainda não tem site, podemos criar um já otimizado e iniciar o SEO na sequência.' },
+  { question: 'SEO local e SEO nacional são diferentes?', answer: 'Sim. SEO local foca em buscas com intenção geográfica — "agência de marketing em [cidade]". SEO nacional cobre palavras-chave sem localidade. Trabalhamos com ambas as estratégias.' },
+  { question: 'Como sei que está funcionando?', answer: 'Relatórios mensais com posicionamento das palavras-chave, tráfego orgânico, impressões e cliques no Google Search Console. Você acompanha a evolução mês a mês com dados reais.' },
+];
+
+const beneficios = [
+  { title: 'Auditoria técnica completa', desc: 'Mapeamos todos os problemas que impedem seu site de ranquear: erros de rastreamento, velocidade, estrutura de URLs, dados estruturados, links quebrados e muito mais.' },
+  { title: 'Otimização on-page estratégica', desc: 'Otimizamos títulos, meta descriptions, headings, conteúdo e estrutura interna de links para alinhar cada página com a intenção de busca do usuário e os critérios do Google.' },
+  { title: 'Estratégia de conteúdo orientada a busca', desc: 'Produzimos e planejamos conteúdos baseados em palavras-chave com potencial real de tráfego, respondendo as perguntas certas para atrair o público certo em cada etapa do funil.' },
+  { title: 'Link building para autoridade de domínio', desc: 'Construímos backlinks relevantes e de qualidade para aumentar a autoridade do domínio, fator que o Google usa diretamente para ranquear páginas em posições de destaque.' },
+  { title: 'SEO técnico contínuo', desc: 'Monitoramos e corrigimos continuamente Core Web Vitals, indexação, sitemap, robots.txt e schema markup para manter a base técnica sólida à medida que o site cresce.' },
+  { title: 'Relatórios mensais de posicionamento', desc: 'Acompanhe a evolução do ranqueamento das suas palavras-chave, tráfego orgânico e impressões no Google com relatórios claros e contextualizados por negócio.' },
+];
+
+const steps = [
+  { title: 'Auditoria e diagnóstico', desc: 'Analisamos o site atual em profundidade: saúde técnica, autoridade de domínio, posicionamento atual, concorrência orgânica e oportunidades de palavras-chave.' },
+  { title: 'Plano de ação priorizado', desc: 'Entregamos um roadmap com as correções e ações ordenadas por impacto e esforço, para garantir que os ganhos mais rápidos aconteçam primeiro.' },
+  { title: 'Implementação e otimização', desc: 'Executamos as otimizações técnicas e on-page, produzimos conteúdo estratégico, construímos links e corrigimos as barreiras de rastreamento identificadas na auditoria.' },
+  { title: 'Monitoramento e relatório mensal', desc: 'Acompanhamos posicionamento, tráfego, cliques e indexação todo mês. Ajustamos a estratégia conforme os dados e reportamos a evolução com transparência.' },
+];
+
+const outcomes = [
+  'Crescimento consistente de tráfego orgânico qualificado ao longo dos meses',
+  'Posicionamento nas primeiras posições para palavras-chave estratégicas do seu mercado',
+  'Redução do custo de aquisição com leads vindos de busca orgânica sem custo por clique',
+  'Site tecnicamente saudável, indexado corretamente e compatível com as diretrizes do Google',
+  'Autoridade de domínio construída de forma sustentável com links relevantes e conteúdo',
+  'Vantagem competitiva duradoura, já que posições orgânicas são difíceis de replicar rapidamente',
+];
 ---
 
 <ServiceLayout
-  title="Consultoria de SEO | Scale | Agência de SEO em Vila Velha – ES"
-  description="Consultoria e gestão mensal de SEO: auditoria técnica, otimização on-page, produção de conteúdo e link building. Apareça na 1ª página do Google."
+  title="Consultoria de SEO | Posicione sua Empresa no Google | Scale"
+  description="Auditoria técnica, otimização on-page, produção de conteúdo e link building. Apareça na 1ª página do Google com estratégia de SEO baseada em dados."
   service={service}
 >
+  <!-- HERO -->
   <section class="section bg-surface-subtle">
     <div class="container">
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Consultoria de SEO que posiciona sua empresa no Google
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Auditoria técnica, otimização de páginas, conteúdo estratégico e link building para sua empresa aparecer na 1ª página do Google.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar diagnóstico gratuito
-        </a>
-        <a href="/vila-velha/seo" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          SEO em Vila Velha
-        </a>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
+            Consultoria de SEO: Posicione sua Empresa na 1ª Página do Google
+          </h1>
+          <p class="text-lg text-ink-light leading-relaxed mb-8">
+            Aparecer no Google não é sorte, é estratégia. A Scale combina auditoria técnica, otimização de páginas, conteúdo orientado a busca e link building para colocar a sua empresa à frente da concorrência nos resultados orgânicos que realmente importam para o seu negócio.
+          </p>
+          <div class="flex gap-4 flex-wrap">
+            <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+              Solicitar diagnóstico gratuito
+            </a>
+          </div>
+        </div>
+        <div class="hidden lg:block">
+          <!-- espaço reservado para visual de posicionamento/SERP -->
+        </div>
       </div>
     </div>
   </section>
 
-  <LocalCTA city="Vila Velha" service="SEO" />
+  <!-- O QUE É -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">O que é consultoria de SEO</h2>
+        <p class="section-subtitle">SEO não é um truque, é um ativo de longo prazo que cresce com o tempo</p>
+      </div>
+      <p class="text-ink-light leading-relaxed max-w-3xl mx-auto text-center">
+        Search Engine Optimization, ou SEO, é o conjunto de estratégias que fazem o seu site aparecer organicamente nas primeiras posições do Google quando alguém busca pelo que você oferece. Diferente dos anúncios pagos, o tráfego orgânico não tem custo por clique — uma vez conquistado o posicionamento, ele continua gerando visitas sem custo adicional de mídia. Uma consultoria de SEO profissional cobre três frentes: SEO técnico, que garante que o Google consiga rastrear e indexar o site corretamente; SEO on-page, que otimiza cada página para as palavras-chave certas; e SEO off-page, que constrói a autoridade do domínio com links relevantes. As três precisam trabalhar juntas para resultados duradouros.
+      </p>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Por que contratar consultoria de SEO</h2>
+        <p class="section-subtitle">Cada ponto percentual de visibilidade orgânica representa tráfego qualificado sem custo por clique</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {beneficios.map(item => (
+          <div class="p-6 rounded-xl border border-edge bg-surface-card">
+            <h3 class="font-semibold text-ink mb-2">{item.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Como funciona a consultoria de SEO</h2>
+        <p class="section-subtitle">Processo estruturado do diagnóstico à execução, com acompanhamento mensal de resultados</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((step, i) => (
+          <div class="flex flex-col gap-3">
+            <span class="text-4xl font-bold text-brand-primary/20 font-heading">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="font-semibold text-ink">{step.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Resultados esperados</h2>
+        <p class="section-subtitle">O que muda no seu negócio com uma estratégia de SEO bem executada ao longo do tempo</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {outcomes.map(o => (
+          <div class="p-5 rounded-xl border border-edge bg-surface-card flex items-start gap-3">
+            <span class="text-brand-primary mt-0.5">✓</span>
+            <p class="text-sm text-ink leading-relaxed">{o}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="Dúvidas sobre consultoria de SEO" />
+
+  <!-- CTA FINAL -->
+  <section class="section text-center">
+    <div class="container-narrow">
+      <h2 class="font-heading text-3xl font-bold text-ink mb-4">Pronto para crescer no Google de forma consistente?</h2>
+      <p class="text-ink-light mb-8">Diagnóstico gratuito, sem compromisso. Auditamos o seu site e mostramos exatamente o que está impedindo você de ranquear.</p>
+      <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+        Solicitar diagnóstico gratuito
+      </a>
+    </div>
+  </section>
 </ServiceLayout>

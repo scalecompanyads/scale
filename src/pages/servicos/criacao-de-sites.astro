@@ -2,85 +2,156 @@
 /**
  * Criação de Sites — /servicos/criacao-de-sites
  * Maior volume do portfólio: ~33k buscas/mês est.
- * Keywords: "criação de site para empresa", "criar site profissional", "desenvolvimento de site"
+ * Keywords: "criação de site para empresa", "criar site profissional"
  */
 import ServiceLayout from '@layouts/ServiceLayout.astro';
-import LocalCTA from '@components/sections/LocalCTA.astro';
 import FAQ from '@components/sections/FAQ.astro';
 import { getServiceBySlug } from '@data/services';
 
 const service = getServiceBySlug('criacao-de-sites')!;
 
 const faqs = [
-  {
-    question: 'Quanto custa criar um site profissional para empresa?',
-    answer: 'O custo varia conforme o escopo do projeto. Sites institucionais completos, com SEO técnico e CMS incluso, podem partir de R$X.XXX. Entre em contato para um orçamento personalizado.',
-  },
-  {
-    question: 'Quanto tempo leva para criar um site?',
-    answer: 'Projetos padrão são entregues em 20 a 30 dias úteis. O prazo depende da agilidade na entrega de textos, imagens e feedbacks.',
-  },
-  {
-    question: 'O site inclui SEO?',
-    answer: 'Sim. Todo site criado pela Scale já sai otimizado tecnicamente: velocidade, meta tags, sitemap, schema e responsividade. A base para ranquear no Google.',
-  },
-  {
-    question: 'Posso editar o site depois?',
-    answer: 'Sim. Entregamos um CMS simples que permite editar textos, imagens e páginas sem precisar de programação.',
-  },
+  { question: 'Quanto custa criar um site profissional?', answer: 'O investimento varia conforme o escopo. Sites institucionais completos com SEO técnico e CMS podem partir de valores acessíveis para PMEs. Solicite um diagnóstico gratuito e receba uma proposta personalizada para o seu negócio.' },
+  { question: 'Quanto tempo leva para criar um site?', answer: 'Projetos padrão são entregues em 20 a 30 dias úteis após a aprovação do briefing e recebimento dos materiais. Projetos mais complexos podem levar mais tempo — definimos o prazo no briefing inicial.' },
+  { question: 'O site já vem otimizado para o Google?', answer: 'Sim. Todo site criado pela Scale inclui SEO técnico: velocidade, meta tags, sitemap.xml, robots.txt, schema markup e responsividade mobile. A base certa para ranquear.' },
+  { question: 'Vou conseguir editar o site depois?', answer: 'Sim. Entregamos acesso a um CMS que permite editar textos, imagens e publicar conteúdo sem precisar de programação. Também oferecemos treinamento.' },
+  { question: 'O site fica hospedado onde?', answer: 'Utilizamos infraestrutura de alto desempenho com CDN global, garantindo velocidade e disponibilidade. Você pode manter o domínio próprio ou adquirimos um para você.' },
+];
+
+const beneficios = [
+  { title: 'Design responsivo e moderno', desc: 'Layout adaptado a qualquer dispositivo — celular, tablet e desktop — com visual profissional alinhado à identidade da sua marca.' },
+  { title: 'SEO técnico incluso', desc: 'Meta tags, sitemap.xml, robots.txt, schema markup e otimização de velocidade entregues prontos. Nada de configurar depois.' },
+  { title: 'CMS para edição sem código', desc: 'Painel simples para você atualizar textos, imagens e publicar novidades sem depender de programador no dia a dia.' },
+  { title: 'Velocidade de carregamento', desc: 'Sites otimizados para Core Web Vitals — menos de 2 segundos de carregamento. Fator direto de ranqueamento e experiência do usuário.' },
+  { title: 'SSL, segurança e backups', desc: 'Certificado HTTPS, proteção contra ataques e backups automáticos para manter o seu site no ar com segurança.' },
+  { title: 'Suporte e treinamento pós-entrega', desc: 'Acompanhamos a entrada no ar, treinamos sua equipe para usar o CMS e oferecemos suporte técnico após a entrega.' },
+];
+
+const steps = [
+  { title: 'Briefing e diagnóstico', desc: 'Entendemos o seu negócio, objetivos, público-alvo e concorrência. Definimos escopo, prazo e estrutura de páginas em conjunto.' },
+  { title: 'Design e aprovação', desc: 'Desenvolvemos o layout visual com base na sua identidade. Apresentamos para aprovação antes de partir para o desenvolvimento.' },
+  { title: 'Desenvolvimento e SEO', desc: 'Codificamos o site com foco em performance, acessibilidade e SEO técnico. Testamos em todos os dispositivos e navegadores.' },
+  { title: 'Entrega, treinamento e go live', desc: 'Publicamos o site, conectamos ao domínio, entregamos o acesso ao CMS e fazemos o treinamento da sua equipe.' },
+];
+
+const outcomes = [
+  'Presença digital profissional que transmite credibilidade a novos clientes',
+  'Site indexado corretamente pelo Google desde o primeiro dia no ar',
+  'Melhor desempenho nos resultados de busca com a base técnica de SEO',
+  'Redução de dependência de programadores para atualizações de conteúdo',
+  'Experiência de navegação fluida em celulares, onde 70% das buscas acontecem',
+  'Fundação sólida para escalar com blog, landing pages e campanhas pagas',
 ];
 ---
 
 <ServiceLayout
   title="Criação de Sites para Empresas | Scale"
-  description="Crie um site profissional, responsivo e otimizado para o Google com a Scale. Sites institucionais com SEO técnico e CMS incluso. Vila Velha e todo o Brasil."
+  description="Criamos sites profissionais, rápidos e otimizados para o Google. Design responsivo, SEO técnico e CMS incluso. Solicite seu orçamento."
   service={service}
 >
-  <!-- Hero da página de serviço -->
+  <!-- HERO -->
   <section class="section bg-surface-subtle">
     <div class="container">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-            Criação de Sites Profissionais para Empresas
+            Criação de Site para Empresa: Profissional, Rápido e Otimizado para o Google
           </h1>
           <p class="text-lg text-ink-light leading-relaxed mb-8">
-            Sites responsivos, rápidos e otimizados para o Google, com CMS incluso para você editar sem precisar de programação.
+            Seu site precisa ser mais do que bonito. Ele precisa carregar rápido, aparecer no Google e converter visitantes em clientes. A Scale entrega tudo isso em um único projeto: design responsivo, SEO técnico incluso e CMS para você editar sem depender de programador.
           </p>
           <div class="flex gap-4 flex-wrap">
             <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-              Solicitar orçamento
-            </a>
-            <a href="/vila-velha/criacao-de-sites" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-              Criação de site em Vila Velha
+              Solicitar diagnóstico gratuito
             </a>
           </div>
         </div>
         <div class="hidden lg:block">
-          <!-- TODO: screenshot/mockup de site criado pela Scale -->
+          <!-- espaço reservado para mockup/screenshot -->
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Benefícios -->
+  <!-- O QUE É -->
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">O que inclui</h2>
+        <h2 class="section-title">O que é criação de site profissional</h2>
+        <p class="section-subtitle">Mais do que design — é uma plataforma de crescimento para o seu negócio</p>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <!-- TODO: preencher com os diferenciais reais -->
-        {['Design responsivo', 'SEO técnico incluso', 'CMS para edição fácil', 'Velocidade otimizada', 'SSL e segurança', 'Suporte pós-entrega'].map((item) => (
-          <div class="flex items-center gap-3 p-4 rounded-lg border border-edge bg-surface-card">
-            <span class="text-brand-primary text-xl">✓</span>
-            <p class="font-semibold text-ink">{item}</p>
+      <p class="text-ink-light leading-relaxed max-w-3xl mx-auto text-center">
+        Criar um site profissional vai além de escolher um template e publicar textos. Envolve arquitetura de informação pensada para o usuário, código limpo e performático que o Google consegue rastrear com facilidade, estrutura de SEO técnico que posiciona o site nos resultados de busca e um sistema de gestão de conteúdo que dá autonomia para a equipe atualizar sem custo extra. Na Scale, cada projeto de criação de site é tratado como um ativo digital estratégico: entregamos a base certa para você crescer com SEO, tráfego pago e marketing de conteúdo sem precisar reconstruir do zero no futuro.
+      </p>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Por que contratar criação de site com a Scale</h2>
+        <p class="section-subtitle">Cada detalhe do projeto é pensado para gerar resultado, não apenas para impressionar</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {beneficios.map(item => (
+          <div class="p-6 rounded-xl border border-edge bg-surface-card">
+            <h3 class="font-semibold text-ink mb-2">{item.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{item.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <FAQ items={faqs} />
-  <LocalCTA city="Vila Velha" service="Criação de Sites" />
+  <!-- COMO FUNCIONA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Como funciona o processo de criação</h2>
+        <p class="section-subtitle">Do briefing ao go live em etapas claras e com prazo definido</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {steps.map((step, i) => (
+          <div class="flex flex-col gap-3">
+            <span class="text-4xl font-bold text-brand-primary/20 font-heading">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="font-semibold text-ink">{step.title}</h3>
+            <p class="text-sm text-ink-light leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Resultados esperados</h2>
+        <p class="section-subtitle">O que muda no seu negócio quando você investe em um site feito do jeito certo</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {outcomes.map(o => (
+          <div class="p-5 rounded-xl border border-edge bg-surface-card flex items-start gap-3">
+            <span class="text-brand-primary mt-0.5">✓</span>
+            <p class="text-sm text-ink leading-relaxed">{o}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <FAQ items={faqs} title="Dúvidas sobre criação de sites" />
+
+  <!-- CTA FINAL -->
+  <section class="section text-center">
+    <div class="container-narrow">
+      <h2 class="font-heading text-3xl font-bold text-ink mb-4">Pronto para ter um site que trabalha por você?</h2>
+      <p class="text-ink-light mb-8">Diagnóstico gratuito, sem compromisso. Entendemos o seu negócio e apresentamos uma proposta personalizada.</p>
+      <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+        Solicitar diagnóstico gratuito
+      </a>
+    </div>
+  </section>
 </ServiceLayout>
