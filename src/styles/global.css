@@ -23,18 +23,18 @@
     --color-brand-accent:     #1630DF;   /* unificado      */
     --color-brand-dark:       #022038;   /* navy escuro    */
 
-    /* TEXTO */
-    --color-text-primary:     #022038;   /* navy da marca  */
-    --color-text-secondary:   #334155;   /* slate-700  */
-    --color-text-muted:       #64748b;   /* slate-500  */
+    /* TEXTO (Light theme by default for dark background) */
+    --color-text-primary:     #ffffff;   /* Branco puro para títulos */
+    --color-text-secondary:   rgba(255, 255, 255, 0.85); /* Prata claro para corpo */
+    --color-text-muted:       rgba(255, 255, 255, 0.55); /* Muted silver para labels */
     --color-text-on-dark:     #ffffff;
 
-    /* SURFACE */
-    --color-surface-page:     #f8fafc;   /* slate-50   */
-    --color-surface-card:     #ffffff;
-    --color-surface-subtle:   #f1f5f9;   /* slate-100  */
-    --color-border:           #e2e8f0;   /* slate-200  */
-    --color-border-strong:    #cbd5e1;   /* slate-300  */
+    /* SURFACE (Dark theme defaults) */
+    --color-surface-page:     #010f1c;   /* Fundo padrão */
+    --color-surface-card:     rgba(255, 255, 255, 0.03); /* Cards sutis */
+    --color-surface-subtle:   rgba(255, 255, 255, 0.05); /* Seções alternadas */
+    --color-border:           rgba(255, 255, 255, 0.08); /* Bordas discretas */
+    --color-border-strong:    rgba(255, 255, 255, 0.15); /* Bordas focadas */
 
     /* TIPOGRAFIA */
     --font-body:    'Inter';
@@ -108,18 +108,41 @@
     @apply py-16;
   }
 
-  /* Cabeçalho de seção (label + título + subtítulo centralizados) */
+  /* Cabeçalho de seção (Padrão Home Premium) */
   .section-header {
-    @apply text-center max-w-2xl mx-auto mb-12;
+    @apply text-center max-w-2xl mx-auto mb-16;
   }
   .section-label {
-    @apply block text-sm font-semibold text-brand-primary uppercase tracking-widest mb-3;
+    @apply block text-xs font-bold uppercase tracking-[0.2em] text-brand-primary mb-4;
   }
   .section-title {
-    @apply text-3xl font-extrabold text-ink mb-4 font-heading;
+    @apply text-4xl md:text-5xl font-extrabold mb-6 font-heading tracking-tight;
+    background: linear-gradient(to bottom, #ffffff 30%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .section-subtitle {
-    @apply text-lg text-ink-light leading-relaxed;
+    @apply text-lg md:text-xl leading-relaxed;
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* RESET para Seções Claras (ex: Prova Social) */
+  .light-section {
+    --color-text-primary:     #022038;
+    --color-text-secondary:   #334155;
+    --color-text-muted:       #64748b;
+    --home-bg: #ffffff;
+  }
+
+  .light-section .section-title {
+    background: none;
+    -webkit-text-fill-color: initial;
+    color: var(--color-text-primary);
+  }
+
+  .light-section .section-subtitle {
+    color: var(--color-text-secondary);
   }
 
   /* HOME — fundo escuro + grid técnico (footer-like) */
@@ -293,19 +316,24 @@
    Classes aplicadas ao wrapper do <Content /> no BlogLayout
 --------------------------------------------------------------------------- */
 @layer components {
-  .prose h2 { @apply text-2xl font-bold text-ink mt-12 mb-4; }
-  .prose h3 { @apply text-xl font-semibold text-ink mt-8 mb-3; }
-  .prose p  { @apply mb-5 leading-relaxed text-ink-mid; }
-  .prose ul { @apply mb-5 pl-6 list-disc; }
-  .prose ol { @apply mb-5 pl-6 list-decimal; }
-  .prose li { @apply mb-2; }
-  .prose strong { @apply font-semibold text-ink; }
-  .prose a  { @apply text-brand-primary underline underline-offset-2; }
+  .prose h2 { @apply text-3xl font-bold text-white mt-14 mb-6 tracking-tight; }
+  .prose h3 { @apply text-2xl font-semibold text-white mt-10 mb-4 tracking-tight; }
+  .prose p  { @apply mb-6 leading-relaxed; color: rgba(255, 255, 255, 0.8); }
+  .prose ul { @apply mb-6 pl-6 list-disc; color: rgba(255, 255, 255, 0.7); }
+  .prose ol { @apply mb-6 pl-6 list-decimal; color: rgba(255, 255, 255, 0.7); }
+  .prose li { @apply mb-3; }
+  .prose strong { @apply font-bold text-white; }
+  .prose a  { @apply text-brand-primary font-semibold underline underline-offset-4 decoration-brand-primary hover:decoration-brand-primary transition-all; }
   .prose blockquote {
-    @apply border-l-4 border-brand-primary pl-4 italic text-ink-light my-6;
+    @apply border-l-4 border-brand-primary pl-6 italic my-8;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(0, 186, 255, 0.03);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 0 0.5rem 0.5rem 0;
   }
   .prose code {
-    @apply font-mono text-sm bg-surface-subtle border border-edge rounded px-1.5 py-0.5;
+    @apply font-mono text-sm bg-white/5 border border-white/10 rounded px-1.5 py-0.5 text-brand-primary;
   }
 }
 

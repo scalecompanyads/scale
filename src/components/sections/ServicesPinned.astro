@@ -20,7 +20,7 @@ const totalSteps = items.length;
 ---
 
 <section 
-  id="srv-minimal-pinned" 
+  id="servicos" 
   class="relative h-[100vh] bg-[#010f1c] overflow-hidden"
   data-total-steps={totalSteps}
 >
@@ -178,11 +178,11 @@ const totalSteps = items.length;
   gsap.registerPlugin(ScrollTrigger);
 
   const initSrvFinalTweaksV2 = () => {
-    const section = document.getElementById('srv-minimal-pinned');
+    const section = document.getElementById('servicos');
     if (!section) return;
 
     ScrollTrigger.getAll().forEach(t => {
-      if (t.trigger === section || (t as any).vars?.trigger === "#srv-minimal-pinned") {
+      if (t.trigger === section || (t as any).vars?.trigger === "#servicos") {
         t.kill();
       }
     });

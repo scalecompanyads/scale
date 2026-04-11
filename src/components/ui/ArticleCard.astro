@@ -14,7 +14,7 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
 });
 ---
 
-<a href={`/blog/${article.slug}`} class="group bg-surface-card border border-edge rounded-xl overflow-hidden flex flex-col hover:shadow-md transition-shadow duration-200">
+<a href={`/blog/${article.slug}`} class="group relative bg-surface-card border border-edge rounded-xl overflow-hidden flex flex-col hover:border-brand-primary/30 transition-all duration-300 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)]">
   {coverImage && (
     <div class="aspect-video bg-surface-subtle overflow-hidden">
       <img

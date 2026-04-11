@@ -147,8 +147,6 @@ const MarqueeItem = () => (
     <span style={{ color: "#00BAFF", opacity: 0.6 }}>✦</span>
     <span>Landing Pages</span>
     <span style={{ color: "#00BAFF", opacity: 0.6 }}>✦</span>
-    <span>E-mail Marketing</span>
-    <span style={{ color: "#00BAFF", opacity: 0.6 }}>✦</span>
     <span>Estruturação Comercial</span>
     <span style={{ color: "#00BAFF", opacity: 0.6 }}>✦</span>
   </div>

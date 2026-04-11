@@ -44,10 +44,12 @@ const formattedDate = article.data.publishDate.toLocaleDateString('pt-BR', {
               <span class="text-ink truncate">{article.data.title}</span>
             </nav>
 
-            <h1 class="font-heading text-3xl sm:text-4xl font-extrabold text-ink leading-tight mb-4">
-              {article.data.title}
+            <h1 class="font-heading text-4xl sm:text-5xl font-extrabold leading-tight mb-6 tracking-tight">
+              <span class="block" style="background: linear-gradient(to bottom, #ffffff 30%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                {article.data.title}
+              </span>
             </h1>
-            <p class="text-lg text-ink-light leading-relaxed mb-4">{article.data.description}</p>
+            <p class="text-lg md:text-xl text-ink-mid leading-relaxed mb-8 max-w-3xl">{article.data.description}</p>
 
             <div class="flex items-center gap-4 text-sm text-ink-light">
               <time datetime={article.data.publishDate.toISOString()}>{formattedDate}</time>

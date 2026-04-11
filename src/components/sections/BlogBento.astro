@@ -1,60 +1,31 @@
 ---
-const posts = [
-  {
-    slug: 'o-que-e-seo-e-por-que-sua-empresa-precisa',
-    title: 'O que é SEO e por que sua empresa precisa agora',
-    excerpt: 'Entenda como o Google decide quem aparece primeiro e como transformar isso em clientes reais.',
-    category: 'SEO',
-    readTime: '8 min',
-    color: '#00BAFF',
-    colorRgb: '0,186,255',
-  },
-  {
-    slug: 'quanto-custa-criar-um-site-profissional',
-    title: 'Quanto custa criar um site profissional em 2025',
-    excerpt: 'Comparativo honesto entre agências, freelancers e plataformas — com o que realmente importa.',
-    category: 'Sites',
-    readTime: '6 min',
-    color: '#4a78ff',
-    colorRgb: '74,120,255',
-  },
-  {
-    slug: 'como-funciona-trafego-pago-para-empresas',
-    title: 'Como funciona tráfego pago e quando vale o investimento',
-    excerpt: 'Google Ads ou Meta Ads? Aprenda a escolher o canal certo para o seu momento.',
-    category: 'Tráfego Pago',
-    readTime: '10 min',
-    color: '#a78bfa',
-    colorRgb: '167,139,250',
-  },
-  {
-    slug: 'gestao-de-redes-sociais-para-empresas',
-    title: 'Gestão de redes sociais: guia completo para empresas',
-    excerpt: 'Frequência, formatos e métricas que realmente indicam crescimento de marca.',
-    category: 'Social',
-    readTime: '7 min',
-    color: '#34d399',
-    colorRgb: '52,211,153',
-  },
-  {
-    slug: 'landing-page-ou-site-qual-escolher',
-    title: 'Landing page ou site: qual usar em cada situação',
-    excerpt: 'A escolha errada pode custar conversões. Descubra quando cada um faz sentido.',
-    category: 'Conversão',
-    readTime: '5 min',
-    color: '#f59e0b',
-    colorRgb: '245,158,11',
-  },
-  {
-    slug: 'email-marketing-ainda-funciona-em-2025',
-    title: 'Email marketing ainda funciona em 2025?',
-    excerpt: 'Dados, benchmarks e estratégias que provam que o email continua sendo o canal de maior ROI.',
-    category: 'E-mail',
-    readTime: '6 min',
-    color: '#60a5fa',
-    colorRgb: '96,165,250',
-  },
-];
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('blog');
+
+/**
+ * Mapeamento de estilos para as categorias
+ */
+const categoryConfig: Record<string, { label: string; color: string; rgb: string }> = {
+  'trafego-pago':      { label: 'Tráfego Pago', color: '#a78bfa', rgb: '167,139,250' },
+  'seo':               { label: 'SEO',          color: '#00BAFF', rgb: '0,186,255' },
+  'criacao-de-sites':  { label: 'Sites',        color: '#4a78ff', rgb: '74,120,255' },
+  'redes-sociais':     { label: 'Social',       color: '#34d399', rgb: '52,211,153' },
+  'landing-pages':     { label: 'Conversão',    color: '#f59e0b', rgb: '245,158,11' },
+  'email-marketing':   { label: 'E-mail',       color: '#60a5fa', rgb: '96,165,250' },
+  'marketing-digital': { label: 'Marketing',    color: '#00BAFF', rgb: '0,186,255' },
+};
+
+// 1. Encontra o artigo principal de tráfego
+const trafficArticle = allArticles.find(a => a.data.category === 'trafego-pago');
+
+// 2. Outros artigos filtrados e ordenados randomicamente (no build)
+const otherArticles = allArticles
+  .filter(a => a.id !== trafficArticle?.id)
+  .sort(() => Math.random() - 0.5);
+
+// 3. Combina para formar o Bento (máximo 6 itens)
+const displayPosts = [trafficArticle, ...otherArticles].filter(Boolean).slice(0, 6);
 ---
 
 <!-- ======================================================
@@ -86,39 +57,42 @@ const posts = [
   <div id="bbn-wrap">
     <div id="bbn-grid" class="bbn-grid bbn-final">
 
-      {posts.map((post, i) => (
-        <a
-          href={`/blog/${post.slug}`}
-          class="bbn-item"
-          data-bbn={i}
-          style={`--c: ${post.color}; --cr: ${post.colorRgb};`}
-        >
-          <!-- Gradient background layer -->
-          <div class="bbn-bg" aria-hidden="true"></div>
+      {displayPosts.map((post, i) => {
+        const config = categoryConfig[post.data.category] || categoryConfig['marketing-digital'];
+        return (
+          <a
+            href={`/blog/${post.slug}`}
+            class="bbn-item"
+            data-bbn={i}
+            style={`--c: ${config.color}; --cr: ${config.rgb};`}
+          >
+            <!-- Gradient background layer -->
+            <div class="bbn-bg" aria-hidden="true"></div>
 
-          <!-- Noise texture overlay -->
-          <div class="bbn-noise" aria-hidden="true"></div>
+            <!-- Noise texture overlay -->
+            <div class="bbn-noise" aria-hidden="true"></div>
 
-          <!-- Content -->
-          <div class="bbn-content">
-            <div class="bbn-body">
-              <h3 class="bbn-title">{post.title}</h3>
-              {i === 0 && (
-                <p class="bbn-excerpt">{post.excerpt}</p>
-              )}
-              <span class="bbn-meta">{post.readTime} de leitura</span>
+            <!-- Content -->
+            <div class="bbn-content">
+              <div class="bbn-body">
+                <h3 class="bbn-title">{post.data.title}</h3>
+                {i === 0 && (
+                  <p class="bbn-excerpt">{post.data.description}</p>
+                )}
+                <span class="bbn-meta">{post.data.readingTime || '5'} min de leitura</span>
+              </div>
             </div>
-          </div>
 
-          <!-- Arrow icon -->
-          <div class="bbn-arrow" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-            </svg>
-          </div>
-        </a>
-      ))}
+            <!-- Arrow icon -->
+            <div class="bbn-arrow" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </div>
+          </a>
+        );
+      })}
 
     </div>
   </div>

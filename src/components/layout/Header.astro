@@ -1,25 +1,12 @@
 ---
 import logoUrl from '../../assets/brand/logo.svg?url';
+import { mainNav } from '../../data/navigation.ts';
 
 const isHome = Astro.url.pathname === '/';
 
 // Nav data inline to avoid import issues
-const mainNavItems = [
-  {
-    label: 'Serviços',
-    href: '/servicos',
-    hasDropdown: true,
-    children: [
-      { label: 'Tráfego Pago',            href: '/servicos/trafego-pago' },
-      { label: 'Landing Pages',           href: '/servicos/criacao-de-landing-pages' },
-      { label: 'Consultoria de SEO',      href: '/servicos/consultoria-seo' },
-      { label: 'Gestão de Redes Sociais', href: '/servicos/gestao-redes-sociais' },
-    ],
-  },
-  { label: 'Cases', href: '/cases' },
-  { label: 'Blog',  href: '/blog'  },
-  { label: 'Sobre', href: '/sobre' },
-];
+// Get nav items from centralized config
+const mainNavItems = mainNav;
 
 const currentPath = Astro.url.pathname;
 function isActive(href: string) {

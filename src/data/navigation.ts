@@ -13,26 +13,15 @@ export interface NavItem {
 export const mainNav: NavItem[] = [
   {
     label: 'Serviços',
-    href: '/servicos',
-    hasDropdown: true,
-    children: [
-      { label: 'Tráfego Pago',            href: '/servicos/trafego-pago' },
-      { label: 'Landing Pages',           href: '/servicos/criacao-de-landing-pages' },
-      { label: 'Consultoria de SEO',      href: '/servicos/consultoria-seo' },
-      { label: 'Gestão de Redes Sociais', href: '/servicos/gestao-redes-sociais' },
-    ],
+    href: '/#servicos',
   },
   {
     label: 'Cases',
-    href: '/cases',
+    href: '/#depoimentos',
   },
   {
     label: 'Blog',
     href: '/blog',
-  },
-  {
-    label: 'Sobre',
-    href: '/sobre',
   },
 ];
 
