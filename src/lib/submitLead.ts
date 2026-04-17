@@ -2,19 +2,20 @@
  * Envio de lead para webhook público (URL configurável em build).
  * Sem URL configurado: devolve ok para não bloquear UX (configuração pendente).
  */
+import { formatPhoneBR } from './phoneFormat';
 
 export type LeadPayload = {
   nome: string;
   email: string;
-  /** Telefone só com dígitos, tipo JSON number (sem formatação). */
+  /** Dígitos do telefone como número JSON (raiz). */
   number: number;
-  /**
-   * Estrutura que o Make costuma mapear como `1. fields → number → value`
-   * no módulo «Phone number». Sem isto, esse caminho fica vazio e dá erro de parâmetro obrigatório.
-   */
   fields: {
     number: {
-      value: number;
+      type: 'text';
+      /** Telefone no formato (XX) XXXXX-XXXX */
+      value: string;
+      /** Igual a `value` — formato bruto mascarado para integrações Make. */
+      rawValue: string;
     };
   };
   faturamento: string;
@@ -50,6 +51,8 @@ export async function submitLead(
   data: LeadFormData
 ): Promise<{ ok: boolean; skippedWebhook?: boolean; error?: string }> {
   const url = getWebhookUrl();
+  const digits = data.phoneDigits.replace(/\D/g, '');
+  const masked = formatPhoneBR(digits);
   const number = phoneDigitsAsNumber(data.phoneDigits);
   const payload: LeadPayload = {
     nome: data.nome,
@@ -57,7 +60,9 @@ export async function submitLead(
     number,
     fields: {
       number: {
-        value: number,
+        type: 'text',
+        value: masked,
+        rawValue: masked,
       },
     },
     faturamento: data.faturamento,
