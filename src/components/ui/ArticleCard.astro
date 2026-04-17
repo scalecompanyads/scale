@@ -8,6 +8,7 @@ interface Props {
 
 const { article } = Astro.props;
 const { title, description, publishDate, coverImage, coverImageAlt, category } = article.data;
+const coverSrc = coverImage?.src;
 
 const formattedDate = publishDate.toLocaleDateString('pt-BR', {
   day: '2-digit', month: 'long', year: 'numeric',
@@ -15,10 +16,10 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
 ---
 
 <a href={`/blog/${article.slug}`} class="group relative bg-surface-card border border-edge rounded-xl overflow-hidden flex flex-col hover:border-brand-primary/30 transition-all duration-300 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)]">
-  {coverImage && (
+  {coverSrc && (
     <div class="aspect-video bg-surface-subtle overflow-hidden">
       <img
-        src={coverImage}
+        src={coverSrc}
         alt={coverImageAlt ?? title}
         loading="lazy"
         decoding="async"

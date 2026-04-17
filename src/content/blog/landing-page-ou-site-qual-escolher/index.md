@@ -7,6 +7,9 @@ tags: ['landing page', 'site', 'conversão', 'geração de leads']
 featured: false
 focusKeyword: "landing page ou site"
 readingTime: 5
+slug: landing-page-ou-site-qual-escolher
+coverImage: ./cover.webp
+coverImageAlt: "Ilustração sobre landing page versus site institucional"
 ---
 
 Uma das dúvidas mais comuns de quem está estruturando a presença digital da empresa é simples na formulação, mas tem nuances importantes na resposta: landing page ou site? A escolha errada pode resultar em investimento alto com retorno baixo — ou em campanhas de tráfego pago que desperdiçam budget por mandar o visitante para a página errada.

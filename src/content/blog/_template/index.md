@@ -7,7 +7,10 @@ tags: []
 featured: false
 focusKeyword: ""
 readingTime: 0
+slug: meu-novo-artigo
 ---
+
+<!-- Uma capa por artigo (cover.webp + coverImage no frontmatter). No corpo, prefira ícones/SVG (classes .blog-icon / figure.blog-figure-icon em global.css); imagens .webp só se indispensável. Ver CLAUDE.md. -->
 
 ## Introdução
 

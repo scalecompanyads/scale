@@ -7,7 +7,7 @@ import { defineCollection, z } from 'astro:content';
 
 const blog = defineCollection({
   type: 'content',
-  schema: z.object({
+  schema: ({ image }) => z.object({
     /** Título do artigo (usado em <title> e <h1>) */
     title: z.string(),
 
@@ -20,8 +20,8 @@ const blog = defineCollection({
     /** Data de atualização (opcional) */
     updatedDate: z.coerce.date().optional(),
 
-    /** Caminho da imagem de capa: /assets/images/blog/nome.webp */
-    coverImage: z.string().optional(),
+    /** Capa co-locada na pasta do artigo, ex.: ./cover.webp */
+    coverImage: image().optional(),
 
     /** Alt text da imagem de capa */
     coverImageAlt: z.string().optional(),
@@ -33,7 +33,6 @@ const blog = defineCollection({
       'seo',
       'trafego-pago',
       'redes-sociais',
-      'email-marketing',
       'marketing-digital',
       'local',
       'nicho',

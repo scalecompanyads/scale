@@ -7,6 +7,9 @@ tags: ['tráfego pago', 'google ads', 'meta ads', 'mídia paga', 'estratégia']
 featured: true
 focusKeyword: "tráfego pago para empresas"
 readingTime: 10
+slug: como-funciona-trafego-pago-para-empresas
+coverImage: ./cover.png
+coverImageAlt: "Ilustração sobre tráfego pago para empresas"
 ---
 
 ## Introdução
@@ -26,11 +29,9 @@ Neste guia, você vai entender:
 - Quanto investir sem jogar dinheiro fora
 - E quando parar de tentar sozinho e profissionalizar
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 1]**
-> **Tipo:** Ilustração conceitual
-> **Descrição:** Uma torneira liberando dinheiro ou leads (ícones de pessoas saindo)
-> **Objetivo:** Visualizar a metáfora do “controle de fluxo”
-> **Estilo:** Minimalista / moderno / cores de marketing (azul/verde)
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
+</figure>
 
 ## O que é tráfego pago (sem enrolação)
 
@@ -49,11 +50,9 @@ A grande vantagem? **Controle total.**
 A desvantagem?
 Parou de pagar → parou de vender.
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 2]**
-> **Tipo:** Diagrama simples
-> **Descrição:** Fluxo: Dinheiro → Plataforma → Anúncio → Clique → Cliente
-> **Objetivo:** Clareza visual do processo
-> **Estilo:** Infográfico clean
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg></span>
+</figure>
 
 ## Google Ads: pegando quem já quer comprar
 
@@ -62,15 +61,14 @@ O Google Ads funciona assim:
 **Alguém pesquisa** → **você aparece** → **a pessoa clica**
 
 Exemplo:
-- “dentista em Vitória”
-- “conserto de ar-condicionado perto de mim”
+- "dentista em Vitória"
+- "conserto de ar-condicionado perto de mim"
 
 Você está interceptando uma pessoa no momento exato da intenção. Isso é ouro.
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 3]**
-> **Tipo:** Print simulado de busca no Google
-> **Descrição:** Resultado patrocinado no topo com destaque
-> **Objetivo:** Mostrar “vida real” (mockup limpo)
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.34-4.34"/></svg></span>
+</figure>
 
 ## Como funciona o leilão do Google (sem complicar)
 
@@ -84,10 +82,9 @@ O Google avalia:
 
 Ou seja: **anúncio bom + página boa = paga menos e aparece mais**
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 4]**
-> **Tipo:** Comparação visual
-> **Descrição:** Dois anunciantes contrastando valor x qualidade.
-> **Objetivo:** Mostrar que estratégia vence dinheiro bruto
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="m19 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M3 7h1a17 17 0 0 0 8-2 17 17 0 0 0 8 2h1"/><path d="m5 8 3 8a5 5 0 0 1-6 0zV7"/><path d="M7 21h10"/></svg></span>
+</figure>
 
 ## Quando usar Google Ads
 
@@ -97,20 +94,19 @@ Use quando:
 - ✔ Quer validar uma ideia ou produto
 - ✔ SEO ainda não traz resultado suficiente
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 5]**
-> **Tipo:** Ícones + checklist visual
-> **Objetivo:** Facilitar leitura escaneável
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 5h8"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/></svg></span>
+</figure>
 
 ## Meta Ads: criando desejo (antes da busca)
 
 Aqui muda o jogo. No Meta (Instagram/Facebook), ninguém está procurando você. Você **interrompe** a pessoa.
 
-E precisa fazer ela pensar: “pera… isso aqui me interessa”.
+E precisa fazer ela pensar: "pera… isso aqui me interessa".
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 6]**
-> **Tipo:** Feed do Instagram com anúncio destacado
-> **Descrição:** Post patrocinado no meio do feed
-> **Objetivo:** Mostrar o conceito de interrupção
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></span>
+</figure>
 
 ## O poder da segmentação
 
@@ -123,10 +119,9 @@ E ainda pode:
 - Mostrar anúncios pra quem já visitou seu site (Remarketing)
 - Criar públicos parecidos com seus melhores clientes (Lookalike)
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 7]**
-> **Tipo:** Radar / alvo com camadas
-> **Descrição:** Público sendo refinado gradualmente
-> **Objetivo:** Visualizar o poder da segmentação
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+</figure>
 
 ## Quando usar Meta Ads
 
@@ -136,8 +131,9 @@ Use quando:
 - ✔ Quer fortalecer sua autoridade de marca
 - ✔ Precisa nutrir o cliente ao longo do tempo
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 8]**
-> **Tipo:** Checklist visual (estilo anterior)
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg></span>
+</figure>
 
 ## Google vs Meta (explicação que fixa)
 
@@ -146,8 +142,9 @@ Use quando:
 
 Simples assim. Os dois juntos formando um funil completo = **máquina de vendas.**
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 9]**
-> **Tipo:** Comparação lado a lado (Lupa vs Megafone)
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M12 3v18"/></svg></span>
+</figure>
 
 ## Métricas (a parte que ninguém quer, mas precisa)
 
@@ -158,10 +155,9 @@ Sem isso, você só está apostando dinheiro. Principais indicadores:
 - **ROAS** → retorno direto sobre o gasto em anúncios
 - **ROI** → o lucro real da sua operação
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 10]**
-> **Tipo:** Dashboard simples
-> **Descrição:** Métricas organizadas de forma visual
-> **Objetivo:** Dar sensação de controle e clareza
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></span>
+</figure>
 
 ## Quanto investir
 
@@ -171,9 +167,9 @@ Sem enrolação e direto ao que funciona no mercado:
 
 Mas o que importa mesmo é isso: **Quanto você pode pagar por um novo cliente e ainda lucrar?**
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 11]**
-> **Tipo:** Gráfico de investimento vs retorno
-> **Objetivo:** Mostrar o potencial de crescimento escalável
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span>
+</figure>
 
 ## Fazer sozinho ou contratar agência?
 
@@ -189,9 +185,9 @@ Aqui é onde muitas empresas travam pelo motivo errado.
 - ✔ Otimização constante dos dados
 - ✔ Foco 100% em escala e ROI
 
-> 🖼️ **[ESPAÇO PARA IMAGEM 12]**
-> **Tipo:** Comparação visual (Sozinho vs Profissional)
-> **Objetivo:** Facilitar a tomada de decisão estratégica
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg></span>
+</figure>
 
 ## Conclusão
 

@@ -12,6 +12,7 @@ interface Props {
 const { article } = Astro.props;
 const siteUrl = import.meta.env.SITE || 'https://scaleco.com.br';
 const { title, description, publishDate, updatedDate, coverImage } = article.data;
+const coverSrc = coverImage?.src;
 
 const articleUrl = `${siteUrl}/blog/${article.slug}`;
 
@@ -24,7 +25,7 @@ const schema = {
   url: articleUrl,
   datePublished: publishDate.toISOString(),
   dateModified: (updatedDate ?? publishDate).toISOString(),
-  image: coverImage ? new URL(coverImage, siteUrl).href : undefined,
+  image: coverSrc ? new URL(coverSrc, siteUrl).href : undefined,
   author: {
     '@type': 'Organization',
     name: 'Scale',

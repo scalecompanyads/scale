@@ -15,7 +15,13 @@ src/
 │   ├── sections/     → blocos de página (Hero, ServicesGrid, LocalCTA, ...)
 │   ├── ui/           → componentes atômicos (Button, ServiceCard, Badge, ...)
 │   └── seo/          → schemas JSON-LD (LocalBusiness, Service, Article)
-├── content/blog/     → artigos em Markdown (.md)
+├── content/
+│   └── blog/         → artigos com co-location (cada artigo = pasta própria)
+│       ├── _template/          → copie para criar novo artigo (ignorado pelo Astro)
+│       │   └── index.md
+│       └── nome-do-artigo/     → uma pasta por artigo
+│           ├── index.md        → conteúdo + frontmatter
+│           └── cover.webp      → única imagem “hero” do artigo (lista + OG + página)
 ├── data/             → dados centralizados (services.ts, cities.ts, navigation.ts)
 ├── layouts/          → BaseLayout, ServiceLayout, LocalLayout, BlogLayout
 ├── pages/            → rotas do site (arquivo = URL)
@@ -142,9 +148,104 @@ dev2/sem1-conteudo-vv  → Dev 2
 
 ## Como Adicionar um Artigo de Blog
 
-1. Criar arquivo `.md` em `src/content/blog/`
-2. Preencher o frontmatter conforme schema em `src/content/config.ts`
-3. O arquivo `src/pages/blog/[slug].astro` renderiza automaticamente
+> **Padrão obrigatório: co-location.** Cada artigo é uma pasta, não um arquivo solto.
+> NUNCA criar `.md` diretamente na raiz de `src/content/blog/`.
+
+### Passo a passo
+
+1. Copie a pasta `src/content/blog/_template/` e renomeie para o slug do artigo:
+   ```
+   src/content/blog/meu-novo-artigo/
+   └── index.md
+   ```
+
+2. Edite `index.md` preenchendo o frontmatter completo:
+   ```yaml
+   ---
+   title: "Título do Artigo (com keyword)"
+   description: "Resumo para meta description. Máx 160 caracteres."
+   publishDate: 2025-06-01
+   category: seo          # ver categorias válidas abaixo
+   tags: ['seo', 'google']
+   featured: false
+   focusKeyword: "palavra-chave principal"
+   readingTime: 6          # minutos estimados
+   slug: meu-novo-artigo   # OBRIGATÓRIO — define a URL /blog/meu-novo-artigo
+   ---
+   ```
+
+3. Adicione **uma** imagem de capa na mesma pasta (padrão para cards do `/blog`, hero do artigo e Open Graph — não é necessário arquivo separado para OG):
+   ```
+   src/content/blog/meu-novo-artigo/
+   ├── index.md
+   └── cover.webp          ← formato webp, proporção 16:9 recomendada
+   ```
+
+4. Referencie a capa no frontmatter com path relativo:
+   ```yaml
+   coverImage: ./cover.webp
+   coverImageAlt: "Descrição acessível da imagem"
+   ```
+
+5. O artigo aparece automaticamente em `/blog` e em `/blog/meu-novo-artigo`.
+   Não é necessário alterar nenhuma página de roteamento.
+
+### Categorias válidas (campo `category`)
+
+| Valor | Uso |
+|-------|-----|
+| `criacao-de-sites` | Sites institucionais e e-commerces |
+| `landing-pages` | Landing pages e conversão |
+| `seo` | Otimização para buscadores |
+| `trafego-pago` | Google Ads, Meta Ads, mídia paga |
+| `redes-sociais` | Social media e gestão de redes |
+| `marketing-digital` | Marketing digital em geral |
+| `local` | Conteúdo de SEO local (cidades) |
+| `nicho` | Conteúdo segmentado por nicho de mercado |
+
+### Campo `slug` — regras críticas
+
+- **É obrigatório.** Sem ele, a URL gerada pelo Astro incluirá `/index` e quebrará.
+- **Deve ser idêntico ao nome da pasta.** Exemplo: pasta `gestao-redes-sociais-para-empresas/` → `slug: gestao-redes-sociais-para-empresas`.
+- **Não inclua no schema Zod** (`src/content/config.ts`). `slug` é campo reservado do Astro — adicioná-lo ao schema causa erro de build.
+- Use kebab-case, sem acentos, sem espaços.
+
+### Ilustrações no corpo do texto (padrão: ícones; imagens raster só se necessário)
+
+- **Padrão:** ilustrar com **ícones ou SVG inline** (HTML permitido no `.md`) e boa hierarquia de títulos/listas. Use as classes utilitárias `.blog-icon` e `figure.blog-figure-icon` definidas em `src/styles/global.css` para manter tamanho e cor alinhados à marca.
+- **Exceção:** fotos, prints ou diagramas em **`.webp`** no corpo só quando forem indispensáveis (ex.: captura de tela, gráfico de dados). Não planeje “galerias” por artigo — isso dificulta escalar a produção.
+
+Exemplo de SVG inline com legenda:
+```html
+<figure class="blog-figure-icon">
+  <span class="blog-icon" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+  </span>
+  <figcaption>Legenda opcional</figcaption>
+</figure>
+```
+
+Escape hatch — imagem raster rara na pasta do artigo:
+```markdown
+![Print do relatório no GA4](./exemplo-print.webp)
+```
+
+### Arquivos gerados automaticamente
+
+| Rota | Arquivo responsável |
+|------|---------------------|
+| `/blog` | `src/pages/blog/index.astro` |
+| `/blog/[slug]` | `src/pages/blog/[slug].astro` |
+| Schema JSON-LD do artigo | `src/components/seo/SchemaArticle.astro` (via `BlogLayout`) |
+
+### O que NÃO fazer
+
+- Não criar `.md` solto em `src/content/blog/` (sem pasta)
+- Não omitir o campo `slug` no frontmatter
+- Não definir `slug` dentro do schema Zod em `src/content/config.ts`
+- Não colocar imagens em `src/assets/blog/` — capa e assets do corpo ficam na pasta do artigo
+- Não preencher o corpo com várias imagens “placeholder”; prefira ícones/SVG e texto
+- Não duplicar slugs entre artigos diferentes
 
 ## Nomenclatura de Arquivos
 
@@ -153,8 +254,11 @@ dev2/sem1-conteudo-vv  → Dev 2
 | Componentes Astro | PascalCase | `ServiceCard.astro` |
 | Páginas Astro | kebab-case | `criacao-de-sites.astro` |
 | Data files | camelCase | `services.ts` |
-| Artigos MD | kebab-case | `quanto-custa-criar-site.md` |
-| Imagens | `categoria-nome.webp` | `service-criacao-de-sites.webp` |
+| Pasta de artigo de blog | kebab-case | `quanto-custa-criar-um-site-profissional/` |
+| Arquivo de artigo | sempre `index.md` | `index.md` (dentro da pasta do artigo) |
+| Imagem de capa do artigo | `cover.webp` | `cover.webp` (única imagem principal por artigo) |
+| Imagem raster no corpo (exceção) | kebab-case descritivo | `print-dashboard.webp` — só quando necessário |
+| Imagens de componentes/UI | `categoria-nome.webp` | `service-criacao-de-sites.webp` |
 
 ## URLs do Site (mapa completo)
 
@@ -166,7 +270,6 @@ dev2/sem1-conteudo-vv  → Dev 2
 - `/servicos/consultoria-seo`
 - `/servicos/criacao-de-sites`
 - `/servicos/criacao-de-landing-pages`
-- `/servicos/email-marketing`
 - `/cases`
 - `/sobre`
 - `/contato`

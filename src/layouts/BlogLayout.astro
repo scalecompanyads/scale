@@ -15,6 +15,7 @@ interface Props {
 
 const { article } = Astro.props;
 const { title, description, coverImage } = article.data;
+const ogImage = coverImage?.src;
 
 const ogTitle = `${title} | Scale`;
 ---
@@ -22,7 +23,7 @@ const ogTitle = `${title} | Scale`;
 <BaseLayout
   title={ogTitle}
   description={description}
-  ogImage={coverImage}
+  ogImage={ogImage}
   ogType="article"
 >
   <SchemaArticle slot="head" article={article} />

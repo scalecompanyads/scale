@@ -7,6 +7,9 @@ tags: ['criação de sites', 'site para empresa', 'preço de site', 'desenvolvim
 featured: true
 focusKeyword: "quanto custa criar um site"
 readingTime: 6
+slug: quanto-custa-criar-um-site-profissional
+coverImage: ./cover.jpg
+coverImageAlt: "Ilustração sobre investimento em site profissional para empresas"
 ---
 
 ## Introdução

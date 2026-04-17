@@ -7,6 +7,9 @@ tags: ['seo', 'marketing digital', 'google', 'tráfego orgânico']
 featured: true
 focusKeyword: "o que é SEO"
 readingTime: 7
+slug: o-que-e-seo-e-por-que-sua-empresa-precisa
+coverImage: ./cover.webp
+coverImageAlt: "Ilustração sobre SEO e resultados no Google"
 ---
 
 ## Introdução

@@ -21,6 +21,7 @@ interface Props {
 
 const { article } = Astro.props;
 const { Content } = await article.render();
+const coverSrc = article.data.coverImage?.src;
 
 const formattedDate = article.data.publishDate.toLocaleDateString('pt-BR', {
   day: '2-digit',
@@ -59,10 +60,10 @@ const formattedDate = article.data.publishDate.toLocaleDateString('pt-BR', {
             </div>
           </header>
 
-          {article.data.coverImage && (
+          {coverSrc && (
             <div class="rounded-xl overflow-hidden mb-8">
               <img
-                src={article.data.coverImage}
+                src={coverSrc}
                 alt={article.data.coverImageAlt ?? article.data.title}
                 loading="eager"
                 decoding="async"

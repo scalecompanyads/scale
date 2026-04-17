@@ -335,6 +335,24 @@
   .prose code {
     @apply font-mono text-sm bg-white/5 border border-white/10 rounded px-1.5 py-0.5 text-brand-primary;
   }
+
+  /* Ícones / SVG no corpo do blog (Markdown com HTML inline) */
+  .prose .blog-icon {
+    @apply inline-flex items-center justify-center shrink-0;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--color-brand-primary);
+  }
+  .prose .blog-icon svg {
+    @apply w-full h-full;
+  }
+  .prose figure.blog-figure-icon {
+    @apply my-8 flex flex-col items-start gap-2;
+  }
+  .prose figure.blog-figure-icon figcaption {
+    @apply text-sm mt-2;
+    color: rgba(255, 255, 255, 0.55);
+  }
 }
 
 /* ---------------------------------------------------------------------------

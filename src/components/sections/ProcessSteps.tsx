@@ -1,7 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Search, BarChart3, LineChart } from 'lucide-react';
 
 const steps = [
@@ -40,17 +39,14 @@ const card = {
 };
 
 export default function ProcessSteps() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
-
   return (
-    <section className="section relative overflow-hidden home-section-dark home-bg-grid">
+    <section className="relative overflow-hidden home-section-dark home-bg-grid py-16 pb-12 md:py-20 md:pb-14">
       <div className="home-ambient-tl" aria-hidden="true" />
 
-      <div ref={ref} className="relative z-10 mx-auto w-full max-w-site px-6">
+      <div className="relative z-10 mx-auto w-full max-w-site px-6">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
           className="mb-14 text-center md:mb-16"
         >
@@ -60,8 +56,8 @@ export default function ProcessSteps() {
 
         <motion.div
           variants={container}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          initial="visible"
+          animate="visible"
           className="relative mb-12 grid grid-cols-1 gap-5 md:mb-14 md:grid-cols-3 md:gap-6"
         >
           {steps.map((step) => {
@@ -96,8 +92,8 @@ export default function ProcessSteps() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.35 }}
           className="text-center"
         >

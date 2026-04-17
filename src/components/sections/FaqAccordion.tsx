@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const faqs = [
   {
@@ -37,11 +37,8 @@ function FaqItem({ faq, index, isOpen, onToggle }: {
   onToggle: () => void;
 }) {
   return (
-    <motion.div
+    <div
       className="flex h-full min-h-0 flex-col"
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
       style={{
         borderRadius: '10px',
         border: `1px solid ${isOpen ? 'rgba(0,186,255,0.28)' : 'rgba(255,255,255,0.08)'}`,
@@ -102,9 +99,7 @@ function FaqItem({ faq, index, isOpen, onToggle }: {
             {faq.q}
           </span>
         </div>
-        <motion.span
-          animate={{ rotate: isOpen ? 45 : 0 }}
-          transition={{ duration: 0.25 }}
+        <span
           style={{
             flexShrink: 0,
             width: 24,
@@ -118,12 +113,13 @@ function FaqItem({ faq, index, isOpen, onToggle }: {
             fontSize: '1rem',
             lineHeight: 1,
             color: '#00BAFF',
-            transition: 'border-color 0.3s',
+            transition: 'border-color 0.3s, transform 0.25s',
+            transform: isOpen ? 'rotate(45deg)' : 'none',
           }}
           aria-hidden="true"
         >
           +
-        </motion.span>
+        </span>
       </button>
 
       <AnimatePresence initial={false}>
@@ -150,23 +146,24 @@ function FaqItem({ faq, index, isOpen, onToggle }: {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }
 
 export default function FaqAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section className="section relative overflow-hidden home-section-dark home-bg-grid">
+    <section
+      id="faq"
+      className="relative z-20 overflow-hidden home-section-dark home-bg-grid pt-10 pb-16 md:pt-12 md:pb-20"
+    >
       <div className="home-ambient-tl opacity-80" aria-hidden="true" />
 
-      <div ref={ref} className="relative z-10 mx-auto w-full max-w-site px-6">
+      <div className="relative z-10 mx-auto w-full max-w-site px-6">
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={false}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55 }}
           className="mb-12 text-center md:mb-14"
         >
@@ -182,7 +179,9 @@ export default function FaqAccordion() {
               faq={faq}
               index={i}
               isOpen={openIndex === i}
-              onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+              onToggle={() =>
+                setOpenIndex((prev) => (prev === i ? null : i))
+              }
             />
           ))}
         </div>
@@ -196,13 +195,19 @@ export default function FaqAccordion() {
                 faq={faqs[row]}
                 index={row}
                 isOpen={openIndex === row}
-                onToggle={() => setOpenIndex(openIndex === row ? null : row)}
+                onToggle={() =>
+                  setOpenIndex((prev) => (prev === row ? null : row))
+                }
               />
               <FaqItem
                 faq={faqs[row + 3]}
                 index={row + 3}
                 isOpen={openIndex === row + 3}
-                onToggle={() => setOpenIndex(openIndex === row + 3 ? null : row + 3)}
+                onToggle={() =>
+                  setOpenIndex((prev) =>
+                    prev === row + 3 ? null : row + 3
+                  )
+                }
               />
             </div>
           ))}

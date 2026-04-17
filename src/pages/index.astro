@@ -778,11 +778,11 @@ const partnerLogos = [
 <!-- PROCESSO SIMPLES — componente React com Framer Motion -->
 <ProcessSteps client:visible />
 
-<!-- FAQ — acordeão (padrão home) -->
-<FaqAccordion client:visible />
-
-<!-- BLOG BENTO — bento grid premium com zoom no scroll -->
+<!-- BLOG BENTO — logo após o processo (evita FAQ “no meio” com muito scroll) -->
 <BlogBento />
+
+<!-- FAQ — acordeão (padrão home) -->
+<FaqAccordion client:load />
 
 <script>
   // Controla o wrapper coletivo das barras, sem NUNCA tocar na animação individual

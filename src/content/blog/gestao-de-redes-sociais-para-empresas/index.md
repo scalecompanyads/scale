@@ -7,6 +7,9 @@ tags: ['redes sociais', 'social media', 'instagram para empresas', 'marketing de
 featured: false
 focusKeyword: "gestão de redes sociais para empresas"
 readingTime: 7
+slug: gestao-de-redes-sociais-para-empresas
+coverImage: ./cover.jpg
+coverImageAlt: "Ilustração sobre gestão de redes sociais para empresas"
 ---
 
 Estar presente nas redes sociais já não é diferencial — é requisito básico para qualquer empresa que queira ser encontrada, lembrada e escolhida. Mas presença sem estratégia é só ruído. Este guia mostra como transformar seus perfis em canais que geram resultado de verdade.

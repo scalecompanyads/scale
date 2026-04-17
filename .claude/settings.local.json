@@ -3,7 +3,16 @@
     "allow": [
       "Bash(mkdir -p \"c:\\\\Users\\\\depia\\\\Scale-company---instucional-SEO\\\\src\\\\pages\\\\cariacica\")",
       "Bash(mkdir -p \"c:\\\\Users\\\\depia\\\\Scale-company---instucional-SEO\\\\src\\\\pages\\\\guarapari\")",
-      "Bash(find \"c:/Users/depia/Scale-company---instucional-SEO\" -type f \\\\\\( -name \"*.ts\" -o -name \"*.tsx\" -o -name \"*.js\" -o -name \"*.jsx\" \\\\\\) -exec grep -l \"gsap\\\\|GSAP\\\\|ScrollTrigger\" {} \\\\;)"
+      "Bash(find \"c:/Users/depia/Scale-company---instucional-SEO\" -type f \\\\\\( -name \"*.ts\" -o -name \"*.tsx\" -o -name \"*.js\" -o -name \"*.jsx\" \\\\\\) -exec grep -l \"gsap\\\\|GSAP\\\\|ScrollTrigger\" {} \\\\;)",
+      "Bash(wc -l src/content/blog/*.md)",
+      "Bash(curl -s http://localhost:4322/)",
+      "Bash(curl -s http://localhost:4321/)",
+      "Bash(node -e ' *)",
+      "Bash(curl -s --max-time 5 http://localhost:4322/)",
+      "Bash(curl -s http://localhost:4321/blog)",
+      "Bash(node --input-type=module)",
+      "Bash(cat)",
+      "Bash(node /tmp/debug-blog.mjs)"
     ]
   }
 }
