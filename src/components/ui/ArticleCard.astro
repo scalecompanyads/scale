@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import Badge from './Badge.astro';
+import FallbackCover from './FallbackCover.astro';
 
 interface Props {
   article: CollectionEntry<'blog'>;
@@ -16,17 +17,25 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
 ---
 
 <a href={`/blog/${article.slug}`} class="group relative bg-surface-card border border-edge rounded-xl overflow-hidden flex flex-col hover:border-brand-primary/30 transition-all duration-300 shadow-sm hover:shadow-[0_8px_30px_rgb(0,0,0,0.3)]">
-  {coverSrc && (
-    <div class="aspect-video bg-surface-subtle overflow-hidden">
-      <img
-        src={coverSrc}
-        alt={coverImageAlt ?? title}
-        loading="lazy"
-        decoding="async"
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-      />
-    </div>
-  )}
+  <div class="aspect-video relative overflow-hidden bg-surface-subtle">
+    {coverSrc ? (
+      <>
+        <img
+          src={coverSrc}
+          alt={coverImageAlt ?? title}
+          loading="lazy"
+          decoding="async"
+          class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
+        />
+        <div
+          class="absolute inset-0 bg-black/35 group-hover:bg-black/28 transition-colors duration-300 pointer-events-none z-[1]"
+          aria-hidden="true"
+        />
+      </>
+    ) : (
+      <FallbackCover variant="card" title={title} slug={article.slug} />
+    )}
+  </div>
 
   <div class="p-5 flex flex-col flex-1">
     <div class="flex items-center gap-3 mb-3">
@@ -34,7 +43,12 @@ const formattedDate = publishDate.toLocaleDateString('pt-BR', {
       <time class="text-xs text-ink-light" datetime={publishDate.toISOString()}>{formattedDate}</time>
     </div>
 
-    <h3 class="font-heading text-lg font-bold text-ink mb-2 leading-snug group-hover:text-brand-primary transition-colors">
+    <h3
+      class:list={[
+        'font-heading text-lg font-bold text-ink mb-2 leading-snug group-hover:text-brand-primary transition-colors',
+        !coverSrc && 'sr-only',
+      ]}
+    >
       {title}
     </h3>
     <p class="text-sm text-ink-light leading-relaxed flex-1">{description}</p>

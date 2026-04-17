@@ -57,6 +57,12 @@ export default function LeadForm({ variant, onSuccess }: Props) {
     });
     setLoading(false);
     if (result.ok) {
+      if (result.skippedWebhook && import.meta.env.PROD) {
+        setError(
+          'Não foi possível registrar seu envio neste momento. Envie um e-mail para contato@scale.com.br ou tente novamente mais tarde.'
+        );
+        return;
+      }
       setSuccess(true);
       setSkippedWebhook(!!result.skippedWebhook);
       if (isModal && onSuccess) {
@@ -82,7 +88,7 @@ export default function LeadForm({ variant, onSuccess }: Props) {
         </p>
         {skippedWebhook && import.meta.env.DEV && (
           <p className="mt-3 text-xs text-amber-700">
-            (dev) Webhook não configurado — defina PUBLIC_LEAD_WEBHOOK_URL
+            (dev) Webhook não configurado — defina PUBLIC_LEAD_WEBHOOK_URL em .env.local
           </p>
         )}
       </div>

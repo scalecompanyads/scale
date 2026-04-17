@@ -1,8 +1,7 @@
 ---
 /**
  * Tráfego Pago — /servicos/trafego-pago
- * ~6.6k buscas/mês
- * Keywords: "tráfego pago para empresas", "gestão google ads", "gestão meta ads"
+ * Keywords: gestão Google Ads, Meta Ads, agência de tráfego pago, gestor de tráfego
  */
 import ServiceLayout from '@layouts/ServiceLayout.astro';
 import FAQ from '@components/sections/FAQ.astro';
@@ -11,11 +10,36 @@ import { getServiceBySlug } from '@data/services';
 const service = getServiceBySlug('trafego-pago')!;
 
 const faqs = [
-  { question: 'Qual o investimento mínimo em mídia paga?', answer: 'Não existe um valor mínimo universal — depende do seu mercado e objetivo. No diagnóstico mapeamos o investimento ideal para escalar seus resultados sem desperdício.' },
-  { question: 'Quanto tempo para ver resultado?', answer: 'Campanhas bem configuradas podem gerar leads entre 2 e 4 semanas após o lançamento. O volume cresce conforme otimizamos dados reais de performance.' },
-  { question: 'A gestão inclui criação dos anúncios?', answer: 'Sim. Criamos os criativos (texto e imagem), configuramos as campanhas, definimos públicos, fazemos testes A/B e otimizamos continuamente com base nos dados.' },
-  { question: 'Como acompanho os resultados?', answer: 'Você recebe relatórios mensais em linguagem de negócio — não só CTR e impressões, mas leads gerados, custo por aquisição e ROAS. Acesso ao dashboard em tempo real disponível.' },
-  { question: 'Trabalham com qual plataforma?', answer: 'Google Ads (Search, Display, YouTube, Shopping) e Meta Ads (Instagram e Facebook). A escolha do canal depende de onde seu cliente está e qual é o seu objetivo de conversão.' },
+  {
+    question: 'O que faz um gestor de tráfego?',
+    answer:
+      'Um gestor de tráfego estrutura campanhas, define públicos e palavras-chave, cria e testa anúncios, acompanha métricas (CPC, CPA, ROAS) e otimiza com base em dados reais — para que cada real investido em mídia pago se aproxime do melhor resultado possível para o seu objetivo de negócio.',
+  },
+  {
+    question: 'Quanto custa contratar um gestor de tráfego?',
+    answer:
+      'O valor depende do escopo (quantos canais, volume de criativos, complexidade do funil) e do investimento em mídia. Na Scale, alinhamos fee de gestão e verba de anúncio de forma transparente no diagnóstico — sem surpresas e com foco em retorno, não em “pacote fechado” genérico.',
+  },
+  {
+    question: 'Qual a diferença entre Google Ads e Meta Ads?',
+    answer:
+      'Google Ads captura demanda: o usuário já está buscando (ex.: serviço + cidade). Meta Ads (Facebook e Instagram) cria demanda: você interrompe o feed de quem se encaixa no perfil do cliente ideal. Na prática, muitas empresas usam os dois em funis diferentes — busca para conversão imediata, social para escala e remarketing.',
+  },
+  {
+    question: 'Tráfego pago funciona para qualquer empresa?',
+    answer:
+      'Funciona para a maioria dos negócios que têm oferta clara, página de destino adequada e margem para adquirir cliente — mas não é “plug and play”. Nichos muito competitivos ou funis fracos exigem mais teste e ajuste. No diagnóstico avaliamos se o canal e o investimento fazem sentido para o seu estágio.',
+  },
+  {
+    question: 'Qual o investimento mínimo em mídia paga?',
+    answer:
+      'Não existe valor mínimo universal — depende do mercado e do objetivo. No diagnóstico mapeamos o investimento ideal para escalar resultados sem desperdício.',
+  },
+  {
+    question: 'Como acompanho os resultados?',
+    answer:
+      'Você recebe relatórios mensais em linguagem de negócio — leads, custo por aquisição e ROAS — e pode ter acesso a dashboards em tempo real, conforme combinado.',
+  },
 ];
 
 const beneficios = [
@@ -46,7 +70,7 @@ const outcomes = [
 
 <ServiceLayout
   title="Gestão de Tráfego Pago | Google Ads e Meta Ads | Scale"
-  description="Gestão profissional de Google Ads e Meta Ads com foco em ROAS e resultado real. Campanhas otimizadas, relatórios claros e estratégia baseada em dados."
+  description="Agência de tráfego pago com gestão de Google Ads e Meta Ads, gestor de tráfego dedicado e foco em ROAS. Tráfego pago para empresas em Vitória, Vila Velha, Cariacica e região."
   service={service}
 >
   <!-- HERO -->
@@ -57,8 +81,11 @@ const outcomes = [
           <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
             Gestão de Tráfego Pago para Empresas: Google Ads e Meta Ads com Foco em ROAS
           </h1>
-          <p class="text-lg text-ink-light leading-relaxed mb-8">
-            Verba em anúncio sem estratégia é desperdício. A Scale gerencia suas campanhas de Google Ads e Meta Ads do zero ao relatório, com foco em conversão real: leads qualificados, custo por aquisição controlado e crescimento previsível para o seu negócio.
+          <p class="text-lg text-ink-light leading-relaxed mb-4">
+            Verba em anúncio sem estratégia é desperdício. A Scale atua como <strong class="text-ink">agência de tráfego pago</strong> com <strong class="text-ink">gestão de Google Ads</strong> e <strong class="text-ink">gestão de Meta Ads</strong> do zero ao relatório — com <strong class="text-ink">gestor de tráfego</strong> focado em conversão: leads qualificados, CPA controlado e <strong class="text-ink">tráfego pago para empresas</strong> que precisam escalar com previsibilidade.
+          </p>
+          <p class="text-base text-ink-light leading-relaxed mb-8">
+            Incluindo empresas em Vitória, Vila Velha, Cariacica e região.
           </p>
           <div class="flex gap-4 flex-wrap">
             <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
@@ -66,8 +93,7 @@ const outcomes = [
             </a>
           </div>
         </div>
-        <div class="hidden lg:block">
-          <!-- espaço reservado para visual de campanhas/dashboard -->
+        <div class="hidden lg:block" aria-hidden="true">
         </div>
       </div>
     </div>
@@ -81,7 +107,39 @@ const outcomes = [
         <p class="section-subtitle">Anúncios pagos não são sobre gastar mais, mas sobre gastar melhor</p>
       </div>
       <p class="text-ink-light leading-relaxed max-w-3xl mx-auto text-center">
-        Tráfego pago é o conjunto de estratégias que coloca o seu negócio na frente de pessoas que estão ativamente buscando o que você oferece, ou que se encaixam no perfil do seu cliente ideal. Google Ads captura a demanda existente, aparecendo quando o usuário pesquisa. Meta Ads cria demanda, exibindo seu produto ou serviço para quem ainda não te conhece, mas tem o perfil certo para comprar. Uma gestão profissional vai além de subir campanhas: envolve estrutura correta, rastreamento preciso de conversões, testes sistemáticos de criativos e públicos, e otimização contínua baseada em dados reais. Sem isso, o investimento em mídia cresce, mas o retorno não acompanha.
+        Tráfego pago é o conjunto de estratégias que coloca o seu negócio na frente de pessoas que estão buscando o que você oferece ou que se encaixam no perfil do cliente ideal. A <strong class="text-ink">gestão de Google Ads</strong> captura intenção de busca; a <strong class="text-ink">gestão de Meta Ads</strong> (Facebook e Instagram) amplia alcance e remarketing. Uma <strong class="text-ink">agência de tráfego pago</strong> séria une estrutura de conta, rastreamento de conversões, testes de criativos e otimização contínua — o que um <strong class="text-ink">gestor de tráfego</strong> faz no dia a dia para transformar investimento em resultado.
+      </p>
+    </div>
+  </section>
+
+  <!-- GOOGLE ADS -->
+  <section class="section bg-surface-subtle">
+    <div class="container max-w-3xl">
+      <h2 class="font-heading text-2xl sm:text-3xl font-bold text-ink mb-6">Gestão de Google Ads para empresas</h2>
+      <p class="text-ink-light leading-relaxed mb-4">
+        A <strong class="text-ink">gestão de Google Ads</strong> coloca sua empresa na hora em que alguém pesquisa solução — seja busca, Display, YouTube ou Shopping. Estruturamos campanhas com palavras-chave certas, extensões e lances alinhados ao seu CPA e ao valor de cada lead. Quem precisa <strong class="text-ink">anunciar no Google Ads</strong> com método ganha previsibilidade: você sabe onde o dinheiro está indo e qual campanha paga o investimento.
+      </p>
+      <p class="text-ink-light leading-relaxed mb-4">
+        Não basta “estar no Google”: é preciso evitar desperdício com termos irrelevantes, landing pages lentas e conversões mal rastreadas. Nossa gestão inclui revisão de segmentação, testes A/B de anúncios e ajustes semanais com base em dados — para que o investimento em busca pago sustente o crescimento do seu funil, inclusive enquanto o SEO orgânico ganha tração.
+      </p>
+      <p class="text-ink-light leading-relaxed">
+        Quer entender o funcionamento antes de avançar? Leia o guia <a href="/blog/como-funciona-trafego-pago-para-empresas" class="text-brand-primary font-semibold underline underline-offset-2 hover:text-brand-secondary">como funciona tráfego pago para empresas</a> e veja na prática como busca e social se complementam.
+      </p>
+    </div>
+  </section>
+
+  <!-- META ADS -->
+  <section class="section">
+    <div class="container max-w-3xl">
+      <h2 class="font-heading text-2xl sm:text-3xl font-bold text-ink mb-6">Gestão de Meta Ads (Facebook e Instagram)</h2>
+      <p class="text-ink-light leading-relaxed mb-4">
+        A <strong class="text-ink">gestão de Meta Ads</strong> é ideal quando o objetivo é gerar demanda, remarketing e escala com criativos fortes no Instagram e Facebook. Segmentamos interesses, comportamentos e lookalikes; testamos formatos e mensagens até encontrar combinações que convertem dentro do seu orçamento.
+      </p>
+      <p class="text-ink-light leading-relaxed mb-4">
+        Integrar Meta ao Google fecha o funil: um canal captura quem já procura; o outro educa e retoma quem visitou o site sem converter. Como <strong class="text-ink">agência de tráfego pago</strong>, tratamos os dois canais com a mesma régua — CPA, volume de leads e qualidade — para você investir onde o retorno é comprovado.
+      </p>
+      <p class="text-ink-light leading-relaxed">
+        Se a sua operação atende bem o lead que chega pela rede social, a <strong class="text-ink">gestão de tráfego pago</strong> no Meta deixa de ser custo e vira canal de aquisição mensurável.
       </p>
     </div>
   </section>
@@ -104,12 +162,28 @@ const outcomes = [
     </div>
   </section>
 
-  <!-- COMO FUNCIONA -->
+  <!-- COMO FUNCIONA (texto) -->
   <section class="section">
+    <div class="container max-w-3xl">
+      <h2 class="font-heading text-2xl sm:text-3xl font-bold text-ink mb-6">Como funciona a gestão de tráfego pago</h2>
+      <p class="text-ink-light leading-relaxed mb-4">
+        Tudo começa com diagnóstico: entendemos seu produto, margem, capacidade de atendimento e metas. Em seguida definimos onde investir primeiro — <strong class="text-ink">Google Ads</strong>, <strong class="text-ink">Meta Ads</strong> ou ambos — e qual verba de teste faz sentido. O <strong class="text-ink">gestor de tráfego</strong> configura rastreamento (pixel, tag, conversões), publica anúncios e monitora os primeiros resultados com ajustes rápidos para não queimar orçamento.
+      </p>
+      <p class="text-ink-light leading-relaxed mb-4">
+        Depois do lançamento, a gestão é contínua: pausar o que não converte, escalar o que performa, testar novos criativos e refinar públicos. Você recebe relatórios claros — não só métricas de vaidade, mas indicadores ligados a lead e venda. Esse ciclo é o que diferencia <strong class="text-ink">tráfego pago para empresas</strong> bem gerido de conta “no automático”.
+      </p>
+      <p class="text-ink-light leading-relaxed">
+        Para aprofundar métricas como ROAS e leitura de relatórios, confira também o artigo <a href="/blog/metricas-e-roas-em-trafego-pago-guia-para-empresas" class="text-brand-primary font-semibold underline underline-offset-2 hover:text-brand-secondary">métricas e ROAS em tráfego pago</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ETAPAS -->
+  <section class="section bg-surface-subtle">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Como funciona a gestão de campanhas</h2>
-        <p class="section-subtitle">Processo estruturado da estratégia ao relatório, com ciclo de melhoria contínua</p>
+        <h2 class="section-title">Etapas do nosso processo</h2>
+        <p class="section-subtitle">Da estratégia ao relatório, com ciclo de melhoria contínua</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {steps.map((step, i) => (
@@ -120,6 +194,22 @@ const outcomes = [
           </div>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- QUANTO CUSTA -->
+  <section class="section">
+    <div class="container max-w-3xl">
+      <h2 class="font-heading text-2xl sm:text-3xl font-bold text-ink mb-6">Quanto custa o tráfego pago?</h2>
+      <p class="text-ink-light leading-relaxed mb-4">
+        O custo tem duas partes: <strong class="text-ink">investimento em mídia</strong> (o que vai direto para Google e Meta) e <strong class="text-ink">gestão profissional</strong> (estratégia, configuração, criativos e otimização). Não existe número único — depende de nicho, concorrência e objetivo. O que importa é saber quanto você pode pagar por um cliente e ainda lucrar; a partir disso definimos orçamento de teste e metas de CPA ou ROAS.
+      </p>
+      <p class="text-ink-light leading-relaxed mb-4">
+        <strong class="text-ink">Contratar um gestor de tráfego</strong> ou uma <strong class="text-ink">agência de tráfego pago</strong> evita o padrão mais caro: gastar em anúncio sem aprender o que funciona. No diagnóstico da Scale você recebe uma visão honesta de verba mínima viável e do que esperar nos primeiros 30 a 60 dias.
+      </p>
+      <p class="text-ink-light leading-relaxed">
+        Empresas em <strong class="text-ink">Vitória</strong>, <strong class="text-ink">Vila Velha</strong>, <strong class="text-ink">Cariacica</strong> e região podem combinar campanhas locais e nacionais conforme o raio de atendimento — sempre com mensagem e segmentação alinhadas à operação.
+      </p>
     </div>
   </section>
 
@@ -141,8 +231,25 @@ const outcomes = [
     </div>
   </section>
 
+  <!-- CONTEÚDO RELACIONADO -->
+  <section class="section">
+    <div class="container max-w-3xl">
+      <h2 class="font-heading text-xl sm:text-2xl font-bold text-ink mb-4">Leia no blog</h2>
+      <ul class="space-y-3 text-ink-light">
+        <li>
+          <a href="/blog/como-funciona-trafego-pago-para-empresas" class="text-brand-primary font-semibold underline underline-offset-2 hover:text-brand-secondary">Como funciona tráfego pago para empresas</a>
+          — base para entender Google Ads, Meta Ads e investimento.
+        </li>
+        <li>
+          <a href="/blog/metricas-e-roas-em-trafego-pago-guia-para-empresas" class="text-brand-primary font-semibold underline underline-offset-2 hover:text-brand-secondary">Métricas e ROAS em tráfego pago</a>
+          — como ler CPA, ROAS e relatórios com foco em decisão.
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <!-- FAQ -->
-  <FAQ items={faqs} title="Dúvidas sobre tráfego pago" />
+  <FAQ items={faqs} title="Perguntas frequentes sobre tráfego pago" />
 
   <!-- CTA FINAL -->
   <section class="section text-center">

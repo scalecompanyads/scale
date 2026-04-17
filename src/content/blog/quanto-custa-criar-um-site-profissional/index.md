@@ -116,6 +116,8 @@ Vale investir em um site profissional quando:
 
 Um site profissional é um ativo que trabalha por você 24 horas por dia. Quando bem feito e otimizado, ele gera retorno por anos.
 
+Depois do lançamento, campanhas de **tráfego pago para empresas** exigem páginas rápidas e mensagem alinhada ao anúncio — caso contrário, o custo por lead dispara. Se você pretende escalar com mídia, vale combinar o projeto de site com uma [gestão de tráfego pago](/servicos/trafego-pago) que teste criativos, públicos e landing pages com clareza de CPA.
+
 ## Conclusão
 
 O custo de um site profissional varia conforme o tipo, o escopo e os recursos necessários. Sites institucionais ficam entre R$ 3.000 e R$ 15.000; landing pages entre R$ 1.500 e R$ 5.000; e-commerces a partir de R$ 8.000. Os principais fatores que influenciam o preço são: design personalizado, SEO, CMS, funcionalidades extras e integrações.

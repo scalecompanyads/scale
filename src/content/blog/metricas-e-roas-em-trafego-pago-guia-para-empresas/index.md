@@ -62,6 +62,14 @@ Sem alinhar a campanha ao objetivo, é comum julgar uma campanha de alcance pelo
 
 **Valor de conversão** e **janelas de atribuição** importam: o mesmo anúncio pode parecer “melhor” ou “pior” conforme você atribui o crédito ao primeiro clique, ao último ou a um modelo data-driven.
 
+## O que é ROAS no Google Ads
+
+**ROAS** (Return On Ad Spend) mede quanto de receita atribuída à publicidade você ganha para cada real investido em anúncios. Em **Google Ads**, ele faz mais sentido quando há venda com valor rastreável (e-commerce ou lead com valor estimado bem configurado): se o ROAS é 4, em regra geral cada R$ 1,00 de mídia retorna R$ 4,00 em receita atribuída — sempre respeitando a janela de atribuição e a qualidade do rastreamento.
+
+Sem conversões com valor correto, o ROAS vira número decorativo. Por isso a **gestão de tráfego pago** forte começa pelo pixel/tag, eventos e, quando aplicável, integração com CRM ou planilha de pedidos. No Search, Shopping e Performance Max, o ROAS ajuda a comparar campanhas e conjuntos de anúncios — desde que você não misture objetivos incompatíveis (ex.: awareness com conversão) na mesma régua.
+
+Se o seu objetivo é lead B2B sem venda online, às vezes o **CPA** fala mais alto que o ROAS; mesmo assim, entender **o que é ROAS no Google Ads** evita decisões erradas quando a conta já tem dados de valor — e prepara a empresa para escalar quando o funil amadurece. Para colocar isso em prática com apoio, veja a [gestão de tráfego pago](/servicos/trafego-pago) da Scale.
+
 ## O que acompanhar por tipo de campanha
 
 **Campanhas de busca (Google)** — termos de pesquisa, impressões perdidas por orçamento ou lance, taxa de conversão da página de destino e CPA por grupo de anúncios.
@@ -82,8 +90,6 @@ Sem alinhar a campanha ao objetivo, é comum julgar uma campanha de alcance pelo
 
 ## Conclusão
 
-Métricas de tráfego pago não são “uma nota única” — são um painel: CPM e alcance para visibilidade, **CPC e CTR** para atrair cliques, **conversões, CPA e ROAS** para medir retorno. O passo decisivo é **definir o objetivo** e escolher o conjunto de indicadores que responde a ele.
+Métricas de tráfego pago não são “uma nota única” — são um painel: CPM e alcance para visibilidade, **CPC e CTR** para atrair cliques, **conversões, CPA e ROAS** para medir retorno. O passo decisivo é **definir o objetivo** e escolher o conjunto de indicadores que responde a ele — inclusive ao interpretar **ROAS no Google Ads** com rastreamento confiável.
 
-Se quiser campanhas com métricas alinhadas ao seu modelo de receita e relatórios que você realmente usa na gestão, a Scale pode ajudar.
-
-**Pronto para dar o próximo passo?** [Solicite um diagnóstico gratuito](/contato) e veja o que é possível para o seu negócio.
+Quando você está pronto para **contratar gestor de tráfego** ou uma **agência de tráfego pago** que traduz números em decisão, a Scale centraliza **gestão de Google Ads**, **gestão de Meta Ads** e relatórios em linguagem de negócio. [Conheça a gestão de tráfego pago para empresas](/servicos/trafego-pago) ou [solicite um diagnóstico gratuito](/contato) para alinhar metas, orçamento e métricas ao seu modelo de receita.

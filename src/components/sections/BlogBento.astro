@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import FallbackCover from '@components/ui/FallbackCover.astro';
 
 const allArticles = await getCollection('blog');
 
@@ -66,14 +67,19 @@ const displayPosts = [trafficArticle, ...otherArticles].filter(Boolean).slice(0,
             data-bbn={i}
             style={`--c: ${config.color}; --cr: ${config.rgb};`}
           >
-            {coverSrc && (
-              <img
-                src={coverSrc}
-                alt={post.data.coverImageAlt ?? post.data.title}
-                loading="lazy"
-                decoding="async"
-                class="bbn-cover"
-              />
+            {coverSrc ? (
+              <>
+                <img
+                  src={coverSrc}
+                  alt={post.data.coverImageAlt ?? post.data.title}
+                  loading="lazy"
+                  decoding="async"
+                  class="bbn-cover"
+                />
+                <div class="bbn-cover-dim" aria-hidden="true"></div>
+              </>
+            ) : (
+              <FallbackCover variant="bento" title={post.data.title} slug={post.slug} />
             )}
             <!-- Gradient background layer -->
             <div class="bbn-bg" aria-hidden="true"></div>
@@ -84,7 +90,7 @@ const displayPosts = [trafficArticle, ...otherArticles].filter(Boolean).slice(0,
             <!-- Content -->
             <div class="bbn-content">
               <div class="bbn-body">
-                <h3 class="bbn-title">{post.data.title}</h3>
+                <h3 class:list={['bbn-title', !coverSrc && 'sr-only']}>{post.data.title}</h3>
                 {i === 0 && (
                   <p class="bbn-excerpt">{post.data.description}</p>
                 )}
@@ -248,6 +254,13 @@ const displayPosts = [trafficArticle, ...otherArticles].filter(Boolean).slice(0,
     opacity: 0.46;
     z-index: 0;
     transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .bbn-cover-dim {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(1, 15, 28, 0.28) 0%, rgba(1, 15, 28, 0.62) 100%);
   }
   .bbn-item:hover {
     border-color: rgba(var(--cr), 0.30);

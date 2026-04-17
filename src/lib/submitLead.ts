@@ -50,11 +50,9 @@ export async function submitLead(
   };
 
   if (!url) {
-    if (import.meta.env.DEV) {
-      console.warn(
-        '[lead] PUBLIC_LEAD_WEBHOOK_URL não definido — lead não enviado ao servidor.'
-      );
-    }
+    console.warn(
+      '[lead] PUBLIC_LEAD_WEBHOOK_URL não definido — lead não enviado ao webhook.'
+    );
     return { ok: true, skippedWebhook: true };
   }
 

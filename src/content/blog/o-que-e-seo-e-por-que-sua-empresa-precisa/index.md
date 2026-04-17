@@ -106,6 +106,8 @@ Você pode aprender e aplicar SEO básico por conta própria. Mas há momentos e
 
 A escolha da agência certa é tão importante quanto a decisão de investir. Fuja de promessas de "primeiro lugar no Google em 30 dias" — isso não existe de forma legítima. Busque uma agência que apresente estratégia clara, histórico de resultados e transparência total no processo.
 
+Enquanto o SEO ganha tração, muitas empresas complementam com **gestão de tráfego pago** para gerar demanda imediata. Se faz sentido para o seu caso, vale conhecer como funciona [anunciar no Google Ads](/servicos/trafego-pago) com método e métricas de conversão — sem confundir com “atalho” que dispensa site bem feito.
+
 ## Conclusão
 
 SEO é a forma mais sustentável de construir presença digital e atrair clientes pelo Google. Ele funciona em três frentes — on-page, off-page e técnico — e exige trabalho consistente ao longo do tempo. Os resultados demoram mais do que um anúncio pago, mas são muito mais duradouros e têm custo por aquisição mais baixo no longo prazo.

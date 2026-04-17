@@ -72,6 +72,8 @@ Com a ficha sólida, faz sentido **páginas por cidade ou serviço**, menções 
 
 Pular direto para artigos de blog sem base em ficha costuma gerar tráfego que não converte — porque a primeira impressão no mapa já falhou.
 
+Para negócios locais que também usam anúncios, faz diferença cruzar ficha no mapa, site e **tráfego pago para empresas** com a mesma mensagem e área de atendimento — evitando cliques caros para quem você não consegue atender. A Scale reúne visão local e [gestão de tráfego pago](/servicos/trafego-pago) quando o objetivo é preencher a agenda com método.
+
 ## Conclusão
 
 SEO local começa no **Perfil do estabelecimento no Google**: verificação, categorias, NAP consistente, mídia real, avaliações e interação. É trabalho de gestão, não mágica — mas é o alicerce para tudo o que vem depois.

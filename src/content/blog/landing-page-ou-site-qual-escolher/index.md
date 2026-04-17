@@ -58,6 +58,8 @@ Landing pages focadas em uma única conversão tendem a converter significativam
 
 Para tráfego orgânico e busca direta, o site tem vantagem: o visitante chega com intenção de explorar, e o conteúdo mais rico apoia melhor a decisão de compra em ciclos longos.
 
+Quando a aquisição vem de anúncios, a conversão costuma ser melhor em landing pages dedicadas — e isso exige **gestão de tráfego pago** alinhada ao teste de ofertas e ao rastreamento de conversões. Se quiser unificar estratégia de página e mídia, veja como a Scale aborda [gestão de Google Ads e Meta Ads](/servicos/trafego-pago) para campanhas que precisam performar, não só gerar clique.
+
 ## Conclusão
 
 A resposta para "landing page ou site" quase sempre é "os dois, com papéis distintos". Se você está começando e o orçamento é limitado, priorize o site institucional para construir base — ele trabalha por você 24 horas por dia. Quando ativar campanhas pagas, invista em landing pages dedicadas para cada oferta.

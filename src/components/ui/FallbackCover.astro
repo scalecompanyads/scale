@@ -1,0 +1,117 @@
+---
+/**
+ * Capa gerada no build quando não há coverImage — gradiente determinístico por slug.
+ */
+interface Props {
+  title: string;
+  slug: string;
+  variant?: 'card' | 'bento' | 'hero';
+  class?: string;
+}
+
+const { title, slug, variant = 'card', class: className = '' } = Astro.props;
+
+function hash(s: string): number {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+  return Math.abs(h);
+}
+
+const h = hash(slug);
+const hueA = h % 360;
+const hueB = (hueA + 38 + (h % 40)) % 360;
+const hueC = (hueA + 180 + (h % 24)) % 360;
+
+const grad = `linear-gradient(135deg, hsl(${hueA} 42% 16%) 0%, hsl(${hueB} 38% 12%) 45%, hsl(${hueC} 35% 9%) 100%)`;
+const glow = `radial-gradient(ellipse 80% 70% at 85% 15%, hsla(${hueB}, 70%, 55%, 0.22) 0%, transparent 55%)`;
+
+const rootClass =
+  variant === 'card'
+    ? 'absolute inset-0 w-full h-full'
+    : variant === 'bento'
+      ? 'bbn-cover bbn-cover--fallback'
+      : 'w-full aspect-video fallback-cover--hero';
+---
+
+<div
+  class:list={[rootClass, 'fallback-cover', className]}
+  style={`--fc-grad: ${grad}; --fc-glow: ${glow};`}
+  aria-hidden="true"
+>
+  <div class="fallback-cover__base"></div>
+  <div class="fallback-cover__glow"></div>
+  <div class="fallback-cover__noise"></div>
+  <div class="fallback-cover__vignette"></div>
+  {variant !== 'hero' && <p class="fallback-cover__title">{title}</p>}
+</div>
+
+<style>
+  .fallback-cover {
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .fallback-cover__base {
+    position: absolute;
+    inset: 0;
+    background: var(--fc-grad);
+  }
+  .fallback-cover__glow {
+    position: absolute;
+    inset: 0;
+    background: var(--fc-glow);
+    filter: blur(18px);
+    transform: scale(1.05);
+  }
+  .fallback-cover__noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 140px 140px;
+  }
+  .fallback-cover__vignette {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(1, 15, 28, 0.15) 0%, rgba(1, 15, 28, 0.82) 100%);
+  }
+  .fallback-cover__title {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 1rem 1.1rem 1.15rem;
+    font-family: var(--font-heading, ui-sans-serif, system-ui);
+    font-size: clamp(0.8rem, 2.1vw, 1.05rem);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  :global(.bbn-cover--fallback) .fallback-cover__title {
+    font-size: clamp(0.72rem, 1.15vw, 0.95rem);
+    padding: 0.85rem 1rem 1rem;
+    opacity: 0.88;
+  }
+
+  :global(.bbn-grid.bbn-final .bbn-item:nth-child(1)) :global(.bbn-cover--fallback) .fallback-cover__title {
+    font-size: clamp(0.95rem, 1.6vw, 1.35rem);
+    padding: 1.1rem 1.25rem 1.2rem;
+  }
+
+  .fallback-cover:not(:global(.bbn-cover)):not(.fallback-cover--hero) .fallback-cover__title {
+    font-size: clamp(1rem, 2.4vw, 1.5rem);
+    padding: 1.5rem 1.5rem 1.75rem;
+  }
+
+  .fallback-cover--hero {
+    border-radius: inherit;
+  }
+</style>

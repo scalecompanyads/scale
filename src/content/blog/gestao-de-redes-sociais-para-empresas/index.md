@@ -89,6 +89,8 @@ Contratar uma agência de social media faz sentido quando:
 
 Uma boa agência traz visão externa, acesso a ferramentas profissionais e capacidade de produção escalável. O ponto de atenção é garantir que ela realmente entenda o seu setor e não aplique fórmulas genéricas.
 
+Orgânico e mídia paga se complementam: conteúdo forte melhora criativo e prova social; já a **gestão de tráfego pago** escala o que já validou. Para **contratar gestor de tráfego** com o mesmo rigor de métricas (CPA, ROAS) que você espera das redes, confira a [página de tráfego pago](/servicos/trafego-pago) da Scale.
+
 ## Conclusão
 
 Gestão de redes sociais para empresas não é sobre postar bonito — é sobre construir presença estratégica, gerar conexão com o público certo e transformar atenção em resultado de negócio. Com as plataformas certas, conteúdo consistente e métricas acompanhadas, as redes deixam de ser custo e se tornam canal de aquisição.
