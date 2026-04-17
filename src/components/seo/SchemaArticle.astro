@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { article } = Astro.props;
-const siteUrl = import.meta.env.SITE || 'https://scaleco.com.br';
+const siteUrl = import.meta.env.SITE || 'https://www.scalecompany.com.br';
 const { title, description, publishDate, updatedDate, coverImage } = article.data;
 const coverSrc = coverImage?.src;
 

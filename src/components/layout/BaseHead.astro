@@ -22,7 +22,7 @@ const {
   noindex = false,
 } = Astro.props;
 
-const siteUrl = import.meta.env.SITE || 'https://scaleco.com.br';
+const siteUrl = import.meta.env.SITE || 'https://www.scalecompany.com.br';
 const resolvedCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).href;
 const resolvedOgImage = ogImage
   ? new URL(ogImage, siteUrl).href

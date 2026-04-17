@@ -8,8 +8,8 @@ import sitemap from '@astrojs/sitemap';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  // URL canónica para sitemap, RSS e meta — alinhar ao domínio real na Vercel
-  site: 'https://scaleco.com.br',
+  // URL canónica para sitemap, RSS e meta — domínio público (www)
+  site: 'https://www.scalecompany.com.br',
 
   trailingSlash: 'never',
 
