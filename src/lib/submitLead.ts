@@ -8,6 +8,15 @@ export type LeadPayload = {
   email: string;
   /** Telefone só com dígitos, tipo JSON number (sem formatação). */
   number: number;
+  /**
+   * Estrutura que o Make costuma mapear como `1. fields → number → value`
+   * no módulo «Phone number». Sem isto, esse caminho fica vazio e dá erro de parâmetro obrigatório.
+   */
+  fields: {
+    number: {
+      value: number;
+    };
+  };
   faturamento: string;
   instagram: string;
   sourceUrl: string;
@@ -41,10 +50,16 @@ export async function submitLead(
   data: LeadFormData
 ): Promise<{ ok: boolean; skippedWebhook?: boolean; error?: string }> {
   const url = getWebhookUrl();
+  const number = phoneDigitsAsNumber(data.phoneDigits);
   const payload: LeadPayload = {
     nome: data.nome,
     email: data.email,
-    number: phoneDigitsAsNumber(data.phoneDigits),
+    number,
+    fields: {
+      number: {
+        value: number,
+      },
+    },
     faturamento: data.faturamento,
     instagram: data.instagram,
     sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
