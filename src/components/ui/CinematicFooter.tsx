@@ -153,10 +153,17 @@ const MarqueeItem = () => (
 );
 
 // ─── SOCIAL LINKS ────────────────────────────────────────────────────────────
-const SOCIALS = [
+const SOCIALS: {
+  label: string;
+  href: string;
+  /** false = link interno (ex.: /contato abre o modal de lead) */
+  external: boolean;
+  icon: React.ReactNode;
+}[] = [
   {
     label: "Instagram",
-    href: "https://instagram.com",
+    href: "https://www.instagram.com/scalecompany_/",
+    external: true,
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -167,7 +174,8 @@ const SOCIALS = [
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/company/scale-company-br/",
+    external: true,
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
@@ -177,8 +185,9 @@ const SOCIALS = [
     ),
   },
   {
-    label: "WhatsApp",
-    href: "https://wa.me/5527999999999",
+    label: "Fale conosco",
+    href: "/contato",
+    external: false,
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
@@ -391,11 +400,12 @@ export function CinematicFooter() {
               <div style={{ display: "flex", justifyContent: "center", gap: "0.65rem" }}>
                 {SOCIALS.map((s) => (
                   <MagBtn
-                    key={s.href}
+                    key={s.label}
                     as="a"
                     href={s.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    {...(s.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
                     className="sf-pill"
                     aria-label={s.label}
                     style={{
