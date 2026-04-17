@@ -7,11 +7,21 @@ export type LeadPayload = {
   nome: string;
   email: string;
   whatsapp: string;
+  /** Dígitos do telefone como JSON number (ex.: Make «Parse a phone number» exige `number`). */
+  number: number;
   faturamento: string;
   instagram: string;
   sourceUrl: string;
   submittedAt: string;
 };
+
+/** Apenas dígitos; usado em `number` para integrações que esperam tipo Numbers. */
+function phoneDigitsAsNumber(whatsapp: string): number {
+  const digits = whatsapp.replace(/\D/g, '');
+  if (!digits) return 0;
+  const n = Number(digits);
+  return Number.isFinite(n) ? n : 0;
+}
 
 export type LeadFormData = {
   nome: string;
@@ -34,6 +44,7 @@ export async function submitLead(
   const url = getWebhookUrl();
   const payload: LeadPayload = {
     ...data,
+    number: phoneDigitsAsNumber(data.whatsapp),
     sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
     submittedAt: new Date().toISOString(),
   };

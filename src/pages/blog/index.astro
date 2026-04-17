@@ -265,11 +265,26 @@ const remainingArticles = allArticles.filter(a => !bentoIds.has(a.id));
   @media (max-width: 767px) {
     .bbn-grid {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: repeat(3, 220px);
+      grid-template-rows: repeat(3, minmax(260px, auto));
     }
     .bbn-grid.bbn-final .bbn-item {
       grid-column: auto !important;
       grid-row: auto !important;
+    }
+
+    .bbn-grid.bbn-final .bbn-item:nth-child(1) .bbn-title {
+      font-size: clamp(0.88rem, 3.4vw, 1.05rem);
+      line-height: 1.3;
+    }
+
+    .bbn-grid.bbn-final .bbn-item:nth-child(1) .bbn-excerpt {
+      -webkit-line-clamp: 2;
+      font-size: 0.8125rem;
+      line-height: 1.45;
+    }
+
+    .bbn-content {
+      padding: 1rem 1rem 2.75rem;
     }
   }
 </style>

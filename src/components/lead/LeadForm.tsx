@@ -41,6 +41,11 @@ export default function LeadForm({ variant, onSuccess }: Props) {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
+    const digits = whatsapp.replace(/\D/g, '');
+    if (digits.length < 8) {
+      setError('Informe um WhatsApp válido com DDD (apenas números).');
+      return;
+    }
     setLoading(true);
     const ig = instagram.trim().replace(/^@+/, '');
     const result = await submitLead({
