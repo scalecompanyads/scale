@@ -3,6 +3,16 @@
 import { useState, type FormEvent } from 'react';
 import { submitLead } from '../../lib/submitLead';
 
+/** Máscara (XX) XXXXX-XXXX ou (XX) XXXX-XXXX só quando há dígitos; vazio = sem formatação. */
+function formatPhoneBR(digits: string): string {
+  const d = digits.replace(/\D/g, '').slice(0, 11);
+  if (d.length === 0) return '';
+  if (d.length <= 2) return `(${d}`;
+  if (d.length <= 6) return `(${d.slice(0, 2)}) ${d.slice(2)}`;
+  if (d.length <= 10) return `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+  return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+}
+
 const FATURAMENTO = [
   { value: 'prefiro_nao_informar', label: 'Prefiro não informar' },
   { value: 'ate_10k', label: 'Até R$ 10 mil' },
@@ -20,7 +30,7 @@ type Props = {
 export default function LeadForm({ variant, onSuccess }: Props) {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [whatsapp, setWhatsapp] = useState('');
+  const [phoneDigits, setPhoneDigits] = useState('');
   const [faturamento, setFaturamento] = useState('prefiro_nao_informar');
   const [instagram, setInstagram] = useState('');
   const [loading, setLoading] = useState(false);
@@ -41,9 +51,8 @@ export default function LeadForm({ variant, onSuccess }: Props) {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
-    const digits = whatsapp.replace(/\D/g, '');
-    if (digits.length < 8) {
-      setError('Informe um WhatsApp válido com DDD (apenas números).');
+    if (phoneDigits.replace(/\D/g, '').length < 8) {
+      setError('Informe um telefone válido com DDD.');
       return;
     }
     setLoading(true);
@@ -51,7 +60,7 @@ export default function LeadForm({ variant, onSuccess }: Props) {
     const result = await submitLead({
       nome: nome.trim(),
       email: email.trim(),
-      whatsapp: whatsapp.trim(),
+      phoneDigits,
       faturamento,
       instagram: ig ? `@${ig}` : '',
     });
@@ -136,19 +145,23 @@ export default function LeadForm({ variant, onSuccess }: Props) {
       </div>
 
       <div>
-        <label htmlFor="lead-whatsapp" className={labelClass}>
-          WhatsApp <span className="text-red-500">*</span>
+        <label htmlFor="lead-telefone" className={labelClass}>
+          Telefone <span className="text-red-500">*</span>
         </label>
         <input
-          id="lead-whatsapp"
-          name="whatsapp"
+          id="lead-telefone"
+          name="telefone"
           type="tel"
           required
           autoComplete="tel"
-          value={whatsapp}
-          onChange={(e) => setWhatsapp(e.target.value)}
+          inputMode="numeric"
+          value={formatPhoneBR(phoneDigits)}
+          onChange={(e) => {
+            const d = e.target.value.replace(/\D/g, '').slice(0, 11);
+            setPhoneDigits(d);
+          }}
           className={inputClass}
-          placeholder="(00) 00000-0000"
+          placeholder="DDD + número"
         />
       </div>
 
