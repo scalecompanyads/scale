@@ -1,0 +1,5 @@
+# Alinhar o domínio em astro.config.mjs (site) e no Search Console ao mudar produção.
+User-agent: *
+Allow: /
+
+Sitemap: https://scaleco.com.br/sitemap-index.xml

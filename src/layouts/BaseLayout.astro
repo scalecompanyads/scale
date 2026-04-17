@@ -4,6 +4,7 @@ import Header from '@components/layout/Header.astro';
 import Footer from '@components/layout/Footer.astro';
 import GlassFilter from '@components/ui/GlassFilter.astro';
 import Preloader from '@components/ui/Preloader.astro';
+import LeadCaptureModal from '@components/lead/LeadCaptureModal';
 import '@styles/global.css';
 
 interface Props {
@@ -39,5 +40,6 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <LeadCaptureModal client:load />
   </body>
 </html>

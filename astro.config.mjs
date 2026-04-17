@@ -4,16 +4,21 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  // TODO: substituir pelo domínio real quando registrado
+  // URL canónica para sitemap, RSS e meta — alinhar ao domínio real na Vercel
   site: 'https://scaleco.com.br',
 
   trailingSlash: 'never',
 
+  /**
+   * `directory` gera `blog/index.html` → `/blog` funciona em hosts estáticos (ex.: Vercel).
+   * `file` gerava só `blog.html` na raiz, sem `blog/index.html` → `/blog` dava 404.
+   */
   build: {
-    format: 'file',
+    format: 'directory',
   },
 
   integrations: [
@@ -21,6 +26,9 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     react(),
+    sitemap({
+      // i18n futuro: filter ou serialize
+    }),
   ],
 
   vite: {

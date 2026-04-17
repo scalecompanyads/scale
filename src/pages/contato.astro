@@ -4,7 +4,7 @@
  * Inclui endereço NAP, Google Maps embed e formulário
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
-import ContactForm from '@components/sections/ContactForm.astro';
+import LeadForm from '@components/lead/LeadForm';
 import MapEmbed from '@components/ui/MapEmbed.astro';
 ---
 
@@ -24,7 +24,7 @@ import MapEmbed from '@components/ui/MapEmbed.astro';
             Preencha o formulário e entraremos em contato em até 24 horas úteis.
           </p>
 
-          <ContactForm />
+          <LeadForm client:load variant="page" />
         </div>
 
         <div>
