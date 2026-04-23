@@ -8,6 +8,8 @@ featured: false
 focusKeyword: "contratar agencia de marketing vila velha"
 readingTime: 5
 slug: como-contratar-agencia-de-marketing-vila-velha
+coverImage: ./cover.webp
+coverImageAlt: "Capa do artigo como contratar agencia de marketing vila velha"
 ---
 
 Contratar uma **agência de marketing em Vila Velha** é uma das decisões mais importantes que um dono de negócio pode tomar — e também uma das mais arriscadas se feita sem critério. A maioria dos problemas que as empresas têm com agências não acontece por má-fé: acontece por desalinhamento de expectativa logo no início.

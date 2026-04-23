@@ -8,6 +8,8 @@ featured: false
 focusKeyword: "agencia de marketing vila velha"
 readingTime: 6
 slug: agencia-de-marketing-vila-velha
+coverImage: ./cover.webp
+coverImageAlt: "Capa do artigo agencia de marketing vila velha"
 ---
 
 Se você é dono de uma empresa em Vila Velha e está pesquisando por uma **agência de marketing**, provavelmente já se deparou com dezenas de opções — de agências grandes de São Paulo a freelancers sem endereço fixo. A pergunta que fica é: qual escolher?

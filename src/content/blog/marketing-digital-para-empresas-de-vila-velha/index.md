@@ -8,6 +8,8 @@ featured: false
 focusKeyword: "marketing digital vila velha"
 readingTime: 7
 slug: marketing-digital-para-empresas-de-vila-velha
+coverImage: ./cover.webp
+coverImageAlt: "Capa do artigo marketing digital para empresas de vila velha"
 ---
 
 Vila Velha é o município mais populoso do Espírito Santo, com mais de 500 mil habitantes, uma economia diversificada e um comércio local extremamente competitivo. Se você tem uma empresa aqui, a boa notícia é que a maioria dos seus concorrentes ainda não faz marketing digital direito. A janela de oportunidade é real — mas ela não fica aberta para sempre.

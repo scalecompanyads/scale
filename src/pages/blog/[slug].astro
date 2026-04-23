@@ -37,14 +37,6 @@ const categoryLabel = categoryLabels[category] ?? category;
 
 <BlogLayout article={post}>
 
-  <!-- Barra de progresso de leitura -->
-  <div
-    id="read-progress"
-    class="fixed top-16 left-0 z-50 h-[2px] w-0 pointer-events-none"
-    style="background: linear-gradient(90deg, #1630DF, #00BAFF);"
-    aria-hidden="true"
-  ></div>
-
   <article class="pb-32 bg-[#010f1c]">
 
     <!-- HEADER: capa + metadados -->
@@ -165,20 +157,5 @@ const categoryLabel = categoryLabels[category] ?? category;
 
   </article>
 
-  <script>
-    const bar = document.getElementById('read-progress');
-    const article = document.querySelector('article');
-    if (bar && article) {
-      const update = () => {
-        const { top, height } = article.getBoundingClientRect();
-        const scrolled = Math.max(0, -top);
-        const total = height - window.innerHeight;
-        const pct = total > 0 ? Math.min(100, (scrolled / total) * 100) : 0;
-        bar.style.width = pct + '%';
-      };
-      window.addEventListener('scroll', update, { passive: true });
-      update();
-    }
-  </script>
 
 </BlogLayout>
