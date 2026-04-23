@@ -316,25 +316,142 @@
    Classes aplicadas ao wrapper do <Content /> no BlogLayout
 --------------------------------------------------------------------------- */
 @layer components {
-  .prose h2 { @apply text-3xl font-bold text-white mt-14 mb-6 tracking-tight; }
-  .prose h3 { @apply text-2xl font-semibold text-white mt-10 mb-4 tracking-tight; }
-  .prose p  { @apply mb-6 leading-relaxed; color: rgba(255, 255, 255, 0.8); }
-  .prose ul { @apply mb-6 pl-6 list-disc; color: rgba(255, 255, 255, 0.7); }
-  .prose ol { @apply mb-6 pl-6 list-decimal; color: rgba(255, 255, 255, 0.7); }
-  .prose li { @apply mb-3; }
-  .prose strong { @apply font-bold text-white; }
-  .prose a  { @apply text-brand-primary font-semibold underline underline-offset-4 decoration-brand-primary hover:decoration-brand-primary transition-all; }
-  .prose blockquote {
-    @apply border-l-4 border-brand-primary pl-6 italic my-8;
-    color: rgba(255, 255, 255, 0.6);
-    background: rgba(0, 186, 255, 0.03);
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border-radius: 0 0.5rem 0.5rem 0;
+  /* Base */
+  .prose {
+    font-size: 1.0625rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.75);
   }
+
+  /* Headings */
+  .prose h2 {
+    @apply font-heading font-bold text-white tracking-tight;
+    font-size: 1.65rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+  .prose h3 {
+    @apply font-heading font-semibold text-white tracking-tight;
+    font-size: 1.25rem;
+    margin-top: 2.25rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose h4 {
+    @apply font-semibold text-white;
+    font-size: 1rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Parágrafos */
+  .prose p {
+    margin-bottom: 1.6rem;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* Separador --- */
+  .prose hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 3rem 0;
+  }
+
+  /* Listas */
+  .prose ul {
+    @apply mb-6 pl-6;
+    list-style: none;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .prose ul li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.6rem;
+    line-height: 1.75;
+  }
+  .prose ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-brand-primary);
+    opacity: 0.7;
+  }
+  .prose ol {
+    @apply mb-6 pl-6 list-decimal;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .prose ol li {
+    margin-bottom: 0.6rem;
+    line-height: 1.75;
+    padding-left: 0.35rem;
+  }
+  .prose ol li::marker {
+    color: var(--color-brand-primary);
+    font-weight: 700;
+    font-size: 0.85em;
+  }
+
+  /* Negrito e links */
+  .prose strong { @apply font-bold text-white; }
+  .prose a {
+    @apply text-brand-primary font-semibold underline underline-offset-4;
+    text-decoration-color: rgba(0, 186, 255, 0.4);
+    transition: text-decoration-color 0.2s;
+  }
+  .prose a:hover { text-decoration-color: var(--color-brand-primary); }
+
+  /* Blockquote — destaque de citação */
+  .prose blockquote {
+    position: relative;
+    margin: 2.5rem 0;
+    padding: 1.25rem 1.5rem 1.25rem 2rem;
+    border-left: 3px solid var(--color-brand-primary);
+    border-radius: 0 0.75rem 0.75rem 0;
+    background: rgba(0, 186, 255, 0.04);
+    color: rgba(255, 255, 255, 0.65);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  /* Código inline */
   .prose code {
     @apply font-mono text-sm bg-white/5 border border-white/10 rounded px-1.5 py-0.5 text-brand-primary;
+    font-style: normal;
   }
+
+  /* Tabela */
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.9rem;
+  }
+  .prose thead th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(0, 186, 255, 0.8);
+    background: rgba(0, 186, 255, 0.05);
+    border-bottom: 1px solid rgba(0, 186, 255, 0.15);
+  }
+  .prose tbody td {
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    line-height: 1.6;
+  }
+  .prose tbody tr:last-child td { border-bottom: none; }
+  .prose tbody tr:hover td { background: rgba(255, 255, 255, 0.02); }
 
   /* Ícones / SVG no corpo do blog (Markdown com HTML inline) */
   .prose .blog-icon {
@@ -343,15 +460,18 @@
     height: 2.5rem;
     color: var(--color-brand-primary);
   }
-  .prose .blog-icon svg {
-    @apply w-full h-full;
-  }
+  .prose .blog-icon svg { @apply w-full h-full; }
   .prose figure.blog-figure-icon {
     @apply my-8 flex flex-col items-start gap-2;
+    padding: 1.25rem 1.5rem;
+    background: rgba(0, 186, 255, 0.04);
+    border: 1px solid rgba(0, 186, 255, 0.12);
+    border-radius: 0.75rem;
   }
   .prose figure.blog-figure-icon figcaption {
-    @apply text-sm mt-2;
-    color: rgba(255, 255, 255, 0.55);
+    @apply text-sm;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
   }
 }
 

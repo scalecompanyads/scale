@@ -13,18 +13,16 @@ interface Props {
 const { city } = Astro.props;
 const siteUrl = import.meta.env.SITE || 'https://www.scalecompany.com.br';
 
-// TODO: preencher com dados reais após receber identidade visual e endereço
 const nap = {
   name: 'Scale',
-  legalName: 'Scale Marketing Digital', // TODO: razão social real
+  legalName: 'Scale Marketing Digital',
   url: siteUrl,
-  telephone: '+55-27-XXXX-XXXX',         // TODO: telefone real
-  email: 'contato@scale.com.br',          // TODO: email real
-  // Endereço — deve ser IDÊNTICO ao GBP
-  streetAddress: '',       // TODO: logradouro e número
+  telephone: '+55-22-99764-7844',
+  email: 'contato@scalecompany.com.br',
+  streetAddress: 'Av. Hugo Musso, Sala 105 – Estilo Center',
   addressLocality: 'Vila Velha',
   addressRegion: 'ES',
-  postalCode: '',          // TODO: CEP
+  postalCode: '29101-280',
   addressCountry: 'BR',
   logo: `${siteUrl}/assets/brand/logo.png`,
   image: `${siteUrl}/assets/brand/og-default.jpg`,

@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const faqs = [
+type FaqEntry = { q: string; a: string };
+
+const defaultFaqs: FaqEntry[] = [
   {
     q: 'Já tive experiência ruim com agência. Por que a Scale seria diferente?',
     a: 'Antes de qualquer proposta, fazemos um diagnóstico gratuito e honesto. Se não for o momento certo, dizemos isso. Nossa cultura é transparência total: você acompanha cada decisão e cada resultado em linguagem de negócio.',
@@ -150,7 +152,8 @@ function FaqItem({ faq, index, isOpen, onToggle }: {
   );
 }
 
-export default function FaqAccordion() {
+export default function FaqAccordion({ items, title }: { items?: FaqEntry[]; title?: string }) {
+  const faqs = items && items.length > 0 ? items : defaultFaqs;
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
@@ -168,10 +171,10 @@ export default function FaqAccordion() {
           className="mb-12 text-center md:mb-14"
         >
           <span className="home-label-caps mb-4">Dúvidas frequentes</span>
-          <h2 className="heading-display-dark">Dúvidas Frequentes.</h2>
+          <h2 className="heading-display-dark">{title ?? 'Dúvidas Frequentes.'}</h2>
         </motion.div>
 
-        {/* Mobile: ordem 1–6; desktop: linhas pareadas (1|4, 2|5, 3|6) para alinhar alturas */}
+        {/* Mobile: lista simples; desktop: 2 colunas pareadas */}
         <div className="flex flex-col gap-3 md:hidden">
           {faqs.map((faq, i) => (
             <FaqItem
@@ -179,14 +182,12 @@ export default function FaqAccordion() {
               faq={faq}
               index={i}
               isOpen={openIndex === i}
-              onToggle={() =>
-                setOpenIndex((prev) => (prev === i ? null : i))
-              }
+              onToggle={() => setOpenIndex((prev) => (prev === i ? null : i))}
             />
           ))}
         </div>
         <div className="hidden flex-col gap-3 md:flex">
-          {[0, 1, 2].map((row) => (
+          {Array.from({ length: Math.ceil(faqs.length / 2) }, (_, row) => (
             <div
               key={row}
               className="grid grid-cols-2 items-stretch gap-x-8 gap-y-0"
@@ -195,20 +196,18 @@ export default function FaqAccordion() {
                 faq={faqs[row]}
                 index={row}
                 isOpen={openIndex === row}
-                onToggle={() =>
-                  setOpenIndex((prev) => (prev === row ? null : row))
-                }
+                onToggle={() => setOpenIndex((prev) => (prev === row ? null : row))}
               />
-              <FaqItem
-                faq={faqs[row + 3]}
-                index={row + 3}
-                isOpen={openIndex === row + 3}
-                onToggle={() =>
-                  setOpenIndex((prev) =>
-                    prev === row + 3 ? null : row + 3
-                  )
-                }
-              />
+              {faqs[row + Math.ceil(faqs.length / 2)] ? (
+                <FaqItem
+                  faq={faqs[row + Math.ceil(faqs.length / 2)]}
+                  index={row + Math.ceil(faqs.length / 2)}
+                  isOpen={openIndex === row + Math.ceil(faqs.length / 2)}
+                  onToggle={() => setOpenIndex((prev) => (prev === row + Math.ceil(faqs.length / 2) ? null : row + Math.ceil(faqs.length / 2)))}
+                />
+              ) : (
+                <div />
+              )}
             </div>
           ))}
         </div>

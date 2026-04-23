@@ -1,99 +1,717 @@
 ---
 /**
  * Hub Local Vila Velha — /vila-velha
- * H1: "Agência de Marketing Digital em Vila Velha – ES"
- * Inclui endereço, DDD 27, Google Maps embed, bairros e todos os serviços
+ * Target: "agencia de marketing em vila velha", "agência de marketing em vila velha"
+ * H1: "Agência de Marketing em Vila Velha – ES"
  */
 import LocalLayout from '@layouts/LocalLayout.astro';
+import GlassEffect from '@components/ui/GlassEffect.astro';
+import Button from '@components/ui/Button.astro';
 import MapEmbed from '@components/ui/MapEmbed.astro';
+import ScaleTestimonials from '@components/ui/TestimonialStack';
+import ScaleTestimonialSlider from '@components/ui/TestimonialSlider';
+import ProcessSteps from '@components/sections/ProcessSteps';
+import BlogBento from '@components/sections/BlogBento.astro';
+import ServicesPinned from '@components/sections/ServicesPinned.astro';
+import FaqAccordion from '@components/sections/FaqAccordion';
 import { getCityBySlug } from '@data/cities';
+
+import logoMahai     from '../../assets/logos-parceiros/simple_logo_mahai.png?url';
+import logoAtivo1    from '../../assets/logos-parceiros/Ativo-1.png?url';
+import logoAtivo3    from '../../assets/logos-parceiros/Ativo-3-1024x252-1.png?url';
+import logoHash      from '../../assets/logos-parceiros/50950f7c3c4647103d00017cb4d48bc9-removebg-preview.png?url';
+import logoMaskGrp   from '../../assets/logos-parceiros/Mask-group.png?url';
+import logoMaskGrp1  from '../../assets/logos-parceiros/Mask-group-1.png?url';
 
 const city = getCityBySlug('vila-velha')!;
 
-const services = [
-  { href: '/vila-velha/criacao-de-sites', icon: '🌐', name: 'Criação de Sites' },
-  { href: '/vila-velha/criacao-de-landing-pages', icon: '⚡', name: 'Landing Pages' },
-  { href: '/vila-velha/seo', icon: '🔍', name: 'SEO' },
-  { href: '/vila-velha/gestao-redes-sociais', icon: '📱', name: 'Redes Sociais' },
-  { href: '/vila-velha/trafego-pago', icon: '💰', name: 'Tráfego Pago' },
+const barHeights = [100, 88, 76, 65, 55, 45, 37, 30, 37, 45, 55, 65, 76, 88, 100];
+
+const partnerLogos = [
+  { src: logoMahai,   alt: 'Mahai'   },
+  { src: logoAtivo1,  alt: 'Parceiro' },
+  { src: logoAtivo3,  alt: 'Parceiro' },
+  { src: logoHash,    alt: 'Parceiro' },
+  { src: logoMaskGrp, alt: 'Parceiro' },
+  { src: logoMaskGrp1,alt: 'Parceiro' },
+];
+
+const faqItems = [
+  {
+    q: 'A Scale atende empresas de Vila Velha presencialmente?',
+    a: 'Sim. Temos equipe em Vila Velha e atendemos presencialmente nos bairros da Glória, Praia da Costa, Itapoã, Coqueiral de Itaparica e toda a Grande Vitória. Reuniões podem ser feitas no nosso escritório ou no seu negócio.',
+  },
+  {
+    q: 'Quanto custa contratar uma agência de marketing em Vila Velha?',
+    a: 'Os planos variam conforme os serviços escolhidos — SEO, tráfego pago, gestão de redes sociais ou criação de sites. Fazemos um diagnóstico gratuito antes de qualquer proposta para não cobrar pelo que você não precisa.',
+  },
+  {
+    q: 'Em quanto tempo vejo resultados com marketing digital?',
+    a: 'Tráfego pago pode gerar resultados em dias. SEO e orgânico levam de 3 a 6 meses para consolidar posições relevantes no Google. Trabalhamos com metas e prazos claros desde o início.',
+  },
+  {
+    q: 'A Scale cuida só de empresas grandes ou também atende pequenos negócios de Vila Velha?',
+    a: 'Atendemos desde negócios locais, clínicas, imobiliárias e lojas de bairro até médias empresas. Temos planos escaláveis justamente para que o tamanho do negócio não seja um impedimento.',
+  },
+  {
+    q: 'Vocês entregam relatórios mensais?',
+    a: 'Sim. Relatórios claros, sem jargão técnico desnecessário, que mostram o que foi feito, o que gerou resultado e qual é o próximo passo. Transparência é um dos nossos pilares.',
+  },
 ];
 ---
 
 <LocalLayout
-  title="Agência de Marketing Digital em Vila Velha – ES | Scale"
-  description="Scale é a agência de marketing digital em Vila Velha (ES). Criação de sites, SEO, tráfego pago e redes sociais para empresas locais. (27) XXXX-XXXX."
+  title="Agência de Marketing em Vila Velha – ES | Scale"
+  description="A Scale é a agência de marketing em Vila Velha (ES). Criação de sites, SEO, tráfego pago e redes sociais para empresas da Glória, Praia da Costa, Itapoã e toda a Grande Vitória."
   city={city}
 >
-  <!-- Hero local -->
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Vila Velha – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Agência de Marketing Digital em Vila Velha – ES
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        A Scale é uma agência de marketing digital localizada em Vila Velha. Atendemos empresas da Glória, Praia da Costa, Itapoã, Coqueiral de Itaparica e toda a região: criação de sites, SEO, tráfego pago e gestão de redes sociais.
+
+<style>
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+
+  .marquee-wrap {
+    -webkit-mask: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    mask: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+
+  @keyframes waveMovement {
+    0%   { transform: scaleY(calc(var(--target-scale) * 0.4)); opacity: 0.3; }
+    100% { transform: scaleY(var(--target-scale)); opacity: 0.9; }
+  }
+  .hero-bar {
+    flex: 1 0 calc(100% / 15);
+    max-width: calc(100% / 15);
+    height: 100%;
+    background: linear-gradient(to top, #00BAFF, #1630DF 55%, transparent 100%);
+    transform-origin: bottom;
+    animation: waveMovement 2s ease-in-out infinite alternate;
+  }
+  #hero-bars-wrapper {
+    width: 100%;
+    height: 100%;
+    transform-origin: bottom;
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
+
+
+<!-- ===================================================
+     HERO — barras animadas, H1 com keyword exata
+     =================================================== -->
+<section
+  class="relative flex flex-col items-center justify-center overflow-hidden -mt-16"
+  style="min-height: 100svh; background-color: #010f1c;"
+>
+  <div class="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+    <div id="hero-bars-wrapper">
+      <div class="flex h-full w-full">
+        {barHeights.map((h, i) => {
+          const pulseDelay = Math.max(0, (i * 0.15) + Math.sin(i * 1.2) * 0.4).toFixed(2);
+          return (
+            <div
+              class="hero-bar"
+              data-h={h}
+              style={`--target-scale: ${h / 100}; animation-delay: -${pulseDelay}s;`}
+            ></div>
+          );
+        })}
+      </div>
+    </div>
+    <div
+      class="absolute inset-0"
+      style="background: linear-gradient(to bottom, #010f1c 0%, rgba(1,15,28,0.7) 20%, transparent 45%, rgba(1,15,28,0.65) 75%, #010f1c 100%);"
+    ></div>
+  </div>
+
+  <div class="relative z-10 text-center w-full max-w-4xl mx-auto px-6 flex flex-col items-center pt-20 pb-10 md:pt-0 md:pb-0">
+
+    <div class="mb-8 hero-animate-1">
+      <GlassEffect
+        className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold !cursor-default"
+        glassClass="bg-[#010f1c]/75"
+        rounded="rounded-full"
+      >
+        <span style="color: rgba(0,186,255,0.70);">📍</span>
+        <span style="color: rgba(255,255,255,0.65);">Agência local em Vila Velha – ES</span>
+      </GlassEffect>
+    </div>
+
+    <h1
+      class="w-full font-heading font-bold leading-[1.05] tracking-tight mb-4 px-4 mx-auto text-balance hero-animate-2"
+      style="font-size: clamp(2.75rem, 5.5vw, 4.5rem); max-width: 1000px; background: linear-gradient(to bottom, #ffffff 30%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"
+    >
+      Agência de Marketing em Vila Velha – ES
+    </h1>
+
+    <h2
+      class="text-xl md:text-2xl font-body font-semibold mb-8 hero-animate-3"
+      style="color: #00BAFF;"
+    >
+      Marketing que de fato converte. Resultado local, estratégia real.
+    </h2>
+
+    <div class="mb-10 px-4 hero-animate-4">
+      <p
+        class="text-lg md:text-xl font-body leading-relaxed max-w-2xl mx-auto"
+        style="color: rgba(255,255,255,0.60);"
+      >
+        Atendemos empresas na Glória, Praia da Costa, Itapoã, Coqueiral de Itaparica e toda a Grande Vitória.
+        A Scale estrutura sua presença digital para que
+        <strong class="font-semibold" style="color: rgba(255,255,255,0.85);">clientes da região encontrem você</strong>
+        todos os dias, com
+        <strong class="font-semibold" style="color: rgba(255,255,255,0.85);">estratégia, dados e resultado previsível</strong>.
       </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Falar com especialista
-        </a>
-        <a href="tel:+5527XXXXXXXX" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          (27) XXXX-XXXX
-        </a>
-      </div>
     </div>
-  </section>
 
-  <!-- Serviços disponíveis em VV -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Serviços em Vila Velha</h2>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {services.map((s) => (
-          <a href={s.href} class="block p-5 rounded-xl border border-edge bg-surface-card hover:border-brand-primary hover:shadow-md transition-all">
-            <p class="font-semibold text-ink text-lg">{s.icon} {s.name}</p>
-            <p class="text-sm text-ink-light mt-1">em Vila Velha – ES</p>
-          </a>
-        ))}
-      </div>
+    <div class="flex items-center gap-5 flex-wrap justify-center mb-12 hero-animate-4">
+      <span class="relative inline-block overflow-hidden rounded-full" style="padding: 1.5px;">
+        <span
+          class="animate-spin-slow absolute pointer-events-none"
+          aria-hidden="true"
+          style="inset: -100%; background: conic-gradient(from 90deg at 50% 50%, #00BAFF 0%, #1630DF 50%, #00BAFF 100%);"
+        ></span>
+        <a
+          href="/contato"
+          class="relative inline-flex items-center gap-2 px-8 py-4 text-base font-semibold rounded-full transition-opacity hover:opacity-90"
+          style="background: #010f1c; color: white;"
+        >
+          Diagnóstico gratuito
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </span>
+
+      <GlassEffect
+        href="#servicos"
+        className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white/80 group-hover:text-white"
+        glassClass="bg-white/5 group-hover:bg-white/10"
+        rounded="rounded-full"
+      >
+        Ver serviços em VV
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </GlassEffect>
     </div>
-  </section>
 
-  <!-- Mapa + Contato -->
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 class="font-heading text-3xl font-bold text-ink mb-6">
-            Atendemos Vila Velha e toda a Grande Vitória
-          </h2>
-          <address class="not-italic space-y-3">
-            <div class="flex gap-3">
-              <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Endereço</span>
-              <!-- TODO: endereço real -->
-              <span class="text-ink-light">Vila Velha – ES</span>
-            </div>
-            <div class="flex gap-3">
-              <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Telefone</span>
-              <a href="tel:+5527XXXXXXXX" class="text-brand-primary hover:underline">(27) XXXX-XXXX</a>
-            </div>
-            <div class="flex gap-3">
-              <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Email</span>
-              <a href="mailto:contato@scale.com.br" class="text-brand-primary hover:underline">contato@scale.com.br</a>
-            </div>
-            <div class="flex gap-3">
-              <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Horário</span>
-              <span class="text-ink-light">Seg–Sex, 9h às 18h</span>
-            </div>
-          </address>
+    <div class="flex justify-center gap-3 hero-animate-4">
+      <GlassEffect
+        href="https://www.instagram.com/scalecompany_/"
+        className="w-10 h-10 text-white/60 group-hover:text-[#00BAFF]"
+        glassClass="bg-white/5 group-hover:bg-[#00BAFF]/15"
+        rounded="rounded-full"
+        target="_blank"
+      >
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+      </GlassEffect>
+      <GlassEffect
+        href="https://www.linkedin.com/company/scale-company-br/"
+        className="w-10 h-10 text-white/60 group-hover:text-[#00BAFF]"
+        glassClass="bg-white/5 group-hover:bg-[#00BAFF]/15"
+        rounded="rounded-full"
+        target="_blank"
+      >
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </GlassEffect>
+      <GlassEffect
+        href="/contato"
+        className="w-10 h-10 text-white/60 group-hover:text-[#00BAFF]"
+        glassClass="bg-white/5 group-hover:bg-[#00BAFF]/15"
+        rounded="rounded-full"
+      >
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+      </GlassEffect>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================================================
+     LOGOS MARQUEE
+     =================================================== -->
+<section class="section-sm border-b border-white/5 overflow-hidden home-section-dark home-bg-grid relative">
+  <p class="text-center text-xs uppercase tracking-widest mb-8 reveal-fade relative z-10 text-white/20">
+    +240 empresas atendidas no Brasil inteiro
+  </p>
+  <div
+    class="marquee-wrap overflow-hidden"
+    style="
+      -webkit-mask: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+      mask: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
+    "
+  >
+    <div class="flex items-center gap-16 w-max animate-marquee">
+      {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo) => (
+        <div class="flex-shrink-0 flex items-center justify-center" style="height: 72px;">
+          <img
+            src={logo.src}
+            alt={logo.alt}
+            loading="lazy"
+            style="
+              max-height: 60px;
+              max-width: 180px;
+              width: auto;
+              object-fit: contain;
+              filter: brightness(0) invert(1);
+              opacity: 0.45;
+            "
+          />
         </div>
-        <MapEmbed title="Scale | Vila Velha, ES" />
+      ))}
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================================================
+     DOR / PERSONA — pain points localizados para VV
+     =================================================== -->
+<section class="section relative overflow-hidden home-section-dark home-bg-grid">
+  <div class="home-ambient-tl" aria-hidden="true"></div>
+
+  <div class="container relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 mb-16 md:mb-20 items-stretch" id="pain-feature-vv">
+
+      <div class="flex flex-col reveal-left">
+        <div class="mb-8">
+          <h2 class="heading-display-dark pb-2">
+            Se você é de Vila Velha, você não está sozinho.
+          </h2>
+        </div>
+
+        <div class="space-y-10">
+          {[
+            {
+              title: 'Investiu e não viu resultado',
+              content: 'Você contratou uma agência, pagou todo mês e as vendas continuaram iguais. Relatórios bonitos, mas nenhuma venda nova para a sua empresa em Vila Velha.',
+            },
+            {
+              title: 'Agência longe, sem contexto local',
+              content: 'Trabalhar com uma agência de outro estado ou sem presença local significa estratégias genéricas. Quem não conhece Vila Velha não sabe onde está o seu cliente.',
+            },
+            {
+              title: 'Anúncio que clica mas não fecha',
+              content: 'Tráfego pago rodando, cliques chegando, mas o WhatsApp não esquenta. O problema está na estratégia — e é exatamente isso que a Scale resolve.',
+            },
+          ].map((item, i) => (
+            <div
+              class="pain-step flex items-start gap-5 cursor-pointer"
+              data-pain-step={i}
+            >
+              <div class="pain-step-circle flex-shrink-0" data-pain-circle={i}>
+                <span class="pain-step-num">{i + 1}</span>
+                <span class="pain-step-check hidden">✓</span>
+              </div>
+
+              <div class="flex-1 pt-0.5">
+                <div class="pain-progress-wrap mb-3 hidden" data-pain-progress={i}>
+                  <div class="pain-progress-bar" style="height:2px; border-radius:2px; background: rgba(255,255,255,0.08);">
+                    <div class="pain-progress-fill" style="height:100%; width:0%; background: linear-gradient(90deg,#1630DF,#00BAFF); border-radius:2px; transition: width 0.1s linear;"></div>
+                  </div>
+                </div>
+                <h3 class="pain-step-title font-semibold text-lg mb-1">{item.title}</h3>
+                <p class="pain-step-desc text-sm leading-relaxed">{item.content}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div
+        class="hidden md:relative md:block order-first md:order-last reveal-right"
+        style="min-height: 380px; height: 100%;"
+      >
+        <!-- Scene 0 -->
+        <div class="pain-slide absolute inset-0 flex items-center justify-center" data-pain-slide="0"
+          style="opacity:1;transform:translateY(0);z-index:1;">
+          <div class="ps-glow ps-glow-blue"></div>
+          <div class="ps-card" style="animation-delay:0s">
+            <div class="ps-pill" style="position:absolute;top:-14px;right:16px;">Relatório enviado ✓</div>
+            <p class="ps-label">Performance Q1 · Vila Velha</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:18px;">
+              <div class="ps-metric"><span class="ps-metric-val">9.2K</span><span class="ps-metric-key">Impressões</span></div>
+              <div class="ps-metric"><span class="ps-metric-val">612</span><span class="ps-metric-key">Cliques</span></div>
+              <div class="ps-metric ps-metric-bad"><span class="ps-metric-val ps-val-red">R$&nbsp;0</span><span class="ps-metric-key">Receita</span></div>
+            </div>
+            <div class="ps-bars">
+              <div class="ps-bar" style="--h:55%;--delay:0.05s"></div>
+              <div class="ps-bar" style="--h:72%;--delay:0.10s"></div>
+              <div class="ps-bar" style="--h:48%;--delay:0.15s"></div>
+              <div class="ps-bar" style="--h:80%;--delay:0.20s"></div>
+              <div class="ps-bar" style="--h:63%;--delay:0.25s"></div>
+              <div class="ps-bar" style="--h:38%;--delay:0.30s"></div>
+            </div>
+            <p class="ps-caption">Cliques <span style="color:#00BAFF">▲</span>&nbsp;&nbsp;•&nbsp;&nbsp;Receita <span style="color:#ef4444">——</span></p>
+          </div>
+        </div>
+
+        <!-- Scene 1 -->
+        <div class="pain-slide absolute inset-0 flex items-center justify-center" data-pain-slide="1"
+          style="opacity:0;transform:translateY(100%);z-index:0;">
+          <div class="ps-glow ps-glow-blue"></div>
+          <div class="ps-card" style="animation-delay:0.15s">
+            <p class="ps-label">Estratégia recebida — Sem contexto local</p>
+            <div style="margin-bottom:18px;">
+              {['90%','65%','80%','50%','75%','42%'].map((w) => (
+                <div class="ps-redact" style={`width:${w}`}></div>
+              ))}
+            </div>
+            <div class="ps-lock-wrap">
+              <svg width="30" height="36" viewBox="0 0 30 36" fill="none">
+                <rect x="3" y="17" width="24" height="16" rx="4" fill="rgba(0,186,255,0.12)" stroke="#00BAFF" stroke-width="1.5"/>
+                <path d="M9 17V12a6 6 0 0 1 12 0v5" stroke="#00BAFF" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <circle cx="15" cy="25" r="2.5" fill="#00BAFF"/>
+                <line x1="15" y1="27.5" x2="15" y2="30.5" stroke="#00BAFF" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <span class="ps-lock-label">Estratégia genérica</span>
+            </div>
+            <p class="ps-caption">Bairros alvo:&nbsp;<span style="color:rgba(255,255,255,0.2);letter-spacing:0.04em">██████████</span></p>
+          </div>
+        </div>
+
+        <!-- Scene 2 -->
+        <div class="pain-slide absolute inset-0 flex items-center justify-center" data-pain-slide="2"
+          style="opacity:0;transform:translateY(100%);z-index:0;">
+          <div class="ps-glow ps-glow-red"></div>
+          <div class="ps-card" style="animation-delay:0.3s">
+            <div class="ps-pill ps-pill-blue" style="position:absolute;top:-14px;left:16px;">Anúncio ativo – VV</div>
+            <p class="ps-label">Campanha em execução</p>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;">
+              <div class="ps-metric"><span class="ps-metric-val">284</span><span class="ps-metric-key">Cliques pagos</span></div>
+              <div class="ps-metric ps-metric-bad"><span class="ps-metric-val ps-val-red">0</span><span class="ps-metric-key">Conversões</span></div>
+            </div>
+            <div class="ps-funnel-wrap">
+              <div class="ps-funnel-top"></div>
+              <div class="ps-funnel-mid"></div>
+              <div class="ps-funnel-bot"><span style="font-size:10px;font-weight:600;color:rgba(239,68,68,0.6)">R$&nbsp;0</span></div>
+            </div>
+            <p class="ps-caption">R$&nbsp;1.850 investidos&nbsp;&nbsp;•&nbsp;&nbsp;<span style="color:#ef4444">0 vendas</span></p>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+
+    <style is:global>
+      .pain-step { opacity: 0.30; transition: opacity 0.5s ease; }
+      .pain-step.is-active { opacity: 1; }
+      .pain-step-circle {
+        width: 40px; height: 40px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1rem; font-weight: 700;
+        border: 2px solid rgba(255,255,255,0.15);
+        background: rgba(255,255,255,0.05);
+        color: rgba(255,255,255,0.40);
+        transition: background 0.4s, border-color 0.4s, color 0.4s;
+        flex-shrink: 0;
+      }
+      .pain-step-circle.is-done { background: rgba(0,186,255,0.15); border-color: #00BAFF; color: #00BAFF; }
+      .pain-step-circle.is-active { background: linear-gradient(135deg, #1630DF, #00BAFF); border: none; color: #fff; transform: scale(1.1); }
+      .pain-step-title { color: rgba(255,255,255,0.45); transition: color 0.4s; }
+      .pain-step-desc  { color: rgba(255,255,255,0.25); transition: color 0.4s; }
+      .pain-step.is-active .pain-step-title { color: #fff; }
+      .pain-step.is-active .pain-step-desc  { color: rgba(255,255,255,0.55); }
+      .pain-slide { transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1); }
+      .pain-slide.is-entering { opacity: 1 !important; transform: translateY(0) !important; z-index: 2 !important; }
+      .pain-slide.is-leaving  { opacity: 0 !important; transform: translateY(-8%) !important; z-index: 1 !important; }
+      .ps-glow { position: absolute; width: 320px; height: 320px; border-radius: 50%; filter: blur(48px); pointer-events: none; opacity: 0.22; }
+      .ps-glow-blue { background: radial-gradient(circle, #1630DF 0%, transparent 70%); }
+      .ps-glow-red  { background: radial-gradient(circle, rgba(239,68,68,0.6) 0%, transparent 70%); }
+      .ps-card {
+        position: relative; width: min(300px, 82%); padding: 24px 20px 18px;
+        background: linear-gradient(145deg, rgba(255,255,255,0.065) 0%, rgba(255,255,255,0.018) 100%);
+        border: 1px solid rgba(255,255,255,0.09); border-radius: 18px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 0 0 1px rgba(0,186,255,0.06), 0 20px 48px rgba(0,0,0,0.45), 0 0 60px rgba(22,48,223,0.12), inset 0 1px 0 rgba(255,255,255,0.07);
+        transform: perspective(700px) rotateX(9deg) rotateY(-12deg);
+      }
+      @media (min-width: 768px) {
+        [data-pain-slide] { align-items: stretch; padding: 0; }
+        .ps-card { width: 100%; height: 100%; padding: 40px 36px 36px; display: flex; flex-direction: column; justify-content: space-between; border-radius: 22px; transform: perspective(900px) rotateX(4deg) rotateY(-6deg); }
+        .ps-metric-val { font-size: 30px; }
+        .ps-metric-key { font-size: 11px; }
+        .ps-bars { height: 100px; gap: 8px; flex: 1; align-items: flex-end; }
+        .ps-label { font-size: 12px; margin-bottom: 22px; }
+        .ps-caption { font-size: 12px; margin-top: 12px; }
+        .ps-pill { font-size: 11px; padding: 4px 12px; }
+        .ps-redact { height: 10px; margin-bottom: 12px; }
+        .ps-lock-wrap { flex: 1; justify-content: center; }
+        .ps-funnel-wrap { flex: 1; justify-content: center; }
+        .ps-funnel-top { height: 34px; }
+        .ps-funnel-mid { height: 26px; }
+        .ps-funnel-bot { height: 34px; }
+      }
+      .ps-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.32); margin-bottom: 14px; }
+      .ps-pill { font-size: 10px; font-weight: 600; color: #00BAFF; background: rgba(0,186,255,0.1); border: 1px solid rgba(0,186,255,0.28); padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+      .ps-pill-blue { color: #6b8fff; background: rgba(22,48,223,0.2); border-color: rgba(22,48,223,0.45); }
+      .ps-metric { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 9px 8px; text-align: center; }
+      .ps-metric-bad { background: rgba(239,68,68,0.05); border-color: rgba(239,68,68,0.18); }
+      .ps-metric-val { display: block; font-size: 20px; font-weight: 700; color: #00BAFF; line-height: 1; margin-bottom: 4px; }
+      .ps-val-red { color: #ef4444; }
+      .ps-metric-key { display: block; font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,255,255,0.28); }
+      .ps-bars { display: flex; align-items: flex-end; gap: 5px; height: 54px; margin-bottom: 10px; }
+      .ps-bar { flex: 1; height: var(--h); background: linear-gradient(to top, #1630DF 0%, #00BAFF 100%); border-radius: 3px 3px 0 0; opacity: 0.75; animation: ps-bar-grow 0.9s cubic-bezier(0.16,1,0.3,1) var(--delay, 0s) both; }
+      @keyframes ps-bar-grow { from { transform: scaleY(0); transform-origin: bottom; } to { transform: scaleY(1); transform-origin: bottom; } }
+      .ps-caption { font-size: 10px; color: rgba(255,255,255,0.22); text-align: center; margin-top: 6px; }
+      .ps-redact { height: 8px; background: rgba(255,255,255,0.07); border-radius: 4px; margin-bottom: 9px; }
+      .ps-lock-wrap { display: flex; flex-direction: column; align-items: center; gap: 7px; padding: 14px 12px; background: rgba(0,186,255,0.04); border: 1px solid rgba(0,186,255,0.12); border-radius: 12px; margin-bottom: 12px; filter: drop-shadow(0 0 18px rgba(0,186,255,0.25)); }
+      .ps-lock-label { font-size: 10px; font-weight: 700; color: rgba(0,186,255,0.65); text-transform: uppercase; letter-spacing: 0.1em; }
+      .ps-funnel-wrap { display: flex; flex-direction: column; align-items: center; margin-bottom: 12px; }
+      .ps-funnel-top { width: 100%; height: 22px; background: linear-gradient(to bottom, rgba(0,186,255,0.22), rgba(22,48,223,0.16)); clip-path: polygon(0 0, 100% 0, 78% 100%, 22% 100%); }
+      .ps-funnel-mid { width: 56%; height: 16px; background: rgba(22,48,223,0.18); clip-path: polygon(0 0, 100% 0, 83% 100%, 17% 100%); }
+      .ps-funnel-bot { width: 28%; height: 22px; background: rgba(239,68,68,0.07); border: 1px solid rgba(239,68,68,0.22); border-radius: 0 0 8px 8px; display: flex; align-items: center; justify-content: center; }
+    </style>
+
+    <script>
+      (() => {
+        const INTERVAL = 4000;
+        const steps   = Array.from(document.querySelectorAll<HTMLElement>('[data-pain-step]'));
+        const circles = Array.from(document.querySelectorAll<HTMLElement>('[data-pain-circle]'));
+        const slides  = Array.from(document.querySelectorAll<HTMLElement>('[data-pain-slide]'));
+        const progWraps = Array.from(document.querySelectorAll<HTMLElement>('[data-pain-progress]'));
+
+        let current = 0;
+        let elapsed = 0;
+        let ticker: ReturnType<typeof setInterval>;
+
+        function activate(next: number) {
+          const prev = current;
+          slides[prev].classList.remove('is-entering');
+          slides[prev].classList.add('is-leaving');
+          slides[next].style.transform = 'translateY(100%)';
+          slides[next].style.opacity = '0';
+          slides[next].style.zIndex = '2';
+          requestAnimationFrame(() => { slides[next].classList.add('is-entering'); });
+          setTimeout(() => { slides[prev].classList.remove('is-leaving'); slides[prev].style.zIndex = '0'; slides[prev].style.opacity = '0'; }, 520);
+          steps.forEach((s, i) => s.classList.toggle('is-active', i === next));
+          circles.forEach((c, i) => {
+            c.classList.remove('is-active', 'is-done');
+            const num   = c.querySelector<HTMLElement>('.pain-step-num')!;
+            const check = c.querySelector<HTMLElement>('.pain-step-check')!;
+            if (i < next)       { c.classList.add('is-done');   num.classList.add('hidden');    check.classList.remove('hidden'); }
+            else if (i === next){ c.classList.add('is-active');  num.classList.remove('hidden'); check.classList.add('hidden'); }
+            else                {                                num.classList.remove('hidden'); check.classList.add('hidden'); }
+          });
+          progWraps.forEach((pw, i) => {
+            const fill = pw.querySelector<HTMLElement>('.pain-progress-fill')!;
+            if (i === next) { pw.classList.remove('hidden'); fill.style.width = '0%'; }
+            else            { pw.classList.add('hidden');    fill.style.width = '0%'; }
+          });
+          current = next;
+          elapsed = 0;
+        }
+
+        function tick() {
+          elapsed += 100;
+          const pct = Math.min((elapsed / INTERVAL) * 100, 100);
+          const fill = progWraps[current]?.querySelector<HTMLElement>('.pain-progress-fill');
+          if (fill) fill.style.width = pct + '%';
+          if (elapsed >= INTERVAL) activate((current + 1) % steps.length);
+        }
+
+        steps.forEach((s, i) => s.addEventListener('click', () => {
+          clearInterval(ticker);
+          activate(i);
+          ticker = setInterval(tick, 100);
+        }));
+
+        activate(0);
+        const section = document.getElementById('pain-feature-vv');
+        if (section) {
+          const obs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) { if (!ticker) ticker = setInterval(tick, 100); }
+              else { clearInterval(ticker); ticker = undefined as any; }
+            });
+          }, { threshold: 0.3 });
+          obs.observe(section);
+        } else {
+          ticker = setInterval(tick, 100);
+        }
+      })();
+    </script>
+
+    <!-- Pivot: testemunhos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-center mt-32">
+      <div class="md:order-last reveal-left">
+        <ScaleTestimonials client:visible />
+      </div>
+      <div class="reveal-right text-center md:text-left">
+        <h3 class="heading-section-dark mb-4">
+          A Scale foi criada para resolver exatamente isso.
+        </h3>
+        <p class="text-base leading-relaxed mb-6 text-body-dark-muted">
+          Somos uma agência de marketing em Vila Velha. Conhecemos os bairros, o ritmo das empresas locais e os canais onde o seu cliente está. Diagnóstico honesto antes de qualquer proposta.
+        </p>
+        <Button href="/contato" variant="ring" size="lg">
+          Falar com especialista
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </Button>
+      </div>
+    </div>
+
+    <div class="home-ambient-bottom" aria-hidden="true"></div>
+  </div>
+</section>
+
+
+<!-- ===================================================
+     PROVA SOCIAL — Testimonial Slider
+     =================================================== -->
+<section id="depoimentos" class="home-testimonial-bridge relative z-0 light-section">
+  <div class="relative z-[2] pt-6 md:pt-10">
+    <ScaleTestimonialSlider client:visible />
+  </div>
+</section>
+
+
+<!-- ===================================================
+     SERVIÇOS — pinned scroll (componente global)
+     =================================================== -->
+<ServicesPinned />
+
+
+<!-- PROCESSO -->
+<ProcessSteps client:visible />
+
+
+<!-- BLOG BENTO -->
+<BlogBento />
+
+
+<!-- ===================================================
+     FAQ LOCAL — mesmo visual da home, perguntas de VV
+     =================================================== -->
+<FaqAccordion
+  client:visible
+  title="Perguntas sobre marketing em Vila Velha."
+  items={faqItems}
+/>
+
+
+<!-- ===================================================
+     MAPA + ENDEREÇO
+     =================================================== -->
+<section class="section">
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <div>
+        <h2 class="font-heading text-3xl font-bold text-ink mb-4">
+          Atendemos Vila Velha e toda a Grande Vitória
+        </h2>
+        <p class="text-ink-light leading-relaxed mb-6">
+          Nossa equipe conhece Vila Velha de perto — da Glória ao Coqueiral, de Itapoã à Praia da Costa.
+          Isso significa estratégias de marketing que fazem sentido para o seu público local.
+        </p>
+        <address class="not-italic space-y-3">
+          <div class="flex gap-3">
+            <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Endereço</span>
+            <span class="text-ink-light">Estilo Center – Av. Hugo Musso, Sala 105<br/>Praia da Costa, Vila Velha – ES, 29101-280</span>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Telefone</span>
+            <button
+              id="btn-tel-vv"
+              type="button"
+              class="text-brand-primary hover:underline text-left cursor-pointer bg-transparent border-0 p-0 font-inherit"
+            >
+              (22) 99764-7844
+            </button>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Email</span>
+            <a href="mailto:contato@scalecompany.com.br" class="text-brand-primary hover:underline">contato@scalecompany.com.br</a>
+          </div>
+          <div class="flex gap-3">
+            <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Horário</span>
+            <span class="text-ink-light">Seg–Sex, 9h às 18h</span>
+          </div>
+        </address>
+
+        <script>
+          document.getElementById('btn-tel-vv')?.addEventListener('click', () => {
+            window.dispatchEvent(new CustomEvent('open-lead-modal'));
+          });
+        </script>
+
+        <div class="mt-8">
+          <h3 class="font-semibold text-ink mb-3">Bairros atendidos em Vila Velha</h3>
+          <div class="flex flex-wrap gap-2">
+            {['Glória', 'Praia da Costa', 'Itapoã', 'Coqueiral de Itaparica', 'Ataíde', 'Divino Espírito Santo', 'Alecrim', 'Barra do Jucu', 'Praia de Itaparica', 'Centro'].map((b) => (
+              <span class="inline-flex items-center gap-1 bg-green-50 border border-green-200 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                📍 {b}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <MapEmbed title="Scale | Vila Velha, ES" />
+    </div>
+  </div>
+</section>
+
+
+<script>
+  // Aguarda preloader terminar para revelar o hero (hero-animate-*)
+  const preloader = document.getElementById('preloader');
+  if (preloader) {
+    const mo = new MutationObserver(() => {
+      if (preloader.classList.contains('preloader-done') || preloader.style.display === 'none') {
+        document.body.classList.add('hero-ready');
+        mo.disconnect();
+      }
+    });
+    mo.observe(preloader, { attributes: true, attributeFilter: ['class', 'style'] });
+    setTimeout(() => document.body.classList.add('hero-ready'), 2500);
+  } else {
+    document.body.classList.add('hero-ready');
+  }
+</script>
+
+<script>
+  const barsWrapper = document.getElementById('hero-bars-wrapper');
+  if (barsWrapper) {
+    let lastScrollY = window.scrollY;
+    let scrollState = 'top';
+    window.addEventListener('scroll', () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY <= 50 && scrollState !== 'top') {
+        barsWrapper.style.transform = 'scaleY(1)'; scrollState = 'top';
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100 && scrollState !== 'down') {
+        barsWrapper.style.transform = 'scaleY(0)'; scrollState = 'down';
+      } else if (currentScrollY < lastScrollY && scrollState === 'down') {
+        barsWrapper.style.transform = 'scaleY(1)'; scrollState = 'up';
+      }
+      lastScrollY = currentScrollY;
+    }, { passive: true });
+  }
+</script>
+
+<script>
+  const revealEls = document.querySelectorAll('[class*="reveal-"]');
+  if (revealEls.length) {
+    document.querySelectorAll('.reveal-stagger').forEach((parent) => {
+      parent.querySelectorAll('[class*="reveal-"]').forEach((child, i) => {
+        (child as HTMLElement).style.setProperty('--reveal-i', String(i));
+      });
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add('revealed'); observer.unobserve(entry.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach((el) => observer.observe(el));
+  }
+</script>
+
 </LocalLayout>
