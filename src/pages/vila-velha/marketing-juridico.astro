@@ -1,0 +1,149 @@
+---
+import LocalLayout from '@layouts/LocalLayout.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import MapEmbed from '@components/ui/MapEmbed.astro';
+import { getCityBySlug } from '@data/cities';
+
+const city = getCityBySlug('vila-velha')!;
+
+const faqs = [
+  {
+    question: 'A Scale Company atende quais áreas do direito?',
+    answer:
+      'Atendemos escritórios e advogados de diferentes especialidades, com estratégia personalizada para áreas como cível, trabalhista, previdenciário, família, empresarial, tributário e imobiliário.',
+  },
+  {
+    question: 'Como vocês garantem que não haverá problemas com a OAB?',
+    answer:
+      'Nossa operação prioriza publicidade informativa e marketing de conteúdo, sem promessa de resultado e sem mercantilização da advocacia. Toda a linha editorial é construída para fortalecer autoridade técnica com comunicação ética.',
+  },
+  {
+    question: 'O marketing jurídico é considerado captação de clientela?',
+    answer:
+      'Não, desde que seja passivo e informativo. Conteúdo educativo, SEO local e presença digital institucional atraem demanda qualificada sem abordagem agressiva.',
+  },
+  {
+    question: 'Quanto tempo leva para um site jurídico aparecer na primeira página em Vila Velha?',
+    answer:
+      'No orgânico, o ciclo mais comum vai de 3 a 6 meses, dependendo da concorrência e da maturidade do domínio. Com mídia paga, a visibilidade pode ser acelerada enquanto o SEO ganha tração.',
+  },
+  {
+    question: 'A agência Scale Company faz posts para Instagram jurídico?',
+    answer:
+      'Sim. Produzimos pauta e calendário editorial focados em educação do cliente final, reforçando autoridade técnica e posicionamento profissional do escritório.',
+  },
+];
+---
+
+<LocalLayout
+  title="Marketing Jurídico em Vila Velha – ES | Scale Company"
+  description="Marketing jurídico em Vila Velha com foco em SEO local, autoridade e conformidade ética. Estratégia para escritórios da Grande Vitória crescerem com previsibilidade."
+  city={city}
+>
+  <section class="section home-section-dark home-bg-grid relative overflow-hidden">
+    <div class="home-ambient-tl" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-semibold text-white/80 mb-6">
+        📍 Vila Velha – ES | Segmento Jurídico
+      </span>
+
+      <h1 class="heading-display-dark mb-5 max-w-4xl">
+        Marketing Jurídico em Vila Velha com foco em ética e crescimento consistente
+      </h1>
+
+      <p class="text-lg md:text-xl text-body-dark-muted leading-relaxed mb-9 max-w-3xl">
+        A Scale estrutura a presença digital de escritórios da Grande Vitória para aumentar autoridade no Google e gerar demanda qualificada,
+        respeitando comunicação informativa e posicionamento técnico da advocacia.
+      </p>
+
+      <div class="flex gap-4 flex-wrap">
+        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+          Solicitar diagnóstico jurídico
+        </a>
+        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
+          Falar no WhatsApp (via formulário)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Estratégia local</span>
+        <h2 class="section-title">Como o escritório ganha visibilidade sem ferir a ética</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <article class="rounded-xl border border-edge bg-surface-card p-6">
+          <h3 class="text-xl font-bold mb-3">Posicionamento por especialidade</h3>
+          <p class="text-ink-light leading-relaxed">
+            Construímos páginas e conteúdos por área de atuação para alinhar busca, intenção do cliente e clareza técnica do serviço jurídico.
+          </p>
+        </article>
+        <article class="rounded-xl border border-edge bg-surface-card p-6">
+          <h3 class="text-xl font-bold mb-3">SEO local por bairros de Vila Velha</h3>
+          <p class="text-ink-light leading-relaxed">
+            Trabalhamos relevância geográfica com foco em bairros estratégicos como Praia da Costa, Itapoã, Glória e Coqueiral, ampliando presença no mapa.
+          </p>
+        </article>
+        <article class="rounded-xl border border-edge bg-surface-card p-6">
+          <h3 class="text-xl font-bold mb-3">Conteúdo de autoridade</h3>
+          <p class="text-ink-light leading-relaxed">
+            A pauta editorial responde dúvidas reais do público e reforça reputação profissional, transformando o site em um ativo de confiança.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="font-heading text-3xl font-bold mb-5">Processo da Scale para o nicho jurídico</h2>
+          <ol class="space-y-4 text-ink-light leading-relaxed list-decimal pl-6">
+            <li><strong class="text-ink">Diagnóstico:</strong> análise de presença digital, concorrência local e riscos de comunicação.</li>
+            <li><strong class="text-ink">Arquitetura de páginas:</strong> estrutura por áreas do direito, intenção de busca e jornada do cliente.</li>
+            <li><strong class="text-ink">Conteúdo estratégico:</strong> calendário editorial com foco em educação, autoridade e SEO local.</li>
+            <li><strong class="text-ink">Otimização contínua:</strong> ajustes por dados de busca, conversão e qualidade dos leads.</li>
+          </ol>
+          <p class="mt-6 text-ink-light">
+            Para acelerar a aquisição de demanda de fundo de funil, você também pode combinar com nossa
+            {' '}<a href="/vila-velha/google-ads-para-advogados">gestão de Google Ads para advogados em Vila Velha</a>.
+          </p>
+        </div>
+        <div class="rounded-xl border border-edge bg-surface-card p-7">
+          <p class="section-label mb-3">Leitura recomendada</p>
+          <ul class="space-y-4">
+            <li><a href="/blog/regras-oab-publicidade-digital-2026" class="text-brand-primary hover:underline">Regras da OAB para Publicidade Digital em 2026</a></li>
+            <li><a href="/blog/como-captar-clientes-na-advocacia-sem-ferir-a-etica" class="text-brand-primary hover:underline">Como captar clientes na Advocacia sem ferir a Ética</a></li>
+            <li><a href="/blog/seo-local-para-advogados-em-vila-velha" class="text-brand-primary hover:underline">SEO Local para Advogados em Vila Velha</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ title="FAQ — Marketing Jurídico e Compliance" items={faqs} />
+
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div>
+          <h2 class="font-heading text-2xl font-bold text-ink mb-4">Atendimento em Vila Velha e Grande Vitória</h2>
+          <p class="text-ink-light leading-relaxed mb-5">
+            A Scale atende escritórios em Vila Velha com execução estratégica orientada por dados, sem depender de abordagens comerciais agressivas.
+          </p>
+          <address class="not-italic space-y-3">
+            <div class="flex gap-3">
+              <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Contato</span>
+              <a href="/contato" class="text-brand-primary hover:underline">Formulário padrão de atendimento</a>
+            </div>
+          </address>
+        </div>
+        <MapEmbed title="Scale em Vila Velha - ES" />
+      </div>
+    </div>
+  </section>
+</LocalLayout>

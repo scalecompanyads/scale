@@ -1,0 +1,140 @@
+---
+import LocalLayout from '@layouts/LocalLayout.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import { getCityBySlug } from '@data/cities';
+
+const city = getCityBySlug('vila-velha')!;
+
+const faqs = [
+  {
+    question: 'Posso anunciar no Google Ads sendo advogado?',
+    answer:
+      'Sim, desde que a comunicação siga tom discreto e informativo, sem promessa de resultado, sem autopromoção abusiva e sem linguagem mercantilizada.',
+  },
+  {
+    question: 'Qual o investimento mínimo sugerido para o nicho jurídico?',
+    answer:
+      'O valor depende da especialidade, da concorrência local e do objetivo comercial. Em geral, o ideal é iniciar com verba suficiente para gerar volume de dados e otimizar com previsibilidade ao longo das primeiras semanas.',
+  },
+  {
+    question: 'Em quanto tempo começo a receber leads?',
+    answer:
+      'A mídia paga traz visibilidade imediata. Já a qualidade e o custo por lead tendem a melhorar nas primeiras semanas, à medida que refinamos palavras-chave, negativos, anúncios e páginas de destino.',
+  },
+  {
+    question: 'A campanha pode focar termos de fundo de funil?',
+    answer:
+      'Sim. Priorizamos buscas com intenção de contratação, como termos por especialidade e localização, para aumentar taxa de contato qualificado.',
+  },
+];
+---
+
+<LocalLayout
+  title="Google Ads para Advogados em Vila Velha – ES | Scale Company"
+  description="Gestão de Google Ads para advogados em Vila Velha com foco em termos de fundo de funil, leads qualificados e comunicação informativa."
+  city={city}
+>
+  <section class="section home-section-dark home-bg-grid relative overflow-hidden">
+    <div class="home-ambient-tl" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-sm font-semibold text-white/80 mb-6">
+        📍 Vila Velha – ES | Tráfego pago jurídico
+      </span>
+
+      <h1 class="heading-display-dark mb-5 max-w-4xl">
+        Google Ads para Advogados com foco em casos de fundo de funil
+      </h1>
+
+      <p class="text-lg md:text-xl text-body-dark-muted leading-relaxed mb-9 max-w-3xl">
+        Gerimos campanhas para captar demanda ativa no momento da busca, priorizando termos de alta intenção em Vila Velha e região metropolitana,
+        com estratégia orientada por resultado e conformidade na comunicação.
+      </p>
+
+      <div class="flex gap-4 flex-wrap">
+        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+          Solicitar plano de mídia
+        </a>
+        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
+          Chamar no WhatsApp (via formulário)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Aquisição rápida</span>
+        <h2 class="section-title">Estrutura de campanha para gerar contatos qualificados</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <article class="rounded-xl border border-edge bg-surface-card p-6">
+          <h3 class="text-xl font-bold mb-3">Pesquisa por intenção</h3>
+          <p class="text-ink-light leading-relaxed">
+            Segmentação por termos de fundo de funil e contexto local, reduzindo dispersão de verba em buscas genéricas de baixa propensão a contato.
+          </p>
+        </article>
+        <article class="rounded-xl border border-edge bg-surface-card p-6">
+          <h3 class="text-xl font-bold mb-3">Qualidade do lead</h3>
+          <p class="text-ink-light leading-relaxed">
+            Refinamos correspondência, negativos e mensagem do anúncio para trazer oportunidades mais aderentes à especialidade do escritório.
+          </p>
+        </article>
+        <article class="rounded-xl border border-edge bg-surface-card p-6">
+          <h3 class="text-xl font-bold mb-3">Página e conversão</h3>
+          <p class="text-ink-light leading-relaxed">
+            O anúncio só performa com página certa. Por isso, alinhamos copy, prova técnica e CTA para transformar clique em conversa real.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div>
+          <h2 class="font-heading text-3xl font-bold mb-5">Termos de fundo de funil que fazem sentido</h2>
+          <ul class="space-y-3 text-ink-light leading-relaxed">
+            <li>• advogado imobiliário em Vila Velha</li>
+            <li>• advogado trabalhista em Vila Velha</li>
+            <li>• advogado previdenciário vila velha</li>
+            <li>• consultoria jurídica empresarial vila velha</li>
+          </ul>
+          <p class="mt-6 text-ink-light">
+            Para aumentar eficiência de médio e longo prazo, combinamos campanhas com presença orgânica em
+            {' '}<a href="/vila-velha/marketing-juridico">marketing jurídico local</a> e base técnica de SEO.
+          </p>
+        </div>
+        <div class="rounded-xl border border-edge bg-surface-card p-7">
+          <p class="section-label mb-3">Conteúdo de apoio</p>
+          <ul class="space-y-4">
+            <li><a href="/blog/regras-oab-publicidade-digital-2026" class="text-brand-primary hover:underline">Regras da OAB para Publicidade Digital em 2026</a></li>
+            <li><a href="/blog/site-para-advogados-5-itens-obrigatorios-para-converter-leads" class="text-brand-primary hover:underline">Site para Advogados: 5 itens obrigatórios para converter leads</a></li>
+            <li><a href="/blog/como-captar-clientes-na-advocacia-sem-ferir-a-etica" class="text-brand-primary hover:underline">Como captar clientes na Advocacia sem ferir a Ética</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ title="FAQ — Google Ads para Advogados" items={faqs} />
+
+  <section class="section">
+    <div class="container-narrow text-center rounded-xl border border-edge bg-surface-card p-10">
+      <h2 class="font-heading text-3xl font-bold mb-4">Quer acelerar sua visibilidade com segurança estratégica?</h2>
+      <p class="text-ink-light leading-relaxed mb-7">
+        O primeiro passo é um diagnóstico para definir especialidades, regiões prioritárias, meta de leads e distribuição de verba.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
+          Agendar diagnóstico gratuito
+        </a>
+        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
+          Iniciar atendimento via formulário
+        </a>
+      </div>
+    </div>
+  </section>
+</LocalLayout>
