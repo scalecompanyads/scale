@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -228,4 +228,36 @@
   .dot-active {
     @apply w-2 h-2 rounded-full bg-green-400 shadow-[0_0_6px_rgba(74,222,128,0.7)];
   }
+}
+
+/* -- TYPOGRAPHY OVERRIDES (/advogados) -- */
+.advogados-page {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+.advogados-page h1,
+.advogados-page h2,
+.advogados-page h3,
+.advogados-page h4,
+.advogados-page h5,
+.advogados-page h6,
+.advogados-page .section-title,
+.advogados-page .font-display {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+}
+
+.advogados-page p,
+.advogados-page li,
+.advogados-page span,
+.advogados-page label,
+.advogados-page input,
+.advogados-page textarea,
+.advogados-page button,
+.advogados-page .section-subtitle,
+.advogados-page .faq-answer,
+.advogados-page .text-content-secondary,
+.advogados-page .text-content-tertiary {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-weight: 400;
 }
