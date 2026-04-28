@@ -1,30 +1,61 @@
 ---
-const iframeUrl = 'https://scale-umber-delta.vercel.app';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
 ---
 
-<style>
-  .lp-frame-wrap {
-    width: 100%;
-    min-height: 100vh;
-    background: #020617;
-  }
+<BaseLayout
+  title="Marketing para Advogados | Scale"
+  description="Atraia clientes qualificados para seu escritório com estratégia de marketing digital focada no segmento jurídico."
+>
+  <section class="section home-section-dark home-bg-grid">
+    <div class="container max-w-5xl">
+      <p class="text-xs uppercase tracking-[0.2em] text-white/50 mb-5">Scale for legal</p>
+      <h1 class="heading-display-dark mb-6">
+        Marketing para advogados com foco em demanda qualificada
+      </h1>
+      <p class="text-body-dark-muted text-lg max-w-3xl mb-8">
+        Estruturamos o crescimento digital do seu escritorio com posicionamento, conteudo e
+        campanhas para gerar reunioes comerciais, sem depender apenas de indicacao.
+      </p>
+      <div class="flex items-center gap-4 flex-wrap">
+        <Button href="/contato" variant="ring" size="lg">Solicitar diagnostico</Button>
+        <Button href="/casos" variant="ghost" size="lg">Ver resultados</Button>
+      </div>
+    </div>
+  </section>
 
-  .lp-frame {
-    width: 100%;
-    height: 100vh;
-    border: 0;
-    display: block;
-    background: #020617;
-  }
-</style>
+  <section class="section bg-[#030712] border-y border-white/5">
+    <div class="container grid md:grid-cols-3 gap-6">
+      <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h2 class="text-white text-xl font-semibold mb-3">Posicionamento</h2>
+        <p class="text-white/65">
+          Definimos especialidade, mensagem e pagina de oferta para destacar seu escritorio no
+          digital.
+        </p>
+      </article>
+      <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h2 class="text-white text-xl font-semibold mb-3">Aquisicao</h2>
+        <p class="text-white/65">
+          Rodamos campanhas com segmentacao local e intencao de busca para atrair contatos
+          qualificados.
+        </p>
+      </article>
+      <article class="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <h2 class="text-white text-xl font-semibold mb-3">Conversao</h2>
+        <p class="text-white/65">
+          Melhoramos sua oferta e processo comercial para transformar leads em clientes fechados.
+        </p>
+      </article>
+    </div>
+  </section>
 
-<main class="lp-frame-wrap">
-  <iframe
-    class="lp-frame"
-    src={iframeUrl}
-    title="Landing page advogados"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allow="clipboard-write"
-  ></iframe>
-</main>
+  <section class="section home-section-dark">
+    <div class="container max-w-4xl text-center">
+      <h2 class="heading-section-dark mb-4">Quer acelerar a captacao do seu escritorio?</h2>
+      <p class="text-body-dark-muted mb-8">
+        Fale com a equipe da Scale e receba um plano pratico para os proximos 90 dias.
+      </p>
+      <Button href="/contato" variant="ring" size="lg">Falar com especialista</Button>
+    </div>
+  </section>
+</BaseLayout>
