@@ -1,27 +1,5 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import Button from '@components/ui/Button.astro';
+import HomeLanding from './index.astro';
 ---
 
-<BaseLayout
-  title="Marketing para Advogados | Scale"
-  description="Estratégias de marketing digital para escritórios e advogados com foco em geração de demanda qualificada."
->
-  <section class="section home-section-dark home-bg-grid">
-    <div class="container">
-      <div class="max-w-3xl">
-        <p class="text-xs uppercase tracking-[0.2em] text-white/50 mb-5">Scale for legal</p>
-        <h1 class="heading-display-dark mb-6">Marketing para advogados no digital com previsibilidade</h1>
-        <p class="text-body-dark-muted text-lg mb-8">
-          Esta rota foi integrada ao projeto principal para publicar sua landing no slug
-          <strong class="text-white"> /advogados</strong>.
-          No proximo passo, podemos migrar todo o layout completo desta campanha para esta pagina.
-        </p>
-        <div class="flex items-center gap-4 flex-wrap">
-          <Button href="/contato" variant="ring" size="lg">Falar com especialista</Button>
-          <Button href="/" variant="ghost" size="lg">Voltar para home</Button>
-        </div>
-      </div>
-    </div>
-  </section>
-</BaseLayout>
+<HomeLanding />
