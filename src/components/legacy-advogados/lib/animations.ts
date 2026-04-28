@@ -1,4 +1,4 @@
-﻿export const fadeUp = {
+export const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: {
     opacity: 1,
@@ -24,7 +24,7 @@ export const scaleIn = {
   },
 };
 
-/** Cards / chips ÔÇö leve ÔÇ£popÔÇØ ao entrar na viewport */
+/** Cards / chips — leve "pop" ao entrar na viewport */
 export const popIn = {
   hidden: { opacity: 0, scale: 0.88 },
   visible: {

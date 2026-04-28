@@ -1,11 +1,11 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { fadeUp, stagger, viewport } from "@/components/legacy-advogados/lib/animations";
 import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 
-const benefits = ["Sem promessa vazia", "Sem achismo", "Sem enrola├º├úo"];
+const benefits = ["Sem promessa vazia", "Sem achismo", "Sem enrolação"];
 
 export function FinalCTA() {
   return (
@@ -29,7 +29,7 @@ export function FinalCTA() {
             <span className="text-gradient-orange">Scale Company</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="section-subtitle mx-auto mb-6">
-            Receba um diagn├│stico estrat├®gico do seu cen├írio atual.
+            Receba um diagnóstico estratégico do seu cenário atual.
           </motion.p>
           <motion.div variants={fadeUp} className="flex flex-wrap items-center justify-center gap-4">
             {benefits.map((b) => (
@@ -51,13 +51,13 @@ export function FinalCTA() {
           <ShinyButton
             openLeadForm
             className="mx-auto min-h-[3.25rem] px-10 py-4 text-base"
-            aria-label="Abrir formul├írio de contato"
+            aria-label="Abrir formulário de contato"
           >
-            Preencher formul├írio de contato
+            Preencher formulário de contato
             <ArrowRight className="h-5 w-5" />
           </ShinyButton>
           <p className="mt-6 text-sm text-content-tertiary">
-            Resposta do time comercial em instantes ap├│s o envio.
+            Resposta do time comercial em instantes após o envio.
           </p>
         </motion.div>
       </div>

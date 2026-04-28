@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { ArrowRight, Activity, Settings, FileText, CalendarCheck, Shield } from "lucide-react";
@@ -9,37 +9,37 @@ const steps = [
   {
     Icon: Activity,
     step: "01",
-    title: "Monitoramento di├írio das campanhas",
+    title: "Monitoramento diário das campanhas",
     description:
       "Nossa equipe acompanha o desempenho das campanhas todos os dias. Nada escapa sem ser analisado.",
   },
   {
     Icon: Settings,
     step: "02",
-    title: "Otimiza├º├Áes semanais com base em dados",
+    title: "Otimizações semanais com base em dados",
     description:
-      "Semanalmente ajustamos lances, criativos, segmenta├º├Áes e p├íginas com base nos dados reais do per├¡odo.",
+      "Semanalmente ajustamos lances, criativos, segmentações e páginas com base nos dados reais do período.",
   },
   {
     Icon: FileText,
     step: "03",
-    title: "Relat├│rios completos com m├®tricas reais",
+    title: "Relatórios completos com métricas reais",
     description:
-      "Voc├¬ recebe relat├│rios detalhados com as m├®tricas que importam: custo por lead, taxa de qualifica├º├úo, custo por contrato.",
+      "Você recebe relatórios detalhados com as métricas que importam: custo por lead, taxa de qualificação, custo por contrato.",
   },
   {
     Icon: CalendarCheck,
     step: "04",
-    title: "Reuni├Áes estrat├®gicas para evolu├º├úo cont├¡nua",
+    title: "Reuniões estratégicas para evolução contínua",
     description:
-      "Reuni├Áes peri├│dicas para analisar resultados, ajustar estrat├®gia e garantir que a opera├º├úo esteja sempre evoluindo.",
+      "Reuniões periódicas para analisar resultados, ajustar estratégia e garantir que a operação esteja sempre evoluindo.",
   },
 ];
 
 const transparencyPoints = [
-  "Voc├¬ sabe quanto investe",
+  "Você sabe quanto investe",
   "Sabe quantos leads recebe",
-  "Entende o que est├í funcionando",
+  "Entende o que está funcionando",
 ];
 
 export function HowItWorks() {
@@ -55,7 +55,7 @@ export function HowItWorks() {
           className="max-w-2xl mx-auto text-center mb-16"
         >
           <motion.h2 variants={fadeUp} className="section-title mb-6">
-            Voc├¬ n├úo fica <span>no escuro</span>
+            Você não fica <span>no escuro</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="section-subtitle mx-auto">
             Existe processo. Existe rotina. Existe controle.
@@ -106,7 +106,7 @@ export function HowItWorks() {
             </div>
             <div className="w-px h-20 bg-brand-blue/20 hidden md:block" />
             <p className="text-content-secondary text-sm leading-relaxed flex-1 text-center md:text-left">
-              N├úo existe caixa preta. Voc├¬ tem visibilidade total sobre a sua opera├º├úo de marketing.
+              Não existe caixa preta. Você tem visibilidade total sobre a sua operação de marketing.
             </p>
           </div>
         </motion.div>
@@ -130,11 +130,11 @@ export function HowItWorks() {
             </div>
           </motion.div>
           <motion.h2 variants={fadeUp} className="section-title mb-6">
-            Toda a opera├º├úo respeita as normas <span>da OAB</span>
+            Toda a operação respeita as normas <span>da OAB</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="section-subtitle mx-auto mb-8">
-            Criativos, an├║ncios, p├íginas e comunica├º├úo. Tudo validado para garantir seguran├ºa jur├¡dica.
-            Voc├¬ cresce sem se expor.
+            Criativos, anúncios, páginas e comunicação. Tudo validado para garantir segurança jurídica.
+            Você cresce sem se expor.
           </motion.p>
           <motion.div variants={fadeUp}>
             <ShinyButton openLeadForm>

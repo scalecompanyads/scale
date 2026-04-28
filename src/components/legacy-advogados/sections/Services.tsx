@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { ArrowRight, Target, Search, LayoutTemplate, PenTool } from "lucide-react";
@@ -10,36 +10,36 @@ const serviceFeatures: FeatureSlide[] = [
   {
     id: 1,
     icon: Target,
-    title: "Estrat├®gia de tr├ífego com foco em inten├º├úo real",
+    title: "Estratégia de tráfego com foco em intenção real",
     description:
-      "Campanhas constru├¡das com base no comportamento de busca do cliente em dor, n├úo do advogado em euforia t├®cnica.",
+      "Campanhas construídas com base no comportamento de busca do cliente em dor, não do advogado em euforia técnica.",
     image:
       "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 2,
     icon: Search,
-    title: "Mapeamento avan├ºado de palavras-chave e p├║blicos",
+    title: "Mapeamento avançado de palavras-chave e públicos",
     description:
-      "Identificamos os termos exatos que seu cliente potencial usa no momento em que mais precisa de voc├¬.",
+      "Identificamos os termos exatos que seu cliente potencial usa no momento em que mais precisa de você.",
     image:
       "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 3,
     icon: LayoutTemplate,
-    title: "Landing pages otimizadas para convers├úo jur├¡dica",
+    title: "Landing pages otimizadas para conversão jurídica",
     description:
-      "P├íginas constru├¡das para converter visitante em lead qualificado, respeitando o contexto e a seriedade da advocacia.",
+      "Páginas construídas para converter visitante em lead qualificado, respeitando o contexto e a seriedade da advocacia.",
     image:
       "https://images.unsplash.com/photo-1467232004589-a2418488fcd5?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: 4,
     icon: PenTool,
-    title: "Criativos persuasivos e alinhados ├á OAB",
+    title: "Criativos persuasivos e alinhados à OAB",
     description:
-      "An├║ncios que comunicam com empatia, geram confian├ºa e n├úo violam normas da publicidade jur├¡dica.",
+      "Anúncios que comunicam com empatia, geram confiança e não violam normas da publicidade jurídica.",
     image: "/images/criativos-scale-oab.png",
     imageFit: "contain",
   },
@@ -57,11 +57,11 @@ export function Services() {
           className="mx-auto mb-12 max-w-2xl text-center md:mb-16"
         >
           <motion.h2 variants={fadeUp} className="section-title mb-6">
-            Voc├¬ n├úo contrata <span>tr├ífego</span>.
+            Você não contrata <span>tráfego</span>.
           </motion.h2>
           <motion.p variants={fadeUp} className="section-subtitle mx-auto">
-            Voc├¬ implementa uma estrutura completa de aquisi├º├úo e convers├úo. N├│s cuidamos de tudo
-            que impacta a gera├º├úo de clientes no seu escrit├│rio.
+            Você implementa uma estrutura completa de aquisição e conversão. Nós cuidamos de tudo
+            que impacta a geração de clientes no seu escritório.
           </motion.p>
         </motion.div>
 
@@ -83,7 +83,7 @@ export function Services() {
           className="text-center"
         >
           <p className="mb-6 text-lg text-content-secondary">
-            Voc├¬ n├úo recebe volume. Voc├¬ recebe{" "}
+            Você não recebe volume. Você recebe{" "}
             <span className="font-semibold text-white">oportunidade real de contrato.</span>
           </p>
           <ShinyButton openLeadForm>

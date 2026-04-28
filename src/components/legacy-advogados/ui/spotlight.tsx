@@ -1,4 +1,4 @@
-﻿import { useId } from "react";
+import { useId } from "react";
 import { cn } from "@/components/legacy-advogados/lib/utils";
 
 type SpotlightProps = {

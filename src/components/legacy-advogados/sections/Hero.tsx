@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "@/components/legacy-advogados/ui/next-image-shim";
 import { motion } from "framer-motion";
@@ -8,7 +8,7 @@ import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 import { ScaleLogo } from "@/components/legacy-advogados/ui/scale-logo";
 import { cn } from "@/components/legacy-advogados/lib/utils";
 
-const proofPoints = ["200+ escrit├│rios atendidos", "Compliance OAB garantido"];
+const proofPoints = ["200+ escritórios atendidos", "Compliance OAB garantido"];
 
 const squad = [
   {
@@ -25,7 +25,7 @@ const squad = [
   },
   {
     name: "Vitor Escocard",
-    role: "S├│cio da Scale Company",
+    role: "Sócio da Scale Company",
     image: "/images/hero-squad-3.png",
     bg: "bg-[#4ecdc4]",
   },
@@ -54,7 +54,7 @@ export function Hero() {
         >
           <div className="mx-auto w-full max-w-6xl text-center lg:flex lg:min-h-[calc(70vh-4.5rem)] lg:flex-col lg:justify-center lg:py-2">
             <motion.div variants={fadeUp} className="mb-4 flex justify-center lg:hidden">
-              <a href="#" className="inline-flex py-0.5" aria-label="Scale Company ÔÇö in├¡cio">
+              <a href="#" className="inline-flex py-0.5" aria-label="Scale Company — início">
                 <ScaleLogo heightClass="h-9" className="max-w-[240px]" />
               </a>
             </motion.div>
@@ -62,7 +62,7 @@ export function Hero() {
               variants={fadeUp}
               className="mb-3 text-center font-display text-[1.65rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-3xl sm:leading-[1.06] md:text-display-2xl md:leading-[0.98] md:tracking-[-0.03em]"
             >
-              Advogados que dependem de indica├º├úo{" "}
+              Advogados que dependem de indicação{" "}
               <span className="text-gradient-white">crescem devagar.</span>
             </motion.h1>
 
@@ -71,15 +71,15 @@ export function Hero() {
                 variants={fadeUp}
                 className="mb-6 mt-2 text-center font-display text-base font-bold leading-snug text-brand-orange sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]"
               >
-                Escrit├│rios que constroem uma m├íquina de aquisi├º├úo crescem com previsibilidade.
+                Escritórios que constroem uma máquina de aquisição crescem com previsibilidade.
               </motion.p>
 
               <motion.p
                 variants={fadeUp}
                 className="mx-auto mb-8 max-w-2xl text-center text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg lg:mb-3"
               >
-                A Scale Company estrutura, executa e otimiza todo o seu processo de gera├º├úo de clientes.{" "}
-                <span className="font-medium text-white">Do primeiro clique at├® o fechamento do contrato.</span>
+                A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
+                <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
               </motion.p>
             </div>
           </div>

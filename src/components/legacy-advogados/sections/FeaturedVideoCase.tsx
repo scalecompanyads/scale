@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useMemo } from "react";
 import { motion } from "framer-motion";
@@ -43,7 +43,7 @@ export function FeaturedVideoCase() {
               Veja alguns dos cases de sucesso da Scale!
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-neutral-600 md:text-lg">
-              Isso ├® resultado de um trabalho de excel├¬ncia com muita entrega de um time extraordin├írio
+              Isso é resultado de um trabalho de excelência com muita entrega de um time extraordinário
               e de clientes com muita vontade de vencer!
             </p>
           </motion.div>
@@ -59,7 +59,7 @@ export function FeaturedVideoCase() {
                     <div className="overflow-hidden rounded-2xl border border-neutral-200/80 bg-neutral-50 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.12)]">
                       <div className="relative aspect-[9/16] w-full">
                         <iframe
-                          title={`Depoimento em v├¡deo ÔÇö case ${i + 1}`}
+                          title={`Depoimento em vídeo — case ${i + 1}`}
                           src={url}
                           className="absolute inset-0 h-full w-full border-0"
                           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -79,10 +79,10 @@ export function FeaturedVideoCase() {
                     </span>
                     <div>
                       <p className="font-display text-lg font-semibold text-neutral-800">
-                        Depoimentos em v├¡deo
+                        Depoimentos em vídeo
                       </p>
                       <p className="mx-auto mt-1 max-w-md text-sm text-neutral-500">
-                        Adicione as URLs de incorpora├º├úo dos v├¡deos nas constantes do projeto para exibi-los
+                        Adicione as URLs de incorporação dos vídeos nas constantes do projeto para exibi-los
                         aqui.
                       </p>
                     </div>

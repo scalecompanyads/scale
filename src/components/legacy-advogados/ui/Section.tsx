@@ -1,4 +1,4 @@
-﻿import { cn } from "@/components/legacy-advogados/lib/utils";
+import { cn } from "@/components/legacy-advogados/lib/utils";
 
 interface SectionProps {
   children: React.ReactNode;

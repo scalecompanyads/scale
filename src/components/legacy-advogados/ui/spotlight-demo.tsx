@@ -1,4 +1,4 @@
-﻿import { cn } from "@/components/legacy-advogados/lib/utils";
+import { cn } from "@/components/legacy-advogados/lib/utils";
 import { Spotlight } from "@/components/legacy-advogados/ui/spotlight";
 
 export function SpotlightPreview() {

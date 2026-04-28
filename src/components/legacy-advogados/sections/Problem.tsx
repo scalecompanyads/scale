@@ -9,33 +9,33 @@ import { cn } from "@/components/legacy-advogados/lib/utils";
 const badLeadTypes = [
   {
     label: "Gente curiosa",
-    description: "Que quer informa├º├úo gratuita, n├úo contrato.",
+    description: "Que quer informação gratuita, não contrato.",
   },
   {
     label: "Gente sem dinheiro",
-    description: "Que n├úo tem como pagar os honor├írios.",
+    description: "Que não tem como pagar os honorários.",
   },
   {
     label: "Gente que nunca vai fechar",
-    description: "Que j├í decidiu n├úo contratar, s├│ est├í pesquisando.",
+    description: "Que já decidiu não contratar, só está pesquisando.",
   },
 ];
 
 const agencyFailures = [
   {
-    text: "N├úo analisam o atendimento",
+    text: "Não analisam o atendimento",
     cell: "md:col-span-2 md:row-start-1",
   },
   {
-    text: "N├úo entendem o funil",
+    text: "Não entendem o funil",
     cell: "md:col-span-1 md:row-start-1",
   },
   {
-    text: "N├úo acompanham o fechamento",
+    text: "Não acompanham o fechamento",
     cell: "md:col-span-1 md:row-start-2",
   },
   {
-    text: "N├úo otimizam com base em resultado real",
+    text: "Não otimizam com base em resultado real",
     cell: "md:col-span-2 md:row-start-2 md:col-start-2",
   },
 ] as const;
@@ -49,7 +49,7 @@ export function Problem() {
   return (
     <section id="problema" className="section bg-surface-900">
       <div className="container-page">
-        {/* Part 1 ÔÇö Realidade */}
+        {/* Part 1 — Realidade */}
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -58,12 +58,12 @@ export function Problem() {
           className="max-w-3xl mx-auto text-center mb-20"
         >
           <motion.h2 variants={fadeUp} className="section-title mb-6">
-            Se voc├¬ j├í contratou uma ag├¬ncia e se frustrou,{" "}
-            <span>o problema provavelmente n├úo era voc├¬</span>
+            Se você já contratou uma agência e se frustrou,{" "}
+            <span>o problema provavelmente não era você</span>
           </motion.h2>
 
           <motion.p variants={fadeUp} className="section-subtitle mx-auto mb-6">
-            O mercado est├í cheio de opera├º├Áes que vendem promessa e entregam lead desqualificado.
+            O mercado está cheio de operações que vendem promessa e entregam lead desqualificado.
           </motion.p>
 
           <motion.div variants={stagger} className="mb-12 grid gap-4 text-left sm:grid-cols-3">
@@ -89,9 +89,9 @@ export function Problem() {
             <p className="text-content-secondary text-lg">
               E no final, a culpa sempre parece ser sua.
             </p>
-            <p className="text-white text-xl font-bold font-display">Mas n├úo ├®.</p>
+            <p className="text-white text-xl font-bold font-display">Mas não é.</p>
             <p className="text-content-secondary">
-              Advocacia n├úo pode ser tratada como qualquer outro nicho.
+              Advocacia não pode ser tratada como qualquer outro nicho.
             </p>
           </motion.div>
 
@@ -102,7 +102,7 @@ export function Problem() {
 
         <div className="divider mb-20" />
 
-        {/* Part 2 ÔÇö Por que ag├¬ncias falham */}
+        {/* Part 2 — Por que agências falham */}
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -112,10 +112,10 @@ export function Problem() {
         >
           <motion.div variants={fadeUp} className="text-center mb-12">
             <h2 className="section-title mb-4">
-              Por que a maioria das <span>ag├¬ncias falha</span>
+              Por que a maioria das <span>agências falha</span>
             </h2>
             <p className="section-subtitle mx-auto">
-              Elas param no an├║ncio. E quando o resultado n├úo vem, a resposta ├® sempre a mesma.
+              Elas param no anúncio. E quando o resultado não vem, a resposta é sempre a mesma.
             </p>
           </motion.div>
 
@@ -146,12 +146,12 @@ export function Problem() {
               &ldquo;Vamos testar mais um criativo.&rdquo;
             </p>
             <p className="mt-2 text-sm text-content-secondary">
-              Enquanto isso, voc├¬ continua pagando a conta.
+              Enquanto isso, você continua pagando a conta.
             </p>
           </motion.div>
 
           <motion.div variants={fadeUp} className="text-center">
-            <ShinyButton openLeadForm>Quero parar de desperdi├ºar dinheiro com marketing</ShinyButton>
+            <ShinyButton openLeadForm>Quero parar de desperdiçar dinheiro com marketing</ShinyButton>
           </motion.div>
         </motion.div>
       </div>

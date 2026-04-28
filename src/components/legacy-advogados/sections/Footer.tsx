@@ -1,9 +1,9 @@
-﻿import { ScaleLogo } from "@/components/legacy-advogados/ui/scale-logo";
+import { ScaleLogo } from "@/components/legacy-advogados/ui/scale-logo";
 
 const footerLinks = [
   { label: "Problema", href: "#problema" },
-  { label: "Solu├º├úo", href: "#solucao" },
-  { label: "Servi├ºos", href: "#servicos" },
+  { label: "Solução", href: "#solucao" },
+  { label: "Serviços", href: "#servicos" },
   { label: "Como Funciona", href: "#como-funciona" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -19,7 +19,7 @@ export function Footer() {
               <ScaleLogo heightClass="h-9 md:h-10" className="max-w-[260px]" />
             </a>
             <p className="text-content-disabled text-sm max-w-xs leading-relaxed">
-              Marketing digital especializado para escrit├│rios de advocacia que querem crescer com
+              Marketing digital especializado para escritórios de advocacia que querem crescer com
               previsibilidade.
             </p>
           </div>
@@ -47,7 +47,7 @@ export function Footer() {
           </p>
           <div className="flex gap-4">
             <a href="#" className="text-content-disabled text-xs hover:text-content-secondary transition-colors">
-              Pol├¡tica de Privacidade
+              Política de Privacidade
             </a>
             <a href="#" className="text-content-disabled text-xs hover:text-content-secondary transition-colors">
               Termos de Uso

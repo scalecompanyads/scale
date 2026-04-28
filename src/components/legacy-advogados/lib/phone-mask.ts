@@ -1,4 +1,4 @@
-﻿/** Formata d├¡gitos como telefone BR: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX */
+/** Formata dígitos como telefone BR: (XX) XXXXX-XXXX ou (XX) XXXX-XXXX */
 export function maskPhoneBR(raw: string): string {
   const digits = raw.replace(/\D/g, "").slice(0, 11);
   if (digits.length === 0) return "";

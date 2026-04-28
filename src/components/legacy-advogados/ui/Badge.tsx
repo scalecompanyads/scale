@@ -1,4 +1,4 @@
-﻿import { cn } from "@/components/legacy-advogados/lib/utils";
+import { cn } from "@/components/legacy-advogados/lib/utils";
 
 type BadgeVariant = "blue" | "orange" | "green";
 

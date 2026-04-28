@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "@/components/legacy-advogados/ui/next-image-shim";
 import { useLeadForm } from "@/components/legacy-advogados/contexts/lead-form-context";
@@ -24,7 +24,7 @@ export function CommercialFloatCard() {
           "hover:gap-3 hover:pl-3 hover:pr-3",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-surface-950"
         )}
-        aria-label="Fale com nosso time comercial ÔÇö abrir formul├írio de contato"
+        aria-label="Fale com nosso time comercial — abrir formulário de contato"
       >
         <span
           className={cn(

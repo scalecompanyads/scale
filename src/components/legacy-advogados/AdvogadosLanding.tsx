@@ -1,4 +1,4 @@
-﻿import { Navbar } from "@/components/legacy-advogados/sections/Navbar";
+import { Navbar } from "@/components/legacy-advogados/sections/Navbar";
 import { Hero } from "@/components/legacy-advogados/sections/Hero";
 import { Problem } from "@/components/legacy-advogados/sections/Problem";
 import { Solution } from "@/components/legacy-advogados/sections/Solution";

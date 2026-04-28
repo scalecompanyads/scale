@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,34 +8,34 @@ import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 
 const faqs = [
   {
-    question: "A Scale conhece as normas da OAB para publicidade jur├¡dica?",
+    question: "A Scale conhece as normas da OAB para publicidade jurídica?",
     answer:
-      "Sim. Toda a opera├º├úo ├® desenvolvida dentro dos limites do Provimento 205/2021 do CFP, que regulamenta a publicidade na advocacia. Criativos, an├║ncios, p├íginas e comunica├º├úo s├úo validados para garantir sua seguran├ºa jur├¡dica. Voc├¬ cresce sem se expor.",
+      "Sim. Toda a operação é desenvolvida dentro dos limites do Provimento 205/2021 do CFP, que regulamenta a publicidade na advocacia. Criativos, anúncios, páginas e comunicação são validados para garantir sua segurança jurídica. Você cresce sem se expor.",
   },
   {
-    question: "A Scale funciona para qualquer ├írea do direito?",
+    question: "A Scale funciona para qualquer área do direito?",
     answer:
-      "Sim. Atendemos escrit├│rios de Previdenci├írio, Criminal, Fam├¡lia, Tribut├írio, Trabalhista, Sa├║de Suplementar, C├¡vel e outras especialidades. O que muda ├® a estrat├®gia de palavras-chave e o comportamento do p├║blico ÔÇö e isso a Scale mapeia antes de investir um centavo.",
+      "Sim. Atendemos escritórios de Previdenciário, Criminal, Família, Tributário, Trabalhista, Saúde Suplementar, Cível e outras especialidades. O que muda é a estratégia de palavras-chave e o comportamento do público — e isso a Scale mapeia antes de investir um centavo.",
   },
   {
-    question: "Em quanto tempo come├ºo a ver resultado?",
+    question: "Em quanto tempo começo a ver resultado?",
     answer:
-      "Os primeiros leads qualificados geralmente chegam dentro de 15 a 30 dias ap├│s o in├¡cio das campanhas. O volume e a qualidade crescem com o tempo ├á medida que os dados se acumulam e as otimiza├º├Áes s├úo aplicadas.",
+      "Os primeiros leads qualificados geralmente chegam dentro de 15 a 30 dias após o início das campanhas. O volume e a qualidade crescem com o tempo à medida que os dados se acumulam e as otimizações são aplicadas.",
   },
   {
-    question: "Preciso ter um escrit├│rio grande para contratar a Scale?",
+    question: "Preciso ter um escritório grande para contratar a Scale?",
     answer:
-      "N├úo. Atendemos desde advogados que trabalham sozinhos at├® escrit├│rios com mais de 30 profissionais. O que importa ├® a disposi├º├úo para estruturar um processo de aquisi├º├úo e comercial consistente.",
+      "Não. Atendemos desde advogados que trabalham sozinhos até escritórios com mais de 30 profissionais. O que importa é a disposição para estruturar um processo de aquisição e comercial consistente.",
   },
   {
     question: "Como funciona o acompanhamento dos resultados?",
     answer:
-      "Voc├¬ recebe relat├│rios completos com m├®tricas reais, tem acesso a dados de performance e participa de reuni├Áes estrat├®gicas peri├│dicas. Nada de caixa preta: voc├¬ sabe exatamente quanto investe, quantos leads recebe e o que est├í funcionando.",
+      "Você recebe relatórios completos com métricas reais, tem acesso a dados de performance e participa de reuniões estratégicas periódicas. Nada de caixa preta: você sabe exatamente quanto investe, quantos leads recebe e o que está funcionando.",
   },
   {
-    question: "Isso ├® para quem?",
+    question: "Isso é para quem?",
     answer:
-      "Para advogados que entendem que depend├¬ncia de indica├º├úo ├® vulnerabilidade, n├úo estrat├®gia. Para quem quer previsibilidade, estrutura e crescimento real. Se voc├¬ ainda acredita que postar conte├║do no Instagram vai encher seu escrit├│rio de clientes, essa solu├º├úo n├úo ├® para voc├¬ ÔÇö pelo menos n├úo ainda.",
+      "Para advogados que entendem que dependência de indicação é vulnerabilidade, não estratégia. Para quem quer previsibilidade, estrutura e crescimento real. Se você ainda acredita que postar conteúdo no Instagram vai encher seu escritório de clientes, essa solução não é para você — pelo menos não ainda.",
   },
 ];
 
@@ -88,10 +88,10 @@ export function FAQ() {
           className="max-w-2xl mx-auto text-center mb-16"
         >
           <motion.h2 variants={fadeUp} className="section-title mb-6">
-            Tire suas <span>d├║vidas</span>
+            Tire suas <span>dúvidas</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="section-subtitle mx-auto">
-            Se ainda tem algo que n├úo ficou claro, fale com um especialista. Sem enrola├º├úo.
+            Se ainda tem algo que não ficou claro, fale com um especialista. Sem enrolação.
           </motion.p>
         </motion.div>
 
@@ -114,7 +114,7 @@ export function FAQ() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-center mt-12"
         >
-          <ShinyButton openLeadForm>Quero escalar meu escrit├│rio com estrat├®gia</ShinyButton>
+          <ShinyButton openLeadForm>Quero escalar meu escritório com estratégia</ShinyButton>
         </motion.div>
       </div>
     </section>

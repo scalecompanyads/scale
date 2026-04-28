@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 /**
  * Shiny gradient button (emerald-ui style), adapted to use @/lib/utils `cn`.
@@ -22,7 +22,7 @@ export type ShinyButtonProps = {
   className?: string;
   children?: ReactNode;
   href?: string;
-  /** Abre o formul├írio de lead em modal (mesmo fluxo de todas as CTAs). */
+  /** Abre o formulário de lead em modal (mesmo fluxo de todas as CTAs). */
   openLeadForm?: boolean;
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children">;
 

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "@/components/legacy-advogados/ui/next-image-shim";
@@ -21,7 +21,7 @@ const DEFAULT_MEMBERS: TeamMember[] = [
   {
     id: "2",
     name: "Matheus Malaquias",
-    role: "Supervisor do time de cria├º├úo",
+    role: "Supervisor do time de criação",
     image: "/images/image 61.png",
   },
   {

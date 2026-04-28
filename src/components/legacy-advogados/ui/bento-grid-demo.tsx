@@ -1,4 +1,4 @@
-﻿import {
+import {
   CheckCircle,
   Globe,
   TrendingUp,

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
@@ -8,23 +8,23 @@ import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 import { cn } from "@/components/legacy-advogados/lib/utils";
 
 const wrongSearches = [
-  "especialista em direito ├á sa├║de suplementar",
-  "advogado previdenci├írio de excel├¬ncia",
+  "especialista em direito à saúde suplementar",
+  "advogado previdenciário de excelência",
 ] as const;
 
 const rightSearches = [
-  "plano de sa├║de negou cirurgia",
-  "conv├¬nio recusou exame",
-  "liminar urgente plano de sa├║de",
-  "INSS negou benef├¡cio",
-  "o que fazer quando plano de sa├║de nega",
+  "plano de saúde negou cirurgia",
+  "convênio recusou exame",
+  "liminar urgente plano de saúde",
+  "INSS negou benefício",
+  "o que fazer quando plano de saúde nega",
 ] as const;
 
 const areas = [
   { name: "Criminal", example: "o que fazer quando sou acusado de crime" },
-  { name: "Previdenci├írio", example: "INSS negou meu benef├¡cio o que fazer" },
-  { name: "Fam├¡lia", example: "como conseguir pens├úo aliment├¡cia urgente" },
-  { name: "Tribut├írio", example: "empresa autuada pela receita federal" },
+  { name: "Previdenciário", example: "INSS negou meu benefício o que fazer" },
+  { name: "Família", example: "como conseguir pensão alimentícia urgente" },
+  { name: "Tributário", example: "empresa autuada pela receita federal" },
 ];
 
 function useTypewriterCycle(lines: readonly string[]) {
@@ -109,15 +109,15 @@ export function Solution() {
           className="mx-auto mb-16 max-w-3xl text-center"
         >
           <motion.h2 variants={fadeUp} className="section-title mb-6">
-            A maioria das campanhas jur├¡dicas falha porque{" "}
+            A maioria das campanhas jurídicas falha porque{" "}
             <span>ignora o comportamento real</span> do cliente
           </motion.h2>
           <motion.p variants={fadeUp} className="section-subtitle mx-auto">
-            O advogado fala t├®cnico. O cliente pesquisa com dor.
+            O advogado fala técnico. O cliente pesquisa com dor.
           </motion.p>
         </motion.div>
 
-        {/* Comparison ÔÇö Google-style search bars */}
+        {/* Comparison — Google-style search bars */}
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -137,7 +137,7 @@ export function Solution() {
             </div>
             <GoogleTypingSearchBar queries={wrongSearches} variant="wrong" />
             <p className="mt-4 text-xs text-red-400/80">
-              Quem usa essa linguagem, gera clique. N├úo cliente.
+              Quem usa essa linguagem, gera clique. Não cliente.
             </p>
           </motion.div>
 
@@ -153,7 +153,7 @@ export function Solution() {
             </div>
             <GoogleTypingSearchBar queries={rightSearches} variant="right" />
             <p className="mt-4 text-xs text-brand-blue-light/90">
-              Quem entende isso, gera cliente. N├úo s├│ clique.
+              Quem entende isso, gera cliente. Não só clique.
             </p>
           </motion.div>
         </motion.div>
@@ -167,7 +167,7 @@ export function Solution() {
           className="mx-auto max-w-4xl"
         >
           <motion.p variants={fadeUp} className="mb-8 text-center text-content-secondary">
-            Esse padr├úo se repete em todas as ├íreas:
+            Esse padrão se repete em todas as áreas:
           </motion.p>
 
           <motion.div variants={stagger} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -181,7 +181,7 @@ export function Solution() {
 
           <motion.div variants={fadeUp} className="mt-12 text-center">
             <ShinyButton openLeadForm>
-              Quero aplicar isso no meu escrit├│rio
+              Quero aplicar isso no meu escritório
               <ArrowRight className="h-4 w-4" />
             </ShinyButton>
           </motion.div>

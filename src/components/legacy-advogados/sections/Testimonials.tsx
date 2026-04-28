@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { fadeUp, stagger, viewport } from "@/components/legacy-advogados/lib/animations";
@@ -24,7 +24,7 @@ export function Testimonials() {
             </span>
           </motion.h2>
           <motion.p variants={fadeUp} className="section-subtitle mx-auto">
-            N├úo s├úo promessas. S├úo relatos de quem j├í passou pelo mesmo cen├írio que voc├¬ est├í hoje.
+            Não são promessas. São relatos de quem já passou pelo mesmo cenário que você está hoje.
           </motion.p>
         </motion.div>
 

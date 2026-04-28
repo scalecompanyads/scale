@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { cn } from "@/components/legacy-advogados/lib/utils";
@@ -7,8 +7,8 @@ import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 
 const navLinks = [
   { label: "Problema", href: "#problema" },
-  { label: "Solu├º├úo", href: "#solucao" },
-  { label: "Servi├ºos", href: "#servicos" },
+  { label: "Solução", href: "#solucao" },
+  { label: "Serviços", href: "#servicos" },
   { label: "Como Funciona", href: "#como-funciona" },
   { label: "FAQ", href: "#faq" },
 ];

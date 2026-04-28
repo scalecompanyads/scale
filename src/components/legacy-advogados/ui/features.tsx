@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
@@ -12,7 +12,7 @@ export interface FeatureSlide {
   title: string;
   description: string;
   image: string;
-  /** Padr├úo `cover`. Use `contain` para artes compostas que n├úo devem ser cortadas. */
+  /** Padrão `cover`. Use `contain` para artes compostas que não devem ser cortadas. */
   imageFit?: "cover" | "contain";
 }
 

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useCallback, useEffect, useId, useState } from "react";
 import { createPortal } from "react-dom";
@@ -86,11 +86,11 @@ export function LeadFormModal() {
     if (step === 2) {
       const h = form.perfilArroba.trim().replace(/^@+/, "");
       if (h.length < 2) {
-        setError("Informe o @ do perfil profissional ou do escrit├│rio (m├¡nimo 2 caracteres ap├│s o @).");
+        setError("Informe o @ do perfil profissional ou do escritório (mínimo 2 caracteres após o @).");
         return;
       }
       if (h.length > 64) {
-        setError("Use no m├íximo 64 caracteres no @.");
+        setError("Use no máximo 64 caracteres no @.");
         return;
       }
       setStep(3);
@@ -99,7 +99,7 @@ export function LeadFormModal() {
     if (step === 3) {
       const d = digitsOnly(form.telefone);
       if (d.length < 10) {
-        setError("Informe um telefone v├ílido com DDD.");
+        setError("Informe um telefone válido com DDD.");
         return;
       }
       setStep(4);
@@ -122,7 +122,7 @@ export function LeadFormModal() {
   const handleSubmit = async () => {
     setError(null);
     if (!consent) {
-      setError("├ë necess├írio aceitar para continuar.");
+      setError("É necessário aceitar para continuar.");
       return;
     }
     setSubmitting(true);
@@ -188,10 +188,10 @@ export function LeadFormModal() {
           <>
             <div className="p-6 pb-8 md:p-8 md:pb-10">
             <h2 id={titleId} className="pr-10 text-center font-display text-xl font-bold text-white md:text-2xl">
-              Voc├¬ est├í a poucos passos de tomar a decis├úo certa.
+              Você está a poucos passos de tomar a decisão certa.
             </h2>
             <p className="mt-3 text-center text-sm text-content-secondary md:text-base">
-              Preencha o formul├írio abaixo e receba o contato do nosso time comercial em instantes.
+              Preencha o formulário abaixo e receba o contato do nosso time comercial em instantes.
             </p>
 
             <div className="mt-8 space-y-5">
@@ -215,7 +215,7 @@ export function LeadFormModal() {
               {step === 2 && (
                 <div>
                   <label htmlFor="lead-arroba" className="mb-2 block text-sm font-medium text-content-secondary">
-                    @ do seu perfil profissional ou do escrit├│rio
+                    @ do seu perfil profissional ou do escritório
                   </label>
                   <input
                     id="lead-arroba"
@@ -227,7 +227,7 @@ export function LeadFormModal() {
                     onChange={(e) => setForm((f) => ({ ...f, perfilArroba: e.target.value }))}
                   />
                   <p className="mt-2 text-xs text-content-tertiary">
-                    Instagram, LinkedIn ou outro perfil p├║blico (como aparece no @).
+                    Instagram, LinkedIn ou outro perfil público (como aparece no @).
                   </p>
                 </div>
               )}
@@ -290,7 +290,7 @@ export function LeadFormModal() {
                     className="mt-1 h-4 w-4 shrink-0 accent-brand-blue"
                   />
                   <span>
-                    Ao clicar em enviar eu concordo em receber mensagens e liga├º├Áes da Scale Company.
+                    Ao clicar em enviar eu concordo em receber mensagens e ligações da Scale Company.
                   </span>
                 </label>
               )}
@@ -357,10 +357,10 @@ export function LeadFormModal() {
               <CheckCircle2 className="h-9 w-9 text-green-400" strokeWidth={2} />
             </div>
             <p className="font-display text-lg font-bold text-white md:text-xl">
-              Entraremos em contato com voc├¬ em at├® 30 minutos
+              Entraremos em contato com você em até 30 minutos
             </p>
             <p className="mt-4 text-xs leading-relaxed text-content-tertiary">
-              *V├ílido apenas para hor├írios comerciais e dias da semana, exceto feriados.
+              *Válido apenas para horários comerciais e dias da semana, exceto feriados.
             </p>
             <p className="mt-6 text-sm text-content-secondary">
               Enquanto isso acesse nosso Instagram e fique por dentro das novidades.

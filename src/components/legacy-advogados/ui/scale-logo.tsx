@@ -1,8 +1,8 @@
-﻿import { cn } from "@/components/legacy-advogados/lib/utils";
+import { cn } from "@/components/legacy-advogados/lib/utils";
 
 type ScaleLogoProps = {
   className?: string;
-  /** Altura visual; largura segue propor├º├úo do SVG (584├ù182). */
+  /** Altura visual; largura segue proporção do SVG (584×182). */
   heightClass?: string;
 };
 

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useCallback, useRef } from "react";
 import Image from "@/components/legacy-advogados/ui/next-image-shim";
@@ -41,7 +41,7 @@ export function TestimonialScreenshotCarousel() {
             <div className="relative h-[min(68vh,520px)] w-full overflow-hidden rounded-xl border border-white/[0.1] bg-black/25 shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
               <Image
                 src={src}
-                alt={`Print de conversa ÔÇö depoimento ${i + 1} de ${TESTIMONIAL_SCREENSHOTS.length}`}
+                alt={`Print de conversa — depoimento ${i + 1} de ${TESTIMONIAL_SCREENSHOTS.length}`}
                 fill
                 sizes="(max-width: 1023px) 92vw, 33vw"
                 className="object-contain object-top"
@@ -65,7 +65,7 @@ export function TestimonialScreenshotCarousel() {
           type="button"
           onClick={() => scrollByStep(1)}
           className="pointer-events-auto flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/[0.12] bg-surface-900/90 text-white shadow-lg backdrop-blur-sm transition hover:bg-surface-800 sm:h-11 sm:w-11"
-          aria-label="Pr├│ximos depoimentos"
+          aria-label="Próximos depoimentos"
         >
           <ChevronRight className="h-5 w-5" />
         </button>

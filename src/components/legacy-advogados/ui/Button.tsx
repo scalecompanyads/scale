@@ -1,4 +1,4 @@
-﻿import { cn } from "@/components/legacy-advogados/lib/utils";
+import { cn } from "@/components/legacy-advogados/lib/utils";
 import { forwardRef, ButtonHTMLAttributes } from "react";
 import { ArrowRight } from "lucide-react";
 

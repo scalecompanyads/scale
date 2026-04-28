@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -9,15 +9,15 @@ import TeamShowcase from "@/components/legacy-advogados/ui/team-showcase";
 const controls = [
   {
     label: "Controle sobre a entrada de novos casos",
-    description: "Voc├¬ decide o volume de leads que quer receber, com qualidade e previsibilidade.",
+    description: "Você decide o volume de leads que quer receber, com qualidade e previsibilidade.",
   },
   {
-    label: "Controle sobre o crescimento do escrit├│rio",
-    description: "Escale quando quiser, nos ritmos que o seu escrit├│rio suporta.",
+    label: "Controle sobre o crescimento do escritório",
+    description: "Escale quando quiser, nos ritmos que o seu escritório suporta.",
   },
   {
     label: "Controle sobre o seu faturamento",
-    description: "Conhe├ºa o custo por caso fechado e tome decis├Áes baseadas em dados reais.",
+    description: "Conheça o custo por caso fechado e tome decisões baseadas em dados reais.",
   },
 ];
 
@@ -37,11 +37,11 @@ export function Results() {
           className="max-w-2xl mx-auto text-center mb-16"
         >
           <motion.h2 variants={fadeUp} className="section-title mb-6">
-            Aqui n├úo existe <span>amadorismo</span>
+            Aqui não existe <span>amadorismo</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="section-subtitle mx-auto">
-            Voc├¬ ter├í acesso a uma opera├º├úo completa, com profissionais dedicados exclusivamente ao
-            crescimento do seu escrit├│rio.
+            Você terá acesso a uma operação completa, com profissionais dedicados exclusivamente ao
+            crescimento do seu escritório.
           </motion.p>
         </motion.div>
 
@@ -66,7 +66,7 @@ export function Results() {
         >
           <motion.div variants={fadeUp} className="max-w-2xl mx-auto text-center mb-12">
             <h2 className="section-title mb-4">
-              Voc├¬ n├úo compra tr├ífego. Voc├¬ compra <span>controle</span>.
+              Você não compra tráfego. Você compra <span>controle</span>.
             </h2>
             <p className="section-subtitle mx-auto">E isso muda o jogo.</p>
           </motion.div>
@@ -87,7 +87,7 @@ export function Results() {
 
           <motion.div variants={fadeUp} className="text-center">
             <ShinyButton openLeadForm>
-              Quero uma estrutura profissional no meu escrit├│rio
+              Quero uma estrutura profissional no meu escritório
               <ArrowRight className="h-4 w-4" />
             </ShinyButton>
           </motion.div>

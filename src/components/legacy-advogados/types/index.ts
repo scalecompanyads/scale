@@ -1,4 +1,4 @@
-﻿/** Dados do formul├írio de lead (modal em passos). */
+/** Dados do formulário de lead (modal em passos). */
 export interface LeadFormData {
   nome: string;
   perfilArroba: string;

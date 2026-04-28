@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import type { ReactNode } from "react";
 import { cn } from "@/components/legacy-advogados/lib/utils";
@@ -99,7 +99,7 @@ export function BentoGrid({ items, className }: BentoGridProps) {
                 ))}
               </div>
               <span className="text-xs text-gray-500 opacity-0 transition-opacity group-hover:opacity-100 dark:text-gray-400">
-                {item.cta || "Explore ÔåÆ"}
+                {item.cta || "Explore "}
               </span>
             </div>
           </div>

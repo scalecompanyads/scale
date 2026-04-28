@@ -1,12 +1,19 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
+import BaseHead from '@components/layout/BaseHead.astro';
 import AdvogadosLandingWithProvider from '@components/legacy-advogados/AdvogadosLandingWithProvider';
+import '@styles/global.css';
 import '../styles/advogados-legacy.css';
 ---
 
-<BaseLayout
-  title="Marketing para Advogados | Scale"
-  description="Landing page completa da Scale para advogados e escritórios."
->
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <BaseHead
+      title="Marketing para Advogados | Scale"
+      description="Landing page completa da Scale para advogados e escritórios."
+    />
+  </head>
+  <body>
   <AdvogadosLandingWithProvider client:load />
-</BaseLayout>
+  </body>
+</html>
