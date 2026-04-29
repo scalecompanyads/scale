@@ -1,7 +1,6 @@
 ---
 import BaseHead from '@components/layout/BaseHead.astro';
 import AdvogadosLandingWithProvider from '@components/legacy-advogados/AdvogadosLandingWithProvider';
-import '@styles/global.css';
 import '../styles/advogados-legacy.css';
 ---
 
@@ -11,6 +10,7 @@ import '../styles/advogados-legacy.css';
     <BaseHead
       title="Marketing para Advogados | Scale"
       description="Landing page completa da Scale para advogados e escritórios."
+      includeFonts={false}
     />
   </head>
   <body class="advogados-page">
