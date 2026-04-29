@@ -12,19 +12,22 @@ const squad = [
   {
     name: "Gabriel Dias",
     role: "Chief Organization Officer",
-    image: "/images/hero-squad-1.png",
+    image: "/images/hero-squad-1-480.webp",
+    srcSet: "/images/hero-squad-1-320.webp 320w, /images/hero-squad-1-480.webp 480w",
     bg: "bg-[#f5a8bc]",
   },
   {
     name: "Pedro Clark",
     role: "Chief Executive Officer",
-    image: "/images/hero-squad-2.png",
+    image: "/images/hero-squad-2-480.webp",
+    srcSet: "/images/hero-squad-2-320.webp 320w, /images/hero-squad-2-480.webp 480w",
     bg: "bg-[#ff6a00]",
   },
   {
     name: "Vitor Escocard",
     role: "Sócio da Scale Company",
-    image: "/images/hero-squad-3.png",
+    image: "/images/hero-squad-3-480.webp",
+    srcSet: "/images/hero-squad-3-320.webp 320w, /images/hero-squad-3-480.webp 480w",
     bg: "bg-[#4ecdc4]",
   },
 ] as const;
@@ -84,11 +87,12 @@ export function Hero() {
                   <div className={cn("absolute inset-0 z-0", person.bg)} />
                   <Image
                     src={person.image}
+                    srcSet={person.srcSet}
                     alt={`Retrato de ${person.name}, ${person.role}`}
                     fill
                     sizes="(max-width: 1024px) 34vw, 28vw"
                     className="relative z-[1] object-cover object-top transition duration-500 md:group-hover:scale-[1.03]"
-                    priority={index === 0}
+                    priority={index === 2}
                   />
                   <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 md:transition-opacity md:duration-300 md:group-hover:opacity-100" />
                   <div className="absolute inset-x-0 bottom-0 z-[3] flex flex-col items-center justify-end p-3 text-center sm:p-4 md:p-5">

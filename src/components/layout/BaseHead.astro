@@ -11,6 +11,7 @@ interface Props {
   /** 'website' para páginas, 'article' para posts do blog */
   ogType?: 'website' | 'article';
   noindex?: boolean;
+  includeFonts?: boolean;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   ogImage,
   ogType = 'website',
   noindex = false,
+  includeFonts = true,
 } = Astro.props;
 
 const siteUrl = import.meta.env.SITE || 'https://www.scalecompany.com.br';
@@ -60,6 +62,10 @@ const resolvedOgImage = ogImage
 <link rel="apple-touch-icon"                      href="/assets/brand/apple-touch-icon.png" />
 
 <!-- Fontes -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+{includeFonts && (
+  <>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  </>
+)}
