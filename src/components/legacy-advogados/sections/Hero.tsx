@@ -33,7 +33,7 @@ const squad = [
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden pb-16 pt-4 sm:pt-6 lg:min-h-[90vh] lg:flex-col lg:items-stretch lg:pt-18 lg:pb-24">
+    <section className="relative flex min-h-screen items-center overflow-hidden pb-16 pt-4 sm:pt-6 lg:min-h-[90vh] lg:flex-col lg:items-stretch lg:pt-[140px] lg:pb-24">
       <div className="pointer-events-none absolute inset-0 bg-gradient-hero" />
       <div
         className="pointer-events-none absolute inset-0 opacity-100"

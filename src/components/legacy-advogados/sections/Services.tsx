@@ -22,8 +22,7 @@ const serviceFeatures: FeatureSlide[] = [
     title: "Mapeamento avançado de palavras-chave e públicos",
     description:
       "Identificamos os termos exatos que seu cliente potencial usa no momento em que mais precisa de você.",
-    image:
-      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/mapeamento-palavras-chave-publicos.png",
   },
   {
     id: 3,
@@ -31,8 +30,7 @@ const serviceFeatures: FeatureSlide[] = [
     title: "Landing pages otimizadas para conversão jurídica",
     description:
       "Páginas construídas para converter visitante em lead qualificado, respeitando o contexto e a seriedade da advocacia.",
-    image:
-      "https://images.unsplash.com/photo-1467232004589-a2418488fcd5?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/landing-pages-conversao-juridica.png",
   },
   {
     id: 4,
