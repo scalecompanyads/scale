@@ -11,8 +11,8 @@ import { cn } from "@/components/legacy-advogados/lib/utils";
 const FATURAMENTO_OPTIONS = [
   { value: "menos_30k", label: "Menos de R$ 30 mil" },
   { value: "30_50k", label: "Entre R$ 30 mil e R$ 50 mil" },
-  { value: "50_100k", label: "Entre R$ 50 mil e R$ 100 mil" },
-  { value: "100k_plus", label: "R$ 100 mil pra cima" },
+  { value: "50_80k", label: "Entre R$ 50 mil e R$ 80 mil" },
+  { value: "80k_plus", label: "R$ 80 mil pra cima" },
 ] as const;
 
 type Faturamento = (typeof FATURAMENTO_OPTIONS)[number]["value"];
@@ -84,6 +84,15 @@ export function LeadFormModal() {
       return;
     }
     if (step === 2) {
+      const d = digitsOnly(form.telefone);
+      if (d.length < 10) {
+        setError("Informe um WhatsApp válido com DDD.");
+        return;
+      }
+      setStep(3);
+      return;
+    }
+    if (step === 3) {
       const h = form.perfilArroba.trim().replace(/^@+/, "");
       if (h.length < 2) {
         setError("Informe o @ do perfil profissional ou do escritório (mínimo 2 caracteres após o @).");
@@ -91,15 +100,6 @@ export function LeadFormModal() {
       }
       if (h.length > 64) {
         setError("Use no máximo 64 caracteres no @.");
-        return;
-      }
-      setStep(3);
-      return;
-    }
-    if (step === 3) {
-      const d = digitsOnly(form.telefone);
-      if (d.length < 10) {
-        setError("Informe um telefone válido com DDD.");
         return;
       }
       setStep(4);
@@ -214,28 +214,8 @@ export function LeadFormModal() {
 
               {step === 2 && (
                 <div>
-                  <label htmlFor="lead-arroba" className="mb-2 block text-sm font-medium text-content-secondary">
-                    @ do seu perfil profissional ou do escritório
-                  </label>
-                  <input
-                    id="lead-arroba"
-                    type="text"
-                    autoComplete="username"
-                    className="input"
-                    placeholder="@escritorio ou @seu.nome"
-                    value={form.perfilArroba}
-                    onChange={(e) => setForm((f) => ({ ...f, perfilArroba: e.target.value }))}
-                  />
-                  <p className="mt-2 text-xs text-content-tertiary">
-                    Instagram, LinkedIn ou outro perfil público (como aparece no @).
-                  </p>
-                </div>
-              )}
-
-              {step === 3 && (
-                <div>
                   <label htmlFor="lead-tel" className="mb-2 block text-sm font-medium text-content-secondary">
-                    Telefone (WhatsApp)
+                    WhatsApp
                   </label>
                   <input
                     id="lead-tel"
@@ -247,6 +227,26 @@ export function LeadFormModal() {
                     value={form.telefone}
                     onChange={(e) => setForm((f) => ({ ...f, telefone: maskPhoneBR(e.target.value) }))}
                   />
+                </div>
+              )}
+
+              {step === 3 && (
+                <div>
+                  <label htmlFor="lead-arroba" className="mb-2 block text-sm font-medium text-content-secondary">
+                    @ do Instagram do advogado ou do escritório
+                  </label>
+                  <input
+                    id="lead-arroba"
+                    type="text"
+                    autoComplete="username"
+                    className="input"
+                    placeholder="@escritorio ou @advogado"
+                    value={form.perfilArroba}
+                    onChange={(e) => setForm((f) => ({ ...f, perfilArroba: e.target.value }))}
+                  />
+                  <p className="mt-2 text-xs text-content-tertiary">
+                    Informe como aparece no Instagram (com ou sem @).
+                  </p>
                 </div>
               )}
 
