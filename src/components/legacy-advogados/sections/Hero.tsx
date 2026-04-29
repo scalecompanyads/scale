@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "@/components/legacy-advogados/ui/next-image-shim";
-import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
-import { stagger, fadeUp } from "@/components/legacy-advogados/lib/animations";
 import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 import { ScaleLogo } from "@/components/legacy-advogados/ui/scale-logo";
 import { cn } from "@/components/legacy-advogados/lib/utils";
@@ -46,49 +44,32 @@ export function Hero() {
       <div className="glow-blue absolute -top-40 left-1/2 h-[500px] w-[700px] -translate-x-1/2 opacity-25" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8">
-        <motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="visible"
-          className="mx-auto flex w-full flex-col items-center gap-10 lg:gap-5"
-        >
+        <div className="mx-auto flex w-full flex-col items-center gap-10 lg:gap-5">
           <div className="mx-auto w-full max-w-6xl text-center lg:flex lg:min-h-[calc(70vh-4.5rem)] lg:flex-col lg:justify-center lg:py-2">
-            <motion.div variants={fadeUp} className="mb-4 flex justify-center lg:hidden">
+            <div className="mb-4 flex justify-center lg:hidden">
               <a href="#" className="inline-flex py-0.5" aria-label="Scale Company — início">
                 <ScaleLogo heightClass="h-9" className="max-w-[240px]" />
               </a>
-            </motion.div>
-            <motion.h1
-              variants={fadeUp}
-              className="mb-3 text-center font-display text-[1.65rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-3xl sm:leading-[1.06] md:text-display-2xl md:leading-[0.98] md:tracking-[-0.03em]"
-            >
+            </div>
+            <h1 className="mb-3 text-center font-display text-[1.65rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-3xl sm:leading-[1.06] md:text-display-2xl md:leading-[0.98] md:tracking-[-0.03em]">
               Advogados que dependem de indicação{" "}
               <span className="text-gradient-white">crescem devagar.</span>
-            </motion.h1>
+            </h1>
 
             <div className="mx-auto w-[70%] max-w-full text-center">
-              <motion.p
-                variants={fadeUp}
-                className="mb-6 mt-2 text-center font-display text-base font-bold leading-snug text-brand-orange sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]"
-              >
+              <p className="mb-6 mt-2 text-center font-display text-base font-bold leading-snug text-brand-orange sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
                 Escritórios que constroem uma máquina de aquisição crescem com previsibilidade.
-              </motion.p>
+              </p>
 
-              <motion.p
-                variants={fadeUp}
-                className="mx-auto mb-8 max-w-2xl text-center text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg lg:mb-3"
-              >
+              <p className="mx-auto mb-8 max-w-2xl text-center text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg lg:mb-3">
                 A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
                 <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
-              </motion.p>
+              </p>
             </div>
           </div>
 
           {/* Expanding image panels */}
-          <motion.div
-            variants={fadeUp}
-            className="-mt-[40px] flex h-[min(37.2vh,336px)] w-full min-h-[228px] overflow-hidden border border-white/[0.1] shadow-elevated sm:h-[min(36vh,372px)] md:mt-0 md:h-[min(60vh,620px)] md:min-h-[380px] lg:-mt-2"
-          >
+          <div className="-mt-[40px] flex h-[min(37.2vh,336px)] w-full min-h-[228px] overflow-hidden border border-white/[0.1] shadow-elevated sm:h-[min(36vh,372px)] md:mt-0 md:h-[min(60vh,620px)] md:min-h-[380px] lg:-mt-2">
               {squad.map((person, index) => (
                 <div
                   key={person.name}
@@ -128,12 +109,9 @@ export function Hero() {
                   </div>
                 </div>
               ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={fadeUp}
-            className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row"
-          >
+          <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
             <ShinyButton
               openLeadForm
               className="min-h-[3.25rem] px-10 py-5 text-lg"
@@ -145,20 +123,17 @@ export function Hero() {
             <a href="#problema" className="btn-outline">
               Entender o problema primeiro
             </a>
-          </motion.div>
+          </div>
 
-          <motion.div
-            variants={fadeUp}
-            className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8"
-          >
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8">
             {proofPoints.map((point) => (
               <div key={point} className="flex items-center gap-2">
                 <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-brand-blue" />
                 <span className="text-sm text-content-secondary">{point}</span>
               </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-surface-950 to-transparent" />

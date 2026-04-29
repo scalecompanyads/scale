@@ -232,7 +232,7 @@
 
 /* -- TYPOGRAPHY OVERRIDES (/advogados) -- */
 .advogados-page {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 .advogados-page h1,
@@ -243,7 +243,7 @@
 .advogados-page h6,
 .advogados-page .section-title,
 .advogados-page .font-display {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 700;
 }
 
@@ -258,6 +258,12 @@
 .advogados-page .faq-answer,
 .advogados-page .text-content-secondary,
 .advogados-page .text-content-tertiary {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   font-weight: 400;
+}
+
+/* Renderiza seções abaixo da dobra sob demanda para reduzir custo inicial. */
+.advogados-page main > section:not(:first-of-type) {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
 }

@@ -45,7 +45,7 @@ export function TestimonialScreenshotCarousel() {
                 fill
                 sizes="(max-width: 1023px) 92vw, 33vw"
                 className="object-contain object-top"
-                priority={i < 3}
+                priority={i === 0}
               />
             </div>
           </figure>
