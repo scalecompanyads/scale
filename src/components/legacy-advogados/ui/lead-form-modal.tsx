@@ -13,8 +13,8 @@ const MAKE_WEBHOOK_URL = "https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9
 const FATURAMENTO_OPTIONS = [
   { value: "menos_30k", label: "Menos de R$ 30 mil" },
   { value: "30_50k", label: "Entre R$ 30 mil e R$ 50 mil" },
-  { value: "50_80k", label: "Entre R$ 50 mil e R$ 80 mil" },
-  { value: "80k_plus", label: "R$ 80 mil pra cima" },
+  { value: "50_100k", label: "Entre R$ 50 mil e R$ 100 mil" },
+  { value: "100k_plus", label: "Mais de R$ 100 mil" },
 ] as const;
 
 type Faturamento = (typeof FATURAMENTO_OPTIONS)[number]["value"];
