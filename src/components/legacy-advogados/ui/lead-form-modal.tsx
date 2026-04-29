@@ -8,6 +8,8 @@ import { INSTAGRAM_URL } from "@/components/legacy-advogados/lib/constants";
 import { digitsOnly, maskPhoneBR } from "@/components/legacy-advogados/lib/phone-mask";
 import { cn } from "@/components/legacy-advogados/lib/utils";
 
+const MAKE_WEBHOOK_URL = "https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve";
+
 const FATURAMENTO_OPTIONS = [
   { value: "menos_30k", label: "Menos de R$ 30 mil" },
   { value: "30_50k", label: "Entre R$ 30 mil e R$ 50 mil" },
@@ -140,19 +142,27 @@ export function LeadFormModal() {
       faturamentoLabel,
       consentiuContato: consent,
       origem: "lead-form-modal",
+      pagina: "/advogados",
+      criadoEm: new Date().toISOString(),
     };
 
     try {
-      // Webhook / API: adicione aqui o envio do lead (ex.: fetch para URL do Make, n8n, etc.)
-      // await fetch(process.env.NEXT_PUBLIC_LEAD_WEBHOOK_URL!, {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(payload),
-      // });
-      await new Promise((r) => setTimeout(r, 450));
+      const response = await fetch(MAKE_WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Webhook error: ${response.status}`);
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Erro ao enviar lead para webhook:", err);
+      setError("Não foi possível enviar agora. Tente novamente em instantes.");
     } finally {
       setSubmitting(false);
-      setSubmitted(true);
     }
   };
 
