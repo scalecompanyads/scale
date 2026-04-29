@@ -1,31 +1,106 @@
+import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { Navbar } from "@/components/legacy-advogados/sections/Navbar";
 import { Hero } from "@/components/legacy-advogados/sections/Hero";
-import { Problem } from "@/components/legacy-advogados/sections/Problem";
-import { Solution } from "@/components/legacy-advogados/sections/Solution";
-import { Services } from "@/components/legacy-advogados/sections/Services";
-import { Results } from "@/components/legacy-advogados/sections/Results";
-import { FeaturedVideoCase } from "@/components/legacy-advogados/sections/FeaturedVideoCase";
-import { HowItWorks } from "@/components/legacy-advogados/sections/HowItWorks";
-import { Testimonials } from "@/components/legacy-advogados/sections/Testimonials";
-import { FAQ } from "@/components/legacy-advogados/sections/FAQ";
-import { FinalCTA } from "@/components/legacy-advogados/sections/FinalCTA";
-import { Footer } from "@/components/legacy-advogados/sections/Footer";
+
+const Problem = lazy(() =>
+  import("@/components/legacy-advogados/sections/Problem").then((m) => ({ default: m.Problem }))
+);
+const FeaturedVideoCase = lazy(() =>
+  import("@/components/legacy-advogados/sections/FeaturedVideoCase").then((m) => ({
+    default: m.FeaturedVideoCase,
+  }))
+);
+const Solution = lazy(() =>
+  import("@/components/legacy-advogados/sections/Solution").then((m) => ({ default: m.Solution }))
+);
+const Services = lazy(() =>
+  import("@/components/legacy-advogados/sections/Services").then((m) => ({ default: m.Services }))
+);
+const Results = lazy(() =>
+  import("@/components/legacy-advogados/sections/Results").then((m) => ({ default: m.Results }))
+);
+const HowItWorks = lazy(() =>
+  import("@/components/legacy-advogados/sections/HowItWorks").then((m) => ({ default: m.HowItWorks }))
+);
+const Testimonials = lazy(() =>
+  import("@/components/legacy-advogados/sections/Testimonials").then((m) => ({
+    default: m.Testimonials,
+  }))
+);
+const FAQ = lazy(() => import("@/components/legacy-advogados/sections/FAQ").then((m) => ({ default: m.FAQ })));
+const FinalCTA = lazy(() =>
+  import("@/components/legacy-advogados/sections/FinalCTA").then((m) => ({ default: m.FinalCTA }))
+);
+const Footer = lazy(() =>
+  import("@/components/legacy-advogados/sections/Footer").then((m) => ({ default: m.Footer }))
+);
+
+function DeferredSection({ children }: { children: ReactNode }) {
+  const [enabled, setEnabled] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setEnabled(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "900px 0px" }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref}>
+      {enabled ? (
+        <Suspense fallback={<div className="section" aria-hidden="true" />}>{children}</Suspense>
+      ) : (
+        <div className="section" aria-hidden="true" />
+      )}
+    </div>
+  );
+}
 
 export default function AdvogadosPage() {
   return (
     <main>
       <Navbar />
       <Hero />
-      <Problem />
-      <FeaturedVideoCase />
-      <Solution />
-      <Services />
-      <Results />
-      <HowItWorks />
-      <Testimonials />
-      <FAQ />
-      <FinalCTA />
-      <Footer />
+      <DeferredSection>
+        <Problem />
+      </DeferredSection>
+      <DeferredSection>
+        <FeaturedVideoCase />
+      </DeferredSection>
+      <DeferredSection>
+        <Solution />
+      </DeferredSection>
+      <DeferredSection>
+        <Services />
+      </DeferredSection>
+      <DeferredSection>
+        <Results />
+      </DeferredSection>
+      <DeferredSection>
+        <HowItWorks />
+      </DeferredSection>
+      <DeferredSection>
+        <Testimonials />
+      </DeferredSection>
+      <DeferredSection>
+        <FAQ />
+      </DeferredSection>
+      <DeferredSection>
+        <FinalCTA />
+      </DeferredSection>
+      <DeferredSection>
+        <Footer />
+      </DeferredSection>
     </main>
   );
 }

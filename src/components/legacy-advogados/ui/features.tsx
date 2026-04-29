@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
 import Image from "@/components/legacy-advogados/ui/next-image-shim";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/components/legacy-advogados/lib/utils";
@@ -29,25 +28,8 @@ export function Features({
   progressClassName = "bg-gradient-to-r from-brand-blue to-cyan-400",
 }: FeaturesProps) {
   const [currentFeature, setCurrentFeature] = useState(0);
-  const [progress, setProgress] = useState(0);
   const featureRefs = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => (prev >= 100 ? 100 : prev + 1));
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (progress < 100) return;
-    const t = setTimeout(() => {
-      setCurrentFeature((prev) => (prev + 1) % features.length);
-      setProgress(0);
-    }, 200);
-    return () => clearTimeout(t);
-  }, [progress, features.length]);
 
   useEffect(() => {
     const active = featureRefs.current[currentFeature];
@@ -64,7 +46,6 @@ export function Features({
 
   const handleFeatureClick = (index: number) => {
     setCurrentFeature(index);
-    setProgress(0);
   };
 
   const active = features[currentFeature];
@@ -134,14 +115,7 @@ export function Features({
                       {feature.description}
                     </p>
                     <div className="mt-4 h-1 overflow-hidden rounded-full bg-black/40">
-                      {isActive && (
-                        <motion.div
-                          className={cn("h-full rounded-full", progressClassName)}
-                          initial={{ width: 0 }}
-                          animate={{ width: `${progress}%` }}
-                          transition={{ duration: 0.1, ease: "linear" }}
-                        />
-                      )}
+                      {isActive && <div className={cn("h-full w-full rounded-full", progressClassName)} />}
                     </div>
                   </div>
                 </div>
@@ -151,11 +125,8 @@ export function Features({
         </div>
 
         <div className="relative order-2 mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none">
-          <motion.div
-            key={currentFeature}
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          <div
+            key={active.id}
             className={cn(
               "relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-white/[0.1] shadow-elevated",
               active.imageFit === "contain" && "bg-black"
@@ -174,7 +145,7 @@ export function Features({
               priority={currentFeature === 0}
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>

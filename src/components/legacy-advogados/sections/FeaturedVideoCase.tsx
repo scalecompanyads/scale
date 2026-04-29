@@ -62,6 +62,7 @@ export function FeaturedVideoCase() {
                           title={`Depoimento em vídeo — case ${i + 1}`}
                           src={url}
                           className="absolute inset-0 h-full w-full border-0"
+                          loading="lazy"
                           allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                           allowFullScreen
                         />
