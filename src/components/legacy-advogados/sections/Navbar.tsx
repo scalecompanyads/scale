@@ -32,7 +32,7 @@ export function Navbar() {
       )}
     >
       <div className="container-page">
-        <nav className="flex h-18 items-center justify-between">
+        <nav className="flex h-[92px] items-center justify-between pt-5">
           <a href="#" className="inline-flex py-1" aria-label="Scale Company">
             <ScaleLogo heightClass="h-8 md:h-9" className="max-w-[200px] sm:max-w-[240px]" />
           </a>
