@@ -9,12 +9,13 @@ import { digitsOnly, maskPhoneBR } from "@/components/legacy-advogados/lib/phone
 import { cn } from "@/components/legacy-advogados/lib/utils";
 
 const MAKE_WEBHOOK_URL = "https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve";
+const LEAD_EVENT_NAME = "lead_submit_success";
 
 const FATURAMENTO_OPTIONS = [
   { value: "menos_30k", label: "Menos de R$ 30 mil" },
   { value: "30_50k", label: "Entre R$ 30 mil e R$ 50 mil" },
-  { value: "50_80k", label: "Entre R$ 50 mil e R$ 80 mil" },
-  { value: "80k_plus", label: "R$ 80 mil pra cima" },
+  { value: "50_100k", label: "Entre R$ 50 mil e R$ 100 mil" },
+  { value: "100k_plus", label: "Mais de R$ 100 mil" },
 ] as const;
 
 type Faturamento = (typeof FATURAMENTO_OPTIONS)[number]["value"];
@@ -30,6 +31,37 @@ function normalizeArrobaHandle(raw: string): string {
   const t = raw.trim();
   if (!t) return "";
   return t.startsWith("@") ? t : `@${t}`;
+}
+
+function generateLeadId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  return `lead-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function getAttributionParams() {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get("utm_source") ?? "",
+    utm_medium: params.get("utm_medium") ?? "",
+    utm_campaign: params.get("utm_campaign") ?? "",
+    utm_content: params.get("utm_content") ?? "",
+    utm_term: params.get("utm_term") ?? "",
+    gclid: params.get("gclid") ?? "",
+    fbclid: params.get("fbclid") ?? "",
+  };
+}
+
+function pushLeadSubmitEvent(data: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  const w = window as Window & { dataLayer?: Record<string, unknown>[] };
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({
+    event: LEAD_EVENT_NAME,
+    ...data,
+  });
 }
 
 export function LeadFormModal() {
@@ -132,8 +164,12 @@ export function LeadFormModal() {
       FATURAMENTO_OPTIONS.find((o) => o.value === form.faturamento)?.label ?? form.faturamento;
 
     const perfilNormalizado = normalizeArrobaHandle(form.perfilArroba);
+    const leadId = generateLeadId();
+    const attribution = getAttributionParams();
+    const createdAt = new Date().toISOString();
 
     const payload = {
+      lead_id: leadId,
       nome: form.nome.trim(),
       perfilArroba: perfilNormalizado,
       telefone: form.telefone,
@@ -142,9 +178,15 @@ export function LeadFormModal() {
       faturamentoLabel,
       consentiuContato: consent,
       origem: "lead-form-modal",
+      form_name: "advogados_lp",
       pagina: "/advogados",
-      criadoEm: new Date().toISOString(),
+      criadoEm: createdAt,
+      ...attribution,
     };
+
+    // Tracking via GTM é independente do webhook.
+    pushLeadSubmitEvent(payload);
+    setSubmitted(true);
 
     try {
       const response = await fetch(MAKE_WEBHOOK_URL, {
@@ -156,11 +198,8 @@ export function LeadFormModal() {
       if (!response.ok) {
         throw new Error(`Webhook error: ${response.status}`);
       }
-
-      setSubmitted(true);
     } catch (err) {
       console.error("Erro ao enviar lead para webhook:", err);
-      setError("Não foi possível enviar agora. Tente novamente em instantes.");
     } finally {
       setSubmitting(false);
     }
