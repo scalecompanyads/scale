@@ -2,11 +2,18 @@
 interface FAQItem { question: string; answer: string; }
 interface Props { items: FAQItem[]; title?: string; }
 
+import { getCanonicalUrl, websiteId } from '@data/seo';
+
 const { items, title = 'Perguntas Frequentes' } = Astro.props;
+const pageUrl = getCanonicalUrl(Astro.url.pathname);
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  '@id': `${pageUrl}#faq`,
+  isPartOf: {
+    '@id': websiteId,
+  },
   mainEntity: items.map((item) => ({
     '@type': 'Question',
     name: item.question,

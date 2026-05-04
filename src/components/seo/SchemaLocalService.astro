@@ -1,0 +1,64 @@
+---
+import type { City } from '@data/cities';
+import { brand, getCanonicalUrl, getLocalBusinessId, organizationId, resolveLocalService } from '@data/seo';
+
+interface Props {
+  city: City;
+}
+
+const { city } = Astro.props;
+const service = resolveLocalService(Astro.url.pathname);
+const pageUrl = getCanonicalUrl(Astro.url.pathname);
+
+const schema = service && {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${pageUrl}#service`,
+  name: `${service.name} em ${city.name}`,
+  description: service.description,
+  url: pageUrl,
+  provider: {
+    '@id': organizationId,
+  },
+  areaServed: [
+    {
+      '@type': city.id === 'espirito-santo' ? 'State' : 'City',
+      name: city.name,
+      address: {
+        '@type': 'PostalAddress',
+        addressRegion: city.stateAbbr,
+        addressCountry: 'BR',
+      },
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Grande Vitoria',
+    },
+  ],
+  serviceType: service.name,
+  keywords: service.keywords,
+  offers: {
+    '@type': 'Offer',
+    url: pageUrl,
+    priceCurrency: 'BRL',
+    availability: 'https://schema.org/InStock',
+    offeredBy: {
+      '@id': getLocalBusinessId(city),
+    },
+    seller: {
+      '@id': organizationId,
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: service.name,
+      description: service.shortDesc,
+    },
+  },
+  brand: {
+    '@type': 'Brand',
+    name: brand.name,
+  },
+};
+---
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

@@ -1,4 +1,4 @@
-# Alinhar o domínio em astro.config.mjs (site) e no Search Console ao mudar produção.
+# Alinhar o dominio em astro.config.mjs (site) e no Search Console ao mudar producao.
 User-agent: *
 Allow: /
 

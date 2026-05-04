@@ -1,44 +1,39 @@
 ---
-/**
- * SchemaArticle.astro — Schema JSON-LD para artigos do blog
- * Incluído automaticamente pelo BlogLayout.astro
- */
 import type { CollectionEntry } from 'astro:content';
+import { brand, organizationId, websiteId } from '@data/seo';
 
 interface Props {
   article: CollectionEntry<'blog'>;
 }
 
 const { article } = Astro.props;
-const siteUrl = import.meta.env.SITE || 'https://www.scalecompany.com.br';
-const { title, description, publishDate, updatedDate, coverImage } = article.data;
+const siteUrl = import.meta.env.SITE || brand.url;
+const { title, description, publishDate, updatedDate, coverImage, tags } = article.data;
 const coverSrc = coverImage?.src;
 
-const articleUrl = `${siteUrl}/blog/${article.slug}`;
+const articleUrl = new URL(`/blog/${article.slug}`, siteUrl).href;
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
-  '@id': articleUrl,
+  '@id': `${articleUrl}#article`,
   headline: title,
   description,
   url: articleUrl,
+  mainEntityOfPage: articleUrl,
+  isPartOf: {
+    '@id': websiteId,
+  },
   datePublished: publishDate.toISOString(),
   dateModified: (updatedDate ?? publishDate).toISOString(),
-  image: coverSrc ? new URL(coverSrc, siteUrl).href : undefined,
+  image: coverSrc ? new URL(coverSrc, siteUrl).href : brand.image,
+  keywords: tags,
+  inLanguage: 'pt-BR',
   author: {
-    '@type': 'Organization',
-    name: 'Scale',
-    url: siteUrl,
+    '@id': organizationId,
   },
   publisher: {
-    '@type': 'Organization',
-    name: 'Scale',
-    url: siteUrl,
-    logo: {
-      '@type': 'ImageObject',
-      url: `${siteUrl}/assets/brand/logo.png`,
-    },
+    '@id': organizationId,
   },
 };
 ---

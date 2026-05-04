@@ -1,0 +1,36 @@
+# Scale Company
+
+Scale Company is a digital marketing company based in Vila Velha, Espirito Santo, Brazil.
+The site publishes service pages and educational content about SEO, paid traffic, website creation, landing pages, social media and legal marketing.
+
+## Primary SEO Pages
+
+- Home: https://www.scalecompany.com.br/
+- Services hub: https://www.scalecompany.com.br/servicos
+- Paid traffic: https://www.scalecompany.com.br/servicos/trafego-pago
+- Website creation: https://www.scalecompany.com.br/servicos/criacao-de-sites
+- SEO consulting: https://www.scalecompany.com.br/servicos/consultoria-seo
+- Landing pages: https://www.scalecompany.com.br/servicos/criacao-de-landing-pages
+- Social media management: https://www.scalecompany.com.br/servicos/gestao-redes-sociais
+
+## Local SEO Pages
+
+- Marketing agency in Vila Velha: https://www.scalecompany.com.br/vila-velha
+- Paid traffic in Vila Velha: https://www.scalecompany.com.br/vila-velha/trafego-pago
+- SEO in Vila Velha: https://www.scalecompany.com.br/vila-velha/seo
+- Website creation in Vila Velha: https://www.scalecompany.com.br/vila-velha/criacao-de-sites
+- Legal marketing in Vila Velha: https://www.scalecompany.com.br/vila-velha/marketing-juridico
+- Google Ads for lawyers in Vila Velha: https://www.scalecompany.com.br/vila-velha/google-ads-para-advogados
+- Website creation in Vitoria: https://www.scalecompany.com.br/vitoria/criacao-de-sites
+
+## Blog Topics
+
+- Legal marketing and OAB-compliant digital advertising
+- SEO local for lawyers and local companies
+- Paid traffic metrics, CPA, CPL and ROAS
+- Professional websites and landing pages for lead generation
+
+## Contact
+
+- Contact page: https://www.scalecompany.com.br/contato
+- Sitemap: https://www.scalecompany.com.br/sitemap-index.xml

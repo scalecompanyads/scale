@@ -1,0 +1,66 @@
+---
+import { getCanonicalUrl, websiteId } from '@data/seo';
+
+interface Props {
+  pathname?: string;
+}
+
+const { pathname = Astro.url.pathname } = Astro.props;
+
+const labelMap: Record<string, string> = {
+  blog: 'Blog',
+  servicos: 'Servicos',
+  contato: 'Contato',
+  casos: 'Casos',
+  sobre: 'Sobre',
+  'vila-velha': 'Vila Velha',
+  vitoria: 'Vitoria',
+  serra: 'Serra',
+  cariacica: 'Cariacica',
+  guarapari: 'Guarapari',
+  'espirito-santo': 'Espirito Santo',
+  seo: 'SEO',
+  'criacao-de-sites': 'Criacao de Sites',
+  'criacao-de-landing-pages': 'Criacao de Landing Pages',
+  'trafego-pago': 'Trafego Pago',
+  'gestao-redes-sociais': 'Gestao de Redes Sociais',
+  'consultoria-seo': 'Consultoria de SEO',
+  'marketing-juridico': 'Marketing Juridico',
+  'google-ads-para-advogados': 'Google Ads para Advogados',
+};
+
+function toTitle(slug: string) {
+  return labelMap[slug] ?? slug.split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' ');
+}
+
+const segments = pathname.split('/').filter(Boolean);
+const items = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Inicio',
+    item: getCanonicalUrl('/'),
+  },
+  ...segments.map((segment, index) => {
+    const path = `/${segments.slice(0, index + 1).join('/')}`;
+    return {
+      '@type': 'ListItem',
+      position: index + 2,
+      name: toTitle(segment),
+      item: getCanonicalUrl(path),
+    };
+  }),
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  '@id': `${getCanonicalUrl(pathname)}#breadcrumbs`,
+  isPartOf: {
+    '@id': websiteId,
+  },
+  itemListElement: items,
+};
+---
+
+{segments.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

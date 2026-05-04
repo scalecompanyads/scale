@@ -1,38 +1,61 @@
 ---
-/**
- * SchemaService.astro — Schema JSON-LD para páginas de serviço
- * Incluído automaticamente pelo ServiceLayout.astro
- */
 import type { Service } from '@data/services';
+import { brand, organizationId, websiteId } from '@data/seo';
 
 interface Props {
   service: Service;
 }
 
 const { service } = Astro.props;
-const siteUrl = import.meta.env.SITE || 'https://www.scalecompany.com.br';
+const siteUrl = import.meta.env.SITE || brand.url;
+const serviceUrl = new URL(`/servicos/${service.slug}`, siteUrl).href;
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  '@id': `${siteUrl}/servicos/${service.slug}`,
+  '@id': `${serviceUrl}#service`,
   name: service.name,
   description: service.description,
-  url: `${siteUrl}/servicos/${service.slug}`,
+  url: serviceUrl,
+  isPartOf: {
+    '@id': websiteId,
+  },
   provider: {
-    '@type': 'LocalBusiness',
-    name: 'Scale',
-    url: siteUrl,
-    address: {
-      '@type': 'PostalAddress',
-      addressLocality: 'Vila Velha',
-      addressRegion: 'ES',
-      addressCountry: 'BR',
+    '@id': organizationId,
+  },
+  areaServed: [
+    {
+      '@type': 'Country',
+      name: 'Brazil',
+    },
+    {
+      '@type': 'State',
+      name: 'Espirito Santo',
+    },
+    {
+      '@type': 'AdministrativeArea',
+      name: 'Grande Vitoria',
+    },
+  ],
+  serviceType: service.name,
+  keywords: service.keywords,
+  offers: {
+    '@type': 'Offer',
+    url: serviceUrl,
+    priceCurrency: 'BRL',
+    availability: 'https://schema.org/InStock',
+    seller: {
+      '@id': organizationId,
+    },
+    itemOffered: {
+      '@type': 'Service',
+      name: service.name,
+      description: service.shortDesc,
     },
   },
-  areaServed: {
-    '@type': 'Country',
-    name: 'Brazil',
+  brand: {
+    '@type': 'Brand',
+    name: brand.name,
   },
 };
 ---

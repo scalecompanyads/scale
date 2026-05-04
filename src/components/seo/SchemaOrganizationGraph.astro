@@ -1,0 +1,46 @@
+---
+import { brand, organizationId, websiteId } from '@data/seo';
+
+const siteUrl = import.meta.env.SITE || brand.url;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: brand.name,
+      legalName: brand.legalName,
+      url: siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: brand.logo,
+      },
+      image: brand.image,
+      telephone: brand.telephone,
+      email: brand.email,
+      address: {
+        '@type': 'PostalAddress',
+        ...brand.address,
+      },
+      areaServed: brand.areaServed.map((name) => ({
+        '@type': name === 'Espirito Santo' ? 'State' : 'City',
+        name,
+      })),
+      sameAs: brand.sameAs.length > 0 ? brand.sameAs : undefined,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: siteUrl,
+      name: brand.name,
+      publisher: {
+        '@id': organizationId,
+      },
+      inLanguage: 'pt-BR',
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
