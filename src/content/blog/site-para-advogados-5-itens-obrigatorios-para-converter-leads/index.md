@@ -2,6 +2,8 @@
 title: "Site para Advogados: 5 itens obrigatórios para converter leads"
 description: "Veja os 5 elementos que um site jurídico precisa para converter visitantes em contatos qualificados, sem perder sobriedade e segurança ética."
 publishDate: 2026-04-28
+coverImage: ./cover.png
+coverImageAlt: "Imagem sobre site para advogados com foco em conversão de leads qualificados"
 category: criacao-de-sites
 tags: ['site para advogados', 'conversão', 'ux', 'seo', 'marketing jurídico']
 featured: false

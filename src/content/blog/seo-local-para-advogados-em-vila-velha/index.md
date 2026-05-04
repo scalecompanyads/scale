@@ -2,6 +2,8 @@
 title: "SEO Local para Advogados em Vila Velha: como aparecer no mapa e gerar contatos"
 description: "Guia prático para advogados em Vila Velha melhorarem presença no mapa do Google, com foco em bairros estratégicos e intenção de contratação."
 publishDate: 2026-04-28
+coverImage: ./cover.png
+coverImageAlt: "Imagem sobre SEO local para advogados em Vila Velha com mapa e presença digital"
 category: local
 tags: ['seo local', 'advogados', 'vila velha', 'google mapa', 'google business profile']
 featured: false

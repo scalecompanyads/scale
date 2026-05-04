@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start': new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KS5L52P9');</script>
+    <!-- End Google Tag Manager -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scale Company | Estruturação Comercial para Escritórios de Advocacia</title>
+    <meta name="description" content="A Scale Company estrutura o caminho entre o cliente certo e escritórios de advocacia que ainda dependem de indicações, com Google Ads, Meta Ads, relatórios semanais e comunicação informativa alinhada às normas da OAB.">
+
+    <link rel="preload" as="image" href="assets/desktop.png" media="(min-width: 769px)">
+    <link rel="preload" as="image" href="assets/mobile.png" media="(max-width: 768px)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --color-bg: #0a0a12;
+            --color-accent: rgb(0, 200, 255);
+            --color-accent-dark: rgb(0, 150, 220);
+            --color-accent-light: rgb(100, 220, 255);
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #e0e0ff;
+            --color-text-muted: #b8c5e0;
+            --transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --radius-sm: 16px;
+            --radius-md: 24px;
+            --radius-lg: 32px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--color-text-primary);
+            background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 50%, #0f0f1a 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 200, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(100, 220, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 0%, rgba(0, 200, 255, 0.08) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* HERO - Totalmente Redesenhado */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('assets/desktop.png') center/cover no-repeat;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero__content {
+            max-width: 700px;
+        }
+
+        .hero__eyebrow {
+            color: var(--color-accent);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero__headline {
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 200;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #c0d9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero__headline .text-accent {
+            color: var(--color-accent);
+            -webkit-text-fill-color: var(--color-accent);
+        }
+
+        .hero__subheadline {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        .hero__ctas {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        /* BOTÃO PREMIUM */
+        .btn-premium {
+            position: relative;
+            padding: 16px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            box-shadow: 0 20px 60px rgba(0, 200, 255, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 80px rgba(0, 200, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 200, 255, 0.1);
+            border-color: var(--color-accent-light);
+        }
+
+        /* SECTION PREMIUM */
+        .section {
+            position: relative;
+            padding: 140px 0;
+            overflow: hidden;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 100% 0%, rgba(0, 200, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(100, 220, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .section > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* SECTION HEADER */
+        .section-header {
+            margin-bottom: 80px;
+            max-width: 900px;
+        }
+
+        .section-kicker {
+            display: inline-block;
+            color: var(--color-accent);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: rgba(0, 200, 255, 0.1);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .section-header__title {
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 300;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #b8d9ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header__text {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 700px;
+            font-weight: 300;
+        }
+
+        /* BENTO GRID - CARTÕES ASSIMÉTRICOS */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .bento-card {
+            position: relative;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.08) 0%, rgba(100, 220, 255, 0.03) 100%);
+            border: 1px solid rgba(0, 200, 255, 0.15);
+            backdrop-filter: blur(20px);
+            transition: all var(--transition);
+            overflow: hidden;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 100% 0%, rgba(0, 200, 255, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity var(--transition);
+            pointer-events: none;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(0, 200, 255, 0.35);
+            box-shadow: 0 40px 100px rgba(0, 200, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .bento-card:hover::before {
+            opacity: 1;
+        }
+
+        .bento-card--large {
+            grid-column: span 2;
+        }
+
+        .bento-card--tall {
+            grid-row: span 2;
+        }
+
+        .bento-card__icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .bento-card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .bento-card p {
+            font-size: 15px;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        /* STATS SECTION */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-top: 80px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: var(--radius-lg);
+            background: rgba(0, 200, 255, 0.05);
+            border: 1px solid rgba(0, 200, 255, 0.1);
+            transition: all var(--transition);
+        }
+
+        .stat-box:hover {
+            background: rgba(0, 200, 255, 0.1);
+            border-color: rgba(0, 200, 255, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .stat-number {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        /* COMPARISON CARDS */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .comparison-card {
+            padding: 48px;
+            border-radius: var(--radius-lg);
+            background: linear-gradient(135deg, rgba(0, 200, 255, 0.08) 0%, rgba(100, 220, 255, 0.03) 100%);
+            border: 1px solid rgba(0, 200, 255, 0.15);
+            backdrop-filter: blur(20px);
+            transition: all var(--transition);
+        }
+
+        .comparison-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 200, 255, 0.3);
+            box-shadow: 0 30px 80px rgba(0, 200, 255, 0.15);
+        }
+
+        .comparison-card h3 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 28px;
+            line-height: 1.3;
+        }
+
+        .comparison-card ul {
+            list-style: none;
+        }
+
+        .comparison-card li {
+            padding: 16px 0;
+            padding-left: 32px;
+            position: relative;
+            color: var(--color-text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.1);
+        }
+
+        .comparison-card li:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* TEAM SECTION */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            background: rgba(0, 200, 255, 0.05);
+            border: 1px solid rgba(0, 200, 255, 0.1);
+            transition: all var(--transition);
+        }
+
+        .team-member:hover {
+            background: rgba(0, 200, 255, 0.1);
+            transform: translateY(-8px);
+            border-color: rgba(0, 200, 255, 0.2);
+        }
+
+        .team-member__photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border: 3px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .team-member__name {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .team-member__role {
+            font-size: 13px;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .team-member__desc {
+            font-size: 14px;
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        /* LIGHT SECTION */
+        .section--light {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f5fb 100%);
+            color: #0c1424;
+        }
+
+        .section--light .section-header__title {
+            background: linear-gradient(135deg, #0c1424 0%, #2d3e50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section--light .section-header__text {
+            color: #4b5a70;
+        }
+
+        .section--light .bento-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 245, 251, 0.8) 100%);
+            border-color: rgba(0, 200, 255, 0.1);
+            color: #0c1424;
+        }
+
+        .section--light .bento-card p {
+            color: #4b5a70;
+        }
+
+        /* ANIMATIONS */
+        @keyframes float-in {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float-subtle {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(0, 200, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 30px 80px rgba(0, 200, 255, 0.5);
+            }
+        }
+
+        .bento-card {
+            animation: float-in 0.8s ease-out forwards;
+        }
+
+        .bento-card:nth-child(1) { animation-delay: 0.1s; }
+        .bento-card:nth-child(2) { animation-delay: 0.2s; }
+        .bento-card:nth-child(3) { animation-delay: 0.3s; }
+        .bento-card:nth-child(4) { animation-delay: 0.4s; }
+        .bento-card:nth-child(5) { animation-delay: 0.5s; }
+        .bento-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .hero {
+                padding: 60px 0;
+                min-height: auto;
+            }
+
+            .hero__headline {
+                font-size: clamp(32px, 8vw, 48px);
+            }
+
+            .hero__ctas {
+                flex-direction: column;
+            }
+
+            .btn-premium {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-card--large {
+                grid-column: span 1;
+            }
+
+            .bento-card--tall {
+                grid-row: span 1;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header {
+                margin-bottom: 50px;
+            }
+
+            .section-header__title {
+                font-size: clamp(28px, 6vw, 42px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KS5L52P9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__content">
+                <div class="hero__eyebrow">Para escritórios de advocacia</div>
+                <h1 class="hero__headline">
+                    Se você parar de trabalhar <span class="text-accent">hoje</span>, seu escritório para <span class="text-accent">junto?</span>
+                </h1>
+                <p class="hero__subheadline">Estruturamos o caminho entre o cliente certo e o seu escritório de advocacia, para que o crescimento não dependa quase totalmente de indicações, relacionamento e presença constante dos sócios.</p>
+                <div class="hero__ctas">
+                    <button class="btn-premium btn-primary">Solicitar diagnóstico →</button>
+                    <button class="btn-premium btn-secondary">Entender minha operação</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-kicker">O Ponto de Tensão</div>
+                <h2 class="section-header__title">O problema não é falta de competência jurídica. É depender de um fluxo que você não controla.</h2>
+                <p class="section-header__text">A indicação continua sendo valiosa. Mas quando ela vira a principal fonte de entrada, o escritório cresce em ciclos: um mês a agenda está cheia; no outro, os sócios voltam a se perguntar de onde virão as próximas conversas.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-card">
+                    <div class="bento-card__icon">👥</div>
+                    <h3>Aquisição concentrada nos sócios</h3>
+                    <p>A entrada de novos clientes depende da rede pessoal dos sócios, não de uma operação do escritório.</p>
+                </div>
+
+                <div class="bento-card">
+                    <div class="bento-card__icon">📅</div>
+                    <h3>Agenda instável</h3>
+                    <p>Quando o volume cai, não existe clareza se o problema está na demanda, na mensagem, no canal ou no atendimento.</p>
+                </div>
+
+                <div class="bento-card">
+                    <div class="bento-card__icon">⚖️</div>
+                    <h3>Sócios sobrecarregados</h3>
+                    <p>Além de advogar, os sócios precisam aparecer, responder, vender, acompanhar e tentar entender o que funciona.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÉTODO -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-kicker">Método Scale</div>
+                <h2 class="section-header__title">A operação que transforma crescimento em processo, não em improviso.</h2>
+                <p class="section-header__text">A Scale organiza posicionamento, Google Ads, Meta Ads, atendimento, relatórios semanais e melhoria contínua a partir da qualidade real dos contatos recebidos.</p>
+            </div>
+
+            <div class="bento-grid">
+                <div class="bento-card bento-card--large">
+                    <div class="bento-card__icon">🔍</div>
+                    <h3>Diagnóstico da operação atual</h3>
+                    <p>Mapeamos como o escritório hoje atrai, recebe e conduz oportunidades. O objetivo é entender onde a operação trava antes de propor qualquer caminho.</p>
+                </div>
+
+                <div class="bento-card">
+                    <div class="bento-card__icon">💬</div>
+                    <h3>Posicionamento e mensagem</h3>
+                    <p>Transformamos a especialidade em comunicação clara e segura para o cliente certo.</p>
+                </div>
+
+                <div class="bento-card">
+                    <div class="bento-card__icon">📱</div>
+                    <h3>Google Ads e Meta Ads</h3>
+                    <p>Google para intenção. Meta para presença e demanda qualificada.</p>
+                </div>
+
+                <div class="bento-card">
+                    <div class="bento-card__icon">📊</div>
+                    <h3>Atendimento e conversão</h3>
+                    <p>Analisamos o que acontece depois do contato: velocidade, qualidade e avanço comercial.</p>
+                </div>
+
+                <div class="bento-card bento-card--large">
+                    <div class="bento-card__icon">📈</div>
+                    <h3>Relatórios e otimização semanal</h3>
+                    <p>Decisões baseadas em custo, qualidade, conversão e feedback real dos advogados.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">Escritórios Atendidos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Anos de Experiência</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">3x</div>
+                    <div class="stat-label">Crescimento Médio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARATIVO -->
+    <section class="section section--light">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-kicker">Antes e Depois</div>
+                <h2 class="section-header__title">A diferença entre improviso e operação estruturada.</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card">
+                    <h3>Sem operação estruturada</h3>
+                    <ul>
+                        <li>Dependência de indicações e rede pessoal</li>
+                        <li>Campanhas avaliadas por volume, não qualidade</li>
+                        <li>Sem clareza sobre gargalos</li>
+                        <li>Sócio acompanhando tudo manualmente</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card">
+                    <h3>Com operação acompanhada</h3>
+                    <ul>
+                        <li>Google Ads e Meta Ads com funções claras</li>
+                        <li>Leads analisados por qualidade e intenção</li>
+                        <li>Relatórios semanais orientam ajustes</li>
+                        <li>Escritório ganha clareza para melhorar</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-kicker">Equipe por trás da operação</div>
+                <h2 class="section-header__title">Você não precisa cuidar de tudo. Nós organizamos o processo.</h2>
+                <p class="section-header__text">Uma equipe dedicada olhando para estratégia, aquisição, conversão e otimização enquanto você toca a rotina jurídica.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-member__photo"></div>
+                    <div class="team-member__name">Leonardo Carmo</div>
+                    <div class="team-member__role">Estratégia & Posicionamento</div>
+                    <div class="team-member__desc">Define a mensagem e o direcionamento da operação.</div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-member__photo"></div>
+                    <div class="team-member__name">Matheus Malaquias</div>
+                    <div class="team-member__role">Aquisição & Performance</div>
+                    <div class="team-member__desc">Estrutura campanhas para atrair oportunidades com intenção real.</div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-member__photo"></div>
+                    <div class="team-member__name">Isabella Trannin</div>
+                    <div class="team-member__role">Atendimento & Conversão</div>
+                    <div class="team-member__desc">Acompanha gargalos entre o contato e o fechamento.</div>
+                </div>
+
+                <div class="team-member">
+                    <div class="team-member__photo"></div>
+                    <div class="team-member__name">Pedro Costa</div>
+                    <div class="team-member__role">Operação & Otimização</div>
+                    <div class="team-member__desc">Analisa dados para melhorar qualidade, custo e previsibilidade.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="section">
+        <div class="container" style="text-align: center; max-width: 800px; margin: 0 auto;">
+            <h2 class="section-header__title" style="margin-bottom: 24px;">Seu escritório pode continuar dependendo da próxima indicação.</h2>
+            <p class="section-header__text" style="margin-bottom: 40px;">Ou pode entender como estruturar uma operação mais previsível.</p>
+            <button class="btn-premium btn-primary" style="font-size: 18px; padding: 18px 48px;">Solicitar diagnóstico da operação →</button>
+            <p style="margin-top: 20px; font-size: 14px; color: var(--color-text-muted);">Conversa inicial para entender cenário, desafios e possíveis caminhos de estruturação.</p>
+        </div>
+    </section>
+
+    <footer style="padding: 60px 0; border-top: 1px solid rgba(0, 200, 255, 0.1); text-align: center;">
+        <div class="container">
+            <p style="color: var(--color-text-muted); font-size: 14px;">&copy; 2026 Scale Company. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para links âncora
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Efeito de hover nos cartões
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.animation = 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>
