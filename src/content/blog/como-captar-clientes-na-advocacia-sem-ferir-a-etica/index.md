@@ -2,6 +2,8 @@
 title: "Como captar clientes na advocacia sem ferir a ética"
 description: "Aprenda uma estratégia prática de inbound marketing jurídico para atrair clientes com conteúdo, SEO local e posicionamento profissional."
 publishDate: 2026-04-28
+coverImage: ./cover.png
+coverImageAlt: "Imagem sobre captação ética de clientes na advocacia com inbound marketing jurídico"
 category: nicho
 tags: ['advocacia', 'inbound marketing jurídico', 'captação ética', 'seo local', 'conteúdo']
 featured: false
