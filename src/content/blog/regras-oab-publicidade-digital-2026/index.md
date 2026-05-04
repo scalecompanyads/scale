@@ -2,6 +2,8 @@
 title: "Regras da OAB para Publicidade Digital em 2026: guia prático para advogados"
 description: "Entenda o que pode e o que não pode na publicidade jurídica em 2026, com exemplos práticos para Instagram, WhatsApp, site e Google."
 publishDate: 2026-04-28
+coverImage: ./cover.png
+coverImageAlt: "Imagem sobre publicidade digital para advogados e regras da OAB"
 category: nicho
 tags: ['marketing jurídico', 'oab', 'publicidade jurídica', 'compliance', 'advocacia']
 featured: false
