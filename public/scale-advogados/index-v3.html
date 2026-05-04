@@ -790,6 +790,152 @@
             .oab-strip__head { align-items: flex-start; flex-direction: column; }
             .section--light { background: linear-gradient(180deg, #f7f9fc 0%, #eef3f9 100%); }
         }
+
+        html.scale-loading,
+        body.scale-loading {
+            overflow: hidden !important;
+        }
+
+        .scale-page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 50% 42%, rgba(0, 119, 255, .24), transparent 34rem),
+                radial-gradient(circle at 18% 18%, rgba(0, 186, 255, .16), transparent 24rem),
+                linear-gradient(135deg, #02050d 0%, #04142d 46%, #01040b 100%);
+            transition: opacity .75s cubic-bezier(.7, 0, .3, 1), visibility .75s cubic-bezier(.7, 0, .3, 1), transform .75s cubic-bezier(.7, 0, .3, 1);
+        }
+
+        .scale-page-loader::before,
+        .scale-page-loader::after {
+            content: "";
+            position: absolute;
+            pointer-events: none;
+        }
+
+        .scale-page-loader::before {
+            inset: -25%;
+            background:
+                linear-gradient(115deg, transparent 35%, rgba(255,255,255,.08) 49%, transparent 63%),
+                radial-gradient(circle, rgba(255,255,255,.08) 1px, transparent 1px);
+            background-size: 100% 100%, 34px 34px;
+            opacity: .42;
+            animation: loaderDrift 7s linear infinite;
+        }
+
+        .scale-page-loader::after {
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(255,255,255,.08), transparent 28%, rgba(0,0,0,.32));
+        }
+
+        .scale-page-loader.is-hidden {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(1.015);
+        }
+
+        .scale-page-loader__inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            justify-items: center;
+            gap: 22px;
+            width: min(82vw, 320px);
+        }
+
+        .scale-page-loader__mark {
+            position: relative;
+            width: clamp(92px, 18vw, 142px);
+            aspect-ratio: 1;
+            display: grid;
+            place-items: center;
+        }
+
+        .scale-page-loader__mark::before,
+        .scale-page-loader__mark::after {
+            content: "";
+            position: absolute;
+            inset: -14px;
+            border: 1px solid rgba(255,255,255,.16);
+            border-top-color: rgba(0,186,255,.95);
+            border-radius: 28px !important;
+            filter: drop-shadow(0 0 18px rgba(0,119,255,.55));
+            animation: loaderSpin 1.8s linear infinite;
+        }
+
+        .scale-page-loader__mark::after {
+            inset: -26px;
+            border-color: rgba(255,255,255,.08);
+            border-right-color: rgba(255,255,255,.6);
+            animation-duration: 2.8s;
+            animation-direction: reverse;
+        }
+
+        .scale-page-loader__logo {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 24px !important;
+            box-shadow: 0 22px 70px rgba(0,119,255,.42), 0 0 0 1px rgba(255,255,255,.16);
+            animation: loaderLogo 1.65s ease-in-out infinite;
+        }
+
+        .scale-page-loader__label {
+            color: rgba(255,255,255,.92);
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: .22em;
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .scale-page-loader__status {
+            min-height: 1.25em;
+            color: rgba(255,255,255,.48);
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .scale-page-loader__bar {
+            width: min(100%, 260px);
+            height: 4px;
+            overflow: hidden;
+            background: rgba(255,255,255,.1);
+            border-radius: 999px !important;
+        }
+
+        .scale-page-loader__progress {
+            display: block;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #1630df, #00baff, #fff);
+            border-radius: inherit !important;
+            box-shadow: 0 0 22px rgba(0,186,255,.75);
+            transition: width .18s ease-out;
+        }
+
+        @keyframes loaderSpin { to { transform: rotate(360deg); } }
+        @keyframes loaderDrift { to { transform: translate3d(-34px, 34px, 0); } }
+        @keyframes loaderLogo {
+            0%, 100% { transform: translateY(0) scale(1); filter: brightness(1); }
+            50% { transform: translateY(-6px) scale(1.035); filter: brightness(1.16); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scale-page-loader::before,
+            .scale-page-loader__mark::before,
+            .scale-page-loader__mark::after,
+            .scale-page-loader__logo {
+                animation: none;
+            }
+        }
     </style>
 </head>
 
@@ -797,6 +943,17 @@
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KS5L52P9" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <div class="scale-page-loader" id="scale-page-loader" aria-hidden="true">
+        <div class="scale-page-loader__inner">
+            <div class="scale-page-loader__mark">
+                <img src="/images/scale-loader-logo.png" alt="" class="scale-page-loader__logo" width="160" height="160" decoding="async">
+            </div>
+            <div class="scale-page-loader__label">Scale Company</div>
+            <div class="scale-page-loader__status" data-scale-loader-status>Preparando experiência</div>
+            <div class="scale-page-loader__bar"><span class="scale-page-loader__progress" data-scale-loader-progress></span></div>
+        </div>
+    </div>
 
     <!-- HERO -->
     <section class="hero" id="hero">
@@ -1272,6 +1429,54 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            document.documentElement.classList.add('scale-loading');
+            document.body.classList.add('scale-loading');
+
+            const pageLoader = document.getElementById('scale-page-loader');
+            const pageLoaderProgress = document.querySelector('[data-scale-loader-progress]');
+            const pageLoaderStatus = document.querySelector('[data-scale-loader-status]');
+            const pageLoaderMessages = ['Carregando ativos', 'Ajustando interface', 'Quase pronto'];
+            let pageLoaderValue = 8;
+            let pageLoaderMessageIndex = 0;
+            let pageLoaderDone = false;
+
+            function setPageLoaderProgress(value) {
+                pageLoaderValue = Math.min(value, 100);
+                if (pageLoaderProgress) pageLoaderProgress.style.width = pageLoaderValue + '%';
+            }
+
+            const pageLoaderProgressTimer = setInterval(() => {
+                if (!pageLoaderDone) setPageLoaderProgress(pageLoaderValue + Math.max(1, (92 - pageLoaderValue) * .08));
+            }, 140);
+
+            const pageLoaderMessageTimer = setInterval(() => {
+                if (!pageLoaderStatus) return;
+                pageLoaderMessageIndex = (pageLoaderMessageIndex + 1) % pageLoaderMessages.length;
+                pageLoaderStatus.textContent = pageLoaderMessages[pageLoaderMessageIndex];
+            }, 850);
+
+            function hidePageLoader() {
+                if (!pageLoader || pageLoaderDone) return;
+                pageLoaderDone = true;
+                clearInterval(pageLoaderProgressTimer);
+                clearInterval(pageLoaderMessageTimer);
+                setPageLoaderProgress(100);
+
+                setTimeout(() => {
+                    pageLoader.classList.add('is-hidden');
+                    document.documentElement.classList.remove('scale-loading');
+                    document.body.classList.remove('scale-loading');
+                    setTimeout(() => pageLoader.remove(), 780);
+                }, 260);
+            }
+
+            if (document.readyState === 'complete') {
+                hidePageLoader();
+            } else {
+                window.addEventListener('load', hidePageLoader, { once: true });
+                setTimeout(hidePageLoader, 3600);
+            }
+
             const overlay = document.getElementById('popup-overlay');
             const closeBtn = document.getElementById('popup-close');
             const progressBar = document.getElementById('popup-progress-bar');

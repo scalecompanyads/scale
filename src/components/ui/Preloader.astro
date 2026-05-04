@@ -3,72 +3,258 @@
 ---
 
 <style is:global>
-  body.preloading-lock, html.preloading-lock {
+  body.preloading-lock,
+  html.preloading-lock {
     overflow: hidden !important;
   }
-  
-  #global-preloader {
+
+  #preloader {
     position: fixed;
     inset: 0;
     z-index: 9999999;
-    background-color: #010f1c; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.8s cubic-bezier(0.7, 0, 0.3, 1), visibility 0.8s;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(0, 119, 255, 0.24), transparent 34rem),
+      radial-gradient(circle at 18% 18%, rgba(0, 186, 255, 0.16), transparent 24rem),
+      linear-gradient(135deg, #02050d 0%, #04142d 46%, #01040b 100%);
+    transition:
+      opacity 0.75s cubic-bezier(0.7, 0, 0.3, 1),
+      visibility 0.75s cubic-bezier(0.7, 0, 0.3, 1),
+      transform 0.75s cubic-bezier(0.7, 0, 0.3, 1);
   }
 
-  .preloader-brand {
-    font-family: 'Inter', sans-serif;
+  #preloader::before,
+  #preloader::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+
+  #preloader::before {
+    inset: -25%;
+    background:
+      linear-gradient(115deg, transparent 35%, rgba(255, 255, 255, 0.08) 49%, transparent 63%),
+      radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 100% 100%, 34px 34px;
+    opacity: 0.42;
+    animation: preloaderDrift 7s linear infinite;
+  }
+
+  #preloader::after {
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.08), transparent 28%, rgba(0, 0, 0, 0.32));
+  }
+
+  #preloader.preloader-done {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.015);
+  }
+
+  .scale-loader {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 22px;
+    width: min(82vw, 320px);
+  }
+
+  .scale-loader__mark {
+    position: relative;
+    width: clamp(92px, 18vw, 142px);
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+  }
+
+  .scale-loader__mark::before,
+  .scale-loader__mark::after {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-top-color: rgba(0, 186, 255, 0.95);
+    border-radius: 28px;
+    filter: drop-shadow(0 0 18px rgba(0, 119, 255, 0.55));
+    animation: preloaderSpin 1.8s linear infinite;
+  }
+
+  .scale-loader__mark::after {
+    inset: -26px;
+    border-color: rgba(255, 255, 255, 0.08);
+    border-right-color: rgba(255, 255, 255, 0.6);
+    animation-duration: 2.8s;
+    animation-direction: reverse;
+  }
+
+  .scale-loader__logo {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 24px;
+    box-shadow:
+      0 22px 70px rgba(0, 119, 255, 0.42),
+      0 0 0 1px rgba(255, 255, 255, 0.16);
+    animation: preloaderLogo 1.65s ease-in-out infinite;
+  }
+
+  .scale-loader__text {
+    display: grid;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .scale-loader__label {
+    color: rgba(255, 255, 255, 0.92);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.8rem;
     font-weight: 800;
-    font-size: clamp(1.5rem, 5vw, 3rem);
-    letter-spacing: 0.2em;
-    color: #ffffff;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    animation: pulseBase 1.5s ease-in-out infinite alternate;
-  }
-  .preloader-brand span {
-    color: #00BAFF; /* Destaque da marca */
   }
 
-  @keyframes pulseBase {
-    0% { opacity: 0.3; filter: blur(2px); transform: scale(0.98); }
-    100% { opacity: 1; filter: blur(0px); transform: scale(1); }
+  .scale-loader__status {
+    min-height: 1.25em;
+    color: rgba(255, 255, 255, 0.48);
+    font-family: Inter, system-ui, sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .scale-loader__bar {
+    position: relative;
+    width: min(100%, 260px);
+    height: 4px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+  }
+
+  .scale-loader__progress {
+    display: block;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #1630df, #00baff, #ffffff);
+    border-radius: inherit;
+    box-shadow: 0 0 22px rgba(0, 186, 255, 0.75);
+    transition: width 0.18s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #preloader::before,
+    .scale-loader__mark::before,
+    .scale-loader__mark::after,
+    .scale-loader__logo {
+      animation: none;
+    }
+  }
+
+  @keyframes preloaderSpin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes preloaderLogo {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+      filter: brightness(1);
+    }
+    50% {
+      transform: translateY(-6px) scale(1.035);
+      filter: brightness(1.16);
+    }
+  }
+
+  @keyframes preloaderDrift {
+    to {
+      transform: translate3d(-34px, 34px, 0);
+    }
   }
 </style>
 
-<div id="global-preloader" aria-hidden="true">
-  <div class="preloader-brand">INICIANDO <span>ESCALA</span></div>
+<div id="preloader" aria-hidden="true">
+  <div class="scale-loader">
+    <div class="scale-loader__mark">
+      <img
+        src="/images/scale-loader-logo.png"
+        alt=""
+        class="scale-loader__logo"
+        width="160"
+        height="160"
+        decoding="async"
+      />
+    </div>
+    <div class="scale-loader__text">
+      <div class="scale-loader__label">Scale Company</div>
+      <div class="scale-loader__status" data-loader-status>Preparando experiência</div>
+    </div>
+    <div class="scale-loader__bar" role="presentation">
+      <span class="scale-loader__progress" data-loader-progress></span>
+    </div>
+  </div>
 </div>
 
 <script>
   document.documentElement.classList.add('preloading-lock');
   document.body.classList.add('preloading-lock');
 
-  const hidePreloader = () => {
-    const preloader = document.getElementById('global-preloader');
-    if (!preloader) return;
+  const preloader = document.getElementById('preloader');
+  const progress = document.querySelector('[data-loader-progress]');
+  const status = document.querySelector('[data-loader-status]');
+  const messages = ['Carregando ativos', 'Ajustando interface', 'Quase pronto'];
 
-    setTimeout(() => {
-      preloader.style.opacity = '0';
-      preloader.style.visibility = 'hidden';
-      
+  let currentProgress = 8;
+  let messageIndex = 0;
+  let finished = false;
+
+  const setProgress = (value) => {
+    currentProgress = Math.min(value, 100);
+    if (progress instanceof HTMLElement) {
+      progress.style.width = `${currentProgress}%`;
+    }
+  };
+
+  const progressTimer = window.setInterval(() => {
+    if (finished) return;
+    setProgress(currentProgress + Math.max(1, (92 - currentProgress) * 0.08));
+  }, 140);
+
+  const messageTimer = window.setInterval(() => {
+    if (!(status instanceof HTMLElement)) return;
+    messageIndex = (messageIndex + 1) % messages.length;
+    status.textContent = messages[messageIndex];
+  }, 850);
+
+  const hidePreloader = () => {
+    if (!preloader || finished) return;
+    finished = true;
+    window.clearInterval(progressTimer);
+    window.clearInterval(messageTimer);
+    setProgress(100);
+
+    window.setTimeout(() => {
+      preloader.classList.add('preloader-done');
       document.documentElement.classList.remove('preloading-lock');
       document.body.classList.remove('preloading-lock');
-      
-      // Aciona animações da Hero
       document.body.classList.add('preloader-finished');
 
-      setTimeout(() => {
+      window.setTimeout(() => {
         preloader.remove();
-      }, 800);
-    }, 500); 
+      }, 780);
+    }, 260);
   };
 
   if (document.readyState === 'complete') {
     hidePreloader();
   } else {
-    window.addEventListener('load', hidePreloader);
-    setTimeout(hidePreloader, 3500); 
+    window.addEventListener('load', hidePreloader, { once: true });
+    window.setTimeout(hidePreloader, 3600);
   }
 </script>
