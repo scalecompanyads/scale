@@ -2,12 +2,12 @@
 title: "O que é SEO e por que sua empresa precisa (guia completo)"
 description: "Entenda o que é SEO, como funciona e por que sua empresa perde clientes sem ele. Guia completo para iniciantes com exemplos práticos."
 publishDate: 2025-03-15
+updatedDate: 2026-05-04
 category: seo
 tags: ['seo', 'marketing digital', 'google', 'tráfego orgânico']
 featured: true
 focusKeyword: "o que é SEO"
 readingTime: 7
-slug: o-que-e-seo-e-por-que-sua-empresa-precisa
 coverImage: ./cover.webp
 coverImageAlt: "Ilustração sobre SEO e resultados no Google"
 ---

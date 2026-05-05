@@ -2,6 +2,7 @@
 title: "Site para Advogados: 5 itens obrigatórios para converter leads"
 description: "Veja os 5 elementos que um site jurídico precisa para converter visitantes em contatos qualificados, sem perder sobriedade e segurança ética."
 publishDate: 2026-04-28
+updatedDate: 2026-05-04
 coverImage: ./cover.png
 coverImageAlt: "Imagem sobre site para advogados com foco em conversão de leads qualificados"
 category: criacao-de-sites
@@ -9,7 +10,6 @@ tags: ['site para advogados', 'conversão', 'ux', 'seo', 'marketing jurídico']
 featured: false
 focusKeyword: "site para advogados itens obrigatórios para converter leads"
 readingTime: 8
-slug: site-para-advogados-5-itens-obrigatorios-para-converter-leads
 ---
 
 ## Introdução
@@ -100,6 +100,41 @@ Pense no site como o centro da operação:
 - o site converte tudo isso em conversa comercial.
 
 Se você já está em etapa de aquisição ativa, combine com a página de [Google Ads para Advogados em Vila Velha](/vila-velha/google-ads-para-advogados) para aumentar velocidade sem perder alinhamento.
+
+## Checklist de diagnóstico do site jurídico
+
+Antes de refazer ou otimizar o site, valide:
+
+- a primeira dobra explica especialidade, público e região;
+- cada área do direito tem uma página própria;
+- os CTAs aparecem em pontos naturais da leitura;
+- o texto responde dúvidas reais, não só fala sobre o escritório;
+- o site carrega bem no celular;
+- o contato pode ser rastreado para medir origem dos leads;
+- a linguagem mantém sobriedade e não promete resultado.
+
+Se muitos desses pontos falham, o problema não é apenas visual. É estrutural. Nesse cenário, o site precisa ser tratado como parte do [marketing jurídico](/vila-velha/marketing-juridico), não como uma peça isolada.
+
+## O que priorizar primeiro
+
+Se o escritório não sabe por onde começar, priorize a ordem abaixo:
+
+1. clareza da primeira dobra;
+2. páginas das áreas mais importantes;
+3. fluxo de contato simples;
+4. SEO técnico básico;
+5. conteúdo de dúvidas frequentes;
+6. rastreamento de conversões.
+
+Essa ordem evita gastar tempo com detalhes visuais antes de resolver o que realmente impacta contato qualificado. Um site jurídico forte não precisa explicar tudo de uma vez, mas precisa orientar o visitante até o próximo passo com segurança.
+
+## Quando criar landing pages além do site
+
+O site institucional deve ser a base. Mas, em campanhas específicas, uma landing page pode funcionar melhor porque remove distrações e concentra a mensagem em uma única ação.
+
+Para advogados, isso exige cuidado extra: a landing page precisa manter tom informativo, explicar a especialidade com sobriedade e evitar qualquer promessa de resultado. Quando bem usada, ela ajuda a medir campanhas sem comprometer a autoridade do escritório.
+
+O ponto é simples: site constrói confiança; landing page testa foco e mensagem. Os dois precisam falar a mesma língua.
 
 ## Conclusão
 

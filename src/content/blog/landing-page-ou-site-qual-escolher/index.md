@@ -2,12 +2,12 @@
 title: "Landing page ou site: qual escolher para sua empresa?"
 description: "Entenda a diferença entre landing page e site institucional, quando usar cada um e como combinar os dois para gerar mais resultados."
 publishDate: 2025-04-15
+updatedDate: 2026-05-04
 category: landing-pages
 tags: ['landing page', 'site', 'conversão', 'geração de leads']
 featured: false
 focusKeyword: "landing page ou site"
 readingTime: 5
-slug: landing-page-ou-site-qual-escolher
 coverImage: ./cover.webp
 coverImageAlt: "Ilustração sobre landing page versus site institucional"
 ---
@@ -59,6 +59,24 @@ Landing pages focadas em uma única conversão tendem a converter significativam
 Para tráfego orgânico e busca direta, o site tem vantagem: o visitante chega com intenção de explorar, e o conteúdo mais rico apoia melhor a decisão de compra em ciclos longos.
 
 Quando a aquisição vem de anúncios, a conversão costuma ser melhor em landing pages dedicadas — e isso exige **gestão de tráfego pago** alinhada ao teste de ofertas e ao rastreamento de conversões. Se quiser unificar estratégia de página e mídia, veja como a Scale aborda [gestão de Google Ads e Meta Ads](/servicos/trafego-pago) para campanhas que precisam performar, não só gerar clique.
+
+## Checklist rápido para decidir
+
+Escolha uma landing page quando:
+
+- existe uma oferta específica;
+- a campanha tem orçamento definido;
+- você precisa medir conversão com clareza;
+- o usuário deve tomar uma única ação.
+
+Escolha um site institucional quando:
+
+- a empresa precisa apresentar vários serviços;
+- o cliente compara fornecedores antes de decidir;
+- SEO e autoridade são prioridades;
+- o negócio precisa de uma base digital de longo prazo.
+
+Em muitos casos, a resposta madura não é "um ou outro". O site sustenta marca, SEO e confiança. A landing page entra como ferramenta de conversão para campanhas, lançamentos e testes comerciais.
 
 ## Conclusão
 

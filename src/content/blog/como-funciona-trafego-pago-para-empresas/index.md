@@ -1,13 +1,13 @@
 ---
-title: "Tráfego pago para empresas: como atrair clientes todos os dias (sem depender de indicação)"
-description: "Entenda como funciona Google Ads e Meta Ads, quanto investir e quando parar de brincar de anunciar sozinho."
+title: "Tráfego pago para empresas: como atrair clientes todos os dias"
+description: "Entenda como funcionam Google Ads e Meta Ads, quanto investir, quais métricas acompanhar e quando contratar uma gestão profissional."
 publishDate: 2026-04-11
+updatedDate: 2026-05-04
 category: trafego-pago
 tags: ['tráfego pago', 'google ads', 'meta ads', 'mídia paga', 'estratégia']
 featured: true
 focusKeyword: "tráfego pago para empresas"
 readingTime: 10
-slug: como-funciona-trafego-pago-para-empresas
 coverImage: ./cover.png
 coverImageAlt: "Ilustração sobre tráfego pago para empresas"
 ---

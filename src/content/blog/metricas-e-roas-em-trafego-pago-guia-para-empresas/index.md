@@ -1,13 +1,13 @@
 ---
-title: "Métricas e ROAS em tráfego pago: guia prático para não se perder nos números"
+title: "Métricas de tráfego pago: CPA, ROAS e números que importam"
 description: "CPM, CPC, CPA, ROAS e conversões: saiba o que medir em Google Ads e Meta Ads conforme o objetivo da campanha e como ler relatórios com clareza."
 publishDate: 2026-04-17
+updatedDate: 2026-05-04
 category: trafego-pago
 tags: ['tráfego pago', 'google ads', 'meta ads', 'ROAS', 'métricas', 'performance']
 featured: false
 focusKeyword: "métricas de tráfego pago"
 readingTime: 9
-slug: metricas-e-roas-em-trafego-pago-guia-para-empresas
 coverImage: ./cover.webp
 coverImageAlt: "Representação visual de métricas e gráficos de campanhas de mídia paga"
 ---

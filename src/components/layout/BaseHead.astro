@@ -29,11 +29,30 @@ const resolvedCanonical = canonical ?? new URL(Astro.url.pathname, siteUrl).href
 const resolvedOgImage = ogImage
   ? new URL(ogImage, siteUrl).href
   : new URL('/assets/brand/og-default.jpg', siteUrl).href;
+const normalizedPathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const googleTagExcludedPrefixes = ['/advogado', '/advogados', '/scale-adbogados', '/scale-advogados'];
+const includeGoogleTag = !googleTagExcludedPrefixes.some(
+  (path) => normalizedPathname === path || normalizedPathname.startsWith(`${path}/`)
+);
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="generator" content={Astro.generator} />
+
+{includeGoogleTag && (
+  <>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-GLRC0KE5GJ"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-GLRC0KE5GJ');
+    </script>
+  </>
+)}
 
 <!-- SEO básico -->
 <title>{title}</title>
