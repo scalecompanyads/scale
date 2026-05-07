@@ -3,13 +3,31 @@
 
 <head>
     <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start': new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-KS5L52P9');</script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        (function (w, d, s, l, i) {
+            var loaded = false;
+            function loadGtm() {
+                if (loaded) return;
+                loaded = true;
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            }
+            ['pointerdown', 'keydown', 'scroll', 'touchstart'].forEach(function (eventName) {
+                w.addEventListener(eventName, loadGtm, { once: true, passive: true });
+            });
+            if ('requestIdleCallback' in w) {
+                w.requestIdleCallback(loadGtm, { timeout: 1800 });
+            } else {
+                w.setTimeout(loadGtm, 1800);
+            }
+        })(window, document, 'script', 'dataLayer', 'GTM-KS5L52P9');
+    </script>
     <!-- End Google Tag Manager -->
 
     <meta charset="UTF-8">
@@ -18,16 +36,11 @@
     <title>Scale Company | Estruturação Comercial para Escritórios de Advocacia</title>
     <meta name="description" content="A Scale Company estrutura aquisição comercial para escritórios de advocacia com Google Ads, Meta Ads, relatórios semanais e comunicação informativa alinhada às normas da OAB.">
 
-    <link rel="preload" as="image" href="assets/desktop.png" media="(min-width: 769px)">
-    <link rel="preload" as="image" href="assets/mobile.png" media="(max-width: 768px)">
-    <link rel="preload" as="image" href="assets/google-meta-dashboard-light.png">
-    <link rel="preload" as="image" href="assets/google-meta-dashboard-dark.png">
-    <link rel="preload" as="image" href="assets/trafego-pago-google-meta-3d.png">
+    <link rel="preload" as="image" href="assets/desktop.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/mobile.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://www.youtube.com">
-    <link rel="preconnect" href="https://hook.us1.make.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <style>
         *, *::before, *::after {
@@ -102,6 +115,13 @@
             padding: var(--section-padding) 0;
             border-top: 1px solid rgba(255, 255, 255, 0.025);
             overflow: clip;
+        }
+
+        @supports (content-visibility: auto) {
+            .section:not(#metodo) {
+                content-visibility: auto;
+                contain-intrinsic-size: 1px 760px;
+            }
         }
 
         .section::before {
@@ -416,7 +436,7 @@
             top: 80px;
             width: min(620px, 48vw);
             height: 420px;
-            background: url('assets/google-meta-dashboard-light.png') center / cover no-repeat;
+            background: url('assets/google-meta-dashboard-light.webp') center / cover no-repeat;
             opacity: .16;
             filter: saturate(1.05) contrast(1.02);
             pointer-events: none;
@@ -432,7 +452,7 @@
             bottom: -100px;
             width: min(720px, 54vw);
             height: 440px;
-            background: url('assets/google-meta-dashboard-light.png') center / cover no-repeat;
+            background: url('assets/google-meta-dashboard-light.webp') center / cover no-repeat;
             opacity: .11;
             filter: saturate(1.04) contrast(1.02);
             pointer-events: none;
@@ -449,7 +469,7 @@
             top: 70px;
             width: min(680px, 52vw);
             height: 430px;
-            background: url('assets/google-meta-dashboard-light.png') center / cover no-repeat;
+            background: url('assets/google-meta-dashboard-light.webp') center / cover no-repeat;
             opacity: .14;
             filter: saturate(1.08) contrast(1.04);
             pointer-events: none;
@@ -465,7 +485,7 @@
             bottom: -90px;
             width: min(720px, 54vw);
             height: 440px;
-            background: url('assets/google-meta-dashboard-light.png') center / cover no-repeat;
+            background: url('assets/google-meta-dashboard-light.webp') center / cover no-repeat;
             opacity: .12;
             filter: saturate(1.06) contrast(1.02);
             pointer-events: none;
@@ -479,7 +499,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: url('assets/google-meta-abstract-dark.png') center / cover no-repeat;
+            background: url('assets/google-meta-abstract-dark.webp') center / cover no-repeat;
             opacity: .18;
             pointer-events: none;
             z-index: 0;
@@ -614,7 +634,7 @@
             inset: 0;
             background:
                 linear-gradient(90deg, rgba(8, 10, 19, .94) 0%, rgba(8, 10, 19, .78) 48%, rgba(8, 10, 19, .42) 100%),
-                url('assets/google-meta-abstract-dark.png') right center / cover no-repeat;
+                url('assets/google-meta-abstract-dark.webp') right center / cover no-repeat;
             opacity: .95;
             z-index: 0;
             pointer-events: none;
@@ -634,7 +654,7 @@
         .proof-card--channels::before {
             background:
                 linear-gradient(90deg, rgba(8, 10, 19, .94) 0%, rgba(8, 10, 19, .80) 42%, rgba(8, 10, 19, .14) 100%),
-                url('assets/trafego-pago-google-meta-3d.png') right center / contain no-repeat;
+                url('assets/trafego-pago-google-meta-3d.webp') right center / contain no-repeat;
             opacity: 1;
         }
         .channel-copy { position: relative; z-index: 2; max-width: 440px; }
@@ -650,7 +670,7 @@
             top: -60px;
             width: 230px;
             height: 230px;
-            background: url('assets/google-meta-dashboard-light.png') center / cover no-repeat;
+            background: url('assets/google-meta-dashboard-light.webp') center / cover no-repeat;
             opacity: .16;
             filter: saturate(1.1);
             transform: rotate(8deg);
@@ -673,7 +693,7 @@
             top: -88px;
             width: 250px;
             height: 250px;
-            background: url('assets/google-meta-dashboard-light.png') center / cover no-repeat;
+            background: url('assets/google-meta-dashboard-light.webp') center / cover no-repeat;
             opacity: .11;
             filter: saturate(1.08);
             transform: rotate(8deg);
@@ -736,6 +756,7 @@
         /* VIDEOS */
         .videos__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 100%; max-width: 1000px; margin: 0 auto; }
         .video-wrapper { position: relative; overflow: hidden; background: var(--color-bg-card); border: 1px solid var(--color-border); aspect-ratio: 9 / 16; cursor: pointer; }
+        .video-wrapper picture { display: block; width: 100%; height: 100%; }
         .video-card__poster { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; filter: brightness(0.7); }
         .video-wrapper:hover .video-card__poster { transform: scale(1.05); filter: brightness(0.9); }
         .video-card__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(0, 119, 255, 0.9); border-radius: 50% !important; display: flex; align-items: center; justify-content: center; color: #fff; transition: all 0.3s ease; z-index: 2; box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.4); }
@@ -874,7 +895,7 @@
             .proof-card--channels::before {
                 background:
                     linear-gradient(180deg, rgba(8, 10, 19, .30) 0%, rgba(8, 10, 19, .84) 46%, rgba(8, 10, 19, .96) 100%),
-                    url('assets/trafego-pago-google-meta-3d.png') top center / contain no-repeat;
+                    url('assets/trafego-pago-google-meta-3d.webp') top center / contain no-repeat;
             }
             .channel-copy { max-width: none; }
             .channel-compare, .quality-loop { grid-template-columns: 1fr; }
@@ -915,6 +936,8 @@
     <section class="hero" id="hero">
         <div class="hero__image-wrapper">
             <picture>
+                <source srcset="assets/mobile.webp" type="image/webp" media="(max-width: 768px)">
+                <source srcset="assets/desktop.webp" type="image/webp">
                 <source srcset="assets/mobile.png" media="(max-width: 768px)">
                 <img src="assets/desktop.png" alt="Escritório de advocacia organizado" class="hero__image" width="1920" height="1080" fetchpriority="high" decoding="async">
             </picture>
@@ -954,11 +977,17 @@
 
             <div class="videos__grid reveal">
                 <div class="video-card video-wrapper" data-video-id="hZxR3DadbTg">
-                    <img src="assets/capa-depoimento-bichara.png" alt="Depoimento Bichara Advogados" class="video-card__poster" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="assets/capa-depoimento-bichara.webp" type="image/webp">
+                        <img src="assets/capa-depoimento-bichara.png" alt="Depoimento Bichara Advogados" class="video-card__poster" loading="lazy" decoding="async">
+                    </picture>
                     <div class="video-card__play"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg></div>
                 </div>
                 <div class="video-card video-wrapper" data-video-id="4V0ArJKXb-4">
-                    <img src="assets/capa-drvitor-miranda.png" alt="Depoimento Dr. Vitor Miranda" class="video-card__poster" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="assets/capa-drvitor-miranda.webp" type="image/webp">
+                        <img src="assets/capa-drvitor-miranda.png" alt="Depoimento Dr. Vitor Miranda" class="video-card__poster" loading="lazy" decoding="async">
+                    </picture>
                     <div class="video-card__play"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg></div>
                 </div>
             </div>
@@ -1595,7 +1624,7 @@
                     consentiuContato: true,
                     origem: 'lead-form-modal',
                     form_name: 'advogados_lp',
-                    pagina: '/advogados',
+                    pagina: '/scale-advogados',
                     criadoEm: getCreatedAt(),
                     ...getAttributionParams()
                 };
@@ -1690,9 +1719,11 @@
                         }
                         if (absPos < 4) card.onclick = () => isCenter ? openPrint(item.src) : handleMove(position);
                         const img = document.createElement('img');
-                        img.src = item.src;
                         img.alt = 'Print de depoimento';
                         img.loading = 'lazy';
+                        img.decoding = 'async';
+                        if (absPos < 4) img.src = item.src;
+                        else img.dataset.src = item.src;
                         card.appendChild(img);
                         container.appendChild(card);
                     });
