@@ -695,11 +695,11 @@
         .team-showcase::before, .team-showcase::after { content: ''; position: absolute; top: 0; bottom: 0; z-index: 3; width: min(18vw, 190px); pointer-events: none; }
         .team-showcase::before { left: 0; background: linear-gradient(90deg, #020203 0%, rgba(2, 2, 3, .94) 30%, rgba(2, 2, 3, 0) 100%); }
         .team-showcase::after { right: 0; background: linear-gradient(270deg, #020203 0%, rgba(2, 2, 3, .94) 30%, rgba(2, 2, 3, 0) 100%); }
-        .team-carousel-viewport { position: relative; overflow: hidden; padding: 30px 0; background: radial-gradient(ellipse at center, rgba(0, 119, 255, .095) 0%, rgba(0, 119, 255, .032) 34%, rgba(2, 2, 3, 0) 72%); box-shadow: inset 0 42px 86px rgba(0, 0, 0, .58), inset 0 -42px 86px rgba(0, 0, 0, .58); }
-        .team-carousel-track { display: flex; width: max-content; animation: teamMarquee 34s linear infinite; will-change: transform; }
+        .team-carousel-viewport { position: relative; overflow: hidden; padding: 30px 0; background: radial-gradient(ellipse at center, rgba(0, 119, 255, .075) 0%, rgba(0, 119, 255, .024) 34%, rgba(2, 2, 3, 0) 72%); box-shadow: inset 0 28px 52px rgba(0, 0, 0, .46), inset 0 -28px 52px rgba(0, 0, 0, .46); }
+        .team-carousel-track { display: flex; width: max-content; animation: teamMarquee 22s linear infinite; will-change: transform; transform: translate3d(0, 0, 0); backface-visibility: hidden; }
         .team-showcase:hover .team-carousel-track { animation-play-state: paused; }
         .team-carousel-group { display: flex; gap: var(--team-gap); padding-right: var(--team-gap); flex-shrink: 0; }
-        .team-carousel-card { width: clamp(230px, 21vw, 310px); flex: 0 0 auto; overflow: hidden; border: 1px solid rgba(255, 255, 255, .075); background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .015)); box-shadow: inset 0 0 34px rgba(0, 0, 0, .46), 0 18px 48px rgba(0, 0, 0, .28); transition: transform .28s ease, border-color .28s ease, filter .28s ease; }
+        .team-carousel-card { width: clamp(230px, 21vw, 310px); flex: 0 0 auto; overflow: hidden; border: 1px solid rgba(255, 255, 255, .075); background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .015)); box-shadow: inset 0 0 24px rgba(0, 0, 0, .38), 0 12px 30px rgba(0, 0, 0, .22); transition: transform .22s ease, border-color .22s ease, filter .22s ease; transform: translate3d(0, 0, 0); }
         .team-carousel-card:hover { transform: translateY(-5px); border-color: rgba(0, 186, 255, .34); filter: brightness(1.04); }
         .team-carousel-photo { aspect-ratio: 1 / 1; background: #050505; overflow: hidden; }
         .team-carousel-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center; filter: grayscale(.12) brightness(.86); transition: filter .3s ease, transform .3s ease; }
@@ -711,7 +711,7 @@
         .team-carousel-plus { padding: 38px 20px; }
         .team-carousel-plus strong { display: block; color: #fff; font-size: clamp(48px, 5vw, 74px); line-height: .9; font-weight: 950; letter-spacing: 0; }
         .team-carousel-plus span { display: block; margin-top: 12px; color: var(--color-text-secondary); font-size: 14px; font-weight: 850; line-height: 1.25; text-transform: uppercase; letter-spacing: .08em; }
-        @keyframes teamMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes teamMarquee { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
 
         /* DASHBOARD */
         .dashboard-mockup { border: 1px solid rgba(0, 119, 255, .22); background: linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(0, 119, 255, .035)); padding: 26px; box-shadow: 0 30px 80px rgba(0, 0, 0, .35); }
