@@ -35,6 +35,8 @@ const Footer = lazy(() =>
   import("@/components/legacy-advogados/sections/Footer").then((m) => ({ default: m.Footer }))
 );
 
+const deferredPlaceholder = <div className="section min-h-[70vh]" aria-hidden="true" />;
+
 function DeferredSection({ children }: { children: ReactNode }) {
   const [enabled, setEnabled] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -49,7 +51,7 @@ function DeferredSection({ children }: { children: ReactNode }) {
           observer.disconnect();
         }
       },
-      { rootMargin: "900px 0px" }
+      { rootMargin: "0px 0px 120px", threshold: 0.01 }
     );
     observer.observe(node);
     return () => observer.disconnect();
@@ -58,9 +60,9 @@ function DeferredSection({ children }: { children: ReactNode }) {
   return (
     <div ref={ref}>
       {enabled ? (
-        <Suspense fallback={<div className="section" aria-hidden="true" />}>{children}</Suspense>
+        <Suspense fallback={deferredPlaceholder}>{children}</Suspense>
       ) : (
-        <div className="section" aria-hidden="true" />
+        deferredPlaceholder
       )}
     </div>
   );
