@@ -7,13 +7,33 @@ import '../styles/advogados-legacy.css';
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <!-- Google Tag Manager -->
+    <!-- Google Tag Manager (lazy loaded para não impactar LCP) -->
     <script is:inline>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer','GTM-KS5L52P9');
+      (function () {
+        window.dataLayer = window.dataLayer || [];
+        var loaded = false;
+        function loadGTM() {
+          if (loaded) return;
+          loaded = true;
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = document.getElementsByTagName('script')[0];
+          var j = document.createElement('script');
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-KS5L52P9';
+          f.parentNode.insertBefore(j, f);
+        }
+        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        function onFirstInteraction() {
+          loadGTM();
+          events.forEach(function (e) { window.removeEventListener(e, onFirstInteraction, { passive: true }); });
+        }
+        events.forEach(function (e) { window.addEventListener(e, onFirstInteraction, { passive: true, once: true }); });
+        // Fallback: garante que carregue mesmo sem interação após o load + idle.
+        window.addEventListener('load', function () {
+          var ric = window.requestIdleCallback || function (cb) { return setTimeout(cb, 2500); };
+          ric(loadGTM, { timeout: 4000 });
+        });
+      })();
     </script>
     <!-- End Google Tag Manager -->
     <BaseHead
