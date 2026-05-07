@@ -691,14 +691,27 @@
         .comparison-card--blue .comparison-list li::before { content: '✓'; color: var(--color-accent); }
 
         /* TEAM */
-        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-        .team-member { background: rgba(255, 255, 255, .018); border: 1px solid rgba(255, 255, 255, .06); padding: 18px; text-align: left; transition: all var(--transition); }
-        .team-member:hover { transform: translateY(-5px); border-color: rgba(0, 119, 255, .3); }
-        .team-member__photo-wrap { aspect-ratio: 1 / 1.12; overflow: hidden; background: #050505; margin-bottom: 18px; }
-        .team-member__photo { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.08); }
-        .team-member__name { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px; }
-        .team-member__role { font-size: 13px; color: var(--color-accent); font-weight: 800; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; }
-        .team-member__desc { font-size: 14px; color: var(--color-text-muted); line-height: 1.55; }
+        .team-showcase { --team-gap: 22px; position: relative; width: 100vw; max-width: none; margin: 0 calc(50% - 50vw); padding: 22px 0 30px; overflow: hidden; }
+        .team-showcase::before, .team-showcase::after { content: ''; position: absolute; top: 0; bottom: 0; z-index: 3; width: min(18vw, 190px); pointer-events: none; }
+        .team-showcase::before { left: 0; background: linear-gradient(90deg, #020203 0%, rgba(2, 2, 3, .94) 30%, rgba(2, 2, 3, 0) 100%); }
+        .team-showcase::after { right: 0; background: linear-gradient(270deg, #020203 0%, rgba(2, 2, 3, .94) 30%, rgba(2, 2, 3, 0) 100%); }
+        .team-carousel-viewport { position: relative; overflow: hidden; padding: 30px 0; background: radial-gradient(ellipse at center, rgba(0, 119, 255, .095) 0%, rgba(0, 119, 255, .032) 34%, rgba(2, 2, 3, 0) 72%); box-shadow: inset 0 42px 86px rgba(0, 0, 0, .58), inset 0 -42px 86px rgba(0, 0, 0, .58); }
+        .team-carousel-track { display: flex; width: max-content; animation: teamMarquee 34s linear infinite; will-change: transform; }
+        .team-showcase:hover .team-carousel-track { animation-play-state: paused; }
+        .team-carousel-group { display: flex; gap: var(--team-gap); padding-right: var(--team-gap); flex-shrink: 0; }
+        .team-carousel-card { width: clamp(230px, 21vw, 310px); flex: 0 0 auto; overflow: hidden; border: 1px solid rgba(255, 255, 255, .075); background: linear-gradient(180deg, rgba(255, 255, 255, .045), rgba(255, 255, 255, .015)); box-shadow: inset 0 0 34px rgba(0, 0, 0, .46), 0 18px 48px rgba(0, 0, 0, .28); transition: transform .28s ease, border-color .28s ease, filter .28s ease; }
+        .team-carousel-card:hover { transform: translateY(-5px); border-color: rgba(0, 186, 255, .34); filter: brightness(1.04); }
+        .team-carousel-photo { aspect-ratio: 1 / 1; background: #050505; overflow: hidden; }
+        .team-carousel-photo img { width: 100%; height: 100%; object-fit: contain; object-position: center; filter: grayscale(.12) brightness(.86); transition: filter .3s ease, transform .3s ease; }
+        .team-carousel-card:hover img { filter: grayscale(0) brightness(1); transform: scale(1.03); }
+        .team-carousel-copy { min-height: 86px; padding: 14px 15px 16px; }
+        .team-carousel-name { color: #fff; font-size: 17px; line-height: 1.1; font-weight: 850; }
+        .team-carousel-role { margin-top: 7px; color: var(--color-accent); font-size: 10px; line-height: 1.35; font-weight: 850; text-transform: uppercase; letter-spacing: .13em; }
+        .team-carousel-card--plus { display: flex; min-height: 100%; align-items: center; justify-content: center; text-align: center; border-color: rgba(0, 186, 255, .24); background: linear-gradient(145deg, rgba(0, 186, 255, .13), rgba(255, 255, 255, .018)); }
+        .team-carousel-plus { padding: 38px 20px; }
+        .team-carousel-plus strong { display: block; color: #fff; font-size: clamp(48px, 5vw, 74px); line-height: .9; font-weight: 950; letter-spacing: 0; }
+        .team-carousel-plus span { display: block; margin-top: 12px; color: var(--color-text-secondary); font-size: 14px; font-weight: 850; line-height: 1.25; text-transform: uppercase; letter-spacing: .08em; }
+        @keyframes teamMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         /* DASHBOARD */
         .dashboard-mockup { border: 1px solid rgba(0, 119, 255, .22); background: linear-gradient(145deg, rgba(255, 255, 255, .035), rgba(0, 119, 255, .035)); padding: 26px; box-shadow: 0 30px 80px rgba(0, 0, 0, .35); }
@@ -795,8 +808,10 @@
         .popup-radio input { display: none; }
         .popup-radio__box { width: 18px; height: 18px; border: 1px solid rgba(255, 255, 255, .22); display: inline-block; flex-shrink: 0; }
         .popup-radio input:checked + .popup-radio__box { background: var(--color-accent); border-color: var(--color-accent); box-shadow: inset 0 0 0 4px #07111f; }
-        .popup-check { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; color: var(--color-text-muted); font-size: 13px; line-height: 1.45; cursor: pointer; }
-        .popup-check input { margin-top: 3px; accent-color: var(--color-accent); }
+        .popup-check { display: flex; align-items: flex-start; gap: 16px; margin-top: 24px; padding: 18px; border: 2px solid rgba(0, 186, 255, .55); background: rgba(0, 186, 255, .12); color: #fff; font-size: 20px; font-weight: 800; line-height: 1.35; cursor: pointer; box-shadow: 0 16px 40px rgba(0, 119, 255, .18); }
+        .popup-check input { width: 28px; height: 28px; margin-top: 0; flex-shrink: 0; accent-color: var(--color-accent); }
+        .popup-consent-error { display: none; margin-top: 12px; padding: 12px 14px; border: 1px solid rgba(255, 88, 88, .55); background: rgba(255, 68, 68, .12); color: #fff; font-size: 15px; font-weight: 800; line-height: 1.35; }
+        .popup-consent-error.is-visible { display: block; }
         .popup-summary { display: grid; gap: 10px; margin-bottom: 16px; }
         .popup-summary__item { display: flex; justify-content: space-between; gap: 16px; padding: 13px 0; border-bottom: 1px solid rgba(255, 255, 255, .08); }
         .popup-summary__label { color: var(--color-text-muted); font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
@@ -823,7 +838,7 @@
             .proof-card--large, .proof-card--wide { grid-column: span 12; }
             .proof-card--third { grid-column: span 6; }
             .dash-stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-carousel-card { width: 260px; }
         }
 
 
@@ -867,8 +882,12 @@
             .proof-card--third { grid-column: span 12; }
             .proof-card { min-height: auto; }
             .videos__grid { grid-template-columns: 1fr; max-width: 390px; gap: 24px; }
-            .team-grid { display: flex; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; }
-            .team-member { min-width: 78%; scroll-snap-align: start; }
+            .team-showcase { --team-gap: 14px; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); }
+            .team-showcase::before, .team-showcase::after { width: 72px; }
+            .team-carousel-card { width: 210px; }
+            .team-carousel-copy { min-height: 94px; padding: 12px; }
+            .team-carousel-name { font-size: 15px; }
+            .team-carousel-role { font-size: 9px; letter-spacing: .10em; }
             .dash-stats-grid { grid-template-columns: 1fr; }
             .dashboard-mockup__header { align-items: flex-start; flex-direction: column; }
             .signal-item { grid-template-columns: 34px 1fr; }
@@ -1204,14 +1223,32 @@
             <div class="section-header reveal">
                 <div class="section-kicker">Equipe por trás do projeto</div>
                 <h2 class="section-header__title">Seu escritório não cresce com improviso.<br><span class="text-accent-solid">Cresce quando existe time olhando para cada etapa.</span></h2>
-                <p class="section-header__text">Você não precisa cuidar de campanha, página, criativo, atendimento e métricas enquanto toca a rotina jurídica. A Scale reúne especialistas em estratégia, aquisição, conversão e otimização.</p>
+                <p class="section-header__text">Você não precisa cuidar de campanha, página, criativo, atendimento e métricas enquanto toca a rotina jurídica. A Scale reúne especialistas em estratégia, criação, relacionamento e projetos.</p>
             </div>
 
-            <div class="team-grid">
-                <div class="team-member reveal"><div class="team-member__photo-wrap"><img src="supervisores/image 60.webp" alt="Leonardo Carmo" class="team-member__photo" loading="lazy"></div><p class="team-member__name">Leonardo Carmo</p><p class="team-member__role">Estratégia & Posicionamento</p><p class="team-member__desc">Define mensagem, posicionamento e prioridades.</p></div>
-                <div class="team-member reveal"><div class="team-member__photo-wrap"><img src="supervisores/image 61.webp" alt="Matheus Malaquias" class="team-member__photo" loading="lazy"></div><p class="team-member__name">Matheus Malaquias</p><p class="team-member__role">Head de Criação</p><p class="team-member__desc">Gerencia o time responsável por landing pages e criativos.</p></div>
-                <div class="team-member reveal"><div class="team-member__photo-wrap"><img src="supervisores/image 62.webp" alt="Isabella Trannin" class="team-member__photo" loading="lazy"></div><p class="team-member__name">Isabella Trannin</p><p class="team-member__role">Atendimento & Conversão</p><p class="team-member__desc">Acompanha gargalos entre o contato e o fechamento.</p></div>
-                <div class="team-member reveal"><div class="team-member__photo-wrap"><img src="supervisores/image 63.webp" alt="Pedro Costa" class="team-member__photo" loading="lazy"></div><p class="team-member__name">Pedro Costa</p><p class="team-member__role">Dados & Otimização</p><p class="team-member__desc">Analisa dados para melhorar qualidade e custo.</p></div>
+            <div class="team-showcase reveal" aria-label="Supervisores e equipe Scale Company">
+                <div class="team-carousel-viewport">
+                    <div class="team-carousel-track">
+                        <div class="team-carousel-group">
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 60.png" alt="Leonardo Carmo" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Leonardo Carmo</p><p class="team-carousel-role">CMO</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 61.png" alt="Matheus Malaquias" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Matheus Malaquias</p><p class="team-carousel-role">Supervisor do time de criação</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 62.png" alt="Isabela Trannin" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Isabela Trannin</p><p class="team-carousel-role">Account Manager</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 63.png" alt="Pedro Henrique" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Pedro Henrique</p><p class="team-carousel-role">Supervisor de Projetos</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 64.png" alt="Hyandra Oliveira" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Hyandra Oliveira</p><p class="team-carousel-role">Account Manager</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image_65.png" alt="Pedro Henryque" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Pedro Henryque</p><p class="team-carousel-role">Supervisor de Projetos</p></div></article>
+                            <article class="team-carousel-card team-carousel-card--plus"><p class="team-carousel-plus"><strong>+30</strong><span>Profissionais</span></p></article>
+                        </div>
+                        <div class="team-carousel-group" aria-hidden="true">
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 60.png" alt="" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Leonardo Carmo</p><p class="team-carousel-role">CMO</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 61.png" alt="" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Matheus Malaquias</p><p class="team-carousel-role">Supervisor do time de criação</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 62.png" alt="" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Isabela Trannin</p><p class="team-carousel-role">Account Manager</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 63.png" alt="" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Pedro Henrique</p><p class="team-carousel-role">Supervisor de Projetos</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image 64.png" alt="" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Hyandra Oliveira</p><p class="team-carousel-role">Account Manager</p></div></article>
+                            <article class="team-carousel-card"><div class="team-carousel-photo"><img src="supervisores/image_65.png" alt="" loading="lazy"></div><div class="team-carousel-copy"><p class="team-carousel-name">Pedro Henryque</p><p class="team-carousel-role">Supervisor de Projetos</p></div></article>
+                            <article class="team-carousel-card team-carousel-card--plus"><p class="team-carousel-plus"><strong>+30</strong><span>Profissionais</span></p></article>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1329,10 +1366,10 @@
                 <div class="popup-step" data-step="4">
                     <label class="popup-label">Para entendermos o porte do escritório, qual é a faixa aproximada de faturamento mensal?</label>
                     <div class="popup-radio-group" id="lead-faturamento">
-                        <label class="popup-radio"><input type="radio" name="faturamento" value="Menos de R$ 30 mil"><span class="popup-radio__box"></span>Menos de R$ 30 mil</label>
-                        <label class="popup-radio"><input type="radio" name="faturamento" value="Entre R$ 30 mil e R$ 50 mil"><span class="popup-radio__box"></span>Entre R$ 30 mil e R$ 50 mil</label>
-                        <label class="popup-radio"><input type="radio" name="faturamento" value="Entre R$ 50 mil e R$ 100 mil"><span class="popup-radio__box"></span>Entre R$ 50 mil e R$ 100 mil</label>
-                        <label class="popup-radio"><input type="radio" name="faturamento" value="Mais de R$ 100 mil"><span class="popup-radio__box"></span>Mais de R$ 100 mil</label>
+                        <label class="popup-radio"><input type="radio" name="faturamento" value="menos_30k" data-label="Menos de R$ 30 mil"><span class="popup-radio__box"></span>Menos de R$ 30 mil</label>
+                        <label class="popup-radio"><input type="radio" name="faturamento" value="30_50k" data-label="Entre R$ 30 mil e R$ 50 mil"><span class="popup-radio__box"></span>Entre R$ 30 mil e R$ 50 mil</label>
+                        <label class="popup-radio"><input type="radio" name="faturamento" value="50_100k" data-label="Entre R$ 50 mil e R$ 100 mil"><span class="popup-radio__box"></span>Entre R$ 50 mil e R$ 100 mil</label>
+                        <label class="popup-radio"><input type="radio" name="faturamento" value="100k_plus" data-label="Mais de R$ 100 mil"><span class="popup-radio__box"></span>Mais de R$ 100 mil</label>
                     </div>
                     <div class="popup-actions popup-actions--split"><button class="popup-btn popup-btn--back" id="btn-back-4">Voltar</button><button class="popup-btn popup-btn--next" id="btn-next-4">Continuar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
                 </div>
@@ -1340,6 +1377,7 @@
                 <div class="popup-step" data-step="5">
                     <div class="popup-summary" id="popup-summary"></div>
                     <label class="popup-check"><input type="checkbox" id="lead-consent"><span>Eu concordo em receber contato da Scale Company sobre o diagnóstico e aceito a política de privacidade.</span></label>
+                    <p class="popup-consent-error" id="lead-consent-error" role="alert">Para enviar, marque o aceite de contato e política de privacidade.</p>
                     <div class="popup-actions popup-actions--split" style="margin-top: 24px;"><button class="popup-btn popup-btn--back" id="btn-back-5">Voltar</button><button class="popup-btn popup-btn--submit" id="btn-submit">Enviar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></button></div>
                 </div>
 
@@ -1472,12 +1510,53 @@
                 return String(str).replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag]));
             }
 
+            function digitsOnly(str) {
+                return String(str || '').replace(/\D/g, '');
+            }
+
+            function normalizeArrobaHandle(raw) {
+                const handle = String(raw || '').trim().replace(/^@+/, '');
+                return handle ? `@${handle}` : '';
+            }
+
+            function generateLeadId() {
+                if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+                    return window.crypto.randomUUID();
+                }
+                return `lead-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+            }
+
+            function getAttributionParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    utm_source: params.get('utm_source') || '',
+                    utm_medium: params.get('utm_medium') || '',
+                    utm_campaign: params.get('utm_campaign') || '',
+                    utm_content: params.get('utm_content') || '',
+                    utm_term: params.get('utm_term') || '',
+                    gclid: params.get('gclid') || '',
+                    fbclid: params.get('fbclid') || ''
+                };
+            }
+
+            function getCreatedAt() {
+                return new Date().toLocaleString('pt-BR', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    timeZone: 'America/Sao_Paulo'
+                }).replace(',', ' às');
+            }
+
             function buildSummary() {
                 const summary = document.getElementById('popup-summary');
                 const nome = document.getElementById('lead-nome').value || '—';
                 const whatsapp = document.getElementById('lead-whatsapp').value || '—';
                 const instagram = document.getElementById('lead-instagram').value || '—';
-                const faturamento = document.querySelector('input[name="faturamento"]:checked')?.value || '—';
+                const faturamentoRadio = document.querySelector('input[name="faturamento"]:checked');
+                const faturamento = faturamentoRadio?.getAttribute('data-label') || '—';
                 summary.innerHTML = `
                     <div class="popup-summary__item"><span class="popup-summary__label">Nome</span><span class="popup-summary__value">${escapeHTML(nome)}</span></div>
                     <div class="popup-summary__item"><span class="popup-summary__label">WhatsApp</span><span class="popup-summary__value">${escapeHTML(whatsapp)}</span></div>
@@ -1487,33 +1566,59 @@
 
             document.getElementById('btn-submit').addEventListener('click', async () => {
                 const consent = document.getElementById('lead-consent');
-                if (consent && !consent.checked) return;
+                const consentError = document.getElementById('lead-consent-error');
+                if (consent && !consent.checked) {
+                    consentError?.classList.add('is-visible');
+                    consent.parentElement.style.animation = 'none';
+                    consent.parentElement.offsetHeight;
+                    consent.parentElement.style.animation = 'shake 0.4s ease';
+                    setTimeout(() => consent.parentElement.style.animation = '', 400);
+                    consent.focus();
+                    return;
+                }
+                consentError?.classList.remove('is-visible');
 
                 const submitBtn = document.getElementById('btn-submit');
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px;">Enviando...</span>';
 
-                const data = {
-                    nome: document.getElementById('lead-nome').value,
-                    whatsapp: document.getElementById('lead-whatsapp').value,
-                    instagram: document.getElementById('lead-instagram').value,
-                    faturamento: document.querySelector('input[name="faturamento"]:checked')?.value || ''
+                const telefone = document.getElementById('lead-whatsapp').value;
+                const faturamentoRadio = document.querySelector('input[name="faturamento"]:checked');
+                const payload = {
+                    lead_id: generateLeadId(),
+                    nome: document.getElementById('lead-nome').value.trim(),
+                    perfilArroba: normalizeArrobaHandle(document.getElementById('lead-instagram').value),
+                    telefone,
+                    telefoneDigits: digitsOnly(telefone),
+                    faturamento: faturamentoRadio?.value || '',
+                    faturamentoLabel: faturamentoRadio?.getAttribute('data-label') || '',
+                    consentiuContato: true,
+                    origem: 'lead-form-modal',
+                    form_name: 'advogados_lp',
+                    pagina: '/advogados',
+                    criadoEm: getCreatedAt(),
+                    ...getAttributionParams()
                 };
 
                 try {
                     await fetch('https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data),
-                        mode: 'no-cors'
+                        body: JSON.stringify(payload)
                     });
                 } catch (err) {
                     console.error('Webhook error:', err);
                 }
 
                 window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({ event: 'lead_submit_success' });
+                window.dataLayer.push({ event: 'lead_submit_success', ...payload });
                 goToStep(6);
+            });
+
+            document.getElementById('lead-consent')?.addEventListener('change', (event) => {
+                if (event.target.checked) {
+                    document.getElementById('lead-consent-error')?.classList.remove('is-visible');
+                }
             });
 
             const revealEls = document.querySelectorAll('.reveal');
