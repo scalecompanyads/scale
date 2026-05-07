@@ -14,7 +14,7 @@ const serviceFeatures: FeatureSlide[] = [
     description:
       "Campanhas construídas com base no comportamento de busca do cliente em dor, não do advogado em euforia técnica.",
     image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=640&q=65",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=480&q=55&fm=webp",
   },
   {
     id: 2,

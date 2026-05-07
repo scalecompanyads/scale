@@ -142,7 +142,6 @@ export function Features({
                   ? "object-contain object-center"
                   : "object-cover"
               )}
-              priority={currentFeature === 0}
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
           </div>
