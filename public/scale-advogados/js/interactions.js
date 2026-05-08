@@ -44,7 +44,7 @@
       3: {
         count: 'Etapa 3 de 5',
         title: 'Presença digital',
-        sub: 'Opcional. Ajuda a avaliar o posicionamento atual do escritório.'
+        sub: 'Ajuda a avaliar o posicionamento atual do escritório.'
       },
       4: {
         count: 'Etapa 4 de 5',
@@ -194,6 +194,7 @@
       nextBtn.addEventListener('click', () => {
         if (i === 1 && !qs('lead-nome')?.value.trim()) return shakeInput(qs('lead-nome'));
         if (i === 2 && !qs('lead-whatsapp')?.value.trim()) return shakeInput(qs('lead-whatsapp'));
+        if (i === 3 && !qs('lead-instagram')?.value.trim()) return shakeInput(qs('lead-instagram'));
         if (i === 4 && !document.querySelector('input[name="faturamento"]:checked')) return;
         goToStep(i + 1);
       });
