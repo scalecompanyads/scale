@@ -24,8 +24,44 @@
     const overlay = qs('popup-overlay');
     const closeBtn = qs('popup-close');
     const progressBar = qs('popup-progress-bar');
+    const stepCount = qs('popup-step-count');
+    const headerTitle = qs('popup-header-title');
+    const headerSub = qs('popup-header-sub');
     const totalSteps = 5;
     if (!overlay || !progressBar) return;
+
+    const stepCopy = {
+      1: {
+        count: 'Etapa 1 de 5',
+        title: 'Identificação',
+        sub: 'Informe seu nome para iniciarmos o diagnóstico.'
+      },
+      2: {
+        count: 'Etapa 2 de 5',
+        title: 'Contato',
+        sub: 'Utilizaremos este número para o retorno da equipe.'
+      },
+      3: {
+        count: 'Etapa 3 de 5',
+        title: 'Presença digital',
+        sub: 'Opcional. Ajuda a avaliar o posicionamento atual do escritório.'
+      },
+      4: {
+        count: 'Etapa 4 de 5',
+        title: 'Perfil comercial',
+        sub: 'A faixa mensal ajuda a direcionar a análise.'
+      },
+      5: {
+        count: 'Revisão final',
+        title: 'Confirmação',
+        sub: 'Revise os dados antes de enviar a solicitação.'
+      },
+      6: {
+        count: 'Solicitação enviada',
+        title: 'Solicitação recebida.',
+        sub: 'Nossa equipe avaliará as informações e retornará pelo WhatsApp.'
+      }
+    };
 
     function closePopup() {
       overlay.classList.remove('active');
@@ -48,17 +84,22 @@
     }
 
     function goToStep(step) {
+      overlay.classList.toggle('popup-overlay--success', step === 6);
       document.querySelectorAll('.popup-step').forEach((item) => item.classList.remove('active'));
       const target = document.querySelector(`.popup-step[data-step="${step}"]`);
       if (target) target.classList.add('active');
       progressBar.style.width = (step <= totalSteps ? (step / totalSteps) * 100 : 100) + '%';
+      const copy = stepCopy[step];
+      if (copy) {
+        if (stepCount) stepCount.textContent = copy.count;
+        if (headerTitle) headerTitle.textContent = copy.title;
+        if (headerSub) headerSub.textContent = copy.sub;
+      }
 
       if (step === 2) {
-        const nomeFull = qs('lead-nome')?.value.trim() || '';
-        const nome = nomeFull.split(' ')[0];
         const label = target?.querySelector('.popup-label');
-        if (label && nome) {
-          label.textContent = `Prazer, ${nome}. Qual WhatsApp podemos usar para entrar em contato sobre o diagnostico?`;
+        if (label) {
+          label.textContent = 'WhatsApp para contato';
         }
       }
 
@@ -71,6 +112,12 @@
     }
 
     function openPopup() {
+      const submitBtn = qs('btn-submit');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Solicitar diagnóstico <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+      }
+      qs('lead-consent-error')?.classList.remove('is-visible');
       overlay.classList.add('active');
       document.body.style.overflow = 'hidden';
       goToStep(1);
@@ -199,7 +246,7 @@
       const submitBtn = qs('btn-submit');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px;">Enviando...</span>';
+        submitBtn.innerHTML = '<span style="display:inline-flex;align-items:center;gap:8px;">Enviando solicitação...</span>';
       }
 
       const telefone = qs('lead-whatsapp')?.value || '';
@@ -240,6 +287,7 @@
     });
 
     closeBtn?.addEventListener('click', closePopup);
+    qs('popup-success-close')?.addEventListener('click', closePopup);
     overlay.addEventListener('click', (event) => {
       if (event.target === overlay) closePopup();
     });
