@@ -194,7 +194,10 @@
       nextBtn.addEventListener('click', () => {
         if (i === 1 && !qs('lead-nome')?.value.trim()) return shakeInput(qs('lead-nome'));
         if (i === 2 && !qs('lead-whatsapp')?.value.trim()) return shakeInput(qs('lead-whatsapp'));
-        if (i === 3 && !qs('lead-instagram')?.value.trim()) return shakeInput(qs('lead-instagram'));
+        if (i === 3 && !qs('lead-instagram')?.value.trim()) {
+          qs('lead-instagram-error')?.classList.add('is-visible');
+          return shakeInput(qs('lead-instagram'));
+        }
         if (i === 4 && !document.querySelector('input[name="faturamento"]:checked')) return;
         goToStep(i + 1);
       });
@@ -222,6 +225,10 @@
       else if (val.length > 2) val = `(${val.slice(0, 2)}) ${val.slice(2)}`;
       else if (val.length > 0) val = `(${val}`;
       event.target.value = val;
+    });
+
+    qs('lead-instagram')?.addEventListener('input', (event) => {
+      if (event.target.value.trim()) qs('lead-instagram-error')?.classList.remove('is-visible');
     });
 
     document.querySelectorAll('input[name="faturamento"]').forEach((radio) => {

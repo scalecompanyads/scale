@@ -818,6 +818,8 @@
         .popup-input:focus { border-color: rgba(255, 255, 255, .34); background: rgba(255, 255, 255, .055); box-shadow: 0 0 0 3px rgba(0, 119, 255, .10); }
         .popup-input::placeholder { color: rgba(255, 255, 255, .32); }
         .popup-hint { margin-top: 10px; font-size: 13px; color: var(--color-text-muted); }
+        .popup-field-error { display: none; margin-top: 10px; color: #ffb6b6; font-size: 13px; line-height: 1.45; font-weight: 750; }
+        .popup-field-error.is-visible { display: block; }
         .popup-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 28px; }
         .popup-actions--split { justify-content: space-between; }
         .popup-btn { min-height: 52px; padding: 0 22px; font-weight: 850; border: 1px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .035); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: all var(--transition); }
@@ -1401,6 +1403,7 @@
                 <div class="popup-step" data-step="3">
                     <label class="popup-label" for="lead-instagram">Instagram do escritório</label>
                     <input class="popup-input" type="text" id="lead-instagram" placeholder="@seuescritorio" autocomplete="off" required>
+                    <p class="popup-field-error" id="lead-instagram-error" role="alert">Informe o Instagram do escritório para avançar.</p>
                     <div class="popup-actions popup-actions--split"><button class="popup-btn popup-btn--back" id="btn-back-3">Voltar</button><button class="popup-btn popup-btn--next" id="btn-next-3">Continuar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button></div>
                 </div>
 
