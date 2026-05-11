@@ -20,6 +20,29 @@ export const mainNav: NavItem[] = [
     href: '/#depoimentos',
   },
   {
+    label: 'Jurídico',
+    href: '/guia-definitivo-marketing-juridico',
+    hasDropdown: true,
+    children: [
+      {
+        label: 'Guia de Marketing Jurídico',
+        href: '/guia-definitivo-marketing-juridico',
+      },
+      {
+        label: 'Calculadora de Anúncios',
+        href: '/calculadora-investimento-anuncios',
+      },
+      {
+        label: 'Softwares Jurídicos',
+        href: '/comparativo-softwares-juridicos',
+      },
+      {
+        label: 'Mentoria Jurídica',
+        href: '/mentoria-marketing-juridico',
+      },
+    ],
+  },
+  {
     label: 'Blog',
     href: '/blog',
   },

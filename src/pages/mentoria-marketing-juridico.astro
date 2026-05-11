@@ -1,0 +1,240 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import { getCanonicalUrl, organizationId, websiteId } from '@data/seo';
+import { ArrowRight, BarChart3, CheckCircle2, ClipboardCheck, Gavel, LineChart, Map, Users } from 'lucide-react';
+
+const canonical = getCanonicalUrl('/mentoria-marketing-juridico');
+
+const modules = [
+  {
+    title: 'Diagnóstico do escritório',
+    desc: 'Mapeamento de posicionamento, áreas prioritárias, funil atual, canais, atendimento e indicadores.',
+  },
+  {
+    title: 'Oferta e posicionamento',
+    desc: 'Clareza sobre público, tese de comunicação, diferenciais, prova e limites éticos da mensagem.',
+  },
+  {
+    title: 'Arquitetura de aquisição',
+    desc: 'Plano de páginas, SEO local, conteúdo, Google Ads, Meta Ads e pontos de conversão.',
+  },
+  {
+    title: 'Rotina comercial',
+    desc: 'Triagem, CRM, cadência de contato, qualificação de leads, scripts e acompanhamento de oportunidades.',
+  },
+  {
+    title: 'Métricas e escala',
+    desc: 'Painel de controle com origem dos leads, custo por oportunidade, reuniões, propostas e contratos.',
+  },
+];
+
+const who = [
+  'Sócios de escritórios que querem captar melhor sem depender apenas de indicação',
+  'Advogados que já investem em marketing, mas não conseguem medir retorno com clareza',
+  'Escritórios com demanda em mais de uma cidade ou intenção de crescer nacionalmente',
+  'Operações que precisam organizar atendimento, CRM e rotina comercial antes de escalar mídia',
+];
+
+const faqItems = [
+  {
+    question: 'A mentoria executa campanhas e páginas?',
+    answer:
+      'A mentoria organiza diagnóstico, estratégia, prioridades e rotina. Quando faz sentido, a Scale também pode assumir a execução de site, landing pages, SEO e tráfego pago em um projeto separado.',
+  },
+  {
+    question: 'Serve para escritórios pequenos?',
+    answer:
+      'Sim, desde que exista intenção real de profissionalizar captação e atendimento. Para operações menores, o foco é priorizar o que gera base e evitar gastos dispersos.',
+  },
+  {
+    question: 'Quanto tempo leva para ver resultado?',
+    answer:
+      'A organização do funil pode gerar melhorias rápidas no atendimento e leitura dos leads. SEO costuma exigir mais tempo. Tráfego pago depende da oferta, verba, página e velocidade comercial.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${canonical}#service`,
+  name: 'Mentoria de Marketing Jurídico',
+  description:
+    'Mentoria para escritórios de advocacia estruturarem posicionamento, aquisição, SEO, tráfego pago e rotina comercial.',
+  url: canonical,
+  serviceType: 'Mentoria de marketing jurídico',
+  areaServed: {
+    '@type': 'Country',
+    name: 'Brasil',
+  },
+  isPartOf: {
+    '@id': websiteId,
+  },
+  provider: {
+    '@id': organizationId,
+  },
+  offers: {
+    '@type': 'Offer',
+    url: canonical,
+    priceCurrency: 'BRL',
+    availability: 'https://schema.org/InStock',
+  },
+};
+---
+
+<BaseLayout
+  title="Mentoria de Marketing Jurídico | Scale"
+  description="Mentoria de marketing jurídico para escritórios que querem estruturar captação, SEO, tráfego pago, CRM e rotina comercial com método."
+  canonical={canonical}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="relative -mt-16 overflow-hidden bg-[#010f1c] pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="absolute inset-0 home-bg-grid opacity-70" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
+        <div>
+          <span class="home-label-caps mb-5">Produto nacional</span>
+          <h1 class="font-heading text-[clamp(2.7rem,6vw,5.4rem)] font-extrabold leading-[0.98] text-white">
+            Mentoria de marketing jurídico para escalar com método.
+          </h1>
+          <p class="mt-7 max-w-3xl text-lg leading-relaxed text-white/62 md:text-xl">
+            Um acompanhamento estratégico para escritórios que precisam organizar posicionamento, canais, páginas, campanhas e rotina comercial antes de investir mais em crescimento.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <Button href="/contato" variant="ring" size="lg">
+              Solicitar diagnóstico
+              <ArrowRight size={17} strokeWidth={2.4} />
+            </Button>
+            <a
+              href="/guia-definitivo-marketing-juridico"
+              class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/72 transition hover:border-[#00BAFF]/35 hover:text-white"
+            >
+              Ler guia completo
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-7">
+          <Gavel className="mb-6 h-10 w-10 text-[#00BAFF]" strokeWidth={1.6} />
+          <h2 class="font-heading text-3xl font-bold text-white">Para escritórios que querem previsibilidade.</h2>
+          <div class="mt-7 space-y-3">
+            {who.map((item) => (
+              <div class="flex gap-3 rounded-[8px] border border-white/[0.08] bg-[#010f1c]/45 p-4">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" strokeWidth={2} />
+                <p class="text-sm leading-relaxed text-white/62">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.86fr_1.14fr]">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Estrutura</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
+            O que a mentoria organiza no escritório.
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-ink-light">
+            O objetivo é construir uma operação que saiba atrair, converter, medir e melhorar. Sem depender de ações soltas ou de campanhas sem leitura comercial.
+          </p>
+        </div>
+        <div class="space-y-4">
+          {modules.map((module, index) => (
+            <div class="grid grid-cols-[auto_1fr] gap-4 rounded-[8px] border border-edge bg-white p-5">
+              <span class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 font-heading text-sm font-bold text-[#1630DF]">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div>
+                <h3 class="font-heading text-xl font-bold text-ink">{module.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-light">{module.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="mx-auto mb-14 max-w-3xl text-center">
+        <span class="section-label">Resultado esperado</span>
+        <h2 class="section-title">Mais clareza antes de colocar mais dinheiro em mídia.</h2>
+        <p class="section-subtitle">
+          A mentoria ajuda o escritório a enxergar onde está perdendo oportunidade e qual canal deve receber prioridade.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-4">
+        {[
+          { icon: Map, title: 'Plano de canais', desc: 'SEO, anúncios, conteúdo e páginas com papéis definidos.' },
+          { icon: Users, title: 'Funil comercial', desc: 'Triagem e acompanhamento dos leads recebidos.' },
+          { icon: BarChart3, title: 'Indicadores', desc: 'Métricas para sair da sensação e decidir com dados.' },
+          { icon: ClipboardCheck, title: 'Prioridades', desc: 'Ordem de execução para reduzir desperdício.' },
+        ].map((item) => {
+          const Icon = item.icon;
+          return (
+            <div class="rounded-[8px] border border-white/[0.08] bg-white/[0.035] p-6">
+              <Icon className="mb-5 h-8 w-8 text-[#00BAFF]" strokeWidth={1.7} />
+              <h3 class="font-heading text-xl font-bold text-white">{item.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-white/52">{item.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <a href="/calculadora-investimento-anuncios" class="group rounded-[10px] border border-edge bg-white p-8 transition hover:-translate-y-1 hover:border-brand-primary hover:shadow-xl hover:shadow-blue-950/5">
+          <LineChart className="mb-6 h-9 w-9 text-[#1630DF]" strokeWidth={1.7} />
+          <h2 class="font-heading text-3xl font-bold text-ink">Calcule o investimento antes de escalar.</h2>
+          <p class="mt-4 leading-relaxed text-ink-light">
+            Use a calculadora para estimar mídia, leads, vendas, CAC e investimento necessário para uma meta.
+          </p>
+          <span class="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#1630DF]">
+            Abrir calculadora
+            <ArrowRight size={15} strokeWidth={2.4} />
+          </span>
+        </a>
+        <a href="/comparativo-softwares-juridicos" class="group rounded-[10px] border border-edge bg-white p-8 transition hover:-translate-y-1 hover:border-brand-primary hover:shadow-xl hover:shadow-blue-950/5">
+          <ClipboardCheck className="mb-6 h-9 w-9 text-[#1630DF]" strokeWidth={1.7} />
+          <h2 class="font-heading text-3xl font-bold text-ink">Escolha ferramentas pelo funil.</h2>
+          <p class="mt-4 leading-relaxed text-ink-light">
+            Veja critérios para comparar softwares jurídicos pensando em operação, CRM, relatórios e integração com marketing.
+          </p>
+          <span class="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#1630DF]">
+            Ver comparativo
+            <ArrowRight size={15} strokeWidth={2.4} />
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] text-center">
+    <div class="container-narrow">
+      <h2 class="heading-section-dark">Vamos revisar sua operação jurídica?</h2>
+      <p class="mt-5 text-lg leading-relaxed text-white/55">
+        O diagnóstico mostra quais pontos do seu marketing, site, atendimento e funil comercial precisam de prioridade.
+      </p>
+      <div class="mt-9">
+        <Button href="/contato" variant="ring" size="lg">
+          Solicitar diagnóstico
+          <ArrowRight size={17} strokeWidth={2.4} />
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="Dúvidas sobre a mentoria" />
+</BaseLayout>
+

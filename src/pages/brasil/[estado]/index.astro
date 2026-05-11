@@ -1,0 +1,216 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import { brazilMarkets, brazilSeoServices, type BrazilMarket } from '@data/brazilSeo';
+import { brand, getCanonicalUrl, organizationId, websiteId } from '@data/seo';
+import { ArrowRight, Building2, CheckCircle2, MapPin, Search } from 'lucide-react';
+
+export function getStaticPaths() {
+  return brazilMarkets.map((market) => ({
+    params: { estado: market.slug },
+    props: { market },
+  }));
+}
+
+interface Props {
+  market: BrazilMarket;
+}
+
+const { market } = Astro.props;
+const canonical = getCanonicalUrl(`/brasil/${market.slug}`);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${canonical}#webpage`,
+  url: canonical,
+  name: `Marketing digital em ${market.name}`,
+  description: `Serviços de marketing digital da Scale para empresas em ${market.name}.`,
+  isPartOf: {
+    '@id': websiteId,
+  },
+  about: {
+    '@type': 'State',
+    name: market.name,
+    address: {
+      '@type': 'PostalAddress',
+      addressRegion: market.abbr,
+      addressCountry: 'BR',
+    },
+  },
+  provider: {
+    '@id': organizationId,
+  },
+  inLanguage: 'pt-BR',
+};
+
+const outcomes = [
+  `Estratégia de marketing digital ajustada ao mercado de ${market.name}`,
+  `Páginas, campanhas e conteúdos pensados para empresas em ${market.capital} e cidades-polo`,
+  'Atendimento remoto com reuniões, relatórios e acompanhamento comercial',
+  'Integração entre tráfego pago, SEO, site, landing pages e presença de marca',
+];
+---
+
+<BaseLayout
+  title={`Agência de Marketing Digital em ${market.name} | Scale`}
+  description={`Marketing digital em ${market.name}: tráfego pago, SEO, criação de sites, landing pages e redes sociais para empresas que querem crescer com previsibilidade.`}
+  canonical={canonical}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="relative -mt-16 overflow-hidden bg-[#010f1c] pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="absolute inset-0 home-bg-grid opacity-70" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div>
+          <span class="home-label-caps mb-5">{market.region} / {market.abbr}</span>
+          <h1 class="font-heading text-[clamp(2.6rem,5.8vw,5.2rem)] font-extrabold leading-[1] text-white">
+            Agência de marketing digital em {market.name}.
+          </h1>
+          <p class="mt-7 max-w-3xl text-lg leading-relaxed text-white/62 md:text-xl">
+            A Scale atende empresas em {market.name} com estratégia digital completa: tráfego pago, SEO, criação de sites, landing pages e redes sociais. O trabalho é remoto, consultivo e orientado a geração de oportunidades reais.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-4">
+            <Button href="/contato" variant="ring" size="lg">
+              Solicitar diagnóstico
+              <ArrowRight size={17} strokeWidth={2.4} />
+            </Button>
+            <a
+              href="#servicos"
+              class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/72 transition hover:border-[#00BAFF]/35 hover:text-white"
+            >
+              Ver serviços em {market.abbr}
+              <Search size={16} strokeWidth={2} />
+            </a>
+          </div>
+        </div>
+
+        <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-7">
+          <div class="mb-7 flex items-start justify-between gap-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#00BAFF]">Mapa de atuação</p>
+              <h2 class="mt-2 font-heading text-3xl font-bold text-white">{market.name}</h2>
+            </div>
+            <span class="rounded-full border border-white/10 px-3 py-1 text-sm font-bold text-white/70">{market.abbr}</span>
+          </div>
+          <div class="space-y-4">
+            <div class="rounded-[8px] border border-white/[0.08] bg-[#010f1c]/45 p-4">
+              <p class="text-xs font-bold uppercase tracking-[0.18em] text-white/35">Capital</p>
+              <p class="mt-1 font-semibold text-white">{market.capital}</p>
+            </div>
+            <div class="rounded-[8px] border border-white/[0.08] bg-[#010f1c]/45 p-4">
+              <p class="text-xs font-bold uppercase tracking-[0.18em] text-white/35">Cidades-polo</p>
+              <p class="mt-1 leading-relaxed text-white/68">{market.cities.join(', ')}</p>
+            </div>
+            <div class="rounded-[8px] border border-white/[0.08] bg-[#010f1c]/45 p-4">
+              <p class="text-xs font-bold uppercase tracking-[0.18em] text-white/35">Mercado</p>
+              <p class="mt-1 leading-relaxed text-white/68">{market.economy}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.88fr_1.12fr]">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Como atuamos</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
+            Marketing para empresas em {market.name}, sem depender de presença física.
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-ink-light">
+            A operação da Scale é estruturada para atender empresas em diferentes estados com diagnóstico online, planejamento, execução, relatórios e reuniões de acompanhamento. Para {market.name}, o foco é conectar canais digitais à realidade de {market.audience}.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {outcomes.map((item) => (
+            <div class="rounded-[8px] border border-edge bg-white p-5">
+              <CheckCircle2 className="mb-4 h-6 w-6 text-emerald-500" strokeWidth={2} />
+              <p class="text-sm font-medium leading-relaxed text-ink-light">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos" class="section bg-surface-subtle">
+    <div class="container">
+      <div class="mx-auto mb-14 max-w-3xl text-center">
+        <span class="section-label">Serviços em {market.abbr}</span>
+        <h2 class="section-title">Frentes de marketing digital para {market.name}.</h2>
+        <p class="section-subtitle">
+          Escolha o serviço mais próximo do seu objetivo atual ou solicite um diagnóstico para definir prioridades.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        {brazilSeoServices.map((service) => (
+          <a
+            href={`/brasil/${market.slug}/${service.slug}`}
+            class="group rounded-[8px] border border-white/[0.08] bg-white/[0.035] p-7 transition hover:-translate-y-1 hover:border-[#00BAFF]/40"
+          >
+            <div class="mb-5 flex items-start justify-between gap-4">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#00BAFF]">{service.volume}</span>
+                <h3 class="mt-2 font-heading text-2xl font-bold text-white">{service.name} em {market.name}</h3>
+              </div>
+              <span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/55 transition group-hover:border-[#00BAFF]/45 group-hover:text-[#00BAFF]">
+                <ArrowRight size={16} strokeWidth={2.2} />
+              </span>
+            </div>
+            <p class="text-sm leading-relaxed text-white/55">{service.shortDesc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class="rounded-[8px] border border-edge bg-white p-7">
+          <MapPin className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.7} />
+          <h2 class="font-heading text-2xl font-bold text-ink">Cidades atendidas</h2>
+          <p class="mt-4 leading-relaxed text-ink-light">
+            Atendemos empresas em {market.cities.join(', ')} e demais cidades de {market.name}, com rotina remota e acompanhamento claro.
+          </p>
+        </div>
+        <div class="rounded-[8px] border border-edge bg-white p-7">
+          <Building2 className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.7} />
+          <h2 class="font-heading text-2xl font-bold text-ink">Perfil de negócio</h2>
+          <p class="mt-4 leading-relaxed text-ink-light">
+            O foco são {market.audience}, sempre conectando marketing à geração de demanda e ao funil comercial.
+          </p>
+        </div>
+        <div class="rounded-[8px] border border-edge bg-white p-7">
+          <Search className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.7} />
+          <h2 class="font-heading text-2xl font-bold text-ink">Busca orgânica</h2>
+          <p class="mt-4 leading-relaxed text-ink-light">
+            Esta página faz parte da arquitetura nacional de SEO da {brand.name}, conectando estados, serviços e páginas comerciais.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] text-center">
+    <div class="container-narrow">
+      <span class="home-label-caps mb-4">Próximo passo</span>
+      <h2 class="heading-section-dark">Quer crescer em {market.name} com uma estratégia mais clara?</h2>
+      <p class="mt-5 text-lg leading-relaxed text-white/55">
+        Solicite um diagnóstico gratuito para entender quais canais podem gerar mais impacto no seu momento atual.
+      </p>
+      <div class="mt-9">
+        <Button href="/contato" variant="ring" size="lg">
+          Falar com especialista
+          <ArrowRight size={17} strokeWidth={2.4} />
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
