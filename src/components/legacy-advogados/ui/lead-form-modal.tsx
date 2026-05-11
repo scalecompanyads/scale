@@ -9,6 +9,8 @@ import { digitsOnly, maskPhoneBR } from "@/components/legacy-advogados/lib/phone
 import { cn } from "@/components/legacy-advogados/lib/utils";
 
 const MAKE_WEBHOOK_URL = "https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve";
+const EXCEL_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwdcXNSA-sUdCtT4JXky5JMTDihkGb1zNL41DLlgFTpOU1aMWs2xw0HmxpWiMIKYIDx/exec";
+
 const LEAD_EVENT_NAME = "lead_submit_success";
 
 const FATURAMENTO_OPTIONS = [
@@ -200,9 +202,23 @@ export function LeadFormModal() {
       }
     } catch (err) {
       console.error("Erro ao enviar lead para webhook:", err);
-    } finally {
-      setSubmitting(false);
     }
+    
+    // Disparo secundário para planilha Excel (não afeta o fluxo principal)
+    if (EXCEL_WEBHOOK_URL) {
+      try {
+        await fetch(EXCEL_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload),
+          mode: "no-cors"
+        });
+      } catch (err) {
+        console.error("Erro ao enviar lead para Excel webhook:", err);
+      }
+    }
+
+    setSubmitting(false);
   };
 
   if (!mounted || !isOpen) return null;

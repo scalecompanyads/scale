@@ -264,6 +264,8 @@ document.addEventListener("DOMContentLoaded", () => {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({ event: 'lead_submit_success', lead_data: { faturamento: payload.faturamento.value, origem: payload.origem } });
 
+    const EXCEL_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwdcXNSA-sUdCtT4JXky5JMTDihkGb1zNL41DLlgFTpOU1aMWs2xw0HmxpWiMIKYIDx/exec";
+
     try {
       await fetch('https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve', {
         method: 'POST',
@@ -273,6 +275,19 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     } catch (err) {
       console.error('Webhook error:', err);
+    }
+
+    if (EXCEL_WEBHOOK_URL) {
+      try {
+        await fetch(EXCEL_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          mode: 'no-cors'
+        });
+      } catch (err) {
+        console.error('Excel Webhook error:', err);
+      }
     }
 
     goToStep(6);

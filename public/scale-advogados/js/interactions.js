@@ -275,6 +275,8 @@
         ...getAttributionParams()
       };
 
+      const EXCEL_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwdcXNSA-sUdCtT4JXky5JMTDihkGb1zNL41DLlgFTpOU1aMWs2xw0HmxpWiMIKYIDx/exec";
+
       try {
         await fetch('https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve', {
           method: 'POST',
@@ -283,6 +285,18 @@
         });
       } catch (err) {
         console.error('Webhook error:', err);
+      }
+
+      if (EXCEL_WEBHOOK_URL) {
+        try {
+          await fetch(EXCEL_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch (err) {
+          console.error('Excel Webhook error:', err);
+        }
       }
 
       window.dataLayer = window.dataLayer || [];

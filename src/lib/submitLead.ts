@@ -47,10 +47,19 @@ function getWebhookUrl(): string | undefined {
   return t.length > 0 ? t : undefined;
 }
 
+function getExcelWebhookUrl(): string | undefined {
+  const raw = import.meta.env.PUBLIC_EXCEL_WEBHOOK_URL as string | undefined;
+  if (typeof raw !== 'string') return undefined;
+  const t = raw.trim();
+  return t.length > 0 ? t : undefined;
+}
+
 export async function submitLead(
   data: LeadFormData
 ): Promise<{ ok: boolean; skippedWebhook?: boolean; error?: string }> {
   const url = getWebhookUrl();
+  const excelUrl = getExcelWebhookUrl();
+  
   const digits = data.phoneDigits.replace(/\D/g, '');
   const masked = formatPhoneBR(digits);
   const number = phoneDigitsAsNumber(data.phoneDigits);
@@ -70,6 +79,15 @@ export async function submitLead(
     sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
     submittedAt: new Date().toISOString(),
   };
+
+  if (excelUrl) {
+    // Disparo secundário sem aguardar/bloquear, para preencher a planilha
+    fetch(excelUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    }).catch((err) => console.error('[lead] Erro ao enviar ao Excel Webhook:', err));
+  }
 
   if (!url) {
     console.warn(
