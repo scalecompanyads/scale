@@ -291,8 +291,9 @@
         try {
           await fetch(EXCEL_WEBHOOK_URL, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify(payload),
+            mode: 'no-cors'
           });
         } catch (err) {
           console.error('Excel Webhook error:', err);
