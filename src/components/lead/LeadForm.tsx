@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { formatPhoneBR } from '../../lib/phoneFormat';
 import { submitLead } from '../../lib/submitLead';
+import { getLeadAttribution, type LeadAttribution } from '../../lib/leadAttribution';
 
 const FATURAMENTO = [
   { value: 'prefiro_nao_informar', label: 'Prefiro não informar' },
@@ -28,6 +29,9 @@ export default function LeadForm({ variant, onSuccess }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [skippedWebhook, setSkippedWebhook] = useState(false);
+  const [attribution, setAttribution] = useState<LeadAttribution>(() =>
+    getLeadAttribution()
+  );
 
   const isModal = variant === 'modal';
 
@@ -38,6 +42,10 @@ export default function LeadForm({ variant, onSuccess }: Props) {
   const labelClass = isModal
     ? 'block text-sm font-medium text-slate-800 mb-2'
     : 'block text-sm font-medium text-ink mb-2';
+
+  useEffect(() => {
+    setAttribution(getLeadAttribution());
+  }, []);
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -101,6 +109,20 @@ export default function LeadForm({ variant, onSuccess }: Props) {
       onSubmit={handleSubmit}
       noValidate
     >
+      <input type="hidden" name="utm_source" value={attribution.utm_source} />
+      <input type="hidden" name="utm_medium" value={attribution.utm_medium} />
+      <input type="hidden" name="utm_campaign" value={attribution.utm_campaign} />
+      <input type="hidden" name="utm_content" value={attribution.utm_content} />
+      <input type="hidden" name="utm_term" value={attribution.utm_term} />
+      <input type="hidden" name="gclid" value={attribution.gclid} />
+      <input type="hidden" name="fbclid" value={attribution.fbclid} />
+      <input type="hidden" name="referrer" value={attribution.referrer} />
+      <input type="hidden" name="landing_page" value={attribution.landing_page} />
+      <input type="hidden" name="pagina" value={attribution.pagina} />
+      <input type="hidden" name="origem_trafego" value={attribution.origem_trafego} />
+      <input type="hidden" name="canal" value={attribution.canal} />
+      <input type="hidden" name="is_organic" value={String(attribution.is_organic)} />
+
       <div>
         <label htmlFor="lead-nome" className={labelClass}>
           Nome completo <span className="text-red-500">*</span>

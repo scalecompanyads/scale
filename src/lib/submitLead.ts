@@ -3,8 +3,10 @@
  * Sem URL configurado: devolve ok para não bloquear UX (configuração pendente).
  */
 import { formatPhoneBR } from './phoneFormat';
+import { getLeadAttribution, type LeadAttribution } from './leadAttribution';
 
 export type LeadPayload = {
+  lead_id: string;
   nome: string;
   email: string;
   /** Dígitos do telefone como número JSON (raiz). */
@@ -20,8 +22,24 @@ export type LeadPayload = {
   };
   faturamento: string;
   instagram: string;
+  origem: string;
+  form_name: string;
   sourceUrl: string;
   submittedAt: string;
+  attribution: LeadAttribution;
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_content: string;
+  utm_term: string;
+  gclid: string;
+  fbclid: string;
+  referrer: string;
+  landing_page: string;
+  pagina: string;
+  origem_trafego: string;
+  canal: string;
+  is_organic: boolean;
 };
 
 function phoneDigitsAsNumber(digits: string): number {
@@ -54,6 +72,23 @@ function getExcelWebhookUrl(): string | undefined {
   return t.length > 0 ? t : undefined;
 }
 
+function generateLeadId(): string {
+  if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID();
+  }
+  return `lead-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+}
+
+function pushLeadSubmitEvent(data: LeadPayload) {
+  if (typeof window === 'undefined') return;
+  const w = window as Window & { dataLayer?: Record<string, unknown>[] };
+  w.dataLayer = w.dataLayer || [];
+  w.dataLayer.push({
+    event: 'lead_submit_success',
+    ...data,
+  });
+}
+
 export async function submitLead(
   data: LeadFormData
 ): Promise<{ ok: boolean; skippedWebhook?: boolean; error?: string }> {
@@ -63,7 +98,9 @@ export async function submitLead(
   const digits = data.phoneDigits.replace(/\D/g, '');
   const masked = formatPhoneBR(digits);
   const number = phoneDigitsAsNumber(data.phoneDigits);
+  const attribution = getLeadAttribution();
   const payload: LeadPayload = {
+    lead_id: generateLeadId(),
     nome: data.nome,
     email: data.email,
     number,
@@ -76,9 +113,15 @@ export async function submitLead(
     },
     faturamento: data.faturamento,
     instagram: data.instagram,
+    origem: 'lead-form-organico',
+    form_name: 'organic_pages',
     sourceUrl: typeof window !== 'undefined' ? window.location.href : '',
     submittedAt: new Date().toISOString(),
+    attribution,
+    ...attribution,
   };
+
+  pushLeadSubmitEvent(payload);
 
   if (excelUrl) {
     // Disparo secundário sem aguardar/bloquear, para preencher a planilha
