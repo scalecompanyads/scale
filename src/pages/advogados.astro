@@ -37,11 +37,6 @@ import '../styles/advogados-legacy.css';
           events.forEach(function (e) { window.removeEventListener(e, onFirstInteraction, { passive: true }); });
         }
         events.forEach(function (e) { window.addEventListener(e, onFirstInteraction, { passive: true, once: true }); });
-        // Fallback: garante que carregue mesmo sem interação após o load + idle.
-        window.addEventListener('load', function () {
-          var ric = window.requestIdleCallback || function (cb) { return setTimeout(cb, 2500); };
-          ric(loadGTM, { timeout: 4000 });
-        });
       })();
     </script>
     <!-- End Google Tag Manager -->
