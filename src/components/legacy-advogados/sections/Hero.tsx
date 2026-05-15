@@ -32,9 +32,19 @@ const squad = [
   },
 ] as const;
 
-export function Hero() {
+interface HeroProps {
+  headline?: string;
+  headlineHighlight?: string;
+  subHeadline?: string;
+}
+
+export function Hero({ headline, headlineHighlight, subHeadline }: HeroProps) {
+  const h1Main = headline ?? "Advogados que dependem de indicação";
+  const h1Highlight = headlineHighlight ?? "crescem devagar.";
+  const sub = subHeadline ?? "Escritórios que constroem uma máquina de aquisição crescem com previsibilidade.";
+
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden pb-16 pt-4 sm:pt-6 lg:min-h-[90vh] lg:flex-col lg:items-stretch lg:pt-[140px] lg:pb-24">
+    <section className="relative flex min-h-screen items-center overflow-hidden pb-16 pt-4 sm:pt-6 lg:flex-col lg:items-center lg:justify-center lg:pt-[100px] lg:pb-8">
       <div className="pointer-events-none absolute inset-0 bg-gradient-hero" />
       <div
         className="pointer-events-none absolute inset-0 opacity-100"
@@ -48,20 +58,20 @@ export function Hero() {
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:px-8">
         <div className="mx-auto flex w-full flex-col items-center gap-10 lg:gap-5">
-          <div className="mx-auto w-full max-w-6xl text-center lg:flex lg:min-h-[calc(70vh-4.5rem)] lg:flex-col lg:justify-center lg:py-2">
+          <div className="mx-auto w-full max-w-6xl text-center lg:flex lg:flex-col lg:justify-center lg:py-0">
             <div className="mb-4 flex justify-center lg:hidden">
               <a href="#" className="inline-flex py-0.5" aria-label="Scale Company — início">
                 <ScaleLogo heightClass="h-9" className="max-w-[240px]" />
               </a>
             </div>
-            <h1 className="mb-3 text-center font-display text-[1.65rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-3xl sm:leading-[1.06] md:text-display-2xl md:leading-[0.98] md:tracking-[-0.03em]">
-              Advogados que dependem de indicação{" "}
-              <span className="text-gradient-white">crescem devagar.</span>
+            <h1 className="mb-3 text-center font-display text-[1.65rem] font-extrabold leading-[1.08] tracking-tight text-white sm:text-3xl sm:leading-[1.06] md:text-[clamp(2.1rem,4.9vw,3.85rem)] md:leading-[0.98] md:tracking-[-0.03em]">
+              {h1Main}{" "}
+              <span className="text-gradient-white">{h1Highlight}</span>
             </h1>
 
             <div className="mx-auto w-[70%] max-w-full text-center">
               <p className="mb-6 mt-2 text-center font-display text-base font-bold leading-snug text-brand-orange sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
-                Escritórios que constroem uma máquina de aquisição crescem com previsibilidade.
+                {sub}
               </p>
 
               <p className="mx-auto mb-8 max-w-2xl text-center text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg lg:mb-3">
@@ -72,17 +82,11 @@ export function Hero() {
           </div>
 
           {/* Expanding image panels */}
-          <div className="-mt-[40px] flex h-[min(37.2vh,336px)] w-full min-h-[228px] overflow-hidden border border-white/[0.1] shadow-elevated sm:h-[min(36vh,372px)] md:mt-0 md:h-[min(60vh,620px)] md:min-h-[380px] lg:-mt-2">
-              {squad.map((person, index) => (
+          <div className="-mt-[40px] flex w-full overflow-hidden border border-white/[0.1] shadow-elevated aspect-[4/3] md:mt-0 lg:-mt-2 lg:aspect-auto lg:h-[min(38vh,400px)]">
+              {squad.map((person) => (
                 <div
                   key={person.name}
-                  tabIndex={0}
-                  className={cn(
-                    "group relative min-w-0 flex-1 overflow-hidden transition-[flex] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-                    "cursor-default md:cursor-pointer",
-                    "md:hover:flex-[2.6] md:focus-visible:flex-[2.6]",
-                    "focus-visible:outline-none md:focus-visible:ring-2 md:focus-visible:ring-inset md:focus-visible:ring-brand-blue/60"
-                  )}
+                  className="group relative min-w-0 flex-1 overflow-hidden"
                 >
                   <div className={cn("absolute inset-0 z-0", person.bg)} />
                   <Image
@@ -91,8 +95,8 @@ export function Hero() {
                     alt={`Retrato de ${person.name}, ${person.role}`}
                     fill
                     sizes="(max-width: 1024px) 34vw, 28vw"
-                    className="relative z-[1] object-cover object-top transition duration-500 md:group-hover:scale-[1.03]"
-                    priority={index === 2}
+                    className="relative z-[1] object-cover object-top"
+                    priority
                   />
                   <div className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-90 md:transition-opacity md:duration-300 md:group-hover:opacity-100" />
                   <div className="absolute inset-x-0 bottom-0 z-[3] flex flex-col items-center justify-end p-3 text-center sm:p-4 md:p-5">
@@ -105,9 +109,6 @@ export function Hero() {
                     >
                       <p className="font-display text-lg font-bold leading-tight text-white sm:text-xl md:text-2xl">
                         {person.name}
-                      </p>
-                      <p className="mx-auto mt-1 max-w-[18rem] text-xs leading-snug text-white/85 sm:text-sm">
-                        {person.role}
                       </p>
                     </div>
                   </div>
