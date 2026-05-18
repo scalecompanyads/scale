@@ -9,7 +9,7 @@
 interface Props {
   href?: string;
   variant?: 'primary' | 'outline' | 'ghost' | 'ring';
-  size?: 'sm' | 'base' | 'lg';
+  size?: 'sm' | 'base' | 'md' | 'lg';
   full?: boolean;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
@@ -40,12 +40,14 @@ const variants = {
 const sizes = {
   sm:   'px-4 py-2 text-sm',
   base: 'px-6 py-3 text-base',
+  md:   'px-7 py-3.5 text-base',
   lg:   'px-8 py-4 text-lg',
 };
 
 const ringSizes = {
   sm:   'px-4 py-2 text-sm',
   base: 'px-6 py-3 text-base',
+  md:   'px-7 py-3.5 text-base',
   lg:   'px-8 py-4 text-base',
 };
 
