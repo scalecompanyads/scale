@@ -42,14 +42,37 @@ const includeGoogleTag = !googleTagExcludedPrefixes.some(
 
 {includeGoogleTag && (
   <>
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-GLRC0KE5GJ"></script>
+    <!-- Google tag (gtag.js) lazy-loaded for maximum performance -->
     <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-GLRC0KE5GJ');
+      (function() {
+        var loaded = false;
+        function loadGtag() {
+          if (loaded) return;
+          loaded = true;
+          
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-GLRC0KE5GJ';
+          document.head.appendChild(script);
+          
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GLRC0KE5GJ');
+        }
+        
+        var events = ['scroll', 'mousemove', 'touchstart', 'keydown', 'click'];
+        function onFirstInteraction() {
+          loadGtag();
+          events.forEach(function(e) { window.removeEventListener(e, onFirstInteraction, { passive: true }); });
+        }
+        events.forEach(function(e) { window.addEventListener(e, onFirstInteraction, { passive: true, once: true }); });
+        
+        // Fallback to guarantee tag fires for crawlers and after a brief load delay
+        window.addEventListener('load', function() {
+          setTimeout(loadGtag, 3500);
+        });
+      })();
     </script>
   </>
 )}
