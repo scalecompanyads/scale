@@ -755,6 +755,44 @@ const faqSchema = {
       }
     })();
   </script>
+  
+  <style is:global>
+    /* Video Cases */
+    /* VIDEOS */
+    .scale-videos__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 100%; max-width: 1000px; margin: 0 auto; }
+    .scale-video-wrapper { position: relative; overflow: hidden; background: var(--scale-bg-card); border: 1px solid var(--scale-border); aspect-ratio: 9 / 16; cursor: pointer; border-radius: 16px; }
+    .scale-video-wrapper picture { display: block; width: 100%; height: 100%; }
+    .scale-video-card__poster { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; filter: brightness(0.7); }
+    .scale-video-wrapper:hover .scale-video-card__poster { transform: scale(1.05); filter: brightness(0.9); }
+    .scale-video-card__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(0, 119, 255, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: all 0.3s ease; z-index: 2; box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.4); }
+    .scale-video-wrapper:hover .scale-video-card__play { background: rgb(0, 119, 255); transform: translate(-50%, -50%) scale(1.1); animation: pulse-blue 1.5s infinite; }
+    @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(0, 119, 255, .4); } 70% { box-shadow: 0 0 0 20px rgba(0, 119, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0); } }
+
+    /* DEPOIMENTOS */
+    .scale-stagger-wrapper { position: relative; min-height: 620px; overflow: hidden; margin-top: 24px; }
+    .scale-stagger-container { position: relative; height: 560px; width: 100%; }
+    .scale-stagger-card { position: absolute; top: 50%; left: 50%; background: #050505; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; box-shadow: 0 30px 70px rgba(0, 0, 0, .55); transition: transform .55s cubic-bezier(.4, 0, .2, 1), opacity .4s ease, filter .4s ease; cursor: pointer; border-radius: 12px; }
+    .scale-stagger-card img { width: 100%; height: 100%; object-fit: contain; background: #050505; border-radius: 12px; }
+    .scale-stagger-card--center { border-color: rgba(0, 119, 255, .35); box-shadow: 0 0 0 1px rgba(0, 119, 255, .12), 0 40px 90px rgba(0, 0, 0, .72); }
+    .scale-stagger-controls { position: relative; z-index: 20; display: flex; justify-content: center; gap: 14px; margin-top: -10px; }
+    .scale-stagger-controls button { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, .11); background: rgba(255, 255, 255, .035); transition: all 0.3s ease; border-radius: 50%; color: #fff; cursor: pointer; }
+    .scale-stagger-controls button:hover { border-color: rgba(0, 119, 255, .4); background: rgba(0, 119, 255, .09); }
+
+    /* LIGHTBOXES */
+    .scale-video-lightbox, .scale-lightbox { position: fixed; inset: 0; z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0, 0, 0, .88); backdrop-filter: blur(10px); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+    .scale-video-lightbox.active, .scale-lightbox.active { opacity: 1; pointer-events: auto; }
+    .scale-video-lightbox__close, .scale-lightbox__close { position: absolute; right: 24px; top: 18px; font-size: 38px; color: #fff; z-index: 2; cursor: pointer; background: transparent; border: none; }
+    .scale-video-lightbox__content { width: min(420px, 94vw); aspect-ratio: 9/16; background: #000; border: 1px solid rgba(255, 255, 255, .1); border-radius: 16px; overflow: hidden; }
+    .scale-video-lightbox__content iframe { width: 100%; height: 100%; border: 0; }
+    .scale-lightbox__image { max-height: 88vh; max-width: min(520px, 92vw); object-fit: contain; border: 1px solid rgba(255, 255, 255, .12); border-radius: 12px; }
+
+    @media (max-width: 768px) {
+      .scale-videos__grid { grid-template-columns: 1fr; max-width: 390px; gap: 24px; }
+      .scale-stagger-wrapper { min-height: 540px; }
+      .scale-stagger-container { height: 490px; }
+    }
+  </style>
+
   <style>
     .paid-advogados {
       --scale-bg: #010000;
@@ -1689,40 +1727,7 @@ const faqSchema = {
       }
     }
 
-    /* Video Cases */
-    /* VIDEOS */
-    .scale-videos__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 100%; max-width: 1000px; margin: 0 auto; }
-    .scale-video-wrapper { position: relative; overflow: hidden; background: var(--scale-bg-card); border: 1px solid var(--scale-border); aspect-ratio: 9 / 16; cursor: pointer; border-radius: 16px; }
-    .scale-video-wrapper picture { display: block; width: 100%; height: 100%; }
-    .scale-video-card__poster { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; filter: brightness(0.7); }
-    .scale-video-wrapper:hover .scale-video-card__poster { transform: scale(1.05); filter: brightness(0.9); }
-    .scale-video-card__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(0, 119, 255, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: all 0.3s ease; z-index: 2; box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.4); }
-    .scale-video-wrapper:hover .scale-video-card__play { background: rgb(0, 119, 255); transform: translate(-50%, -50%) scale(1.1); animation: pulse-blue 1.5s infinite; }
-    @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(0, 119, 255, .4); } 70% { box-shadow: 0 0 0 20px rgba(0, 119, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0); } }
 
-    /* DEPOIMENTOS */
-    .scale-stagger-wrapper { position: relative; min-height: 620px; overflow: hidden; margin-top: 24px; }
-    .scale-stagger-container { position: relative; height: 560px; width: 100%; }
-    .scale-stagger-card { position: absolute; top: 50%; left: 50%; background: #050505; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; box-shadow: 0 30px 70px rgba(0, 0, 0, .55); transition: transform .55s cubic-bezier(.4, 0, .2, 1), opacity .4s ease, filter .4s ease; cursor: pointer; border-radius: 12px; }
-    .scale-stagger-card img { width: 100%; height: 100%; object-fit: contain; background: #050505; border-radius: 12px; }
-    .scale-stagger-card--center { border-color: rgba(0, 119, 255, .35); box-shadow: 0 0 0 1px rgba(0, 119, 255, .12), 0 40px 90px rgba(0, 0, 0, .72); }
-    .scale-stagger-controls { position: relative; z-index: 20; display: flex; justify-content: center; gap: 14px; margin-top: -10px; }
-    .scale-stagger-controls button { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, .11); background: rgba(255, 255, 255, .035); transition: all 0.3s ease; border-radius: 50%; color: #fff; cursor: pointer; }
-    .scale-stagger-controls button:hover { border-color: rgba(0, 119, 255, .4); background: rgba(0, 119, 255, .09); }
-
-    /* LIGHTBOXES */
-    .scale-video-lightbox, .scale-lightbox { position: fixed; inset: 0; z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0, 0, 0, .88); backdrop-filter: blur(10px); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
-    .scale-video-lightbox.active, .scale-lightbox.active { opacity: 1; pointer-events: auto; }
-    .scale-video-lightbox__close, .scale-lightbox__close { position: absolute; right: 24px; top: 18px; font-size: 38px; color: #fff; z-index: 2; cursor: pointer; background: transparent; border: none; }
-    .scale-video-lightbox__content { width: min(420px, 94vw); aspect-ratio: 9/16; background: #000; border: 1px solid rgba(255, 255, 255, .1); border-radius: 16px; overflow: hidden; }
-    .scale-video-lightbox__content iframe { width: 100%; height: 100%; border: 0; }
-    .scale-lightbox__image { max-height: 88vh; max-width: min(520px, 92vw); object-fit: contain; border: 1px solid rgba(255, 255, 255, .12); border-radius: 12px; }
-
-    @media (max-width: 768px) {
-      .scale-videos__grid { grid-template-columns: 1fr; max-width: 390px; gap: 24px; }
-      .scale-stagger-wrapper { min-height: 540px; }
-      .scale-stagger-container { height: 490px; }
-    }
 
     @media (prefers-reduced-motion: reduce) {
       .scale-team-carousel__track {
