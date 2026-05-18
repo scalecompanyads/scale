@@ -42,20 +42,6 @@ const { area } = Astro.props;
 const canonical = getCanonicalUrl(`/trafego-pago-para-advogados/${area.slug}`);
 const relatedAreas = legalAreas.filter((item) => item.slug !== area.slug).slice(0, 4);
 const areaCaseStudies = legalCaseStudies.filter((study) => study.areaId === area.id);
-const strategicRead = [
-  {
-    label: 'Tese de mercado',
-    desc: area.marketThesis,
-  },
-  {
-    label: 'Vazamento de verba',
-    desc: area.budgetLeak,
-  },
-  {
-    label: 'Papel da tecnologia',
-    desc: area.technologyAngle,
-  },
-];
 
 const schema = {
   '@context': 'https://schema.org',
@@ -152,15 +138,6 @@ const faqItems = [
           </a>
         </div>
       </div>
-
-      <div class="mt-14 grid grid-cols-1 gap-4 lg:grid-cols-3">
-        {strategicRead.map((item) => (
-          <div class="border-t border-white/12 pt-5">
-            <p class="text-xs font-bold uppercase tracking-[0.16em] text-white/35">{item.label}</p>
-            <p class="mt-3 text-sm leading-relaxed text-white/62">{item.desc}</p>
-          </div>
-        ))}
-      </div>
     </div>
   </section>
 
@@ -168,36 +145,36 @@ const faqItems = [
 
   <section class="section bg-white light-section">
     <div class="container">
-      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Leitura da área</span>
-          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
-            A campanha precisa falar com a demanda certa, não com todo mundo.
-          </h2>
-          <p class="mt-5 text-lg leading-relaxed text-ink-light">
-            Para {area.name.toLowerCase()}, a primeira correção é parar o vazamento de verba: {area.budgetLeak}
-          </p>
-          <div class="mt-8">
-            <Button href="/contato" variant="primary" size="md">
-              Quero parar o vazamento
-              <ArrowRight size={17} strokeWidth={2.4} />
-            </Button>
-          </div>
+      <div class="mx-auto mb-14 max-w-4xl text-center">
+        <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Leitura da área</span>
+        <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
+          A campanha para {area.name.toLowerCase()} precisa falar com a demanda certa.
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-ink-light max-w-2xl mx-auto">
+          Para {area.name.toLowerCase()}, a primeira correção é parar o vazamento de verba: {area.budgetLeak}
+        </p>
+        <div class="mt-8 flex justify-center">
+          <Button href="/contato" variant="primary" size="md">
+            Quero parar o vazamento
+            <ArrowRight size={17} strokeWidth={2.4} />
+          </Button>
         </div>
+      </div>
 
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-          {area.contentBlocks.map((block, index) => {
-            const icons = [MousePointerClick, ClipboardCheck, FileText];
-            const Icon = icons[index] ?? CheckCircle2;
-            return (
-              <article class="rounded-[8px] border border-edge bg-surface-card p-6">
-                <Icon className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
-                <h3 class="font-heading text-xl font-bold text-ink">{block.title}</h3>
-                <p class="mt-3 text-sm leading-relaxed text-ink-light">{block.desc}</p>
-              </article>
-            );
-          })}
-        </div>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {area.contentBlocks.map((block, index) => {
+          const icons = [MousePointerClick, ClipboardCheck, FileText];
+          const Icon = icons[index] ?? CheckCircle2;
+          return (
+            <article class="rounded-[12px] border border-edge bg-surface-card p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
+              <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-[#1630DF]/8 mb-6">
+                <Icon className="h-6 w-6 text-[#1630DF]" strokeWidth={1.8} />
+              </div>
+              <h3 class="font-heading text-xl font-bold text-ink">{block.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-ink-light">{block.desc}</p>
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -260,29 +237,13 @@ const faqItems = [
     </div>
   </section>
 
-  <section class="section bg-white light-section">
+  <section class="section bg-white light-section border-t border-edge">
     <div class="container">
-      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Método do caso real</span>
-          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink">
-            A prova nasce da leitura do que acontecia antes.
-          </h2>
-          <p class="mt-5 leading-relaxed text-ink-light">
-            Em vez de publicar promessa de captação, a página precisa mostrar o problema operacional, a intervenção feita e a métrica que confirma melhoria.
-          </p>
-          <div class="mt-8">
-            <Button href="/contato" variant="primary" size="md">
-              Implementar no meu escritório
-              <ArrowRight size={17} strokeWidth={2.4} />
-            </Button>
-          </div>
-        </div>
-
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1.18fr_0.82fr] lg:items-center">
         {areaCaseStudies.length > 0 ? (
           <div class="grid grid-cols-1 gap-4">
             {areaCaseStudies.map((study) => (
-              <article class="rounded-[8px] border border-edge bg-surface-card p-6">
+              <article class="rounded-[12px] border border-edge bg-surface-card p-8 shadow-sm">
                 <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#1630DF]">{study.clientName}</p>
                 <h3 class="mt-3 font-heading text-2xl font-bold text-ink">{study.context}</h3>
                 <p class="mt-4 text-sm leading-relaxed text-ink-light">{study.before}</p>
@@ -299,33 +260,49 @@ const faqItems = [
             ))}
           </div>
         ) : (
-          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <article class="rounded-[8px] border border-edge bg-surface-card p-6">
-              <ClipboardCheck className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
+          <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <article class="rounded-[12px] border border-edge bg-surface-card p-8 shadow-sm">
+              <ClipboardCheck className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.8} />
               <p class="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Cenario comum</p>
-              <h3 class="mt-3 font-heading text-xl font-bold text-ink">{area.caseFrame.before}</h3>
+              <h3 class="mt-3 font-heading text-lg font-bold text-ink leading-snug">{area.caseFrame.before}</h3>
             </article>
-            <article class="rounded-[8px] border border-edge bg-surface-card p-6">
-              <Gauge className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
+            <article class="rounded-[12px] border border-edge bg-surface-card p-8 shadow-sm">
+              <Gauge className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.8} />
               <p class="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Correcao operacional</p>
-              <h3 class="mt-3 font-heading text-xl font-bold text-ink">{area.caseFrame.intervention}</h3>
+              <h3 class="mt-3 font-heading text-lg font-bold text-ink leading-snug">{area.caseFrame.intervention}</h3>
             </article>
           </div>
         )}
+
+        <div class="lg:pl-6">
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Método do caso real</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
+            A prova em {area.name.toLowerCase()} nasce da leitura do que acontecia antes.
+          </h2>
+          <p class="mt-5 leading-relaxed text-ink-light">
+            Em vez de publicar promessa de captação, a página precisa mostrar o problema operacional, a intervenção feita e a métrica que confirma melhoria.
+          </p>
+          <div class="mt-8">
+            <Button href="/contato" variant="primary" size="md">
+              Implementar no meu escritório
+              <ArrowRight size={17} strokeWidth={2.4} />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section bg-[#f5f7fb] light-section">
     <div class="container">
-      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Metricas e triagem</span>
           <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink">
-            CPL baixo não significa captação boa.
+            CPL baixo em {area.name.toLowerCase()} não significa captação boa.
           </h2>
           <p class="mt-5 leading-relaxed text-ink-light">
-            A campanha precisa mostrar se os contatos viram conversas, reuniões e contratos. Por isso a leitura comercial e parte do escopo desde o inicio.
+            A campanha precisa mostrar se os contatos viram conversas, reuniões e contratos. Por isso a leitura comercial é parte do escopo desde o inicio.
           </p>
           <div class="mt-8">
             <Button href="/contato" variant="primary" size="md">
@@ -334,27 +311,37 @@ const faqItems = [
             </Button>
           </div>
         </div>
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div class="rounded-[8px] border border-edge bg-surface-card p-6">
-            <Gauge className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
-            <h3 class="font-heading text-xl font-bold text-ink">Metricas acompanhadas</h3>
-            <div class="mt-5 space-y-3">
+
+        <div class="flex flex-col gap-6">
+          <div class="rounded-[12px] border border-edge bg-surface-card p-8 shadow-sm">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1630DF]/8 text-[#1630DF]">
+                <Gauge className="h-5 w-5" strokeWidth={1.8} />
+              </div>
+              <h3 class="font-heading text-xl font-bold text-ink m-0">Métricas acompanhadas</h3>
+            </div>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {area.funnelMetrics.map((metric) => (
-                <div class="flex gap-3">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" strokeWidth={2} />
-                  <p class="text-sm font-medium leading-relaxed text-ink-light">{metric}</p>
+                <div class="flex gap-3 items-start">
+                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-500" strokeWidth={2.5} />
+                  <p class="text-sm font-semibold leading-relaxed text-ink-light m-0">{metric}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div class="rounded-[8px] border border-edge bg-surface-card p-6">
-            <ClipboardCheck className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
-            <h3 class="font-heading text-xl font-bold text-ink">Perguntas de qualificação</h3>
-            <div class="mt-5 space-y-3">
+
+          <div class="rounded-[12px] border border-edge bg-surface-card p-8 shadow-sm">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-[#1630DF]/8 text-[#1630DF]">
+                <ClipboardCheck className="h-5 w-5" strokeWidth={1.8} />
+              </div>
+              <h3 class="font-heading text-xl font-bold text-ink m-0">Perguntas de qualificação</h3>
+            </div>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {area.qualifyingQuestions.map((question) => (
-                <div class="flex gap-3">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" strokeWidth={2} />
-                  <p class="text-sm font-medium leading-relaxed text-ink-light">{question}</p>
+                <div class="flex gap-3 items-start">
+                  <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-emerald-500" strokeWidth={2.5} />
+                  <p class="text-sm font-semibold leading-relaxed text-ink-light m-0">{question}</p>
                 </div>
               ))}
             </div>
@@ -364,37 +351,47 @@ const faqItems = [
     </div>
   </section>
 
-  <section class="section bg-[#080b10]">
-    <div class="container">
-      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+  <section class="section bg-[#080b10] relative overflow-hidden">
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent pointer-events-none"></div>
+    <div class="container relative z-10">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
           <span class="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-[#8fb8ff]">
             <ShieldCheck size={15} strokeWidth={1.8} />
             Compliance por área
           </span>
           <h2 class="font-heading text-4xl font-bold leading-tight text-white md:text-5xl">
-            A linha editorial precisa proteger o escritório.
+            A linha editorial em {area.name.toLowerCase()} precisa proteger o escritório.
           </h2>
-          <p class="mt-5 leading-relaxed text-white/58">
+          <p class="mt-5 leading-relaxed text-white/68 text-base">
             Para {area.name.toLowerCase()}, o cuidado principal é: {area.complianceNote}
           </p>
-          <a
-            href={oabCompliance.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#8fb8ff] hover:text-white"
-          >
-            Ver {oabCompliance.sourceName}
-            <ArrowRight size={15} strokeWidth={2.2} />
-          </a>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a
+              href={oabCompliance.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-lg border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-white/80 transition hover:border-white/35 hover:text-white"
+            >
+              Ver {oabCompliance.sourceName}
+              <ArrowRight size={15} strokeWidth={2.2} />
+            </a>
+          </div>
         </div>
-        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {oabCompliance.principles.map((item) => (
-            <div class="flex items-center gap-3 rounded-[8px] border border-white/10 bg-white/[0.035] p-4">
-              <BadgeCheck className="h-5 w-5 shrink-0 text-emerald-300" strokeWidth={2} />
-              <span class="text-sm font-medium leading-relaxed text-white/68">{item}</span>
-            </div>
-          ))}
+
+        <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-8 backdrop-blur-md">
+          <h3 class="font-heading text-lg font-bold text-white mb-6 flex items-center gap-2">
+            <BadgeCheck className="h-5 w-5 text-emerald-400" />
+            Princípios éticos assegurados pela Scale
+          </h3>
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {oabCompliance.principles.map((item) => (
+              <div class="flex gap-3 items-start rounded-lg border border-white/5 bg-white/[0.01] p-4 transition-all hover:bg-white/[0.03]">
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" strokeWidth={2.5} />
+                <span class="text-sm font-medium leading-relaxed text-white/80">{item}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
@@ -402,23 +399,25 @@ const faqItems = [
 
   <section class="section bg-white light-section">
     <div class="container">
-      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
-        <div>
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {area.searchAngles.map((angle) => (
+            <div class="rounded-[12px] border border-edge bg-surface-card p-6 shadow-sm relative overflow-hidden group hover:border-[#1630DF] transition-all duration-300">
+              <div class="absolute top-0 left-0 w-1 h-full bg-slate-200 group-hover:bg-[#1630DF] transition-colors"></div>
+              <p class="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted m-0">Intenção de busca</p>
+              <h3 class="mt-3 font-heading text-lg font-bold text-ink leading-snug m-0">"{angle}"</h3>
+            </div>
+          ))}
+        </div>
+
+        <div class="lg:pl-6">
           <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">SEO conectado ao tráfego</span>
           <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink">
-            O que a mídia paga ensina vira conteúdo e página orgânica.
+            O que a mídia paga em {area.name.toLowerCase()} ensina vira conteúdo orgânico.
           </h2>
           <p class="mt-5 leading-relaxed text-ink-light">
             As pesquisas, objeções e conversas geradas pelas campanhas ajudam a priorizar conteúdos de SEO com maior chance comercial.
           </p>
-        </div>
-        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {area.searchAngles.map((angle) => (
-            <div class="rounded-[8px] border border-edge bg-surface-card p-5">
-              <p class="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Intencao de busca</p>
-              <h3 class="mt-3 font-heading text-lg font-bold text-ink">{angle}</h3>
-            </div>
-          ))}
         </div>
       </div>
     </div>

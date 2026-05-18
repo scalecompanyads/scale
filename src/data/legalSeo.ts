@@ -171,7 +171,7 @@ export const legalAreas: LegalArea[] = [
     metaDescription:
       'Google Ads, landing pages e funil comercial para advogados criminalistas com comunicação informativa e alinhada ao Provimento 205/2021.',
     marketThesis:
-      'Na advocacia criminal, o concorrente mais perigoso nem sempre e o melhor tecnicamente. Muitas vezes e quem aparece primeiro, responde rápido e transmite segurança sem explorar o medo do cliente.',
+      'Na advocacia criminal, o concorrente mais perigoso nem sempre é o melhor tecnicamente. Muitas vezes é quem aparece primeiro, responde rápido e transmite segurança sem explorar o medo do cliente.',
     budgetLeak:
       'A verba costuma vazar em buscas amplas demais, curiosos, contatos fora da área de atuação e páginas que pedem detalhes sensíveis antes de construir confiança.',
     technologyAngle:
@@ -347,11 +347,11 @@ export const legalAreas: LegalArea[] = [
       },
       {
         title: 'Conteúdo sem incentivo indevido',
-        desc: 'Explicar direitos e riscos e diferente de induzir litígio com promessa de ganho.',
+        desc: 'Explicar direitos e riscos é diferente de induzir litígio com promessa de ganho.',
       },
     ],
     qualifyingQuestions: [
-      'O contato e trabalhador, empresa ou gestor?',
+      'O contato é trabalhador, empresa ou gestor?',
       'A relação de trabalho já terminou?',
       'Existem documentos, mensagens ou provas relevantes?',
     ],
@@ -482,7 +482,7 @@ export const legalAreas: LegalArea[] = [
     ],
     qualifyingQuestions: [
       'A empresa busca demanda pontual ou assessoria recorrente?',
-      'Qual e o porte e o setor da empresa?',
+      'Qual é o porte e o setor da empresa?',
       'O decisor jurídico ou financeiro participa da conversa?',
     ],
   },
@@ -546,7 +546,7 @@ export const legalAreas: LegalArea[] = [
       },
     ],
     qualifyingQuestions: [
-      'A demanda e consultiva, contenciosa ou recuperação de crédito?',
+      'A demanda é consultiva, contenciosa ou recuperação de crédito?',
       'A empresa conhece regime tributário e faturamento aproximado?',
       'Existe prazo fiscal ou auto de infração em andamento?',
     ],
@@ -561,7 +561,7 @@ export const legalAreas: LegalArea[] = [
     metaDescription:
       'Google Ads, landing pages e SEO para advogados imobiliários com foco em contratos, regularização, locação, compra e venda.',
     marketThesis:
-      'No imobiliário, a dor e patrimonial. A pessoa ou empresa procura segurança para não perder dinheiro em contrato, regularização ou disputa.',
+      'No imobiliário, a dor é patrimonial. A pessoa ou empresa procura segurança para não perder dinheiro em contrato, regularização ou disputa.',
     budgetLeak:
       'A verba se perde quando compradores, locadores, incorporadores e conflitos condominiais são tratados como uma intenção unica.',
     technologyAngle:

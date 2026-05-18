@@ -527,11 +527,7 @@ const faqSchema = {
         </div>
 
         <div class="scale-stagger-wrapper">
-          <div class="scale-stagger-container" id="scale-stagger-testimonials"></div>
-          <div class="scale-stagger-controls">
-            <button id="scale-stagger-prev" aria-label="Depoimento anterior"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
-            <button id="scale-stagger-next" aria-label="Próximo depoimento"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
-          </div>
+          <div class="scale-prints-track" id="scale-stagger-testimonials"></div>
         </div>
       </div>
     </section>
@@ -642,10 +638,8 @@ const faqSchema = {
           if (e.target === videoLightbox) closeVideo();
         });
 
-        // Prints Staggered Carousel
+        // Prints Infinite Marquee
         var container = document.getElementById('scale-stagger-testimonials');
-        var prevBtn = document.getElementById('scale-stagger-prev');
-        var nextBtn = document.getElementById('scale-stagger-next');
         var lightbox = document.getElementById('scale-lightbox');
         var lightboxImage = document.getElementById('scale-lightbox-image');
         var lightboxClose = document.getElementById('scale-lightbox-close');
@@ -657,64 +651,29 @@ const faqSchema = {
           images.push('/scale-advogados/depoimentos-whatsapp/testimonial-' + (i < 10 ? '0' + i : i) + '.webp');
         }
 
-        var items = images.map(function(src) { return { id: Math.random(), src: src }; });
-        var cardWidth = window.innerWidth >= 640 ? 300 : 238;
+        // Double array for seamless loop marquee
+        var doubledImages = images.concat(images);
 
         function renderPrints() {
           var fragment = document.createDocumentFragment();
-          items.forEach(function(item, index) {
-            var half = items.length % 2 ? (items.length - 1) / 2 : items.length / 2;
-            var position = index - half;
-            var isCenter = position === 0;
-            var absPos = Math.abs(position);
+          doubledImages.forEach(function(src) {
             var card = document.createElement('div');
-            card.className = 'scale-stagger-card' + (isCenter ? ' scale-stagger-card--center' : '');
-            card.style.width = cardWidth + 'px';
-            card.style.height = Math.round(cardWidth * 1.85) + 'px';
-            var xOffset = Math.round((cardWidth / 1.85) * position);
-            var yOffset = isCenter ? -22 : (position % 2 ? 14 : -14);
-            var rot = isCenter ? 0 : (position % 2 ? 3 : -3);
-            card.style.transform = 'translate(-50%, -50%) translateX(' + xOffset + 'px) translateY(' + yOffset + 'px) rotate(' + rot + 'deg)';
-            card.style.zIndex = String(isCenter ? 10 : Math.max(0, 10 - absPos));
-            card.style.opacity = String(isCenter ? 1 : Math.max(0, 1 - absPos * 0.25));
-            card.style.filter = isCenter ? 'blur(0px) brightness(1)' : 'blur(' + absPos + 'px) brightness(' + (1 - absPos * 0.1) + ')';
-            if (absPos < 4) {
-              (function(capturedItem, capturedPos, capturedIsCenter) {
-                card.onclick = function() {
-                  if (capturedIsCenter) openPrint(capturedItem.src);
-                  else handleMove(capturedPos);
-                };
-              })(item, position, isCenter);
-            }
+            card.className = 'scale-print-marquee-card';
+            
+            card.onclick = function() {
+              openPrint(src);
+            };
 
             var img = document.createElement('img');
             img.alt = 'Print de depoimento';
             img.loading = 'lazy';
             img.decoding = 'async';
-            if (absPos < 4) img.src = item.src;
-            else img.dataset.src = item.src;
+            img.src = src;
+
             card.appendChild(img);
             fragment.appendChild(card);
           });
-          container.replaceChildren(fragment);
-        }
-
-        function handleMove(steps) {
-          if (steps === 0) return;
-          var newItems = items.slice();
-          if (steps > 0) {
-            for (var i = steps; i > 0; i--) {
-              var item = newItems.shift();
-              newItems.push({ id: Math.random(), src: item.src });
-            }
-          } else {
-            for (var j = steps; j < 0; j++) {
-              var item2 = newItems.pop();
-              newItems.unshift({ id: Math.random(), src: item2.src });
-            }
-          }
-          items = newItems;
-          renderPrints();
+          container.appendChild(fragment);
         }
 
         function openPrint(src) {
@@ -729,20 +688,9 @@ const faqSchema = {
           document.body.style.overflow = '';
         }
 
-        if (prevBtn) prevBtn.addEventListener('click', function() { handleMove(-1); });
-        if (nextBtn) nextBtn.addEventListener('click', function() { handleMove(1); });
         if (lightboxClose) lightboxClose.addEventListener('click', closePrint);
         lightbox.addEventListener('click', function(event) {
           if (event.target === lightbox) closePrint();
-        });
-
-        var resizeTimeout;
-        window.addEventListener('resize', function() {
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(function() {
-            cardWidth = window.innerWidth >= 640 ? 300 : 238;
-            renderPrints();
-          }, 150);
         });
 
         renderPrints();
@@ -769,14 +717,69 @@ const faqSchema = {
     @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(0, 119, 255, .4); } 70% { box-shadow: 0 0 0 20px rgba(0, 119, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0); } }
 
     /* DEPOIMENTOS */
-    .scale-stagger-wrapper { position: relative; min-height: 620px; overflow: hidden; margin-top: 24px; }
-    .scale-stagger-container { position: relative; height: 560px; width: 100%; }
-    .scale-stagger-card { position: absolute; top: 50%; left: 50%; background: #050505; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; box-shadow: 0 30px 70px rgba(0, 0, 0, .55); transition: transform .55s cubic-bezier(.4, 0, .2, 1), opacity .4s ease, filter .4s ease; cursor: pointer; border-radius: 12px; }
-    .scale-stagger-card img { width: 100%; height: 100%; object-fit: contain; background: #050505; border-radius: 12px; }
-    .scale-stagger-card--center { border-color: rgba(0, 119, 255, .35); box-shadow: 0 0 0 1px rgba(0, 119, 255, .12), 0 40px 90px rgba(0, 0, 0, .72); }
-    .scale-stagger-controls { position: relative; z-index: 20; display: flex; justify-content: center; gap: 14px; margin-top: -10px; }
-    .scale-stagger-controls button { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, .11); background: rgba(255, 255, 255, .035); transition: all 0.3s ease; border-radius: 50%; color: #fff; cursor: pointer; }
-    .scale-stagger-controls button:hover { border-color: rgba(0, 119, 255, .4); background: rgba(0, 119, 255, .09); }
+    .scale-stagger-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+    
+    .scale-prints-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      animation: scaleMarqueeScroll 45s linear infinite;
+      padding: 10px 0;
+    }
+    
+    .scale-prints-track:hover {
+      animation-play-state: paused;
+    }
+    
+    .scale-print-marquee-card {
+      width: 280px;
+      height: 500px;
+      flex-shrink: 0;
+      background: #050505;
+      border: 1px solid rgba(255, 255, 255, .08);
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
+      cursor: pointer;
+      border-radius: 16px;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+    
+    .scale-print-marquee-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #050505;
+      border-radius: 16px;
+      transition: transform .3s ease;
+    }
+    
+    .scale-print-marquee-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 119, 255, 0.45);
+      box-shadow: 0 24px 60px rgba(0, 119, 255, 0.16);
+    }
+    
+    .scale-print-marquee-card:hover img {
+      transform: scale(1.02);
+    }
+    
+    @keyframes scaleMarqueeScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
 
     /* LIGHTBOXES */
     .scale-video-lightbox, .scale-lightbox { position: fixed; inset: 0; z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0, 0, 0, .88); backdrop-filter: blur(10px); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
@@ -788,8 +791,8 @@ const faqSchema = {
 
     @media (max-width: 768px) {
       .scale-videos__grid { grid-template-columns: 1fr; max-width: 390px; gap: 24px; }
-      .scale-stagger-wrapper { min-height: 540px; }
-      .scale-stagger-container { height: 490px; }
+      .scale-stagger-wrapper { min-height: auto; margin-top: 16px; }
+      .scale-print-marquee-card { width: 200px; height: 356px; }
     }
   </style>
 
