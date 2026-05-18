@@ -64,9 +64,6 @@ const schema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   '@id': `${getCanonicalUrl(pathname)}#breadcrumbs`,
-  isPartOf: {
-    '@id': websiteId,
-  },
   itemListElement: items,
 };
 ---

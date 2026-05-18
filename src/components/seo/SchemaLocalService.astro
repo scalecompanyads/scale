@@ -37,23 +37,6 @@ const schema = service && {
   ],
   serviceType: service.name,
   keywords: service.keywords,
-  offers: {
-    '@type': 'Offer',
-    url: pageUrl,
-    priceCurrency: 'BRL',
-    availability: 'https://schema.org/InStock',
-    offeredBy: {
-      '@id': getLocalBusinessId(city),
-    },
-    seller: {
-      '@id': organizationId,
-    },
-    itemOffered: {
-      '@type': 'Service',
-      name: service.name,
-      description: service.shortDesc,
-    },
-  },
   brand: {
     '@type': 'Brand',
     name: brand.name,

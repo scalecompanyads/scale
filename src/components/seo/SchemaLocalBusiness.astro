@@ -12,7 +12,7 @@ const localUrl = new URL(`/${city.slug}`, siteUrl).href;
 
 const schema = {
   '@context': 'https://schema.org',
-  '@type': ['LocalBusiness', 'ProfessionalService'],
+  '@type': 'LocalBusiness',
   '@id': getLocalBusinessId(city, siteUrl),
   name: `${brand.name} - ${city.name}`,
   legalName: brand.legalName,

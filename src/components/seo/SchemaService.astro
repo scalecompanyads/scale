@@ -39,20 +39,6 @@ const schema = {
   ],
   serviceType: service.name,
   keywords: service.keywords,
-  offers: {
-    '@type': 'Offer',
-    url: serviceUrl,
-    priceCurrency: 'BRL',
-    availability: 'https://schema.org/InStock',
-    seller: {
-      '@id': organizationId,
-    },
-    itemOffered: {
-      '@type': 'Service',
-      name: service.name,
-      description: service.shortDesc,
-    },
-  },
   brand: {
     '@type': 'Brand',
     name: brand.name,

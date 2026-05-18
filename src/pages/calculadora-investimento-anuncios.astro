@@ -13,8 +13,9 @@ const schema = {
   '@id': `${canonical}#calculator`,
   name: 'Calculadora de Captação para Advogados',
   url: canonical,
+  image: getCanonicalUrl('/assets/brand/og-default.jpg'),
   applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
+  operatingSystem: 'Windows, macOS, Android, iOS, Web',
   description:
     'Ferramenta gratuita para estimar contatos qualificados, contratos fechados, honorários gerados e investimento em anúncios para advogados.',
   isPartOf: {
@@ -25,7 +26,7 @@ const schema = {
   },
   offers: {
     '@type': 'Offer',
-    price: '0',
+    price: 0,
     priceCurrency: 'BRL',
   },
 };
