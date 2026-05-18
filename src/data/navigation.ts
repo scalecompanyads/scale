@@ -13,7 +13,7 @@ export interface NavItem {
 export const mainNav: NavItem[] = [
   {
     label: 'Serviços',
-    href: '/#servicos',
+    href: '/#serviços',
   },
   {
     label: 'Cases',
@@ -27,6 +27,10 @@ export const mainNav: NavItem[] = [
       {
         label: 'Guia de Marketing Jurídico',
         href: '/guia-definitivo-marketing-juridico',
+      },
+      {
+        label: 'Tráfego para Advogados',
+        href: '/trafego-pago-para-advogados',
       },
       {
         label: 'Calculadora de Anúncios',

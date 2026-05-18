@@ -873,30 +873,22 @@ const schema = {
         calculate();
       });
 
-      const currencyFieldIds = new Set(['investment', 'ticket', 'goal']);
       Object.values(fields).forEach((field) => {
-        if (!field || currencyFieldIds.has(field.id)) return;
-        field.addEventListener('input', calculate);
+        field?.addEventListener('input', calculate);
       });
 
-      // BRL live mask: format as BRL on every keystroke
+      // BRL mask: on focus strip formatting, on blur re-format
       ['investment', 'ticket', 'goal'].forEach((id) => {
         const input = document.getElementById(id);
         if (!input) return;
-        input.addEventListener('input', () => {
-          const digits = input.value.replace(/\D/g, '');
-          if (digits === '') {
-            input.value = '';
-          } else {
-            const num = parseInt(digits, 10);
-            input.value = formatCurrencyInput(num);
-          }
-          calculate();
+        input.addEventListener('focus', () => {
+          const num = parseCurrency(input.value);
+          input.value = num > 0 ? String(num) : '';
         });
         input.addEventListener('blur', () => {
           const num = parseCurrency(input.value);
           if (num > 0) input.value = formatCurrencyInput(num);
-          else input.value = '';
+          calculate();
         });
       });
 

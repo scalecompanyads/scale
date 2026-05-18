@@ -483,6 +483,65 @@ const faqSchema = {
       </div>
     </section>
 
+    <!-- VIDEOS -->
+    <section class="scale-section scale-section--dark scale-section--proof" id="videos">
+      <div class="scale-container">
+        <div class="scale-section-heading" style="text-align:center;margin-bottom:60px;">
+          <span class="scale-kicker">Depoimentos</span>
+          <h2>Advogados que já estruturaram o crescimento com a Scale</h2>
+          <p style="max-width:800px;margin:24px auto 0;">Histórias de escritórios que saíram do improviso e passaram a acompanhar aquisição, atendimento e conversão com mais clareza.</p>
+        </div>
+
+        <div class="scale-videos__grid">
+          <div class="scale-video-wrapper scale-video-card" data-video-id="hZxR3DadbTg">
+            <picture>
+              <source srcset="/scale-advogados/assets/capa-depoimento-bichara%20(1).webp" type="image/webp">
+              <img src="/scale-advogados/assets/capa-depoimento-bichara.png" alt="Depoimento Bichara Advogados" class="scale-video-card__poster" loading="lazy" decoding="async">
+            </picture>
+            <div class="scale-video-card__play"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg></div>
+          </div>
+          <div class="scale-video-wrapper scale-video-card" data-video-id="4V0ArJKXb-4">
+            <picture>
+              <source srcset="/scale-advogados/assets/capa-drvitor-miranda%20copy.webp" type="image/webp">
+              <img src="/scale-advogados/assets/capa-drvitor-miranda.png" alt="Depoimento Dr. Vitor Miranda" class="scale-video-card__poster" loading="lazy" decoding="async">
+            </picture>
+            <div class="scale-video-card__play"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO LIGHTBOX -->
+    <div class="scale-video-lightbox" id="scale-video-lightbox">
+      <button class="scale-video-lightbox__close" id="scale-video-lightbox-close" aria-label="Fechar">&times;</button>
+      <div class="scale-video-lightbox__content" id="scale-video-lightbox-content"></div>
+    </div>
+
+    <!-- PRINTS -->
+    <section class="scale-section scale-section--light" id="prints">
+      <div class="scale-container">
+        <div class="scale-section-heading">
+          <span class="scale-kicker">Percepção de quem acompanha</span>
+          <h2>Quando existe método, a percepção muda.</h2>
+          <p>O projeto deixa de ser uma tentativa solta e passa a mostrar, semana a semana, o que gera conversa e onde melhorar.</p>
+        </div>
+
+        <div class="scale-stagger-wrapper">
+          <div class="scale-stagger-container" id="scale-stagger-testimonials"></div>
+          <div class="scale-stagger-controls">
+            <button id="scale-stagger-prev" aria-label="Depoimento anterior"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
+            <button id="scale-stagger-next" aria-label="Próximo depoimento"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX PRINTS -->
+    <div class="scale-lightbox" id="scale-lightbox" role="dialog" aria-modal="true" aria-label="Visualizar depoimento">
+      <button class="scale-lightbox__close" id="scale-lightbox-close" aria-label="Fechar">&times;</button>
+      <img src="" alt="Print de depoimento ampliado" class="scale-lightbox__image" id="scale-lightbox-image">
+    </div>
+
     <section class="scale-section scale-section--dark scale-section--team">
       <div class="scale-container">
         <div class="scale-section-heading">
@@ -553,6 +612,149 @@ const faqSchema = {
     </section>
   </div>
 
+  <script is:inline>
+    (function initScaleSections() {
+      function run() {
+        // Videos Lightbox
+        const videoLightbox = document.getElementById('scale-video-lightbox');
+        const videoContent = document.getElementById('scale-video-lightbox-content');
+        const videoClose = document.getElementById('scale-video-lightbox-close');
+
+        function closeVideo() {
+          if (!videoLightbox) return;
+          videoLightbox.classList.remove('active');
+          if (videoContent) videoContent.innerHTML = '';
+          document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.scale-video-wrapper').forEach(function(wrapper) {
+          wrapper.addEventListener('click', function() {
+            var id = wrapper.dataset.videoId;
+            if (!id || !videoContent) return;
+            videoContent.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            if (videoLightbox) videoLightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          });
+        });
+
+        if (videoClose) videoClose.addEventListener('click', closeVideo);
+        if (videoLightbox) videoLightbox.addEventListener('click', function(e) {
+          if (e.target === videoLightbox) closeVideo();
+        });
+
+        // Prints Staggered Carousel
+        var container = document.getElementById('scale-stagger-testimonials');
+        var prevBtn = document.getElementById('scale-stagger-prev');
+        var nextBtn = document.getElementById('scale-stagger-next');
+        var lightbox = document.getElementById('scale-lightbox');
+        var lightboxImage = document.getElementById('scale-lightbox-image');
+        var lightboxClose = document.getElementById('scale-lightbox-close');
+
+        if (!container || !lightbox || !lightboxImage) return;
+
+        var images = [];
+        for (var i = 1; i <= 19; i++) {
+          images.push('/scale-advogados/depoimentos-whatsapp/testimonial-' + (i < 10 ? '0' + i : i) + '.webp');
+        }
+
+        var items = images.map(function(src) { return { id: Math.random(), src: src }; });
+        var cardWidth = window.innerWidth >= 640 ? 300 : 238;
+
+        function renderPrints() {
+          var fragment = document.createDocumentFragment();
+          items.forEach(function(item, index) {
+            var half = items.length % 2 ? (items.length - 1) / 2 : items.length / 2;
+            var position = index - half;
+            var isCenter = position === 0;
+            var absPos = Math.abs(position);
+            var card = document.createElement('div');
+            card.className = 'scale-stagger-card' + (isCenter ? ' scale-stagger-card--center' : '');
+            card.style.width = cardWidth + 'px';
+            card.style.height = Math.round(cardWidth * 1.85) + 'px';
+            var xOffset = Math.round((cardWidth / 1.85) * position);
+            var yOffset = isCenter ? -22 : (position % 2 ? 14 : -14);
+            var rot = isCenter ? 0 : (position % 2 ? 3 : -3);
+            card.style.transform = 'translate(-50%, -50%) translateX(' + xOffset + 'px) translateY(' + yOffset + 'px) rotate(' + rot + 'deg)';
+            card.style.zIndex = String(isCenter ? 10 : Math.max(0, 10 - absPos));
+            card.style.opacity = String(isCenter ? 1 : Math.max(0, 1 - absPos * 0.25));
+            card.style.filter = isCenter ? 'blur(0px) brightness(1)' : 'blur(' + absPos + 'px) brightness(' + (1 - absPos * 0.1) + ')';
+            if (absPos < 4) {
+              (function(capturedItem, capturedPos, capturedIsCenter) {
+                card.onclick = function() {
+                  if (capturedIsCenter) openPrint(capturedItem.src);
+                  else handleMove(capturedPos);
+                };
+              })(item, position, isCenter);
+            }
+
+            var img = document.createElement('img');
+            img.alt = 'Print de depoimento';
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            if (absPos < 4) img.src = item.src;
+            else img.dataset.src = item.src;
+            card.appendChild(img);
+            fragment.appendChild(card);
+          });
+          container.replaceChildren(fragment);
+        }
+
+        function handleMove(steps) {
+          if (steps === 0) return;
+          var newItems = items.slice();
+          if (steps > 0) {
+            for (var i = steps; i > 0; i--) {
+              var item = newItems.shift();
+              newItems.push({ id: Math.random(), src: item.src });
+            }
+          } else {
+            for (var j = steps; j < 0; j++) {
+              var item2 = newItems.pop();
+              newItems.unshift({ id: Math.random(), src: item2.src });
+            }
+          }
+          items = newItems;
+          renderPrints();
+        }
+
+        function openPrint(src) {
+          lightboxImage.src = src;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closePrint() {
+          lightbox.classList.remove('active');
+          lightboxImage.src = '';
+          document.body.style.overflow = '';
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', function() { handleMove(-1); });
+        if (nextBtn) nextBtn.addEventListener('click', function() { handleMove(1); });
+        if (lightboxClose) lightboxClose.addEventListener('click', closePrint);
+        lightbox.addEventListener('click', function(event) {
+          if (event.target === lightbox) closePrint();
+        });
+
+        var resizeTimeout;
+        window.addEventListener('resize', function() {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(function() {
+            cardWidth = window.innerWidth >= 640 ? 300 : 238;
+            renderPrints();
+          }, 150);
+        });
+
+        renderPrints();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+      } else {
+        run();
+      }
+    })();
+  </script>
   <style>
     .paid-advogados {
       --scale-bg: #010000;
@@ -1485,6 +1687,41 @@ const faqSchema = {
       .scale-team-card--plus {
         min-height: 296px;
       }
+    }
+
+    /* Video Cases */
+    /* VIDEOS */
+    .scale-videos__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; width: 100%; max-width: 1000px; margin: 0 auto; }
+    .scale-video-wrapper { position: relative; overflow: hidden; background: var(--scale-bg-card); border: 1px solid var(--scale-border); aspect-ratio: 9 / 16; cursor: pointer; border-radius: 16px; }
+    .scale-video-wrapper picture { display: block; width: 100%; height: 100%; }
+    .scale-video-card__poster { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease, filter 0.4s ease; filter: brightness(0.7); }
+    .scale-video-wrapper:hover .scale-video-card__poster { transform: scale(1.05); filter: brightness(0.9); }
+    .scale-video-card__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: rgba(0, 119, 255, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: all 0.3s ease; z-index: 2; box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.4); }
+    .scale-video-wrapper:hover .scale-video-card__play { background: rgb(0, 119, 255); transform: translate(-50%, -50%) scale(1.1); animation: pulse-blue 1.5s infinite; }
+    @keyframes pulse-blue { 0% { box-shadow: 0 0 0 0 rgba(0, 119, 255, .4); } 70% { box-shadow: 0 0 0 20px rgba(0, 119, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0); } }
+
+    /* DEPOIMENTOS */
+    .scale-stagger-wrapper { position: relative; min-height: 620px; overflow: hidden; margin-top: 24px; }
+    .scale-stagger-container { position: relative; height: 560px; width: 100%; }
+    .scale-stagger-card { position: absolute; top: 50%; left: 50%; background: #050505; border: 1px solid rgba(255, 255, 255, .08); overflow: hidden; box-shadow: 0 30px 70px rgba(0, 0, 0, .55); transition: transform .55s cubic-bezier(.4, 0, .2, 1), opacity .4s ease, filter .4s ease; cursor: pointer; border-radius: 12px; }
+    .scale-stagger-card img { width: 100%; height: 100%; object-fit: contain; background: #050505; border-radius: 12px; }
+    .scale-stagger-card--center { border-color: rgba(0, 119, 255, .35); box-shadow: 0 0 0 1px rgba(0, 119, 255, .12), 0 40px 90px rgba(0, 0, 0, .72); }
+    .scale-stagger-controls { position: relative; z-index: 20; display: flex; justify-content: center; gap: 14px; margin-top: -10px; }
+    .scale-stagger-controls button { width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, .11); background: rgba(255, 255, 255, .035); transition: all 0.3s ease; border-radius: 50%; color: #fff; cursor: pointer; }
+    .scale-stagger-controls button:hover { border-color: rgba(0, 119, 255, .4); background: rgba(0, 119, 255, .09); }
+
+    /* LIGHTBOXES */
+    .scale-video-lightbox, .scale-lightbox { position: fixed; inset: 0; z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0, 0, 0, .88); backdrop-filter: blur(10px); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+    .scale-video-lightbox.active, .scale-lightbox.active { opacity: 1; pointer-events: auto; }
+    .scale-video-lightbox__close, .scale-lightbox__close { position: absolute; right: 24px; top: 18px; font-size: 38px; color: #fff; z-index: 2; cursor: pointer; background: transparent; border: none; }
+    .scale-video-lightbox__content { width: min(420px, 94vw); aspect-ratio: 9/16; background: #000; border: 1px solid rgba(255, 255, 255, .1); border-radius: 16px; overflow: hidden; }
+    .scale-video-lightbox__content iframe { width: 100%; height: 100%; border: 0; }
+    .scale-lightbox__image { max-height: 88vh; max-width: min(520px, 92vw); object-fit: contain; border: 1px solid rgba(255, 255, 255, .12); border-radius: 12px; }
+
+    @media (max-width: 768px) {
+      .scale-videos__grid { grid-template-columns: 1fr; max-width: 390px; gap: 24px; }
+      .scale-stagger-wrapper { min-height: 540px; }
+      .scale-stagger-container { height: 490px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
