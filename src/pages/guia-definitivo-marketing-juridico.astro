@@ -1,0 +1,214 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import { getCanonicalUrl, organizationId, websiteId } from '@data/seo';
+import { ArrowRight, BookOpen, CheckCircle2, FileText, Scale, Search, ShieldCheck } from 'lucide-react';
+
+const canonical = getCanonicalUrl('/guia-definitivo-marketing-juridico');
+
+const sections = [
+  {
+    id: 'fundamentos',
+    title: 'Fundamentos',
+    desc: 'Posicionamento, nicho, proposta de valor, presença digital e clareza sobre quais casos o escritório quer atrair.',
+  },
+  {
+    id: 'site',
+    title: 'Site jurídico',
+    desc: 'Arquitetura de páginas, copy, prova, formulário, WhatsApp e conteúdo informativo para transformar visita em conversa.',
+  },
+  {
+    id: 'seo',
+    title: 'SEO para advogados',
+    desc: 'Páginas locais, artigos por dúvida do cliente, otimização técnica e autoridade para aparecer no Google com consistência.',
+  },
+  {
+    id: 'trafego',
+    title: 'Tráfego pago',
+    desc: 'Campanhas de busca, remarketing e landing pages com mensuração, sem promessas absolutas ou abordagem incompatível com a ética profissional.',
+  },
+  {
+    id: 'operacao',
+    title: 'Operação comercial',
+    desc: 'CRM, triagem, atendimento, cadência de retorno e indicadores para aproveitar melhor cada lead recebido.',
+  },
+];
+
+const checklist = [
+  'Definir área prioritária e perfil de cliente ideal',
+  'Criar páginas específicas por serviço jurídico e localização',
+  'Organizar Google Business Profile, avaliações e consistência de NAP',
+  'Produzir conteúdo informativo para dúvidas reais do público',
+  'Rastrear origem dos contatos por formulário, WhatsApp e telefone',
+  'Medir lead qualificado, reunião, proposta e contrato fechado',
+];
+
+const faqItems = [
+  {
+    question: 'Marketing jurídico pode ser feito sem ferir a ética?',
+    answer:
+      'Sim, desde que a comunicação seja informativa, sóbria e responsável. A estratégia deve evitar promessa de resultado, captação predatória, mercantilização da profissão e qualquer mensagem que crie expectativa indevida.',
+  },
+  {
+    question: 'Qual canal costuma ser melhor para advogados?',
+    answer:
+      'Depende da área e do momento do escritório. SEO é forte para demanda recorrente e autoridade. Google Ads pode acelerar procura ativa. Redes sociais ajudam posicionamento e confiança. O melhor plano costuma combinar canais.',
+  },
+  {
+    question: 'Preciso de landing page ou site completo?',
+    answer:
+      'Para campanhas específicas, landing pages podem converter melhor. Para autoridade e SEO, um site completo com páginas por área, cidade e conteúdo tende a criar um ativo mais duradouro.',
+  },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${canonical}#article`,
+  headline: 'Guia Definitivo de Marketing Jurídico',
+  description:
+    'Guia sobre marketing jurídico, SEO para advogados, tráfego pago, site, conteúdo e operação comercial para escritórios.',
+  url: canonical,
+  inLanguage: 'pt-BR',
+  isPartOf: {
+    '@id': websiteId,
+  },
+  publisher: {
+    '@id': organizationId,
+  },
+  author: {
+    '@id': organizationId,
+  },
+};
+---
+
+<BaseLayout
+  title="Guia Definitivo de Marketing Jurídico | Scale"
+  description="Guia completo de marketing jurídico para advogados: SEO, tráfego pago, site, redes sociais, conteúdo, ética e operação comercial."
+  canonical={canonical}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <section class="relative -mt-16 overflow-hidden bg-[#010f1c] pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="absolute inset-0 home-bg-grid opacity-70" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      <div class="max-w-4xl">
+        <span class="home-label-caps mb-5">Pilar de conteúdo</span>
+        <h1 class="font-heading text-[clamp(2.7rem,6vw,5.6rem)] font-extrabold leading-[0.98] text-white">
+          Guia definitivo de marketing jurídico.
+        </h1>
+        <p class="mt-7 max-w-3xl text-lg leading-relaxed text-white/62 md:text-xl">
+          Um mapa prático para escritórios que querem atrair clientes com mais previsibilidade, respeitando a ética da advocacia e conectando marketing à operação comercial.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <Button href="/mentoria-marketing-juridico" variant="ring" size="lg">
+            Conhecer mentoria
+            <ArrowRight size={17} strokeWidth={2.4} />
+          </Button>
+          <a
+            href="/calculadora-investimento-anuncios"
+            class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/72 transition hover:border-[#00BAFF]/35 hover:text-white"
+          >
+            Calcular investimento
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+        <aside class="lg:sticky lg:top-28 lg:self-start">
+          <div class="rounded-[8px] border border-edge bg-white p-6">
+            <BookOpen className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.7} />
+            <h2 class="font-heading text-xl font-bold text-ink">Neste guia</h2>
+            <nav class="mt-5 space-y-2">
+              {sections.map((section) => (
+                <a href={`#${section.id}`} class="block rounded-[6px] px-3 py-2 text-sm font-semibold text-ink-light transition hover:bg-blue-50 hover:text-[#1630DF]">
+                  {section.title}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </aside>
+
+        <div class="space-y-14">
+          {sections.map((section, index) => (
+            <article id={section.id} class="scroll-mt-28">
+              <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">{String(index + 1).padStart(2, '0')}</span>
+              <h2 class="mt-3 font-heading text-3xl font-bold leading-tight text-ink md:text-4xl">{section.title}</h2>
+              <p class="mt-4 text-lg leading-relaxed text-ink-light">{section.desc}</p>
+              <p class="mt-5 leading-relaxed text-ink-light">
+                O erro mais comum é tratar marketing jurídico como postagem solta ou campanha isolada. Uma estratégia consistente começa pela escolha do caso que o escritório quer atrair, passa por uma presença digital confiável e termina em uma rotina comercial capaz de responder rápido, qualificar contatos e acompanhar oportunidades.
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div>
+          <span class="section-label">Checklist</span>
+          <h2 class="section-title text-left">O que precisa existir antes de escalar.</h2>
+          <p class="section-subtitle text-left">
+            Crescimento nacional para escritórios exige base: mensagem clara, site confiável, rastreamento e processo de atendimento.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-3">
+          {checklist.map((item) => (
+            <div class="flex gap-3 rounded-[8px] border border-white/[0.08] bg-white/[0.035] p-4">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" strokeWidth={2} />
+              <p class="text-sm font-medium leading-relaxed text-white/70">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-3">
+        {[
+          { icon: ShieldCheck, title: 'Ética primeiro', desc: 'A comunicação precisa ser informativa, sóbria e compatível com a advocacia.' },
+          { icon: Search, title: 'Busca com intenção', desc: 'SEO jurídico captura dúvidas e buscas locais de pessoas que já procuram orientação.' },
+          { icon: FileText, title: 'Conteúdo que educa', desc: 'Guias, páginas de serviço e artigos ajudam o potencial cliente a entender caminhos.' },
+        ].map((item) => {
+          const Icon = item.icon;
+          return (
+            <div class="rounded-[8px] border border-edge bg-white p-7">
+              <Icon className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.7} />
+              <h2 class="font-heading text-xl font-bold text-ink">{item.title}</h2>
+              <p class="mt-3 text-sm leading-relaxed text-ink-light">{item.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] text-center">
+    <div class="container-narrow">
+      <Scale className="mx-auto mb-5 h-10 w-10 text-[#00BAFF]" strokeWidth={1.6} />
+      <h2 class="heading-section-dark">Quer transformar esse guia em plano de execução?</h2>
+      <p class="mt-5 text-lg leading-relaxed text-white/55">
+        A mentoria de marketing jurídico organiza posicionamento, canais, páginas, campanhas e rotina comercial para escritórios que querem crescer com método.
+      </p>
+      <div class="mt-9">
+        <Button href="/mentoria-marketing-juridico" variant="ring" size="lg">
+          Ver mentoria
+          <ArrowRight size={17} strokeWidth={2.4} />
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="Dúvidas sobre marketing jurídico" />
+</BaseLayout>
+

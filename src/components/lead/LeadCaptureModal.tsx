@@ -57,10 +57,10 @@ export default function LeadCaptureModal() {
           <div className="flex items-start justify-between gap-3 border-b border-slate-100 px-6 py-4">
             <div>
               <Dialog.Title className="text-lg font-bold text-slate-900">
-                Fale com a Scale
+                Diagnóstico gratuito
               </Dialog.Title>
               <Dialog.Description className="mt-1 text-sm text-slate-600">
-                Preencha os dados abaixo. Entraremos em contato em até 24 horas úteis.
+                Responda as etapas abaixo. Nosso time entra em contato para entender seu cenário.
               </Dialog.Description>
             </div>
             <Dialog.Close

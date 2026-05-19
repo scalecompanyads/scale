@@ -1,66 +1,53 @@
 ---
-/**
- * SchemaLocalBusiness.astro — Schema JSON-LD para páginas locais
- * Incluído automaticamente pelo LocalLayout.astro
- * NAP deve ser idêntico ao Google Business Profile.
- */
 import type { City } from '@data/cities';
+import { brand, getLocalBusinessId, organizationId, websiteId } from '@data/seo';
 
 interface Props {
   city: City;
 }
 
 const { city } = Astro.props;
-const siteUrl = import.meta.env.SITE || 'https://www.scalecompany.com.br';
-
-const nap = {
-  name: 'Scale',
-  legalName: 'Scale Marketing Digital',
-  url: siteUrl,
-  telephone: '+55-22-99764-7844',
-  email: 'contato@scalecompany.com.br',
-  streetAddress: 'Av. Hugo Musso, Sala 105 – Estilo Center',
-  addressLocality: 'Vila Velha',
-  addressRegion: 'ES',
-  postalCode: '29101-280',
-  addressCountry: 'BR',
-  logo: `${siteUrl}/assets/brand/logo.png`,
-  image: `${siteUrl}/assets/brand/og-default.jpg`,
-  priceRange: '$$',
-  openingHours: 'Mo-Fr 09:00-18:00',
-};
+const siteUrl = import.meta.env.SITE || brand.url;
+const localUrl = new URL(`/${city.slug}`, siteUrl).href;
 
 const schema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  '@id': `${siteUrl}/${city.slug}`,
-  name: nap.name,
-  legalName: nap.legalName,
-  url: `${siteUrl}/${city.slug}`,
-  telephone: nap.telephone,
-  email: nap.email,
-  logo: nap.logo,
-  image: nap.image,
-  priceRange: nap.priceRange,
-  openingHours: nap.openingHours,
+  '@type': ['LocalBusiness', 'ProfessionalService'],
+  '@id': getLocalBusinessId(city, siteUrl),
+  name: `${brand.name} - ${city.name}`,
+  legalName: brand.legalName,
+  url: localUrl,
+  telephone: brand.telephone,
+  email: brand.email,
+  logo: brand.logo,
+  image: brand.image,
+  priceRange: brand.priceRange,
+  openingHours: brand.openingHours,
+  parentOrganization: {
+    '@id': organizationId,
+  },
+  isPartOf: {
+    '@id': websiteId,
+  },
   address: {
     '@type': 'PostalAddress',
-    streetAddress: nap.streetAddress,
+    streetAddress: brand.address.streetAddress,
     addressLocality: city.id === 'espirito-santo' ? 'Vila Velha' : city.name,
     addressRegion: city.stateAbbr,
-    postalCode: nap.postalCode,
-    addressCountry: nap.addressCountry,
+    postalCode: brand.address.postalCode,
+    addressCountry: brand.address.addressCountry,
   },
-  areaServed: {
-    '@type': 'State',
-    name: city.state,
-  },
-  sameAs: [
-    // TODO: adicionar URLs dos perfis sociais
-    // 'https://www.instagram.com/scale',
-    // 'https://www.linkedin.com/company/scale',
-    // 'https://maps.google.com/?cid=SEU_CID_GBP',
+  areaServed: [
+    {
+      '@type': city.id === 'espirito-santo' ? 'State' : 'City',
+      name: city.name,
+    },
+    {
+      '@type': 'State',
+      name: city.state,
+    },
   ],
+  sameAs: brand.sameAs.length > 0 ? brand.sameAs : undefined,
 };
 ---
 

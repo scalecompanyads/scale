@@ -2,12 +2,12 @@
 title: "SEO local e Google Meu Negócio: o que fazer primeiro (sem complicar)"
 description: "Ficha no mapa, categorias corretas, fotos e avaliações: checklist prático para fortalecer sua presença local no Google antes de investir em conteúdo avançado."
 publishDate: 2026-04-17
+updatedDate: 2026-05-04
 category: local
 tags: ['SEO local', 'Google Meu Negócio', 'presença local', 'mapas', 'negócios locais']
 featured: false
 focusKeyword: "SEO local Google Meu Negócio"
 readingTime: 8
-slug: seo-local-google-meu-negocio-o-que-fazer-primeiro
 coverImage: ./cover.webp
 coverImageAlt: "Ilustração de pin de localização e resultados de busca local"
 ---
@@ -73,6 +73,20 @@ Com a ficha sólida, faz sentido **páginas por cidade ou serviço**, menções 
 Pular direto para artigos de blog sem base em ficha costuma gerar tráfego que não converte — porque a primeira impressão no mapa já falhou.
 
 Para negócios locais que também usam anúncios, faz diferença cruzar ficha no mapa, site e **tráfego pago para empresas** com a mesma mensagem e área de atendimento — evitando cliques caros para quem você não consegue atender. A Scale reúne visão local e [gestão de tráfego pago](/servicos/trafego-pago) quando o objetivo é preencher a agenda com método.
+
+## Perguntas rápidas sobre SEO local
+
+### Quanto tempo leva para melhorar no mapa?
+
+Depende da concorrência, da consistência do perfil e da força do site. Em mercados locais menos disputados, pequenos ajustes podem gerar sinais em poucas semanas. Em nichos competitivos, o trabalho costuma exigir meses de rotina.
+
+### Preciso postar toda semana no Perfil da Empresa?
+
+Não é obrigatório, mas ajuda a mostrar atividade. O mais importante é manter dados corretos, fotos reais, avaliações respondidas e uma página do site coerente com a categoria e a região atendida.
+
+### O site influencia o mapa?
+
+Sim. A ficha do Google não vive isolada. Ela se conecta ao site, ao NAP, às páginas locais, às avaliações e às menções da marca na web. Por isso, uma boa página de [SEO em Vila Velha](/vila-velha/seo) ou da sua cidade reforça o conjunto.
 
 ## Conclusão
 

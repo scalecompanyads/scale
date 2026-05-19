@@ -1,34 +1,429 @@
 ---
 /**
- * Hub de Serviços — /servicos
- * Quatro frentes principais + CTA local
+ * Hub de Serviços - /servicos
+ * Página comercial para os principais serviços de marketing digital da Scale.
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
-import ServicesGrid from '@components/sections/ServicesGrid.astro';
-import LocalCTA from '@components/sections/LocalCTA.astro';
+import Button from '@components/ui/Button.astro';
+import GlassEffect from '@components/ui/GlassEffect.astro';
+import ProcessSteps from '@components/sections/ProcessSteps';
+import BlogBento from '@components/sections/BlogBento.astro';
+import FaqAccordion from '@components/sections/FaqAccordion';
+import { legacyServices, services as coreServices } from '@data/services';
+import {
+  ArrowRight,
+  BarChart3,
+  CheckCircle2,
+  ClipboardCheck,
+  Gauge,
+  Globe2,
+  Layers3,
+  LineChart,
+  Megaphone,
+  MessagesSquare,
+  MousePointerClick,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  TrendingUp,
+  Zap,
+} from 'lucide-react';
+
+const allServices = [...coreServices, ...legacyServices];
+
+const iconMap = {
+  'trafego-pago': TrendingUp,
+  'landing-pages': Zap,
+  seo: Search,
+  'redes-sociais': Megaphone,
+  'criacao-de-sites': Globe2,
+};
+
+const serviceHref = (slug: string) => `/servicos/${slug}`;
+
+const serviceHighlights: Record<string, string[]> = {
+  'trafego-pago': [
+    'Google Ads e Meta Ads com foco em oportunidade comercial',
+    'Otimização de públicos, criativos, palavras-chave e verba',
+    'Remarketing, rastreamento e leitura de ROAS',
+  ],
+  'landing-pages': [
+    'Página focada em conversão para campanhas e lançamentos',
+    'Copy, estrutura, prova e CTA pensados para decisão',
+    'Experiência mobile rápida e objetiva',
+  ],
+  seo: [
+    'SEO técnico, conteúdo e arquitetura para ranquear melhor',
+    'Otimização on-page e estratégia de palavras-chave',
+    'Conteúdo para tráfego orgânico com intenção comercial',
+  ],
+  'redes-sociais': [
+    'Calendário editorial, artes e posicionamento de marca',
+    'Conteúdo alinhado às campanhas e ao funil comercial',
+    'Gestão com métricas que importam para o negócio',
+  ],
+  'criacao-de-sites': [
+    'Site institucional rápido, responsivo e com SEO técnico',
+    'Estrutura profissional para gerar confiança e contatos',
+    'Base preparada para conteúdo, mídia paga e expansão',
+  ],
+};
+
+const serviceAngles: Record<string, string> = {
+  'trafego-pago': 'Para empresas que precisam gerar demanda agora.',
+  'landing-pages': 'Para transformar clique em contato qualificado.',
+  seo: 'Para reduzir dependência de anúncio e ganhar presença no Google.',
+  'redes-sociais': 'Para construir presença, recorrência e percepção de valor.',
+  'criacao-de-sites': 'Para criar uma base digital profissional e confiável.',
+};
+
+const serviceMetrics = [
+  { value: '+240', label: 'empresas atendidas' },
+  { value: '+16 mi', label: 'gerenciados em anúncios' },
+  { value: '5 frentes', label: 'integradas na mesma estratégia' },
+];
+
+const stacks = [
+  {
+    title: 'Captação rápida',
+    desc: 'Para empresas que precisam gerar leads e oportunidades em menos tempo.',
+    items: ['Tráfego pago', 'Landing page', 'CRM e acompanhamento comercial'],
+  },
+  {
+    title: 'Autoridade no Google',
+    desc: 'Para empresas que querem ser encontradas com consistência.',
+    items: ['Consultoria de SEO', 'Criação de sites', 'Conteúdo estratégico'],
+  },
+  {
+    title: 'Presença e confiança',
+    desc: 'Para marcas que precisam parecer tão boas online quanto são na entrega.',
+    items: ['Redes sociais', 'Criativos', 'Site profissional'],
+  },
+];
+
+const reasons = [
+  {
+    icon: ClipboardCheck,
+    title: 'Diagnóstico antes da proposta',
+    desc: 'Antes de vender pacote, entendemos cenário, concorrência, funil e o que realmente pode mover o resultado.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Execução conectada com vendas',
+    desc: 'Campanha, página, conteúdo e atendimento precisam conversar. A Scale olha para a jornada completa.',
+  },
+  {
+    icon: LineChart,
+    title: 'Relatório em linguagem de negócio',
+    desc: 'Você acompanha o que foi feito, o que funcionou, o que precisa mudar e qual é o próximo passo.',
+  },
+];
+
+const faqItems = [
+  {
+    q: 'Qual serviço de marketing digital devo contratar primeiro?',
+    a: 'Depende do objetivo. Se a prioridade é gerar demanda rapidamente, tráfego pago com landing page costuma ser o início mais direto. Se a empresa precisa construir presença duradoura no Google, SEO e site entram como base estratégica.',
+  },
+  {
+    q: 'A Scale faz serviços separados ou apenas pacote completo?',
+    a: 'Fazemos os dois. Alguns projetos começam com uma frente específica, como tráfego pago ou site. Em outros, estruturamos uma operação completa com mídia, SEO, landing pages, redes sociais e rotina comercial.',
+  },
+  {
+    q: 'Vocês atendem empresas fora do Espírito Santo?',
+    a: 'Sim. A Scale atende empresas em todo o Brasil, com base no Espírito Santo. O acompanhamento pode ser online, com reuniões e relatórios claros.',
+  },
+  {
+    q: 'Quanto tempo leva para ver resultado?',
+    a: 'Tráfego pago pode começar a gerar sinais nas primeiras semanas. Sites e landing pages dependem do prazo de criação. SEO costuma exigir de 3 a 6 meses para ganhar consistência. No diagnóstico alinhamos expectativas reais.',
+  },
+  {
+    q: 'O investimento em anúncios está incluso?',
+    a: 'Normalmente o investimento de mídia é separado da gestão. Assim fica claro quanto vai para plataformas como Google e Meta e quanto corresponde ao trabalho estratégico e operacional da Scale.',
+  },
+  {
+    q: 'A Scale também ajuda com atendimento comercial?',
+    a: 'Sim. Quando necessário, apoiamos com CRM, organização do funil, scripts, leitura dos leads e treinamento comercial para melhorar a conversão depois que o contato chega.',
+  },
+];
 ---
 
 <BaseLayout
   title="Serviços de Marketing Digital | Scale"
-  description="Tráfego pago, landing pages, SEO e gestão de redes sociais — automações, treinamento comercial e criação de artes integrados às nossas frentes."
+  description="Serviços de marketing digital da Scale: tráfego pago, SEO, criação de sites, landing pages, redes sociais, CRM e estratégia comercial para empresas que querem crescer."
 >
-  <section class="section bg-surface-subtle border-b border-edge">
-    <div class="container">
-      <div class="max-w-xl">
-        <span class="section-label">O que fazemos</span>
-        <h1 class="font-heading text-3xl font-extrabold text-ink leading-tight md:text-4xl">
-          Soluções para crescer seu negócio
-        </h1>
-        <p class="mt-3 text-base text-ink-light leading-relaxed md:text-lg">
-          Tráfego, páginas, SEO e conteúdo — na mesma equipe.
-        </p>
-      </div>
+  <style>
+    .services-hero-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 92px 92px;
+    }
 
-      <div class="mt-10 md:mt-12">
-        <ServicesGrid embedded showLink={true} />
+    .services-dashboard {
+      background:
+        radial-gradient(circle at 12% 16%, rgba(0,186,255,0.18), transparent 30%),
+        radial-gradient(circle at 85% 22%, rgba(22,48,223,0.22), transparent 32%),
+        linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.022));
+    }
+
+    .service-signal {
+      animation: service-signal 2.8s ease-in-out infinite alternate;
+      transform-origin: bottom;
+    }
+
+    @keyframes service-signal {
+      from { transform: scaleY(0.42); opacity: 0.45; }
+      to { transform: scaleY(1); opacity: 0.95; }
+    }
+  </style>
+
+  <section class="relative -mt-16 overflow-hidden bg-[#010f1c] pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="absolute inset-0 services-hero-grid opacity-75" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[#010f1c] to-transparent" aria-hidden="true"></div>
+    <div class="absolute -left-32 top-24 h-80 w-80 rounded-full bg-[#00BAFF]/14 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute -right-28 bottom-8 h-96 w-96 rounded-full bg-[#1630DF]/18 blur-3xl" aria-hidden="true"></div>
+
+    <div class="container relative z-10">
+      <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.04fr_0.96fr]">
+        <div class="max-w-3xl">
+          <GlassEffect
+            className="mb-8 inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold !cursor-default"
+            glassClass="bg-[#010f1c]/75"
+            rounded="rounded-full"
+          >
+            <Sparkles size={14} color="#00BAFF" strokeWidth={1.8} />
+            <span class="text-white/65">Serviços de marketing digital para crescimento previsível</span>
+          </GlassEffect>
+
+          <h1 class="font-heading text-[clamp(2.75rem,6vw,5.8rem)] font-bold leading-[0.98] tracking-tight text-white">
+            Soluções digitais para sua empresa vender mais.
+          </h1>
+
+          <p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/62 md:text-xl">
+            A Scale conecta tráfego pago, SEO, sites, landing pages, redes sociais e estrutura comercial para transformar presença digital em oportunidades reais de negócio.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <Button href="/contato" variant="ring" size="lg">
+              Solicitar diagnóstico gratuito
+              <ArrowRight size={17} strokeWidth={2.4} />
+            </Button>
+            <a
+              href="#servicos-principais"
+              class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/72 transition hover:border-[#00BAFF]/35 hover:text-white"
+            >
+              Ver serviços
+              <ArrowRight size={15} strokeWidth={2.2} />
+            </a>
+          </div>
+        </div>
+
+        <div class="services-dashboard relative overflow-hidden rounded-[10px] border border-white/10 p-6 shadow-2xl shadow-black/35 backdrop-blur">
+          <div class="mb-7 flex items-start justify-between gap-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#00BAFF]">Plano integrado</p>
+              <h2 class="mt-2 font-heading text-3xl font-bold text-white">Marketing que fecha o ciclo</h2>
+            </div>
+            <div class="rounded-[8px] border border-white/10 bg-white/5 p-3 text-white/70">
+              <BarChart3 size={24} strokeWidth={1.8} />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-5 items-end gap-3 rounded-[8px] border border-white/10 bg-[#010f1c]/45 p-5">
+            {[58, 74, 46, 86, 68].map((height, index) => (
+              <div class="flex h-44 items-end rounded-[6px] bg-white/[0.035] px-2">
+                <div
+                  class="service-signal w-full rounded-t-[5px] bg-gradient-to-t from-[#1630DF] to-[#00BAFF]"
+                  style={`height:${height}%; animation-delay:-${index * 0.38}s`}
+                ></div>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            {serviceMetrics.map((metric) => (
+              <div class="rounded-[8px] border border-white/10 bg-[#010f1c]/45 p-4">
+                <p class="font-heading text-2xl font-bold text-white">{metric.value}</p>
+                <p class="mt-1 text-xs leading-relaxed text-white/45">{metric.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <LocalCTA city="Vila Velha" />
+  <section class="section bg-[#010f1c] home-bg-grid">
+    <div class="container relative z-10">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-end">
+        <div>
+          <span class="home-label-caps mb-4">O problema</span>
+          <h2 class="heading-display-dark">Serviço isolado raramente resolve crescimento.</h2>
+        </div>
+        <p class="text-lg leading-relaxed text-white/52">
+          Anúncio sem página boa desperdiça verba. Site sem SEO não é encontrado. Rede social sem estratégia vira rotina de postagem. A Scale organiza cada serviço dentro de um plano de aquisição, conversão e acompanhamento.
+        </p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+        {reasons.map((reason) => {
+          const Icon = reason.icon;
+          return (
+            <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-7">
+              <Icon className="mb-5 h-7 w-7 text-[#00BAFF]" strokeWidth={1.8} />
+              <h3 class="mb-3 text-lg font-semibold text-white">{reason.title}</h3>
+              <p class="text-sm leading-relaxed text-white/48">{reason.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos-principais" class="section light-section bg-white">
+    <div class="container">
+      <div class="mx-auto mb-14 max-w-3xl text-center">
+        <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Serviços</span>
+        <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
+          Tudo que sua operação digital precisa para crescer com método.
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-ink-light">
+          Escolha uma frente específica ou monte um plano integrado. O ponto é simples: cada serviço precisa ter função clara no resultado.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        {allServices.map((service, index) => {
+          const Icon = iconMap[service.id as keyof typeof iconMap] ?? Target;
+          return (
+            <a
+              href={serviceHref(service.slug)}
+              class:list={[
+                'group rounded-[10px] border border-edge bg-surface-card p-7 transition hover:-translate-y-1 hover:border-brand-primary hover:shadow-xl hover:shadow-blue-950/10',
+                index === allServices.length - 1 && 'lg:col-span-2',
+              ]}
+            >
+              <div class="mb-7 flex items-start justify-between gap-5">
+                <div class="flex h-12 w-12 items-center justify-center rounded-[8px] bg-[#010f1c] text-[#00BAFF]">
+                  <Icon size={23} strokeWidth={1.8} />
+                </div>
+                <span class="flex h-9 w-9 items-center justify-center rounded-full border border-edge text-ink-light transition group-hover:border-brand-primary group-hover:text-brand-primary">
+                  <ArrowRight size={16} strokeWidth={2.2} />
+                </span>
+              </div>
+
+              <div class="grid grid-cols-1 gap-7 md:grid-cols-[0.9fr_1.1fr] md:items-start">
+                <div>
+                  <span class="mb-3 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-bold text-[#1630DF]">
+                    {serviceAngles[service.id] ?? 'Para crescer com clareza.'}
+                  </span>
+                  <h3 class="font-heading text-2xl font-bold text-ink">{service.name}</h3>
+                  <p class="mt-3 leading-relaxed text-ink-light">{service.description}</p>
+                </div>
+
+                <div class="space-y-3">
+                  {(serviceHighlights[service.id] ?? service.keywords.slice(0, 3)).map((item) => (
+                    <div class="flex gap-3 rounded-[8px] border border-edge bg-white p-3">
+                      <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" strokeWidth={2} />
+                      <p class="text-sm leading-relaxed text-ink-light">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Combinações</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink">
+            Você não precisa contratar tudo. Precisa contratar o conjunto certo.
+          </h2>
+          <p class="mt-5 leading-relaxed text-ink-light">
+            No diagnóstico, identificamos o que trava seu crescimento hoje e priorizamos as frentes com maior chance de impacto.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {stacks.map((stack) => (
+            <div class="rounded-[10px] border border-edge bg-white p-6">
+              <Layers3 className="mb-6 h-8 w-8 text-[#00BAFF]" strokeWidth={1.7} />
+              <h3 class="mb-3 font-heading text-xl font-bold text-slate-950">{stack.title}</h3>
+              <p class="mb-5 text-sm font-medium leading-relaxed text-slate-700">{stack.desc}</p>
+              <div class="space-y-2">
+                {stack.items.map((item) => (
+                  <div class="rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold text-slate-800">
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] home-bg-grid">
+    <div class="container relative z-10">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <span class="home-label-caps mb-4">Do clique ao fechamento</span>
+        <h2 class="heading-display-dark">A Scale olha para o funil inteiro.</h2>
+        <p class="mt-5 text-lg leading-relaxed text-white/52">
+          O objetivo não é entregar peças soltas. É criar uma rotina em que cada canal ajuda a empresa a atrair, converter, acompanhar e vender melhor.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+        {[
+          { icon: MousePointerClick, title: 'Atrair', desc: 'Anúncios, SEO e conteúdo trazem o público certo.' },
+          { icon: Gauge, title: 'Converter', desc: 'Sites e landing pages reduzem fricção e aumentam contatos.' },
+          { icon: MessagesSquare, title: 'Atender', desc: 'CRM, scripts e leitura comercial melhoram o aproveitamento dos leads.' },
+          { icon: BarChart3, title: 'Otimizar', desc: 'Relatórios e dados orientam a próxima decisão.' },
+        ].map((step, index) => {
+          const Icon = step.icon;
+          return (
+            <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-6">
+              <div class="mb-6 flex items-center justify-between">
+                <Icon className="h-8 w-8 text-[#00BAFF]" strokeWidth={1.7} />
+                <span class="font-heading text-xs font-bold tracking-[0.12em] text-white/25">{String(index + 1).padStart(2, '0')}</span>
+              </div>
+              <h3 class="mb-3 text-lg font-semibold text-white">{step.title}</h3>
+              <p class="text-sm leading-relaxed text-white/48">{step.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <ProcessSteps client:visible />
+  <BlogBento />
+  <FaqAccordion client:visible title="Perguntas sobre os serviços da Scale." items={faqItems} />
+
+  <section class="relative overflow-hidden bg-[#010f1c] px-6 py-20 text-center">
+    <div class="absolute inset-0 services-hero-grid opacity-60" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-3xl">
+      <span class="home-label-caps mb-4">Próximo passo</span>
+      <h2 class="font-heading text-4xl font-bold leading-tight text-white md:text-5xl">
+        Vamos descobrir quais serviços fazem sentido para sua empresa agora.
+      </h2>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/55">
+        O diagnóstico é gratuito e direto: entendemos seu momento, apontamos gargalos e mostramos um caminho viável para crescer.
+      </p>
+      <div class="mt-9">
+        <Button href="/contato" variant="ring" size="lg">
+          Solicitar diagnóstico gratuito
+          <ArrowRight size={17} strokeWidth={2.4} />
+        </Button>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

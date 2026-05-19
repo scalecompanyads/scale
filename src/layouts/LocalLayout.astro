@@ -8,6 +8,7 @@
  */
 import BaseLayout from './BaseLayout.astro';
 import SchemaLocalBusiness from '@components/seo/SchemaLocalBusiness.astro';
+import SchemaLocalService from '@components/seo/SchemaLocalService.astro';
 import type { City } from '@data/cities';
 
 interface Props {
@@ -28,5 +29,6 @@ const { title, description, city, canonical, ogImage } = Astro.props;
   ogImage={ogImage}
 >
   <SchemaLocalBusiness slot="head" city={city} />
+  <SchemaLocalService slot="head" city={city} />
   <slot />
 </BaseLayout>

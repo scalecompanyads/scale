@@ -1,6 +1,7 @@
 ---
 import LocalLayout from '@layouts/LocalLayout.astro';
 import FAQ from '@components/sections/FAQ.astro';
+import LegalLogosMarquee from '@components/sections/LegalLogosMarquee.astro';
 import { getCityBySlug } from '@data/cities';
 
 const city = getCityBySlug('vila-velha')!;
@@ -60,6 +61,8 @@ const faqs = [
       </div>
     </div>
   </section>
+
+  <LegalLogosMarquee label="Escritórios de advocacia que já estruturaram aquisição com a Scale" />
 
   <section class="section">
     <div class="container">

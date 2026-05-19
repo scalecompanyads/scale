@@ -1,0 +1,221 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import { getCanonicalUrl, organizationId, websiteId } from '@data/seo';
+import { ArrowRight, CheckCircle2, ClipboardList, Filter, Search, Settings2 } from 'lucide-react';
+
+const canonical = getCanonicalUrl('/comparativo-softwares-juridicos');
+
+const criteria = [
+  {
+    title: 'Gestão de processos',
+    ideal: 'Controle de prazos, movimentações, histórico, responsáveis e alertas.',
+    question: 'A ferramenta reduz risco operacional ou apenas centraliza informações?',
+  },
+  {
+    title: 'CRM jurídico',
+    ideal: 'Pipeline de oportunidades, origem do lead, status de atendimento e taxa de conversão.',
+    question: 'O software ajuda a vender melhor ou só registra contatos?',
+  },
+  {
+    title: 'Financeiro',
+    ideal: 'Honorários, recorrência, contas a receber, relatórios e integração com emissão fiscal.',
+    question: 'A visão financeira ajuda na decisão de marketing e contratação?',
+  },
+  {
+    title: 'Documentos e automação',
+    ideal: 'Modelos, fluxos, assinatura, armazenamento e redução de tarefas repetitivas.',
+    question: 'Quanto tempo operacional a equipe economiza por semana?',
+  },
+  {
+    title: 'Relatórios',
+    ideal: 'Indicadores de produtividade, comercial, receita, origem dos casos e gargalos.',
+    question: 'A gestão consegue decidir com dados ou depende de percepção?',
+  },
+  {
+    title: 'Integrações',
+    ideal: 'WhatsApp, e-mail, agenda, site, formulários, CRM, BI e ferramentas de marketing.',
+    question: 'Os dados do marketing chegam no software sem retrabalho?',
+  },
+];
+
+const profiles = [
+  {
+    title: 'Escritório pequeno',
+    desc: 'Priorize simplicidade, controle de prazos, agenda, documentos e organização de contatos.',
+  },
+  {
+    title: 'Escritório em crescimento',
+    desc: 'Procure CRM, relatórios, gestão financeira e integrações com site, formulários e campanhas.',
+  },
+  {
+    title: 'Operação nacional',
+    desc: 'Exija permissões, automações, visão por unidade, dashboards, governança e processos claros.',
+  },
+];
+
+const faqItems = [
+  {
+    question: 'Qual é o melhor software jurídico?',
+    answer:
+      'Depende do tamanho do escritório, área de atuação, volume de processos, rotina comercial e nível de maturidade da equipe. O melhor software é o que resolve o gargalo atual sem criar complexidade desnecessária.',
+  },
+  {
+    question: 'Software jurídico substitui CRM?',
+    answer:
+      'Nem sempre. Alguns softwares têm módulo comercial, outros são mais fortes em processo e financeiro. Escritórios que investem em marketing precisam acompanhar origem do lead, atendimento, reunião, proposta e contrato.',
+  },
+  {
+    question: 'Como escolher sem olhar só preço?',
+    answer:
+      'Compare tempo economizado, redução de erros, visibilidade gerencial, integrações, curva de aprendizado e impacto na conversão comercial. O custo mensal isolado raramente mostra o ROI real.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${canonical}#article`,
+  headline: 'Comparativo de Softwares Jurídicos',
+  description:
+    'Guia comparativo para escolher software jurídico com critérios de processos, CRM, financeiro, automação, relatórios e integrações.',
+  url: canonical,
+  inLanguage: 'pt-BR',
+  isPartOf: {
+    '@id': websiteId,
+  },
+  publisher: {
+    '@id': organizationId,
+  },
+  author: {
+    '@id': organizationId,
+  },
+};
+---
+
+<BaseLayout
+  title="Comparativo de Softwares Jurídicos | Como Escolher | Scale"
+  description="Compare softwares jurídicos por critérios: gestão de processos, CRM, financeiro, automação, relatórios e integrações com marketing."
+  canonical={canonical}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="relative -mt-16 overflow-hidden bg-[#010f1c] pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="absolute inset-0 home-bg-grid opacity-70" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      <div class="max-w-4xl">
+        <span class="home-label-caps mb-5">Decisão para escritórios</span>
+        <h1 class="font-heading text-[clamp(2.7rem,6vw,5.4rem)] font-extrabold leading-[0.98] text-white">
+          Comparativo de softwares jurídicos.
+        </h1>
+        <p class="mt-7 max-w-3xl text-lg leading-relaxed text-white/62 md:text-xl">
+          Antes de escolher uma ferramenta, entenda quais critérios realmente afetam produtividade, atendimento, gestão de leads e crescimento do escritório.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <Button href="/mentoria-marketing-juridico" variant="ring" size="lg">
+            Avaliar operação jurídica
+            <ArrowRight size={17} strokeWidth={2.4} />
+          </Button>
+          <a
+            href="/guia-definitivo-marketing-juridico"
+            class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/72 transition hover:border-[#00BAFF]/35 hover:text-white"
+          >
+            Ler guia jurídico
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="mx-auto mb-14 max-w-3xl text-center">
+        <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Matriz de comparação</span>
+        <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
+          Compare pela operação, não só pela lista de recursos.
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-ink-light">
+          Um software jurídico precisa conversar com o jeito que o escritório atende, produz, cobra e acompanha oportunidades.
+        </p>
+      </div>
+
+      <div class="overflow-hidden rounded-[10px] border border-edge bg-white">
+        <div class="grid grid-cols-1 border-b border-edge bg-slate-50 p-4 text-xs font-bold uppercase tracking-[0.16em] text-slate-500 md:grid-cols-[0.8fr_1.1fr_1.1fr]">
+          <span>Critério</span>
+          <span>O que observar</span>
+          <span>Pergunta de decisão</span>
+        </div>
+        {criteria.map((item) => (
+          <div class="grid grid-cols-1 gap-3 border-b border-edge p-5 last:border-b-0 md:grid-cols-[0.8fr_1.1fr_1.1fr] md:gap-6">
+            <h3 class="font-heading text-lg font-bold text-ink">{item.title}</h3>
+            <p class="text-sm leading-relaxed text-ink-light">{item.ideal}</p>
+            <p class="text-sm font-semibold leading-relaxed text-[#1630DF]">{item.question}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div>
+          <span class="section-label">Perfis de escritório</span>
+          <h2 class="section-title text-left">A escolha muda conforme a fase do negócio.</h2>
+          <p class="section-subtitle text-left">
+            Escritórios em fases diferentes precisam de softwares diferentes. O excesso de complexidade também custa caro.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-4">
+          {profiles.map((profile) => (
+            <div class="rounded-[8px] border border-white/[0.08] bg-white/[0.035] p-6">
+              <h3 class="font-heading text-xl font-bold text-white">{profile.title}</h3>
+              <p class="mt-3 leading-relaxed text-white/55">{profile.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-3">
+        {[
+          { icon: ClipboardList, title: 'Mapeie o processo', desc: 'Liste etapas de atendimento, produção, prazos, financeiro e relacionamento antes de testar ferramentas.' },
+          { icon: Filter, title: 'Filtre por gargalo', desc: 'Escolha com base no problema mais caro hoje: prazo, atendimento, conversão, financeiro ou gestão.' },
+          { icon: Settings2, title: 'Planeje integração', desc: 'Marketing, CRM e software jurídico precisam trocar dados para medir origem e qualidade dos casos.' },
+        ].map((item) => {
+          const Icon = item.icon;
+          return (
+            <div class="rounded-[8px] border border-edge bg-white p-7">
+              <Icon className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.7} />
+              <h2 class="font-heading text-xl font-bold text-ink">{item.title}</h2>
+              <p class="mt-3 text-sm leading-relaxed text-ink-light">{item.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] text-center">
+    <div class="container-narrow">
+      <Search className="mx-auto mb-5 h-10 w-10 text-[#00BAFF]" strokeWidth={1.6} />
+      <h2 class="heading-section-dark">Software bom não corrige funil quebrado.</h2>
+      <p class="mt-5 text-lg leading-relaxed text-white/55">
+        Antes de investir em ferramenta, vale revisar posicionamento, aquisição, triagem, atendimento e indicadores comerciais do escritório.
+      </p>
+      <div class="mt-9">
+        <Button href="/mentoria-marketing-juridico" variant="ring" size="lg">
+          Ver mentoria jurídica
+          <ArrowRight size={17} strokeWidth={2.4} />
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <FAQ items={faqItems} title="Dúvidas sobre softwares jurídicos" />
+</BaseLayout>
+

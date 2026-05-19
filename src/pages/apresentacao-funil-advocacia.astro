@@ -1,0 +1,407 @@
+---
+/**
+ * Página interna de apresentação para gravação de vídeo.
+ * Rota: /apresentacao-funil-advocacia
+ */
+import BaseLayout from '@layouts/BaseLayout.astro';
+import {
+  ArrowRight,
+  BadgeCheck,
+  BriefcaseBusiness,
+  CheckCircle2,
+  Clock3,
+  FileText,
+  Funnel,
+  Gavel,
+  MessageCircle,
+  MousePointerClick,
+  Play,
+  Search,
+  ShieldCheck,
+  Smartphone,
+  Target,
+  TrendingUp,
+  Video,
+} from 'lucide-react';
+
+const timeline = [
+  {
+    time: '0:00 - 0:45',
+    label: 'Gancho',
+    title: 'A culpa não é do digital. É do funil genérico.',
+    text: 'Você é advogado, sabe que precisa crescer no digital e quer previsibilidade de caixa. Talvez já tenha contratado agências, rodado anúncios, ouvido falar de funil de vendas e mesmo assim nada funcionou. O telefone até toca, mas chega curioso ou gente querendo consulta grátis.',
+  },
+  {
+    time: '0:45 - 2:00',
+    label: 'Problema',
+    title: 'Serviço jurídico não se vende como e-commerce.',
+    text: 'A jornada do cliente na advocacia é baseada em confiança. Muitos escritórios tentam automações frias, anúncios soltos ou sites lentos. Só que o cliente está com um problema urgente e quer falar com um especialista rápido.',
+  },
+  {
+    time: '2:00 - 4:30',
+    label: 'Método',
+    title: 'O Funil da Advocacia Moderna em 3 passos.',
+    text: 'A Scale mapeia a jornada respeitando as regras da OAB e focando no que importa: agenda com clientes qualificados. Clique qualificado, ponte de confiança e conversão no WhatsApp.',
+  },
+  {
+    time: '4:30 - 5:30',
+    label: 'Autoridade',
+    title: 'Do anúncio ao contrato, a jornada precisa fechar.',
+    text: 'As estratégias anteriores falharam porque olhavam apenas para tráfego. A Scale olha para previsibilidade de faturamento, atendimento, conversão e assinatura do contrato.',
+  },
+  {
+    time: '5:30 - fim',
+    label: 'CTA',
+    title: 'Sessão estratégica gratuita com a Scale.',
+    text: 'Se o advogado cansou de depender de indicação e de funis que não funcionam, o próximo passo é agendar uma análise gratuita para implementar o Funil da Advocacia Moderna.',
+  },
+];
+
+const funnelSteps = [
+  {
+    icon: Search,
+    step: 'Passo 1',
+    title: 'Clique Qualificado',
+    tag: 'Anúncio de intenção',
+    text: 'Anúncios não são feitos para viralizar. São construídos para a dor exata do cliente, como "advogado para rescisão indireta", divórcio, trabalhista ou tributário.',
+  },
+  {
+    icon: FileText,
+    step: 'Passo 2',
+    title: 'Ponte de Confiança',
+    tag: 'Landing page de alta conversão',
+    text: 'Página limpa, rápida e focada na autoridade do escritório. Sem distrações. O objetivo é levar o visitante para uma conversa qualificada no WhatsApp.',
+  },
+  {
+    icon: MessageCircle,
+    step: 'Passo 3',
+    title: 'Conversão no WhatsApp',
+    tag: 'Atendimento consultivo',
+    text: 'O marketing traz o lead, mas o fechamento acontece no atendimento. O roteiro transforma "qual o valor?" em reunião agendada e contrato assinado.',
+  },
+];
+
+const objections = [
+  'Já tentei agência e não funcionou.',
+  'Rodei anúncio e só veio curioso.',
+  'Meu escritório não pode depender de indicação.',
+  'Tenho medo de ferir as regras da OAB.',
+  'Não quero métrica bonita, quero cliente qualificado.',
+];
+
+const productionTips = [
+  'Gravar em ambiente profissional, com luz frontal e fundo limpo.',
+  'Usar cortes rápidos entre os blocos do funil.',
+  'Inserir B-roll de celular, WhatsApp, gráfico, contrato e página de captura.',
+  'Evitar vinheta longa: entrar direto na dor do advogado.',
+  'Falar com empatia na dor e segurança na solução.',
+];
+
+const youtubeSeo = [
+  'Marketing jurídico',
+  'Captação de clientes na advocacia',
+  'Funil de vendas para advogados',
+  'Google Ads para advogados',
+  'Como conseguir clientes na advocacia',
+];
+---
+
+<BaseLayout
+  title="Apresentação | Funil da Advocacia Moderna"
+  description="Página interna para gravação do vídeo sobre funil de vendas ideal para a advocacia moderna."
+  noindex
+>
+  <style>
+    .presentation-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.048) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.048) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+
+    .recording-card {
+      background:
+        radial-gradient(circle at 16% 12%, rgba(0,186,255,0.18), transparent 28%),
+        radial-gradient(circle at 86% 22%, rgba(22,48,223,0.18), transparent 30%),
+        linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.026));
+    }
+
+    .signal-bar {
+      animation: signal-bar 2.4s ease-in-out infinite alternate;
+      transform-origin: bottom;
+    }
+
+    @keyframes signal-bar {
+      from { transform: scaleY(0.42); opacity: 0.38; }
+      to { transform: scaleY(1); opacity: 0.92; }
+    }
+  </style>
+
+  <section class="relative -mt-16 overflow-hidden bg-[#010f1c] pt-32 pb-20 md:pt-40">
+    <div class="absolute inset-0 presentation-grid opacity-70" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-[#010f1c] to-transparent" aria-hidden="true"></div>
+    <div class="absolute -left-28 top-20 h-80 w-80 rounded-full bg-[#00BAFF]/15 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute -right-32 bottom-12 h-96 w-96 rounded-full bg-[#1630DF]/18 blur-3xl" aria-hidden="true"></div>
+
+    <div class="container relative z-10">
+      <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-white/65">
+            <Video size={15} color="#00BAFF" strokeWidth={2} />
+            Apresentação para gravação
+          </div>
+
+          <h1 class="max-w-4xl font-heading text-[clamp(3rem,7vw,6.2rem)] font-black leading-[0.94] tracking-tight text-white">
+            O Funil da Advocacia Moderna
+          </h1>
+
+          <p class="mt-7 max-w-2xl text-xl leading-relaxed text-white/68">
+            Um roteiro lógico, analítico e autoritário para advogados que já tentaram crescer no digital, se frustraram e precisam ver que a Scale entende a realidade do escritório.
+          </p>
+
+          <div class="mt-9 flex flex-wrap gap-3">
+            {['5 a 8 minutos', 'Tom empático e seguro', 'ICP: advogado frustrado'].map((item) => (
+              <span class="rounded-full border border-white/10 bg-white/[0.045] px-4 py-2 text-sm font-semibold text-white/72">{item}</span>
+            ))}
+          </div>
+        </div>
+
+        <div class="recording-card rounded-[10px] border border-white/10 p-6 shadow-2xl shadow-black/35 backdrop-blur">
+          <div class="mb-7 flex items-center justify-between">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#00BAFF]">Narrativa central</p>
+              <h2 class="mt-2 font-heading text-3xl font-bold text-white">Confiança antes da conversão</h2>
+            </div>
+            <div class="rounded-[8px] border border-white/10 bg-white/5 p-3 text-white/70">
+              <Gavel size={25} strokeWidth={1.8} />
+            </div>
+          </div>
+
+          <div class="grid h-56 grid-cols-6 items-end gap-3 rounded-[8px] border border-white/10 bg-[#010f1c]/45 p-5">
+            {[42, 64, 82, 54, 92, 74].map((height, index) => (
+              <div class="flex h-full items-end rounded-[6px] bg-white/[0.035] px-2">
+                <div
+                  class="signal-bar w-full rounded-t-[5px] bg-gradient-to-t from-[#1630DF] to-[#00BAFF]"
+                  style={`height:${height}%; animation-delay:-${index * 0.31}s`}
+                ></div>
+              </div>
+            ))}
+          </div>
+
+          <div class="mt-5 grid grid-cols-3 gap-3">
+            {[
+              ['Dor', 'frustração com agências'],
+              ['Método', '3 passos claros'],
+              ['CTA', 'sessão estratégica'],
+            ].map(([title, desc]) => (
+              <div class="rounded-[8px] border border-white/10 bg-[#010f1c]/45 p-4">
+                <p class="font-heading text-xl font-bold text-white">{title}</p>
+                <p class="mt-1 text-xs leading-relaxed text-white/52">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] home-bg-grid">
+    <div class="container relative z-10">
+      <div class="mx-auto mb-12 max-w-4xl text-center">
+        <span class="home-label-caps mb-4">Abertura do vídeo</span>
+        <h2 class="heading-display-dark">Comece pela frustração que ele já viveu.</h2>
+        <p class="mt-5 text-lg leading-relaxed text-white/68">
+          O advogado desse vídeo já sabe que precisa do digital. A mensagem precisa validar a experiência ruim dele e reposicionar o problema: não é o marketing digital, é o funil genérico.
+        </p>
+      </div>
+
+      <div class="rounded-[10px] border border-white/10 bg-white/[0.035] p-7 md:p-10">
+        <div class="mb-6 flex items-center gap-3">
+          <Play size={24} color="#00BAFF" strokeWidth={2} />
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-[#00BAFF]">Fala sugerida</p>
+        </div>
+        <p class="text-2xl font-semibold leading-relaxed text-white md:text-4xl">
+          "Você é advogado, sabe que precisa crescer no digital e quer previsibilidade de caixa. O problema? Você provavelmente já contratou agências, tentou anúncios, ouviu falar de funil de vendas... e nada deu certo."
+        </p>
+        <p class="mt-6 text-xl leading-relaxed text-white/68">
+          "Se isso soa familiar, a culpa não é do marketing digital. A culpa é do funil genérico que tentaram empurrar para a sua advocacia."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section light-section bg-white">
+    <div class="container">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Estrutura</span>
+        <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-slate-950 md:text-5xl">
+          Roteiro por tempo para guiar a gravação.
+        </h2>
+        <p class="mt-5 text-lg font-medium leading-relaxed text-slate-700">
+          Use cada bloco como marcador de edição. A câmera pode alternar entre fala direta, cortes de apoio e telas com palavras-chave.
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {timeline.map((item, index) => (
+          <div class="grid grid-cols-1 gap-5 rounded-[10px] border border-slate-200 bg-slate-50 p-6 md:grid-cols-[190px_1fr]">
+            <div>
+              <div class="mb-3 inline-flex items-center gap-2 rounded-full bg-[#010f1c] px-3 py-1.5 text-xs font-bold text-white">
+                <Clock3 size={14} color="#00BAFF" strokeWidth={2} />
+                {item.time}
+              </div>
+              <p class="font-heading text-4xl font-black text-slate-200">{String(index + 1).padStart(2, '0')}</p>
+            </div>
+            <div>
+              <p class="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#1630DF]">{item.label}</p>
+              <h3 class="font-heading text-2xl font-bold text-slate-950">{item.title}</h3>
+              <p class="mt-3 text-base font-medium leading-relaxed text-slate-700">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] home-bg-grid">
+    <div class="container relative z-10">
+      <div class="mx-auto mb-12 max-w-4xl text-center">
+        <span class="home-label-caps mb-4">Método Scale</span>
+        <h2 class="heading-display-dark">O funil ideal tem 3 passos simples. A execução é que precisa ser precisa.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-3">
+        {funnelSteps.map((step) => {
+          const Icon = step.icon;
+          return (
+            <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-7">
+              <div class="mb-7 flex items-center justify-between">
+                <div class="flex h-13 w-13 items-center justify-center rounded-[8px] border border-[#00BAFF]/25 bg-[#00BAFF]/10 text-[#00BAFF]">
+                  <Icon size={26} strokeWidth={1.8} />
+                </div>
+                <span class="rounded-full border border-white/10 px-3 py-1 text-xs font-bold text-white/55">{step.step}</span>
+              </div>
+              <p class="mb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#00BAFF]">{step.tag}</p>
+              <h3 class="mb-4 font-heading text-2xl font-bold text-white">{step.title}</h3>
+              <p class="leading-relaxed text-white/64">{step.text}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section light-section bg-slate-50">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Objeções</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-slate-950">
+            O vídeo precisa responder o ceticismo antes da objeção aparecer.
+          </h2>
+          <p class="mt-5 font-medium leading-relaxed text-slate-700">
+            Esse público já foi impactado por promessas. A autoridade vem de mostrar que a Scale entende por que as tentativas anteriores falharam.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-3">
+          {objections.map((objection) => (
+            <div class="flex gap-3 rounded-[8px] border border-slate-200 bg-white p-4 shadow-sm">
+              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" strokeWidth={2} />
+              <p class="font-semibold text-slate-800">{objection}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div class="rounded-[10px] border border-slate-200 bg-white p-7 shadow-sm">
+          <BriefcaseBusiness className="mb-6 h-9 w-9 text-[#00BAFF]" strokeWidth={1.7} />
+          <h2 class="mb-4 font-heading text-2xl font-bold text-slate-950">Tom de voz</h2>
+          <p class="font-medium leading-relaxed text-slate-700">
+            Empático com a frustração, mas analítico e seguro quando apresenta o método. Evite promessa fácil. A força do roteiro é a lógica.
+          </p>
+        </div>
+
+        <div class="rounded-[10px] border border-slate-200 bg-white p-7 shadow-sm">
+          <Target className="mb-6 h-9 w-9 text-[#00BAFF]" strokeWidth={1.7} />
+          <h2 class="mb-4 font-heading text-2xl font-bold text-slate-950">Mensagem central</h2>
+          <p class="font-medium leading-relaxed text-slate-700">
+            O problema não é o digital. O problema é um funil pensado para qualquer mercado, aplicado sem respeitar a jornada de confiança da advocacia.
+          </p>
+        </div>
+
+        <div class="rounded-[10px] border border-slate-200 bg-white p-7 shadow-sm">
+          <ShieldCheck className="mb-6 h-9 w-9 text-[#00BAFF]" strokeWidth={1.7} />
+          <h2 class="mb-4 font-heading text-2xl font-bold text-slate-950">Autoridade</h2>
+          <p class="font-medium leading-relaxed text-slate-700">
+            Reforce que a Scale olha do anúncio ao WhatsApp e do WhatsApp ao contrato. Métrica bonita não basta. O foco é previsibilidade.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] home-bg-grid">
+    <div class="container relative z-10">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <span class="home-label-caps mb-4">Produção</span>
+        <h2 class="heading-display-dark">Notas para edição, SEO e thumbnail.</h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-3">
+        <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-7 lg:col-span-2">
+          <div class="mb-6 flex items-center gap-3">
+            <Smartphone size={24} color="#00BAFF" strokeWidth={1.8} />
+            <h3 class="font-heading text-2xl font-bold text-white">B-roll e ritmo visual</h3>
+          </div>
+          <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
+            {productionTips.map((tip) => (
+              <div class="rounded-[8px] border border-white/10 bg-[#010f1c]/45 p-4">
+                <p class="text-sm font-medium leading-relaxed text-white/68">{tip}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-7">
+          <div class="mb-6 flex items-center gap-3">
+            <TrendingUp size={24} color="#00BAFF" strokeWidth={1.8} />
+            <h3 class="font-heading text-2xl font-bold text-white">SEO YouTube</h3>
+          </div>
+          <p class="mb-5 text-sm leading-relaxed text-white/58">
+            Título sugerido: Por que o seu marketing jurídico não funciona? O Funil Ideal para Advogados
+          </p>
+          <div class="flex flex-wrap gap-2">
+            {youtubeSeo.map((tag) => (
+              <span class="rounded-full border border-white/10 bg-white/[0.045] px-3 py-1.5 text-xs font-semibold text-white/70">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative overflow-hidden bg-[#010f1c] px-6 py-24 text-center">
+    <div class="absolute inset-0 presentation-grid opacity-55" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-4xl">
+      <div class="mx-auto mb-7 flex h-16 w-16 items-center justify-center rounded-[10px] border border-[#00BAFF]/25 bg-[#00BAFF]/10 text-[#00BAFF]">
+        <Funnel size={34} strokeWidth={1.7} />
+      </div>
+      <h2 class="font-heading text-4xl font-black leading-tight text-white md:text-6xl">
+        CTA final: pare de depender de indicação. Implemente um funil que respeita a advocacia.
+      </h2>
+      <p class="mx-auto mt-6 max-w-2xl text-xl leading-relaxed text-white/64">
+        "Clique no link da descrição e agende uma sessão estratégica gratuita com a Scale. Vamos analisar seu cenário e mostrar como implementar o Funil da Advocacia Moderna no seu escritório."
+      </p>
+      <div class="mt-9 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.045] px-5 py-3 text-sm font-bold text-white/75">
+        <BadgeCheck size={18} color="#34d399" strokeWidth={2} />
+        Encerrar com inscrição no canal, like e convite para próximos conteúdos.
+        <ArrowRight size={16} color="#00BAFF" strokeWidth={2.2} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

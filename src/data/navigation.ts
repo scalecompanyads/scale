@@ -13,11 +13,38 @@ export interface NavItem {
 export const mainNav: NavItem[] = [
   {
     label: 'Serviços',
-    href: '/#servicos',
+    href: '/#serviços',
   },
   {
     label: 'Cases',
     href: '/#depoimentos',
+  },
+  {
+    label: 'Jurídico',
+    href: '/guia-definitivo-marketing-juridico',
+    hasDropdown: true,
+    children: [
+      {
+        label: 'Guia de Marketing Jurídico',
+        href: '/guia-definitivo-marketing-juridico',
+      },
+      {
+        label: 'Tráfego para Advogados',
+        href: '/trafego-pago-para-advogados',
+      },
+      {
+        label: 'Calculadora de Anúncios',
+        href: '/calculadora-investimento-anuncios',
+      },
+      {
+        label: 'Softwares Jurídicos',
+        href: '/comparativo-softwares-juridicos',
+      },
+      {
+        label: 'Mentoria Jurídica',
+        href: '/mentoria-marketing-juridico',
+      },
+    ],
   },
   {
     label: 'Blog',

@@ -1,0 +1,205 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import { brazilMarkets, brazilRegions, brazilSeoServices, getBrazilMarketsByRegion } from '@data/brazilSeo';
+import { ArrowRight, MapPinned, Search, Target, TrendingUp } from 'lucide-react';
+
+const highPriorityMarkets = brazilMarkets.filter((market) => market.priority === 'Alta');
+
+const stats = [
+  { value: '27', label: 'UFs mapeadas' },
+  { value: '135', label: 'rotas estratégicas por serviço e estado' },
+  { value: '5', label: 'frentes de marketing digital' },
+];
+
+const pillars = [
+  {
+    icon: Search,
+    title: 'Arquitetura nacional de SEO',
+    desc: 'Páginas por serviço e estado, com intenção de busca clara, links internos e conteúdo ajustado ao contexto regional.',
+  },
+  {
+    icon: Target,
+    title: 'Captação sem depender de uma cidade',
+    desc: 'A Scale atende empresas em todo o Brasil com diagnóstico, execução e acompanhamento remoto.',
+  },
+  {
+    icon: TrendingUp,
+    title: 'Escala com prioridade comercial',
+    desc: 'Estados com maior potencial ganham destaque, enquanto regiões de expansão entram no mapa de crescimento orgânico.',
+  },
+];
+---
+
+<BaseLayout
+  title="Agência de Marketing Digital no Brasil | Scale"
+  description="A Scale atende empresas em todo o Brasil com tráfego pago, SEO, criação de sites, landing pages e gestão de redes sociais. Veja a cobertura por estado."
+>
+  <section class="relative -mt-16 overflow-hidden bg-[#010f1c] pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="absolute inset-0 home-bg-grid opacity-70" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      <div class="max-w-4xl">
+        <span class="home-label-caps mb-5">Atendimento nacional</span>
+        <h1 class="font-heading text-[clamp(2.8rem,6vw,5.7rem)] font-extrabold leading-[0.98] text-white">
+          Agência de marketing digital para empresas em todo o Brasil.
+        </h1>
+        <p class="mt-7 max-w-3xl text-lg leading-relaxed text-white/62 md:text-xl">
+          A Scale combina tráfego pago, SEO, criação de sites, landing pages e redes sociais para empresas que querem crescer além do mercado local. Atendimento remoto, estratégia por região e execução orientada a resultado.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <Button href="/contato" variant="ring" size="lg">
+            Solicitar diagnóstico
+            <ArrowRight size={17} strokeWidth={2.4} />
+          </Button>
+          <a
+            href="#estados"
+            class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/72 transition hover:border-[#00BAFF]/35 hover:text-white"
+          >
+            Ver estados
+            <MapPinned size={16} strokeWidth={2} />
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-3">
+        {stats.map((stat) => (
+          <div class="rounded-[8px] border border-white/[0.08] bg-white/[0.035] p-5">
+            <p class="font-heading text-3xl font-bold text-white">{stat.value}</p>
+            <p class="mt-1 text-sm text-white/48">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Estratégia Brasil</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
+            SEO nacional precisa de cobertura, contexto e intenção comercial.
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-ink-light">
+            A presença nacional da Scale foi organizada para conectar cada serviço aos estados brasileiros, sem prometer escritório físico onde não existe e sem depender de páginas genéricas demais para ranquear.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {pillars.map((pillar) => {
+            const Icon = pillar.icon;
+            return (
+              <div class="rounded-[8px] border border-edge bg-surface-card p-6">
+                <Icon className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.7} />
+                <h3 class="font-heading text-xl font-bold text-ink">{pillar.title}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-ink-light">{pillar.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-surface-subtle">
+    <div class="container">
+      <div class="mx-auto mb-14 max-w-3xl text-center">
+        <span class="section-label">Serviços nacionais</span>
+        <h2 class="section-title">Escolha uma frente de crescimento.</h2>
+        <p class="section-subtitle">
+          Cada serviço tem páginas por estado para fortalecer a arquitetura de SEO e facilitar a navegação de quem busca atendimento no Brasil.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+        {brazilSeoServices.map((service) => (
+          <a
+            href={`/servicos/${service.slug}`}
+            class="group rounded-[8px] border border-white/[0.08] bg-white/[0.035] p-7 transition hover:-translate-y-1 hover:border-[#00BAFF]/40"
+          >
+            <div class="mb-5 flex items-start justify-between gap-4">
+              <div>
+                <span class="text-xs font-bold uppercase tracking-[0.18em] text-[#00BAFF]">{service.volume}</span>
+                <h3 class="mt-2 font-heading text-2xl font-bold text-white">{service.name}</h3>
+              </div>
+              <span class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/55 transition group-hover:border-[#00BAFF]/45 group-hover:text-[#00BAFF]">
+                <ArrowRight size={16} strokeWidth={2.2} />
+              </span>
+            </div>
+            <p class="text-sm leading-relaxed text-white/55">{service.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="estados" class="section bg-white light-section">
+    <div class="container">
+      <div class="mx-auto mb-14 max-w-3xl text-center">
+        <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Cobertura por estado</span>
+        <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
+          Marketing digital em todos os estados brasileiros.
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-ink-light">
+          Comece pelo seu estado para ver os serviços, cidades-polo e foco de mercado.
+        </p>
+      </div>
+
+      <div class="space-y-10">
+        {brazilRegions.map((region) => (
+          <div>
+            <div class="mb-4 flex items-center justify-between gap-4 border-b border-edge pb-3">
+              <h3 class="font-heading text-2xl font-bold text-ink">{region}</h3>
+              <span class="text-sm font-semibold text-ink-muted">{getBrazilMarketsByRegion(region).length} UFs</span>
+            </div>
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {getBrazilMarketsByRegion(region).map((market) => (
+                <a
+                  href={`/brasil/${market.slug}`}
+                  class="group rounded-[8px] border border-edge bg-white p-5 transition hover:-translate-y-0.5 hover:border-brand-primary hover:shadow-lg hover:shadow-blue-950/5"
+                >
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <h4 class="font-heading text-lg font-bold text-ink">{market.name}</h4>
+                      <p class="mt-1 text-sm text-ink-light">Capital: {market.capital}</p>
+                    </div>
+                    <span class="rounded-full bg-blue-50 px-2.5 py-1 text-xs font-bold text-[#1630DF]">{market.abbr}</span>
+                  </div>
+                  <p class="mt-4 text-sm leading-relaxed text-ink-light">
+                    {market.cities.slice(0, 3).join(', ')}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] home-bg-grid">
+    <div class="container relative z-10">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+        <div>
+          <span class="home-label-caps mb-4">Prioridade comercial</span>
+          <h2 class="heading-section-dark">Estados com maior potencial de busca e competição.</h2>
+          <p class="mt-5 leading-relaxed text-white/52">
+            A expansão nacional começa pelos mercados com maior volume e segue para estados de média prioridade e expansão, mantendo cobertura completa no sitemap.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {highPriorityMarkets.map((market) => (
+            <a href={`/brasil/${market.slug}`} class="rounded-[8px] border border-white/[0.08] bg-white/[0.035] p-5 transition hover:border-[#00BAFF]/40">
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="font-semibold text-white">{market.name}</h3>
+                <span class="text-xs font-bold text-[#00BAFF]">{market.abbr}</span>
+              </div>
+              <p class="mt-2 text-sm leading-relaxed text-white/48">{market.audience}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

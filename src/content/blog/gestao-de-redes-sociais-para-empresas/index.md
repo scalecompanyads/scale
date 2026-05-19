@@ -1,13 +1,13 @@
 ---
-title: "Gestão de redes sociais para empresas: guia completo 2025"
+title: "Gestão de redes sociais para empresas: guia completo 2026"
 description: "Saiba como fazer gestão de redes sociais para empresas, quais métricas acompanhar e quando contratar uma agência de social media."
 publishDate: 2025-04-08
+updatedDate: 2026-05-04
 category: redes-sociais
 tags: ['redes sociais', 'social media', 'instagram para empresas', 'marketing de conteúdo']
 featured: false
 focusKeyword: "gestão de redes sociais para empresas"
 readingTime: 7
-slug: gestao-de-redes-sociais-para-empresas
 coverImage: ./cover.jpg
 coverImageAlt: "Ilustração sobre gestão de redes sociais para empresas"
 ---

@@ -1,0 +1,471 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import FAQ from '@components/sections/FAQ.astro';
+import LegalLogosMarquee from '@components/sections/LegalLogosMarquee.astro';
+import {
+  acquisitionPillars,
+  legalAreas,
+  legalCaseStudies,
+  legalOffer,
+  oabCompliance,
+  technologyImpactCards,
+  type LegalArea,
+} from '@data/legalSeo';
+import { brand, getCanonicalUrl, organizationId, websiteId } from '@data/seo';
+import {
+  ArrowRight,
+  BadgeCheck,
+  BarChart3,
+  CheckCircle2,
+  ClipboardCheck,
+  FileText,
+  Gauge,
+  Landmark,
+  MousePointerClick,
+  Search,
+  ShieldCheck,
+} from 'lucide-react';
+
+export function getStaticPaths() {
+  return legalAreas.map((area) => ({
+    params: { area: area.slug },
+    props: { area },
+  }));
+}
+
+interface Props {
+  area: LegalArea;
+}
+
+const { area } = Astro.props;
+const canonical = getCanonicalUrl(`/trafego-pago-para-advogados/${area.slug}`);
+const relatedAreas = legalAreas.filter((item) => item.slug !== area.slug).slice(0, 4);
+const areaCaseStudies = legalCaseStudies.filter((study) => study.areaId === area.id);
+const strategicRead = [
+  {
+    label: 'Tese de mercado',
+    desc: area.marketThesis,
+  },
+  {
+    label: 'Vazamento de verba',
+    desc: area.budgetLeak,
+  },
+  {
+    label: 'Papel da tecnologia',
+    desc: area.technologyAngle,
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${canonical}#service`,
+  name: `Tráfego pago para ${area.name}`,
+  alternateName: `${legalOffer.name} para ${area.name}`,
+  description: area.metaDescription,
+  url: canonical,
+  provider: {
+    '@id': organizationId,
+  },
+  isPartOf: {
+    '@id': websiteId,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Brasil',
+  },
+  serviceType: 'Gestão de Google Ads, Meta Ads e landing pages para advocacia',
+  audience: {
+    '@type': 'Audience',
+    audienceType: area.audience,
+  },
+  brand: {
+    '@type': 'Brand',
+    name: brand.name,
+  },
+};
+
+const faqItems = [
+  {
+    question: `O que muda no tráfego pago para ${area.name}?`,
+    answer: `Muda a intenção de busca, a linguagem da página, os filtros do formulário e os critérios de qualificação. Para ${area.name}, a campanha precisa considerar: ${area.corePain}`,
+  },
+  {
+    question: 'Google Ads é suficiente para captar bons casos?',
+    answer:
+      'Não sozinho. Google Ads gera demanda ativa, mas a qualidade depende da página, do formulário, da triagem, do tempo de resposta e da leitura comercial dos leads.',
+  },
+  {
+    question: 'Quais métricas devem ser acompanhadas?',
+    answer: `Nesta área, acompanhamos principalmente: ${area.funnelMetrics.join(', ')}. O objetivo é medir oportunidade real, não apenas volume bruto de contatos.`,
+  },
+  {
+    question: 'Como a comunicação respeita a OAB?',
+    answer: `A página e os anúncios evitam promessa de resultado, sensacionalismo e comparação depreciativa. Para ${area.name}, o cuidado principal é: ${area.complianceNote}`,
+  },
+  {
+    question: 'SEO entra nesse projeto ou é outro serviço?',
+    answer:
+      'Entra como base de longo prazo. A campanha paga acelera aprendizado e demanda; o SEO transforma as dúvidas recorrentes em páginas e conteúdos que reduzem dependência de mídia no futuro.',
+  },
+];
+---
+
+<BaseLayout
+  title={area.metaTitle}
+  description={area.metaDescription}
+  canonical={canonical}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="relative -mt-16 overflow-hidden bg-[#080b10] pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="absolute inset-0 z-0">
+      <img src="/assets/legal_hero_bg.png" alt="" class="h-full w-full object-cover opacity-40 mix-blend-luminosity" />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#010000] via-[#010000]/80 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#080b10] via-[#080b10]/20 to-[#080b10]/80"></div>
+    </div>
+    <div class="absolute inset-x-0 bottom-0 z-10 h-px bg-white/10" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      <div class="max-w-5xl">
+        <span class="mb-5 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-[#8fb8ff]">
+          <Landmark size={15} strokeWidth={1.8} />
+          {area.audience}
+        </span>
+        <h1 class="font-heading text-[clamp(2.55rem,6vw,5.6rem)] font-extrabold leading-[0.98] text-white">
+          {area.headline}
+        </h1>
+        <p class="mt-7 max-w-3xl text-lg leading-relaxed text-white/68 md:text-xl">
+          {area.marketThesis}
+        </p>
+        <div class="mt-9 flex flex-wrap gap-4">
+          <Button href="/contato" variant="ring" size="lg">
+            Solicitar diagnóstico
+            <ArrowRight size={17} strokeWidth={2.4} />
+          </Button>
+          <a
+            href="#funil"
+            class="inline-flex items-center gap-2 rounded-lg border border-white/15 px-5 py-3 text-sm font-semibold text-white/72 transition hover:border-white/35 hover:text-white"
+          >
+            Ver funil recomendado
+            <Search size={16} strokeWidth={2} />
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-14 grid grid-cols-1 gap-4 lg:grid-cols-3">
+        {strategicRead.map((item) => (
+          <div class="border-t border-white/12 pt-5">
+            <p class="text-xs font-bold uppercase tracking-[0.16em] text-white/35">{item.label}</p>
+            <p class="mt-3 text-sm leading-relaxed text-white/62">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <LegalLogosMarquee label="Escritórios de advocacia que usam estratégia, mídia e tecnologia com a Scale" />
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Leitura da área</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink md:text-5xl">
+            A campanha precisa falar com a demanda certa, não com todo mundo.
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-ink-light">
+            Para {area.name.toLowerCase()}, a primeira correção é parar o vazamento de verba: {area.budgetLeak}
+          </p>
+          <div class="mt-8">
+            <Button href="/contato" variant="primary" size="md">
+              Quero parar o vazamento
+              <ArrowRight size={17} strokeWidth={2.4} />
+            </Button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {area.contentBlocks.map((block, index) => {
+            const icons = [MousePointerClick, ClipboardCheck, FileText];
+            const Icon = icons[index] ?? CheckCircle2;
+            return (
+              <article class="rounded-[8px] border border-edge bg-surface-card p-6">
+                <Icon className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
+                <h3 class="font-heading text-xl font-bold text-ink">{block.title}</h3>
+                <p class="mt-3 text-sm leading-relaxed text-ink-light">{block.desc}</p>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="funil" class="section relative overflow-hidden bg-gradient-to-b from-[#010000] to-[#05070c]">
+    <div class="absolute inset-0 opacity-[0.03]" style="background-image: linear-gradient(90deg, #0077ff 1px, transparent 1px), linear-gradient(180deg, #0077ff 1px, transparent 1px); background-size: 92px 92px;"></div>
+    <div class="container relative z-10">
+      <div class="mx-auto mb-14 max-w-3xl text-center">
+        <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#0077ff]">Motor de captação</span>
+        <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-white md:text-5xl">
+          Como estruturamos o funil para {area.name.toLowerCase()}.
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-white/70">
+          {area.technologyAngle}
+        </p>
+        <div class="mt-8 flex justify-center">
+          <Button href="/contato" variant="ring" size="md">
+            Montar meu funil agora
+            <ArrowRight size={17} strokeWidth={2.4} />
+          </Button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 lg:grid-cols-5">
+        {acquisitionPillars.map((pillar, index) => {
+          const icons = [MousePointerClick, BarChart3, Gauge, FileText, ClipboardCheck];
+          const Icon = icons[index] ?? CheckCircle2;
+          return (
+            <article class="relative group rounded-[12px] border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.04] hover:border-[#0077ff]/25 overflow-hidden">
+              <span class="absolute -bottom-3 -right-2 text-7xl font-bold leading-none text-[#0077ff]/[0.05] pointer-events-none select-none">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <div class="flex h-12 w-12 items-center justify-center rounded-lg border border-[#0077ff]/20 bg-[#0077ff]/10 mb-5 relative z-10">
+                <Icon className="h-6 w-6 text-[#0077ff]" strokeWidth={1.7} />
+              </div>
+              <h3 class="font-heading text-lg font-bold leading-tight text-white relative z-10">{pillar.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-white/70 relative z-10">{pillar.desc}</p>
+            </article>
+          );
+        })}
+      </div>
+
+      <div class="mt-5 grid grid-cols-1 gap-4 md:grid-cols-3">
+        {technologyImpactCards.map((item, index) => {
+          const icons = [Gauge, MousePointerClick, BarChart3];
+          const Icon = icons[index] ?? Gauge;
+          return (
+            <article class="relative group rounded-[12px] border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.04] hover:border-[#0077ff]/25">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[#0077ff]/20 bg-[#0077ff]/10">
+                  <Icon className="h-5 w-5 text-[#0077ff]" strokeWidth={1.7} />
+                </div>
+                <h3 class="font-heading text-lg font-bold leading-tight text-white">{item.title}</h3>
+              </div>
+              <p class="text-sm leading-relaxed text-white/70">{item.desc}</p>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Método do caso real</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink">
+            A prova nasce da leitura do que acontecia antes.
+          </h2>
+          <p class="mt-5 leading-relaxed text-ink-light">
+            Em vez de publicar promessa de captação, a página precisa mostrar o problema operacional, a intervenção feita e a métrica que confirma melhoria.
+          </p>
+          <div class="mt-8">
+            <Button href="/contato" variant="primary" size="md">
+              Implementar no meu escritório
+              <ArrowRight size={17} strokeWidth={2.4} />
+            </Button>
+          </div>
+        </div>
+
+        {areaCaseStudies.length > 0 ? (
+          <div class="grid grid-cols-1 gap-4">
+            {areaCaseStudies.map((study) => (
+              <article class="rounded-[8px] border border-edge bg-surface-card p-6">
+                <p class="text-xs font-bold uppercase tracking-[0.16em] text-[#1630DF]">{study.clientName}</p>
+                <h3 class="mt-3 font-heading text-2xl font-bold text-ink">{study.context}</h3>
+                <p class="mt-4 text-sm leading-relaxed text-ink-light">{study.before}</p>
+                <p class="mt-3 text-sm leading-relaxed text-ink-light">{study.intervention}</p>
+                <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  {study.results.map((result) => (
+                    <div class="border-t border-edge pt-4">
+                      <p class="font-heading text-2xl font-bold text-ink">{result.value}</p>
+                      <p class="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-ink-muted">{result.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <article class="rounded-[8px] border border-edge bg-surface-card p-6">
+              <ClipboardCheck className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
+              <p class="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Cenario comum</p>
+              <h3 class="mt-3 font-heading text-xl font-bold text-ink">{area.caseFrame.before}</h3>
+            </article>
+            <article class="rounded-[8px] border border-edge bg-surface-card p-6">
+              <Gauge className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
+              <p class="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Correcao operacional</p>
+              <h3 class="mt-3 font-heading text-xl font-bold text-ink">{area.caseFrame.intervention}</h3>
+            </article>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#f5f7fb] light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:items-start">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Metricas e triagem</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink">
+            CPL baixo não significa captação boa.
+          </h2>
+          <p class="mt-5 leading-relaxed text-ink-light">
+            A campanha precisa mostrar se os contatos viram conversas, reuniões e contratos. Por isso a leitura comercial e parte do escopo desde o inicio.
+          </p>
+          <div class="mt-8">
+            <Button href="/contato" variant="primary" size="md">
+              Monitorar oportunidades reais
+              <ArrowRight size={17} strokeWidth={2.4} />
+            </Button>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="rounded-[8px] border border-edge bg-surface-card p-6">
+            <Gauge className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
+            <h3 class="font-heading text-xl font-bold text-ink">Metricas acompanhadas</h3>
+            <div class="mt-5 space-y-3">
+              {area.funnelMetrics.map((metric) => (
+                <div class="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" strokeWidth={2} />
+                  <p class="text-sm font-medium leading-relaxed text-ink-light">{metric}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div class="rounded-[8px] border border-edge bg-surface-card p-6">
+            <ClipboardCheck className="mb-5 h-7 w-7 text-[#1630DF]" strokeWidth={1.7} />
+            <h3 class="font-heading text-xl font-bold text-ink">Perguntas de qualificação</h3>
+            <div class="mt-5 space-y-3">
+              {area.qualifyingQuestions.map((question) => (
+                <div class="flex gap-3">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-emerald-500" strokeWidth={2} />
+                  <p class="text-sm font-medium leading-relaxed text-ink-light">{question}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#080b10]">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div>
+          <span class="mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-[#8fb8ff]">
+            <ShieldCheck size={15} strokeWidth={1.8} />
+            Compliance por área
+          </span>
+          <h2 class="font-heading text-4xl font-bold leading-tight text-white md:text-5xl">
+            A linha editorial precisa proteger o escritório.
+          </h2>
+          <p class="mt-5 leading-relaxed text-white/58">
+            Para {area.name.toLowerCase()}, o cuidado principal é: {area.complianceNote}
+          </p>
+          <a
+            href={oabCompliance.sourceUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#8fb8ff] hover:text-white"
+          >
+            Ver {oabCompliance.sourceName}
+            <ArrowRight size={15} strokeWidth={2.2} />
+          </a>
+        </div>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {oabCompliance.principles.map((item) => (
+            <div class="flex items-center gap-3 rounded-[8px] border border-white/10 bg-white/[0.035] p-4">
+              <BadgeCheck className="h-5 w-5 shrink-0 text-emerald-300" strokeWidth={2} />
+              <span class="text-sm font-medium leading-relaxed text-white/68">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">SEO conectado ao tráfego</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink">
+            O que a mídia paga ensina vira conteúdo e página orgânica.
+          </h2>
+          <p class="mt-5 leading-relaxed text-ink-light">
+            As pesquisas, objeções e conversas geradas pelas campanhas ajudam a priorizar conteúdos de SEO com maior chance comercial.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {area.searchAngles.map((angle) => (
+            <div class="rounded-[8px] border border-edge bg-surface-card p-5">
+              <p class="text-xs font-bold uppercase tracking-[0.16em] text-ink-muted">Intencao de busca</p>
+              <h3 class="mt-3 font-heading text-lg font-bold text-ink">{angle}</h3>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#f5f7fb] light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Outras áreas</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-ink">
+            Compare a estratégia com outros segmentos juridicos.
+          </h2>
+        </div>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {relatedAreas.map((item) => (
+            <a
+              href={`/trafego-pago-para-advogados/${item.slug}`}
+              class="group rounded-[8px] border border-edge bg-white p-5 transition hover:border-[#1630DF] hover:shadow-lg hover:shadow-slate-950/5"
+            >
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="font-heading text-lg font-bold text-ink">{item.name}</h3>
+                <ArrowRight className="h-5 w-5 text-ink-muted transition group-hover:text-[#1630DF]" strokeWidth={2} />
+              </div>
+              <p class="mt-3 text-sm leading-relaxed text-ink-light">{item.corePain}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#080b10] text-center">
+    <div class="container-narrow">
+      <span class="home-label-caps mb-4">Diagnóstico</span>
+      <h2 class="heading-section-dark">Vamos avaliar se existe demanda qualificada para {area.name.toLowerCase()}.</h2>
+      <p class="mt-5 text-lg leading-relaxed text-white/58">
+        A análise cruza área, verba, concorrência, página atual, rotina de atendimento e capacidade comercial do escritório.
+      </p>
+      <div class="mt-9">
+        <Button href="/contato" variant="ring" size="lg">
+          Falar com especialista
+          <ArrowRight size={17} strokeWidth={2.4} />
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <FAQ title={`FAQ - Tráfego Pago para ${area.name}`} items={faqItems} />
+</BaseLayout>

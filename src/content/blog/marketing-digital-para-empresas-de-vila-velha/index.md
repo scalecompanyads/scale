@@ -2,12 +2,12 @@
 title: "Marketing Digital para Empresas de Vila Velha – Guia Completo"
 description: "Guia de marketing digital para empresas de Vila Velha (ES). Canais, estratégias e exemplos para clínicas, imobiliárias, comércio e serviços locais."
 publishDate: 2026-04-26
+updatedDate: 2026-05-04
 category: local
 tags: ['marketing digital', 'vila velha', 'seo local', 'trafego pago', 'redes sociais']
 featured: false
 focusKeyword: "marketing digital vila velha"
 readingTime: 7
-slug: marketing-digital-para-empresas-de-vila-velha
 coverImage: ./cover.webp
 coverImageAlt: "Capa do artigo marketing digital para empresas de vila velha"
 ---
@@ -91,6 +91,8 @@ Uma presença bem cuidada no Instagram não precisa ser viral. Ela precisa ser:
 ### 5. Site profissional — o centro de tudo
 
 Tudo converge para o site. Um anúncio no Google leva ao site. Uma bio no Instagram leva ao site. Um resultado orgânico no Google leva ao site. Se o site for lento, feio ou confuso, você perdeu a venda antes de ela acontecer.
+
+Para empresas que ainda estão com uma presença antiga ou improvisada, o primeiro passo pode ser revisar a [criação de site em Vila Velha](/vila-velha/criacao-de-sites). Para ofertas específicas, campanhas e testes rápidos, uma [landing page em Vila Velha](/vila-velha/criacao-de-landing-pages) pode ser o caminho mais direto.
 
 Para empresas de Vila Velha, o site precisa:
 - Carregar em menos de 3 segundos no celular (a maioria dos acessos é mobile)

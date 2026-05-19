@@ -1,13 +1,13 @@
 ---
-title: "Quanto custa criar um site profissional para empresa? (guia 2025)"
-description: "Descubra quanto custa criar um site profissional para sua empresa em 2025: fatores que influenciam o preço, tipos de site e quando vale investir."
+title: "Quanto custa criar um site profissional para empresa? (guia 2026)"
+description: "Descubra quanto custa criar um site profissional para sua empresa em 2026: fatores que influenciam o preço, tipos de site e quando vale investir."
 publishDate: 2025-03-22
+updatedDate: 2026-05-04
 category: criacao-de-sites
 tags: ['criação de sites', 'site para empresa', 'preço de site', 'desenvolvimento web']
 featured: true
 focusKeyword: "quanto custa criar um site"
 readingTime: 6
-slug: quanto-custa-criar-um-site-profissional
 coverImage: ./cover.jpg
 coverImageAlt: "Ilustração sobre investimento em site profissional para empresas"
 ---
@@ -66,7 +66,7 @@ Formulários avançados, integração com WhatsApp, chat ao vivo, área de clien
 
 ### Responsividade e performance mobile
 
-Todo site profissional em 2025 precisa funcionar perfeitamente em celulares e ter boa velocidade de carregamento. Isso não é opcional. Agências sérias já incluem isso no escopo padrão — se a proposta não mencionar mobile ou performance, é um sinal de alerta.
+Todo site profissional em 2026 precisa funcionar perfeitamente em celulares e ter boa velocidade de carregamento. Isso não é opcional. Agências sérias já incluem isso no escopo padrão — se a proposta não mencionar mobile ou performance, é um sinal de alerta.
 
 ## O que deve estar incluído em um orçamento profissional
 

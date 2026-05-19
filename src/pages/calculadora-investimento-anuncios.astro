@@ -1,0 +1,1089 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCanonicalUrl, organizationId, websiteId } from '@data/seo';
+import { ArrowRight, Calculator, CheckCircle2, LineChart, Target } from 'lucide-react';
+
+const canonical = getCanonicalUrl('/calculadora-investimento-anuncios');
+const leadWebhookUrl = ''; // import.meta.env.PUBLIC_LEAD_WEBHOOK_URL ?? '';
+const excelWebhookUrl = ''; // import.meta.env.PUBLIC_EXCEL_WEBHOOK_URL ?? '';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  '@id': `${canonical}#calculator`,
+  name: 'Calculadora de Captação para Advogados',
+  url: canonical,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'Ferramenta gratuita para estimar contatos qualificados, contratos fechados, honorários gerados e investimento em anúncios para advogados.',
+  isPartOf: {
+    '@id': websiteId,
+  },
+  provider: {
+    '@id': organizationId,
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'BRL',
+  },
+};
+---
+
+<BaseLayout
+  title="Calculadora de Captação para Advogados | Scale"
+  description="Estime contatos qualificados, contratos fechados, honorários gerados e investimento em anúncios para escritórios de advocacia."
+  canonical={canonical}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <section class="relative -mt-16 overflow-hidden bg-[#010f1c] pt-32 pb-16 md:pt-40 md:pb-20">
+    <div class="absolute inset-0 bg-[url('/images/calculadora-investimento-hero.png')] bg-cover bg-center opacity-75" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#010f1c] via-[#010f1c]/82 to-[#010f1c]/38" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#010f1c] via-transparent to-[#010f1c]/45" aria-hidden="true"></div>
+    <div class="absolute inset-0 home-bg-grid opacity-45" aria-hidden="true"></div>
+    <div class="container relative z-10">
+      <div class="max-w-4xl">
+        <span class="home-label-caps mb-5">Ferramenta gratuita</span>
+        <h1 class="font-heading text-[clamp(2.6rem,5.8vw,5.4rem)] font-extrabold leading-[1] text-white">
+          Calcule quantos clientes a advocacia pode gerar com anúncios.
+        </h1>
+        <p class="mt-7 max-w-3xl text-lg leading-relaxed text-white/62 md:text-xl">
+          Em poucos passos, estime contatos qualificados, novos contratos, honorários projetados e o investimento necessário para sua área de atuação.
+        </p>
+        <p class="mt-4 max-w-3xl text-sm leading-relaxed text-white/46">
+          Os resultados são estimativas baseadas nos dados informados. Eles servem para orientar decisões e não representam garantia de contratos, honorários ou retorno.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-10 light-section overflow-x-hidden">
+    <div class="container">
+      <div class="space-y-6">
+        <div class="mx-auto grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-[1.3fr_0.7fr]">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#1630DF]">Diagnóstico rápido</p>
+            <h2 class="mt-2 font-heading text-3xl font-bold leading-tight text-ink">Preencha como se estivesse planejando captação para o seu escritório.</h2>
+            <p class="mt-3 text-sm leading-relaxed text-ink-light">
+              A calculadora guia você por área jurídica, verba, custo por contato e honorários médios. No final, liberamos um dashboard com leitura do funil e próximos passos.
+            </p>
+          </div>
+          <div class="rounded-[10px] border border-amber-200 bg-amber-50 p-5">
+            <p class="text-sm font-bold text-amber-950">Importante</p>
+            <p class="mt-2 text-sm leading-relaxed text-amber-900/75">
+              Use dados próximos da sua realidade. Custo por contato, honorários e contratos variam conforme área, cidade, prova social, atendimento e regras éticas da OAB.
+            </p>
+          </div>
+        </div>
+
+        <div id="calculatorPanel" class="mx-auto max-w-5xl rounded-[10px] border border-edge bg-white p-4 shadow-xl shadow-blue-950/5 sm:p-5 md:p-8">
+          <div class="mb-7 flex items-center gap-3">
+            <span class="flex h-11 w-11 items-center justify-center rounded-[8px] bg-blue-50 text-[#1630DF]">
+              <Calculator size={24} strokeWidth={1.8} />
+            </span>
+            <div>
+              <h2 class="font-heading text-2xl font-bold text-ink">Calculadora para advocacia</h2>
+              <p class="text-sm text-ink-light">Estime contatos, contratos fechados e honorários gerados com tráfego pago.</p>
+            </div>
+          </div>
+
+          <form id="ads-calculator" class="space-y-7">
+            <input id="roas" type="hidden" value="3" />
+            <input id="competitorFee" type="hidden" value="0" />
+            <input id="ownFee" type="hidden" value="0" />
+
+            <div class="grid grid-cols-4 gap-1 rounded-[10px] bg-slate-100 p-1">
+              <button type="button" data-step-target="0" class="rounded-[8px] bg-white px-2 py-2.5 text-xs font-bold text-ink shadow-sm sm:px-3 sm:py-3 sm:text-sm">1. Área</button>
+              <button type="button" data-step-target="1" class="rounded-[8px] px-2 py-2.5 text-xs font-semibold text-ink-light sm:px-3 sm:py-3 sm:text-sm">2. Captação</button>
+              <button type="button" data-step-target="2" class="rounded-[8px] px-2 py-2.5 text-xs font-semibold text-ink-light sm:px-3 sm:py-3 sm:text-sm">3. Honorários</button>
+              <button type="button" data-step-target="3" class="rounded-[8px] px-2 py-2.5 text-xs font-semibold text-ink-light sm:px-3 sm:py-3 sm:text-sm">4. Cenário</button>
+            </div>
+
+            <div data-step-panel="0" class="space-y-5">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#1630DF]">Etapa 1 de 4</p>
+                <h3 class="mt-2 font-heading text-2xl font-bold text-ink">Qual área do direito você quer captar?</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-light">A área muda o custo do contato e o valor médio dos honorários. Use o padrão como ponto de partida e ajuste depois.</p>
+              </div>
+              <div>
+                <label for="segment" class="mb-2 block text-sm font-bold text-ink">Área de atuação</label>
+                <select id="segment" class="w-full rounded-[8px] border border-slate-300 bg-white px-4 py-3 text-ink outline-none transition focus:border-[#1630DF]">
+                  <option value="familia" data-cpl="45" data-ticket="3500" data-contracts="4">Família e sucessões</option>
+                  <option value="trabalhista" data-cpl="35" data-ticket="3000" data-contracts="5">Trabalhista</option>
+                  <option value="previdenciario" data-cpl="32" data-ticket="2500" data-contracts="6">Previdenciário</option>
+                  <option value="criminal" data-cpl="70" data-ticket="6000" data-contracts="3">Criminal</option>
+                  <option value="empresarial" data-cpl="90" data-ticket="8500" data-contracts="2">Empresarial</option>
+                  <option value="imobiliario" data-cpl="60" data-ticket="5500" data-contracts="3">Imobiliário</option>
+                  <option value="tributario" data-cpl="110" data-ticket="10000" data-contracts="2">Tributário</option>
+                </select>
+              </div>
+              <div class="rounded-[10px] border border-sky-200 bg-sky-50 p-5">
+                <p class="text-sm font-bold text-ink">Dica</p>
+                <p class="mt-2 text-sm leading-relaxed text-ink-light">Escolha a área que você quer escalar agora, não necessariamente a maior área do escritório. A projeção fica mais útil quando foca em uma oferta.</p>
+              </div>
+            </div>
+
+            <div data-step-panel="1" class="hidden space-y-5">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#1630DF]">Etapa 2 de 4</p>
+                <h3 class="mt-2 font-heading text-2xl font-bold text-ink">Quanto você quer investir em captação?</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-light">Aqui estimamos quantos contatos qualificados a verba pode gerar e quantos contratos podem sair desse volume.</p>
+              </div>
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div>
+                  <label for="investment" class="mb-2 flex min-h-10 items-end text-sm font-bold leading-tight text-ink">Verba mensal em anúncios (R$)</label>
+                  <input id="investment" inputmode="numeric" type="text" value="R$ 3.000" class="h-12 w-full rounded-[8px] border border-slate-300 bg-white px-4 text-ink outline-none transition focus:border-[#1630DF]" />
+                  <p class="mt-2 text-xs text-ink-light">Exemplo: R$ 3.000 por mês em Google ou Meta Ads.</p>
+                </div>
+                <div>
+                  <label for="cpl" class="mb-2 flex min-h-10 items-end text-sm font-bold leading-tight text-ink">Custo por contato qualificado (R$)</label>
+                  <input id="cpl" readonly inputmode="numeric" type="text" value="R$ 45" class="h-12 w-full rounded-[8px] border border-slate-200 bg-slate-50 px-4 text-ink/70 outline-none transition cursor-not-allowed" title="Valor estimado automaticamente com base na área" />
+                  <p class="mt-2 text-xs text-ink-light">Estimativa fixa baseada na área de atuação e no cenário escolhido.</p>
+                </div>
+                <div>
+                  <label for="contracts" class="mb-2 flex min-h-10 items-end text-sm font-bold leading-tight text-ink">Contratos fechados por mês</label>
+                  <input id="contracts" inputmode="decimal" type="number" min="0" step="0.1" value="4" class="h-12 w-full rounded-[8px] border border-slate-300 bg-white px-4 text-ink outline-none transition focus:border-[#1630DF]" />
+                  <p class="mt-2 text-xs text-ink-light">Exemplo: 4 contratos fechados a partir dos contatos do mês.</p>
+                </div>
+              </div>
+            </div>
+
+            <div data-step-panel="2" class="hidden space-y-5">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#1630DF]">Etapa 3 de 4</p>
+                <h3 class="mt-2 font-heading text-2xl font-bold text-ink">Quanto esses contratos geram em honorários?</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-light">Use o valor médio dos honorários iniciais ou do contrato fechado. Se houver parcelamento, use o valor total contratado.</p>
+              </div>
+              <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                <div>
+                  <label for="ticket" class="mb-2 flex min-h-10 items-end text-sm font-bold leading-tight text-ink">Honorários por contrato (R$)</label>
+                  <input id="ticket" inputmode="numeric" type="text" value="R$ 3.500" class="h-12 w-full rounded-[8px] border border-slate-300 bg-white px-4 text-ink outline-none transition focus:border-[#1630DF]" />
+                  <p class="mt-2 text-xs text-ink-light">Exemplo: R$ 3.500 de honorários médios por cliente.</p>
+                </div>
+                <div>
+                  <label for="goal" class="mb-2 flex min-h-10 items-end text-sm font-bold leading-tight text-ink">Meta de honorários no mês (R$)</label>
+                  <input id="goal" inputmode="numeric" type="text" value="R$ 50.000" class="h-12 w-full rounded-[8px] border border-slate-300 bg-white px-4 text-ink outline-none transition focus:border-[#1630DF]" />
+                  <p class="mt-2 text-xs text-ink-light">Quanto você quer gerar em novos contratos por mês.</p>
+                </div>
+                <div>
+                  <label for="months" class="mb-2 flex min-h-10 items-end text-sm font-bold leading-tight text-ink">Meses de projeção</label>
+                  <input id="months" inputmode="numeric" type="number" min="1" max="36" value="6" class="h-12 w-full rounded-[8px] border border-slate-300 bg-white px-4 text-ink outline-none transition focus:border-[#1630DF]" />
+                  <p class="mt-2 text-xs text-ink-light">Opcional: para estimar honorários acumulados.</p>
+                </div>
+              </div>
+            </div>
+
+            <div data-step-panel="3" class="hidden space-y-5">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#1630DF]">Etapa 4 de 4</p>
+                <h3 class="mt-2 font-heading text-2xl font-bold text-ink">Escolha o cenário da projeção</h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-light">Cenários ajudam a enxergar risco: o pessimista encarece o contato e reduz contratos; o otimista melhora eficiência.</p>
+              </div>
+              <div class="rounded-[10px] border border-edge bg-white p-5">
+                <div class="grid grid-cols-3 gap-1 rounded-full bg-slate-100 p-1">
+                  <button type="button" data-scenario-button="pessimista" class="rounded-full px-2 py-2.5 text-xs font-semibold text-ink-light transition hover:text-ink sm:px-3 sm:py-3 sm:text-sm">Pessimista</button>
+                  <button type="button" data-scenario-button="realista" class="rounded-full bg-gradient-to-r from-[#1630DF] to-[#00BAFF] px-2 py-2.5 text-xs font-bold text-white shadow-sm sm:px-3 sm:py-3 sm:text-sm">Realista</button>
+                  <button type="button" data-scenario-button="otimista" class="rounded-full px-2 py-2.5 text-xs font-semibold text-ink-light transition hover:text-ink sm:px-3 sm:py-3 sm:text-sm">Otimista</button>
+                </div>
+                <div class="mt-5 inline-grid grid-cols-2 gap-1 rounded-full bg-slate-100 p-1">
+                  <button type="button" data-period-button="mensal" class="rounded-full bg-[#00BAFF] px-4 py-2 text-sm font-bold text-white">Mensal</button>
+                  <button type="button" data-period-button="diario" class="rounded-full px-4 py-2 text-sm font-semibold text-ink-light transition hover:text-ink">Diário</button>
+                </div>
+              </div>
+              <div class="rounded-[10px] border border-amber-200 bg-amber-50 p-5">
+                <p class="text-sm font-bold text-amber-950">Antes de calcular</p>
+                <p class="mt-2 text-sm leading-relaxed text-amber-900/75">A projeção é estimativa. Ela não considera todos os fatores de fechamento, como atendimento, reputação, urgência do caso, localização e limites éticos da publicidade jurídica.</p>
+              </div>
+            </div>
+
+            <div class="flex flex-col-reverse gap-3 border-t border-edge pt-6 sm:flex-row sm:items-center sm:justify-between">
+              <button
+                id="calculatorStepBack"
+                type="button"
+                class="inline-flex w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-6 py-3 text-sm font-bold text-ink transition hover:border-[#1630DF]/30 sm:w-auto"
+              >
+                Voltar
+              </button>
+              <div class="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <button
+                  id="calculatorStepNext"
+                  type="button"
+                  class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#00BAFF]/30 bg-gradient-to-r from-[#1630DF] to-[#00BAFF] px-8 py-3 text-sm font-bold text-white shadow-lg shadow-sky-950/20 transition hover:opacity-90 sm:w-auto"
+                >
+                  Próximo
+                  <ArrowRight size={16} strokeWidth={2.4} />
+                </button>
+                <button
+                  id="calculatorSubmit"
+                  type="submit"
+                  class="hidden w-full items-center justify-center gap-2 rounded-lg border border-[#00BAFF]/30 bg-gradient-to-r from-[#1630DF] to-[#00BAFF] px-8 py-3 text-sm font-bold text-white shadow-lg shadow-sky-950/20 transition hover:opacity-90 sm:w-auto"
+                >
+                  Calcular projeção
+                  <ArrowRight size={16} strokeWidth={2.4} />
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <aside
+          id="calculator-result-card"
+          data-webhook-url={leadWebhookUrl}
+          data-excel-webhook-url={excelWebhookUrl}
+          class="relative mx-auto hidden w-full max-w-6xl overflow-hidden rounded-none border-x-0 border border-white/[0.08] bg-[#010f1c] p-4 text-white shadow-xl shadow-blue-950/15 sm:rounded-[10px] sm:border-x sm:p-5 md:p-8"
+        >
+          <div id="resultPlaceholder" class="flex min-h-[300px] flex-col items-center justify-center rounded-[10px] border border-dashed border-white/15 bg-white/[0.025] p-6 text-center sm:min-h-[400px] md:min-h-[540px]">
+            <span class="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white/[0.06] text-[#00BAFF]">
+              <LineChart size={30} strokeWidth={1.6} />
+            </span>
+            <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#00BAFF]">Dashboard bloqueado</p>
+            <h2 class="mt-3 font-heading text-3xl font-bold leading-tight text-white">
+              Sua projeção aparece aqui depois do cálculo.
+            </h2>
+            <p class="mt-4 max-w-md text-sm leading-relaxed text-white/52">
+              Preencha os dados ao lado e clique em calcular para liberar seu dashboard personalizado.
+            </p>
+          </div>
+
+          <div id="resultContent" class="hidden" aria-hidden="true">
+            <div class="mb-5 flex flex-wrap items-start justify-between gap-3 md:mb-7">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#00BAFF]">Dashboard de projeção</p>
+                <h2 class="mt-2 font-heading text-3xl font-bold leading-tight text-white">Resultado da sua simulação</h2>
+              </div>
+              <span id="resultRoasBadge" class="shrink-0 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-300">
+                ROAS 3.0x
+              </span>
+            </div>
+
+            <div class="rounded-[10px] border border-[#00BAFF]/20 bg-gradient-to-br from-[#00BAFF]/14 to-white/[0.035] p-4 sm:p-6">
+              <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p id="resultRevenueLabel" class="text-sm font-semibold text-white/48">Honorários gerados no mês</p>
+                  <p id="resultRevenue" class="mt-2 font-heading text-[clamp(1.5rem,7vw,4.6rem)] font-extrabold leading-none text-white break-all">R$ 9.000</p>
+                </div>
+                <div class="grid w-full gap-2 sm:min-w-[230px] sm:w-auto sm:gap-3">
+                  <div class="rounded-[8px] border border-white/[0.08] bg-[#010f1c]/55 px-4 py-3">
+                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-white/35">ROAS atual</p>
+                    <p id="resultActualRoas" class="mt-1 text-2xl font-bold text-white">3.0x</p>
+                    <p id="resultMarketDiff" class="mt-1 text-xs font-semibold text-emerald-300">Dentro da meta</p>
+                  </div>
+                  <div class="rounded-[8px] border border-white/[0.08] bg-[#010f1c]/55 px-4 py-3">
+                    <p class="text-xs font-bold uppercase tracking-[0.16em] text-white/35">Meta mensal</p>
+                    <p id="resultGoalProgressText" class="mt-1 text-sm font-semibold text-white">18% da meta</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-6 h-3 overflow-hidden rounded-full bg-white/[0.08]">
+                <div id="resultGoalProgressBar" class="h-full rounded-full bg-gradient-to-r from-[#1630DF] to-[#00BAFF]" style="width: 18%"></div>
+              </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 gap-2 sm:gap-3">
+              <div class="rounded-[8px] border border-white/[0.08] bg-white/[0.04] p-3 sm:p-5">
+                <p class="text-xs text-white/45 sm:text-sm">Contatos qualificados</p>
+                <p id="resultLeads" class="mt-1 font-heading text-2xl font-bold text-white sm:mt-2 sm:text-3xl">67</p>
+                <p id="resultLeadCost" class="mt-1 text-xs text-white/35">Custo por contato</p>
+              </div>
+              <div class="rounded-[8px] border border-white/[0.08] bg-white/[0.04] p-3 sm:p-5">
+                <p class="text-xs text-white/45 sm:text-sm">Contratos fechados</p>
+                <p id="resultSales" class="mt-1 font-heading text-2xl font-bold text-white sm:mt-2 sm:text-3xl">5</p>
+                <p id="resultConversionText" class="mt-1 text-xs text-white/35">Conversão estimada</p>
+              </div>
+              <div class="rounded-[8px] border border-white/[0.08] bg-white/[0.04] p-3 sm:p-5">
+                <p class="text-xs text-white/45 sm:text-sm">Custo por contrato</p>
+                <p id="resultCac" class="mt-1 font-heading text-2xl font-bold text-white sm:mt-2 sm:text-3xl">R$ 600</p>
+                <p class="mt-1 text-xs text-white/35">CPA médio</p>
+              </div>
+              <div class="rounded-[8px] border border-white/[0.08] bg-white/[0.04] p-3 sm:p-5">
+                <p class="text-xs text-white/45 sm:text-sm">Investimento para meta</p>
+                <p id="resultRequired" class="mt-1 font-heading text-2xl font-bold text-white sm:mt-2 sm:text-3xl">R$ 16.667</p>
+                <p class="mt-1 text-xs text-white/35">Verba estimada em anúncios</p>
+              </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-2">
+              <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-5">
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#00BAFF]">Análise financeira</p>
+                <div class="mt-4 grid grid-cols-2 gap-3">
+                  <div class="rounded-[8px] bg-white/[0.04] p-4">
+                    <p id="resultInvestmentLabel" class="text-xs text-white/38">Investimento</p>
+                    <p id="resultInvestment" class="mt-1 text-base font-bold text-white break-all sm:text-xl">R$ 3.000/mês</p>
+                  </div>
+                  <div class="rounded-[8px] bg-white/[0.04] p-4">
+                    <p class="text-xs text-white/38">ROI (retorno líquido)</p>
+                    <p id="resultRoi" class="mt-1 text-xl font-bold text-white">200%</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="rounded-[10px] border border-[#00BAFF]/20 bg-[#00BAFF]/10 p-5">
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#00BAFF]">Sugestão de investimento</p>
+                <p id="resultSuggestionText" class="mt-3 text-sm leading-relaxed text-white/62">
+                  Para atingir sua meta, recomendamos ajustar a verba mensal.
+                </p>
+                <p id="resultSuggestionValue" class="mt-3 font-heading text-2xl font-bold text-white break-all sm:text-3xl">R$ 16.667</p>
+                <p id="resultSuggestionPeriod" class="mt-1 text-xs text-white/38">por mês</p>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-5">
+              <div class="mb-5 flex items-center justify-between gap-4">
+                <div>
+                  <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#00BAFF]">Funil projetado</p>
+                  <h3 class="mt-1 font-heading text-xl font-bold text-white">Da verba até os honorários</h3>
+                </div>
+                <LineChart className="h-7 w-7 text-[#00BAFF]" strokeWidth={1.6} />
+              </div>
+
+              <div class="space-y-4">
+                <div>
+                  <div class="mb-1 flex justify-between gap-3 text-xs font-semibold text-white/55">
+                    <span>Mídia investida</span>
+                    <span id="funnelInvestment">R$ 3.000</span>
+                  </div>
+                  <div class="h-2 rounded-full bg-white/[0.08]">
+                    <div class="h-full w-full rounded-full bg-white/35"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="mb-1 flex justify-between gap-3 text-xs font-semibold text-white/55">
+                    <span>Contatos qualificados</span>
+                    <span id="funnelLeads">67 contatos</span>
+                  </div>
+                  <div class="h-2 rounded-full bg-white/[0.08]">
+                    <div id="funnelLeadBar" class="h-full rounded-full bg-[#00BAFF]" style="width: 64%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="mb-1 flex justify-between gap-3 text-xs font-semibold text-white/55">
+                    <span>Contratos fechados</span>
+                    <span id="funnelSales">5 contratos</span>
+                  </div>
+                  <div class="h-2 rounded-full bg-white/[0.08]">
+                    <div id="funnelSalesBar" class="h-full rounded-full bg-emerald-400" style="width: 38%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="mb-1 flex justify-between gap-3 text-xs font-semibold text-white/55">
+                    <span>Honorários gerados</span>
+                    <span id="funnelRevenue">R$ 9.000</span>
+                  </div>
+                  <div class="h-2 rounded-full bg-white/[0.08]">
+                    <div id="funnelRevenueBar" class="h-full rounded-full bg-gradient-to-r from-[#1630DF] to-[#00BAFF]" style="width: 18%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-[1fr_0.9fr]">
+              <div class="rounded-[8px] border border-[#00BAFF]/20 bg-[#00BAFF]/10 p-5">
+                <p class="text-sm font-semibold text-white">Honorários acumulados</p>
+                <p id="resultProjection" class="mt-2 text-sm leading-relaxed text-white/62">
+                  Em 6 meses, este cenário pode projetar R$ 54.000 em honorários atribuídos à mídia.
+                </p>
+              </div>
+              <div class="rounded-[8px] border border-white/[0.08] bg-white/[0.04] p-5">
+                <p class="text-sm font-semibold text-white">Eficiência</p>
+                <p id="resultEfficiency" class="mt-2 text-sm leading-relaxed text-white/62">
+                  Cada venda custa R$ 600 em mídia.
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-5">
+              <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#00BAFF]">Comparativo de eficiência</p>
+              <div class="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
+                <div class="rounded-[8px] border border-white/[0.08] bg-[#010f1c]/55 p-5">
+                  <p class="text-sm font-semibold text-white">Cenário base</p>
+                  <p id="resultCommonAgencyRoi" class="mt-2 font-heading text-3xl font-bold text-white">75%</p>
+                  <p class="mt-1 text-xs text-white/38">Retorno estimado com os dados informados</p>
+                </div>
+                <div class="rounded-[8px] border border-emerald-400/25 bg-emerald-400/10 p-5">
+                  <p class="text-sm font-bold uppercase tracking-[0.14em] text-emerald-300">Com otimização</p>
+                  <p id="resultScaleAgencyRoi" class="mt-2 font-heading text-3xl font-bold text-white">92,5%</p>
+                  <p id="resultAgencyDiff" class="mt-1 text-xs text-emerald-200">+17,5% de lucro extra</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-5">
+              <p class="text-xs font-bold uppercase tracking-[0.18em] text-[#00BAFF]">Comparação de cenários</p>
+              <div class="mt-4 grid grid-cols-1 gap-3 lg:grid-cols-3">
+                <div class="rounded-[8px] border border-white/[0.08] bg-[#010f1c]/55 p-5">
+                  <p class="font-bold text-white">Pessimista</p>
+                  <p class="mt-1 text-xs text-white/38">+20% CPL, -25% contratos</p>
+                  <dl class="mt-4 space-y-3 text-sm">
+                    <div class="flex justify-between gap-3"><dt class="text-white/42">ROAS</dt><dd id="scenarioPessimisticRoas" class="font-bold text-white">2.0x</dd></div>
+                    <div class="flex justify-between gap-3"><dt class="text-white/42">Honorários</dt><dd id="scenarioPessimisticRevenue" class="font-bold text-white">R$ 6.750</dd></div>
+                    <div class="flex justify-between gap-3"><dt class="text-white/42">Contratos</dt><dd id="scenarioPessimisticSales" class="font-bold text-white">4</dd></div>
+                  </dl>
+                </div>
+                <div class="rounded-[8px] border border-[#00BAFF]/30 bg-[#00BAFF]/10 p-5">
+                  <p class="font-bold text-white">Realista</p>
+                  <p class="mt-1 text-xs text-white/38">Valores informados</p>
+                  <dl class="mt-4 space-y-3 text-sm">
+                    <div class="flex justify-between gap-3"><dt class="text-white/42">ROAS</dt><dd id="scenarioRealisticRoas" class="font-bold text-white">3.0x</dd></div>
+                    <div class="flex justify-between gap-3"><dt class="text-white/42">Honorários</dt><dd id="scenarioRealisticRevenue" class="font-bold text-white">R$ 9.000</dd></div>
+                    <div class="flex justify-between gap-3"><dt class="text-white/42">Contratos</dt><dd id="scenarioRealisticSales" class="font-bold text-white">5</dd></div>
+                  </dl>
+                </div>
+                <div class="rounded-[8px] border border-white/[0.08] bg-[#010f1c]/55 p-5">
+                  <p class="font-bold text-white">Otimista</p>
+                  <p class="mt-1 text-xs text-white/38">-15% CPL, +30% contratos</p>
+                  <dl class="mt-4 space-y-3 text-sm">
+                    <div class="flex justify-between gap-3"><dt class="text-white/42">ROAS</dt><dd id="scenarioOptimisticRoas" class="font-bold text-white">3.9x</dd></div>
+                    <div class="flex justify-between gap-3"><dt class="text-white/42">Honorários</dt><dd id="scenarioOptimisticRevenue" class="font-bold text-white">R$ 11.700</dd></div>
+                    <div class="flex justify-between gap-3"><dt class="text-white/42">Contratos</dt><dd id="scenarioOptimisticSales" class="font-bold text-white">7</dd></div>
+                  </dl>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 rounded-[10px] border border-emerald-400/20 bg-emerald-400/10 p-5">
+              <p id="diagnosticTitle" class="text-sm font-bold text-emerald-300">Leitura rápida do cenário</p>
+              <p id="diagnosticText" class="mt-2 text-sm leading-relaxed text-white/64">
+                Este cenário mostra potencial de tração, mas precisa ser validado com campanha, oferta e rotina comercial.
+              </p>
+            </div>
+
+            <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <button
+                id="startNewCalculation"
+                type="button"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-white/15 bg-white/[0.04] px-8 py-4 text-base font-bold text-white transition hover:border-[#00BAFF]/40 hover:bg-white/[0.07]"
+              >
+                Iniciar novo cálculo
+              </button>
+              <a
+                href="/contato"
+                class="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#00BAFF]/30 bg-gradient-to-r from-[#1630DF] to-[#00BAFF] px-8 py-4 text-base font-bold text-white shadow-lg shadow-sky-950/25 transition hover:opacity-90"
+              >
+                Receber diagnóstico da Scale
+                <ArrowRight size={17} strokeWidth={2.4} />
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div id="calculatorLeadModal" class="fixed inset-0 z-[420] hidden items-center justify-center bg-black/70 px-4 py-6 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="calculatorLeadTitle" aria-hidden="true">
+    <div class="relative max-h-[92dvh] w-full max-w-xl overflow-y-auto rounded-[12px] border border-white/[0.08] bg-[#010f1c] p-5 text-white shadow-2xl shadow-black/40 md:p-7">
+      <button
+        id="calculatorLeadClose"
+        type="button"
+        class="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/10 text-xl leading-none text-white/60 transition hover:border-white/25 hover:text-white"
+        aria-label="Fechar formulário"
+      >
+        ×
+      </button>
+
+      <form id="calculator-lead-form">
+        <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#00BAFF]">Antes do resultado</p>
+        <h2 id="calculatorLeadTitle" class="mt-2 pr-10 font-heading text-3xl font-bold leading-tight text-white">
+          Nos passe alguns dados para ajudarmos a diagnosticar sua situação.
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-white/58">
+          A projeção já foi calculada. Com esses dados conseguimos entender melhor seu cenário e te retornar com uma leitura mais útil sobre investimento, contatos e contratos.
+        </p>
+
+        <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div class="flex min-w-0 flex-col">
+            <label for="calcLeadName" class="mb-2 flex min-h-10 items-end text-sm font-semibold leading-tight text-white/82">Nome completo</label>
+            <input id="calcLeadName" name="nome" type="text" required autocomplete="name" class="block h-12 w-full rounded-[8px] border border-white/10 bg-white px-4 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#00BAFF]" placeholder="Seu nome" />
+          </div>
+          <div class="flex min-w-0 flex-col">
+            <label for="calcLeadEmail" class="mb-2 flex min-h-10 items-end text-sm font-semibold leading-tight text-white/82">E-mail profissional</label>
+            <input id="calcLeadEmail" name="email" type="email" required autocomplete="email" class="block h-12 w-full rounded-[8px] border border-white/10 bg-white px-4 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#00BAFF]" placeholder="seu@email.com" />
+          </div>
+          <div class="flex min-w-0 flex-col">
+            <label for="calcLeadPhone" class="mb-2 flex min-h-10 items-end text-sm font-semibold leading-tight text-white/82">WhatsApp com DDD</label>
+            <input id="calcLeadPhone" name="telefone" type="tel" required autocomplete="tel" inputmode="numeric" class="block h-12 w-full rounded-[8px] border border-white/10 bg-white px-4 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#00BAFF]" placeholder="(27) 99999-9999" />
+          </div>
+          <div class="flex min-w-0 flex-col">
+            <label for="calcLeadInstagram" class="mb-2 flex min-h-10 items-end text-sm font-semibold leading-tight text-white/82">Instagram ou site</label>
+            <input id="calcLeadInstagram" name="instagram" type="text" autocomplete="off" class="block h-12 w-full rounded-[8px] border border-white/10 bg-white px-4 text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-[#00BAFF]" placeholder="@suaempresa ou site.com.br" />
+          </div>
+        </div>
+
+        <p id="calculatorLeadError" class="mt-4 hidden text-sm text-red-300" role="alert"></p>
+
+        <button
+          id="calculatorLeadSubmit"
+          type="submit"
+          class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-[#00BAFF]/30 bg-gradient-to-r from-[#1630DF] to-[#00BAFF] px-8 py-4 text-base font-bold text-white shadow-lg shadow-sky-950/25 transition hover:opacity-90 disabled:cursor-wait disabled:opacity-70"
+        >
+          Ver minha projeção no dashboard
+          <ArrowRight size={17} strokeWidth={2.4} />
+        </button>
+        <p class="mt-3 text-center text-xs leading-relaxed text-white/38">
+          Sem compromisso. Seus dados serão usados para contato comercial da Scale.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <section class="section bg-white light-section">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {[
+          { icon: Target, title: 'Use como ponto de partida', desc: 'A projeção ajuda a entender ordem de grandeza. O plano real depende de funil, oferta, margem e capacidade comercial.' },
+          { icon: CheckCircle2, title: 'Ajuste com dados reais', desc: 'Substitua CPL, ticket e contratos por dados do seu CRM ou histórico de campanhas.' },
+          { icon: LineChart, title: 'Compare cenários', desc: 'Teste diferentes ROAS, tickets e metas antes de decidir quanto investir em mídia.' },
+        ].map((item) => {
+          const Icon = item.icon;
+          return (
+            <div class="rounded-[8px] border border-edge bg-white p-7">
+              <Icon className="mb-5 h-8 w-8 text-[#1630DF]" strokeWidth={1.7} />
+              <h2 class="font-heading text-xl font-bold text-ink">{item.title}</h2>
+              <p class="mt-3 text-sm leading-relaxed text-ink-light">{item.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const form = document.getElementById('ads-calculator');
+      if (!form) return;
+      const calculatorPanel = document.getElementById('calculatorPanel');
+      const resultCard = document.getElementById('calculator-result-card');
+      const leadModal = document.getElementById('calculatorLeadModal');
+      const leadClose = document.getElementById('calculatorLeadClose');
+      const leadForm = document.getElementById('calculator-lead-form');
+      const resultContent = document.getElementById('resultContent');
+      const resultPlaceholder = document.getElementById('resultPlaceholder');
+      const leadError = document.getElementById('calculatorLeadError');
+      const newCalculationButton = document.getElementById('startNewCalculation');
+      const stepPanels = Array.from(document.querySelectorAll('[data-step-panel]'));
+      const stepButtons = Array.from(document.querySelectorAll('[data-step-target]'));
+      const stepBackButton = document.getElementById('calculatorStepBack');
+      const stepNextButton = document.getElementById('calculatorStepNext');
+      const submitCalculationButton = document.getElementById('calculatorSubmit');
+
+      const fields = {
+        segment: document.getElementById('segment'),
+        investment: document.getElementById('investment'),
+        roas: document.getElementById('roas'),
+        cpl: document.getElementById('cpl'),
+        ticket: document.getElementById('ticket'),
+        contracts: document.getElementById('contracts'),
+        competitorFee: document.getElementById('competitorFee'),
+        ownFee: document.getElementById('ownFee'),
+        goal: document.getElementById('goal'),
+        months: document.getElementById('months'),
+      };
+
+      const outputs = {
+        revenueLabel: document.getElementById('resultRevenueLabel'),
+        revenue: document.getElementById('resultRevenue'),
+        roasBadge: document.getElementById('resultRoasBadge'),
+        actualRoas: document.getElementById('resultActualRoas'),
+        marketDiff: document.getElementById('resultMarketDiff'),
+        goalProgressText: document.getElementById('resultGoalProgressText'),
+        goalProgressBar: document.getElementById('resultGoalProgressBar'),
+        leads: document.getElementById('resultLeads'),
+        leadCost: document.getElementById('resultLeadCost'),
+        sales: document.getElementById('resultSales'),
+        conversionText: document.getElementById('resultConversionText'),
+        cac: document.getElementById('resultCac'),
+        required: document.getElementById('resultRequired'),
+        investmentLabel: document.getElementById('resultInvestmentLabel'),
+        investment: document.getElementById('resultInvestment'),
+        roi: document.getElementById('resultRoi'),
+        suggestionText: document.getElementById('resultSuggestionText'),
+        suggestionValue: document.getElementById('resultSuggestionValue'),
+        suggestionPeriod: document.getElementById('resultSuggestionPeriod'),
+        projection: document.getElementById('resultProjection'),
+        funnelInvestment: document.getElementById('funnelInvestment'),
+        funnelLeads: document.getElementById('funnelLeads'),
+        funnelSales: document.getElementById('funnelSales'),
+        funnelRevenue: document.getElementById('funnelRevenue'),
+        funnelLeadBar: document.getElementById('funnelLeadBar'),
+        funnelSalesBar: document.getElementById('funnelSalesBar'),
+        funnelRevenueBar: document.getElementById('funnelRevenueBar'),
+        efficiency: document.getElementById('resultEfficiency'),
+        commonAgencyRoi: document.getElementById('resultCommonAgencyRoi'),
+        scaleAgencyRoi: document.getElementById('resultScaleAgencyRoi'),
+        agencyDiff: document.getElementById('resultAgencyDiff'),
+        scenarioPessimisticRoas: document.getElementById('scenarioPessimisticRoas'),
+        scenarioPessimisticRevenue: document.getElementById('scenarioPessimisticRevenue'),
+        scenarioPessimisticSales: document.getElementById('scenarioPessimisticSales'),
+        scenarioRealisticRoas: document.getElementById('scenarioRealisticRoas'),
+        scenarioRealisticRevenue: document.getElementById('scenarioRealisticRevenue'),
+        scenarioRealisticSales: document.getElementById('scenarioRealisticSales'),
+        scenarioOptimisticRoas: document.getElementById('scenarioOptimisticRoas'),
+        scenarioOptimisticRevenue: document.getElementById('scenarioOptimisticRevenue'),
+        scenarioOptimisticSales: document.getElementById('scenarioOptimisticSales'),
+        diagnosticTitle: document.getElementById('diagnosticTitle'),
+        diagnosticText: document.getElementById('diagnosticText'),
+      };
+
+      let latestResult = {};
+      let resultsUnlocked = false;
+      let activeScenario = 'realista';
+      let activePeriod = 'mensal';
+      let activeStep = 0;
+      const scenarioButtons = Array.from(document.querySelectorAll('[data-scenario-button]'));
+      const periodButtons = Array.from(document.querySelectorAll('[data-period-button]'));
+      const scenarioAdjustments = {
+        pessimista: { cpl: 1.2, contracts: 0.75 },
+        realista: { cpl: 1, contracts: 1 },
+        otimista: { cpl: 0.85, contracts: 1.3 },
+      };
+
+      const currency = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        maximumFractionDigits: 0,
+      });
+
+      const currencyPrecise = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+
+      function parseCurrency(str) {
+        if (str === null || str === undefined) return 0;
+        const cleaned = String(str)
+          .replace(/R\$\s?/g, '')
+          .replace(/\./g, '')
+          .replace(',', '.')
+          .trim();
+        const num = parseFloat(cleaned);
+        return isFinite(num) ? num : 0;
+      }
+
+      function formatCurrencyInput(num) {
+        return new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+          maximumFractionDigits: 0,
+        }).format(num);
+      }
+
+      function numberValue(input, fallback = 0) {
+        const raw = input?.value ?? '';
+        const value = parseCurrency(raw);
+        return isFinite(value) && value !== 0 ? value : (fallback !== 0 ? fallback : 0);
+      }
+
+      function percent(value) {
+        return `${value.toLocaleString('pt-BR', { maximumFractionDigits: 1 })}%`;
+      }
+
+      function roasText(value) {
+        return `${value.toLocaleString('pt-BR', { maximumFractionDigits: 2 })}x`;
+      }
+
+      function updateToggleButtons(buttons, attribute, activeValue) {
+        buttons.forEach((button) => {
+          const isActive = button.dataset[attribute] === activeValue;
+          button.classList.toggle('bg-gradient-to-r', isActive && attribute === 'scenarioButton');
+          button.classList.toggle('from-[#1630DF]', isActive && attribute === 'scenarioButton');
+          button.classList.toggle('to-[#00BAFF]', isActive && attribute === 'scenarioButton');
+          button.classList.toggle('bg-[#00BAFF]', isActive && attribute === 'periodButton');
+          button.classList.toggle('text-white', isActive);
+          button.classList.toggle('font-bold', isActive);
+          button.classList.toggle('text-ink-light', !isActive);
+          button.classList.toggle('font-semibold', !isActive);
+          button.classList.toggle('shadow-sm', isActive);
+        });
+      }
+
+      function showStep(step) {
+        activeStep = Math.max(0, Math.min(step, stepPanels.length - 1));
+        stepPanels.forEach((panel, index) => {
+          panel.classList.toggle('hidden', index !== activeStep);
+        });
+        stepButtons.forEach((button, index) => {
+          const isActive = index === activeStep;
+          button.classList.toggle('bg-white', isActive);
+          button.classList.toggle('text-ink', isActive);
+          button.classList.toggle('font-bold', isActive);
+          button.classList.toggle('shadow-sm', isActive);
+          button.classList.toggle('text-ink-light', !isActive);
+          button.classList.toggle('font-semibold', !isActive);
+        });
+        stepBackButton?.classList.toggle('invisible', activeStep === 0);
+        stepNextButton?.classList.toggle('hidden', activeStep === stepPanels.length - 1);
+        submitCalculationButton?.classList.toggle('hidden', activeStep !== stepPanels.length - 1);
+        submitCalculationButton?.classList.toggle('inline-flex', activeStep === stepPanels.length - 1);
+      }
+
+      function scenarioResult(base, adjustment) {
+        const adjustedCpl = Math.max(base.cpl * adjustment.cpl, 1);
+        const contracts = Math.max(base.contracts * adjustment.contracts, 0);
+        const leads = base.investment / adjustedCpl;
+        const revenue = contracts * base.ticket;
+        const roas = base.investment > 0 ? revenue / base.investment : 0;
+        return { cpl: adjustedCpl, leads, contracts, revenue, roas };
+      }
+
+      function calculate() {
+        const investment = numberValue(fields.investment);
+        const desiredRoas = numberValue(fields.roas);
+        const cpl = Math.max(numberValue(fields.cpl, 1), 1);
+        const ticket = Math.max(numberValue(fields.ticket), 0);
+        const contracts = Math.max(numberValue(fields.contracts), 0);
+        const goal = numberValue(fields.goal);
+        const months = Math.max(numberValue(fields.months, 1), 1);
+        const competitorFee = Math.max(numberValue(fields.competitorFee), 0);
+        const ownFee = Math.max(numberValue(fields.ownFee), 0);
+        const base = { investment, cpl, ticket, contracts };
+        const selectedScenario = scenarioAdjustments[activeScenario] || scenarioAdjustments.realista;
+        const current = scenarioResult(base, selectedScenario);
+        const divisor = activePeriod === 'diario' ? 30 : 1;
+        const periodLabel = activePeriod === 'diario' ? 'diário' : 'mensal';
+        const periodSuffix = activePeriod === 'diario' ? '/dia' : '/mês';
+
+        const revenue = current.revenue;
+        const leads = current.leads;
+        const sales = current.contracts;
+        const actualRoas = current.roas;
+        const conversionRate = leads > 0 ? (sales / leads) * 100 : 0;
+        const cac = sales > 0 ? investment / sales : 0;
+        const roi = investment > 0 ? ((revenue - investment) / investment) * 100 : 0;
+        const requiredInvestment = actualRoas > 0 ? goal / actualRoas : 0;
+        const projection = revenue * months;
+        const goalProgress = goal > 0 ? Math.min((revenue / goal) * 100, 100) : 0;
+        const leadBar = Math.max(8, Math.min((leads / Math.max(leads, 100)) * 100, 100));
+        const salesBar = Math.max(8, Math.min((sales / Math.max(sales, 12)) * 100, 100));
+        const revenueBar = Math.max(8, goal > 0 ? Math.min((revenue / goal) * 100, 100) : 100);
+        const commonTotalCost = investment + competitorFee;
+        const scaleTotalCost = investment + ownFee;
+        const commonRoi = commonTotalCost > 0 ? ((revenue - commonTotalCost) / commonTotalCost) * 100 : roi;
+        const scaleRoi = ownFee > 0 || competitorFee > 0
+          ? (scaleTotalCost > 0 ? ((revenue - scaleTotalCost) / scaleTotalCost) * 100 : roi)
+          : roi + 17.5;
+        const agencyDiff = scaleRoi - commonRoi;
+        const marketDiff = desiredRoas > 0 ? ((actualRoas - desiredRoas) / desiredRoas) * 100 : 0;
+        const scenarios = {
+          pessimista: scenarioResult(base, scenarioAdjustments.pessimista),
+          realista: scenarioResult(base, scenarioAdjustments.realista),
+          otimista: scenarioResult(base, scenarioAdjustments.otimista),
+        };
+
+        latestResult = {
+          segmento: fields.segment?.selectedOptions?.[0]?.textContent?.trim() || '',
+          investimentoMensal: investment,
+          roasDesejado: desiredRoas,
+          roasReal: actualRoas,
+          cpl,
+          honorariosPorContrato: ticket,
+          contratosFechados: contracts,
+          cenario: activeScenario,
+          periodo: activePeriod,
+          conversaoLeadContrato: conversionRate,
+          metaHonorarios: goal,
+          meses: months,
+          honorariosGerados: revenue,
+          contatosQualificados: leads,
+          contratosEstimados: sales,
+          cacEstimado: cac,
+          roi,
+          mensalidadeConcorrente: competitorFee,
+          suaMensalidade: ownFee,
+          investimentoParaMeta: requiredInvestment,
+          projecaoAcumulada: projection,
+        };
+
+        outputs.revenueLabel.textContent = `Honorários gerados ${periodLabel}`;
+        outputs.revenue.textContent = `${currencyPrecise.format(revenue / divisor)}${periodSuffix}`;
+        outputs.roasBadge.textContent = `ROAS ${roasText(actualRoas)}`;
+        outputs.actualRoas.textContent = roasText(actualRoas);
+        outputs.marketDiff.textContent = desiredRoas > 0
+          ? `${marketDiff >= 0 ? '+' : ''}${percent(marketDiff)} vs referência de ${roasText(desiredRoas)}`
+          : 'Referência de ROAS não informada';
+        outputs.marketDiff.classList.toggle('text-emerald-300', marketDiff >= 0);
+        outputs.marketDiff.classList.toggle('text-amber-300', marketDiff < 0);
+        outputs.goalProgressText.textContent = goal > 0
+          ? `${Math.round(goalProgress).toLocaleString('pt-BR')}% da meta`
+          : 'Meta não informada';
+        outputs.goalProgressBar.style.width = `${Math.max(goalProgress, goal > 0 ? 3 : 0)}%`;
+        outputs.leads.textContent = Math.round(leads).toLocaleString('pt-BR');
+        outputs.leadCost.textContent = `Custo por contato ${currency.format(cpl)}`;
+        outputs.sales.textContent = sales.toLocaleString('pt-BR', { maximumFractionDigits: 1 });
+        outputs.conversionText.textContent = `${percent(conversionRate)} conversão/mês`;
+        outputs.cac.textContent = sales > 0 ? currency.format(cac) : 'Sem contratos';
+        outputs.required.textContent = currency.format(requiredInvestment);
+        outputs.investmentLabel.textContent = `Investimento ${periodLabel}`;
+        outputs.investment.textContent = `${currencyPrecise.format(investment / divisor)}${periodSuffix}`;
+        outputs.roi.textContent = percent(roi);
+        outputs.suggestionText.textContent = goal > 0
+          ? `Para atingir sua meta de honorários de ${currencyPrecise.format(goal)}/mês, o investimento estimado em anúncios seria:`
+          : 'Informe uma meta de honorários para calcular o investimento recomendado.';
+        outputs.suggestionValue.textContent = currencyPrecise.format(requiredInvestment);
+        outputs.suggestionPeriod.textContent = 'por mês';
+        outputs.projection.textContent = `Em ${months} ${months === 1 ? 'mês' : 'meses'}, este cenário pode projetar ${currency.format(projection)} em honorários atribuídos à mídia.`;
+        outputs.funnelInvestment.textContent = currency.format(investment);
+        outputs.funnelLeads.textContent = `${Math.round(leads).toLocaleString('pt-BR')} contatos`;
+        outputs.funnelSales.textContent = `${sales.toLocaleString('pt-BR', { maximumFractionDigits: 1 })} contratos`;
+        outputs.funnelRevenue.textContent = currency.format(revenue);
+        outputs.funnelLeadBar.style.width = `${leadBar}%`;
+        outputs.funnelSalesBar.style.width = `${salesBar}%`;
+        outputs.funnelRevenueBar.style.width = `${revenueBar}%`;
+        outputs.efficiency.textContent = sales > 0
+          ? `Cada contrato custa aproximadamente ${currency.format(cac)} em mídia.`
+          : 'Os contratos informados ainda não geram uma leitura de CPA neste cenário.';
+        outputs.commonAgencyRoi.textContent = percent(commonRoi);
+        outputs.scaleAgencyRoi.textContent = percent(scaleRoi);
+        outputs.agencyDiff.textContent = `${agencyDiff >= 0 ? '+' : ''}${percent(agencyDiff)} de lucro extra`;
+        outputs.scenarioPessimisticRoas.textContent = roasText(scenarios.pessimista.roas);
+        outputs.scenarioPessimisticRevenue.textContent = currency.format(scenarios.pessimista.revenue);
+        outputs.scenarioPessimisticSales.textContent = scenarios.pessimista.contracts.toLocaleString('pt-BR', { maximumFractionDigits: 1 });
+        outputs.scenarioRealisticRoas.textContent = roasText(scenarios.realista.roas);
+        outputs.scenarioRealisticRevenue.textContent = currency.format(scenarios.realista.revenue);
+        outputs.scenarioRealisticSales.textContent = scenarios.realista.contracts.toLocaleString('pt-BR', { maximumFractionDigits: 1 });
+        outputs.scenarioOptimisticRoas.textContent = roasText(scenarios.otimista.roas);
+        outputs.scenarioOptimisticRevenue.textContent = currency.format(scenarios.otimista.revenue);
+        outputs.scenarioOptimisticSales.textContent = scenarios.otimista.contracts.toLocaleString('pt-BR', { maximumFractionDigits: 1 });
+
+        if (goal > 0 && revenue >= goal) {
+          outputs.diagnosticTitle.textContent = 'Cenário forte para escala';
+          outputs.diagnosticText.textContent = 'A projeção bate ou supera sua meta mensal de honorários. O próximo passo é validar se a oferta, a página e o atendimento conseguem sustentar esse volume com segurança ética.';
+        } else if (actualRoas >= desiredRoas && sales >= 3) {
+          outputs.diagnosticTitle.textContent = 'Cenário promissor';
+          outputs.diagnosticText.textContent = 'A simulação indica potencial de retorno, mas a meta ainda depende de mais verba, melhora de conversão ou aumento de ticket médio.';
+        } else if (conversionRate < 5) {
+          outputs.diagnosticTitle.textContent = 'Atenção à conversão comercial';
+          outputs.diagnosticText.textContent = 'O gargalo mais provável está depois do lead: triagem, velocidade de atendimento, proposta ou qualificação. Melhorar conversão pode reduzir o investimento necessário.';
+        } else {
+          outputs.diagnosticTitle.textContent = 'Cenário para validação controlada';
+          outputs.diagnosticText.textContent = 'Vale começar com teste estruturado, acompanhar custo e qualidade dos contatos, e ajustar campanha, página e atendimento antes de aumentar a verba.';
+        }
+      }
+
+      fields.segment?.addEventListener('change', () => {
+        const selected = fields.segment.selectedOptions[0];
+        const newCpl = Number(selected.dataset.cpl);
+        const newTicket = Number(selected.dataset.ticket);
+        const newContracts = selected.dataset.contracts;
+        if (newCpl) fields.cpl.value = formatCurrencyInput(newCpl);
+        if (newTicket) fields.ticket.value = formatCurrencyInput(newTicket);
+        if (newContracts) fields.contracts.value = newContracts;
+        calculate();
+      });
+
+      Object.values(fields).forEach((field) => {
+        field?.addEventListener('input', calculate);
+      });
+
+      // BRL mask: on focus strip formatting, on blur re-format
+      ['investment', 'ticket', 'goal'].forEach((id) => {
+        const input = document.getElementById(id);
+        if (!input) return;
+        input.addEventListener('focus', () => {
+          const num = parseCurrency(input.value);
+          input.value = num > 0 ? String(num) : '';
+        });
+        input.addEventListener('blur', () => {
+          const num = parseCurrency(input.value);
+          if (num > 0) input.value = formatCurrencyInput(num);
+          calculate();
+        });
+      });
+
+      stepButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          showStep(Number(button.dataset.stepTarget || 0));
+        });
+      });
+
+      stepBackButton?.addEventListener('click', () => {
+        showStep(activeStep - 1);
+      });
+
+      stepNextButton?.addEventListener('click', () => {
+        showStep(activeStep + 1);
+      });
+
+      scenarioButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          activeScenario = button.dataset.scenarioButton || 'realista';
+          updateToggleButtons(scenarioButtons, 'scenarioButton', activeScenario);
+          calculate();
+        });
+      });
+
+      periodButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          activePeriod = button.dataset.periodButton || 'mensal';
+          updateToggleButtons(periodButtons, 'periodButton', activePeriod);
+          calculate();
+        });
+      });
+
+      function formatPhone(value) {
+        const digits = value.replace(/\D/g, '').slice(0, 11);
+        if (digits.length <= 2) return digits;
+        if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+        if (digits.length <= 10) {
+          return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+        }
+        return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+      }
+
+      function showLeadError(message) {
+        if (!leadError) return;
+        leadError.textContent = message;
+        leadError.classList.remove('hidden');
+      }
+
+      function clearLeadError() {
+        if (!leadError) return;
+        leadError.textContent = '';
+        leadError.classList.add('hidden');
+      }
+
+      function openLeadModal() {
+        clearLeadError();
+        leadModal?.classList.remove('hidden');
+        leadModal?.classList.add('flex');
+        leadModal?.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        window.setTimeout(() => document.getElementById('calcLeadName')?.focus(), 80);
+      }
+
+      function closeLeadModal() {
+        leadModal?.classList.add('hidden');
+        leadModal?.classList.remove('flex');
+        leadModal?.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      function unlockResults() {
+        resultsUnlocked = true;
+        closeLeadModal();
+        calculatorPanel?.classList.add('hidden');
+        resultCard?.classList.remove('hidden');
+        resultPlaceholder?.classList.add('hidden');
+        resultContent?.classList.remove('hidden');
+        resultContent?.removeAttribute('aria-hidden');
+        resultCard?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function showCalculatorForNewCalculation() {
+        calculatorPanel?.classList.remove('hidden');
+        resultCard?.classList.add('hidden');
+        calculatorPanel?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      document.getElementById('calcLeadPhone')?.addEventListener('input', (event) => {
+        event.target.value = formatPhone(event.target.value);
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (activeStep < stepPanels.length - 1) {
+          showStep(activeStep + 1);
+          return;
+        }
+        calculate();
+        if (resultsUnlocked) {
+          unlockResults();
+          return;
+        }
+        openLeadModal();
+      });
+
+      newCalculationButton?.addEventListener('click', showCalculatorForNewCalculation);
+
+      leadClose?.addEventListener('click', closeLeadModal);
+      leadModal?.addEventListener('click', (event) => {
+        if (event.target === leadModal) closeLeadModal();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !leadModal?.classList.contains('hidden')) {
+          closeLeadModal();
+        }
+      });
+
+      leadForm?.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        clearLeadError();
+
+        const submitButton = leadForm.querySelector('button[type="submit"]');
+        const formData = new FormData(leadForm);
+        const nome = String(formData.get('nome') || '').trim();
+        const email = String(formData.get('email') || '').trim();
+        const telefone = String(formData.get('telefone') || '').trim();
+        const phoneDigits = telefone.replace(/\D/g, '');
+        const instagram = String(formData.get('instagram') || '').trim();
+
+        if (!nome || nome.length < 3) {
+          showLeadError('Informe seu nome completo.');
+          return;
+        }
+        if (!email.includes('@') || !email.includes('.')) {
+          showLeadError('Informe um e-mail válido.');
+          return;
+        }
+        if (phoneDigits.length < 10) {
+          showLeadError('Informe um WhatsApp válido com DDD.');
+          return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = 'Liberando projeção...';
+
+        const payload = {
+          nome,
+          email,
+          number: Number(phoneDigits),
+          fields: {
+            number: {
+              type: 'text',
+              value: formatPhone(phoneDigits),
+              rawValue: formatPhone(phoneDigits),
+            },
+          },
+          faturamento: 'calculadora_investimento_anuncios',
+          instagram,
+          sourceUrl: window.location.href,
+          submittedAt: new Date().toISOString(),
+          calculator: latestResult,
+        };
+
+        const webhookUrl = resultCard?.dataset.webhookUrl?.trim();
+        const excelWebhookUrl = resultCard?.dataset.excelWebhookUrl?.trim();
+
+        try {
+          if (excelWebhookUrl) {
+            fetch(excelWebhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            }).catch(() => {});
+          }
+
+          if (webhookUrl) {
+            const response = await fetch(webhookUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload),
+            });
+            if (!response.ok) throw new Error('Falha ao enviar');
+          }
+
+          unlockResults();
+        } catch (error) {
+          showLeadError('Não foi possível enviar agora. Tente novamente em alguns segundos.');
+          submitButton.disabled = false;
+          submitButton.textContent = 'Ver minha projeção no dashboard';
+        }
+      });
+
+      showStep(0);
+      calculate();
+    })();
+  </script>
+</BaseLayout>

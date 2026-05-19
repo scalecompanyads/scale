@@ -1,47 +1,506 @@
 ---
-/** Hub Espírito Santo — /espirito-santo · Fase 3 (mês 4+) */
+/**
+ * Hub Espírito Santo - /espirito-santo
+ * Target: agência de marketing digital no Espírito Santo, marketing digital ES
+ */
 import LocalLayout from '@layouts/LocalLayout.astro';
+import GlassEffect from '@components/ui/GlassEffect.astro';
+import Button from '@components/ui/Button.astro';
+import ProcessSteps from '@components/sections/ProcessSteps';
+import BlogBento from '@components/sections/BlogBento.astro';
+import FaqAccordion from '@components/sections/FaqAccordion';
 import { getCityBySlug } from '@data/cities';
+import {
+  ArrowRight,
+  BarChart3,
+  Building2,
+  CheckCircle2,
+  Globe2,
+  Landmark,
+  MapPin,
+  Megaphone,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Target,
+  TrendingUp,
+} from 'lucide-react';
+
+import logoMahai from '../../assets/logos-parceiros/simple_logo_mahai.png?url';
+import logoAtivo1 from '../../assets/logos-parceiros/Ativo-1.png?url';
+import logoAtivo3 from '../../assets/logos-parceiros/Ativo-3-1024x252-1.png?url';
+import logoHash from '../../assets/logos-parceiros/50950f7c3c4647103d00017cb4d48bc9-removebg-preview.png?url';
+import logoMaskGrp from '../../assets/logos-parceiros/Mask-group.png?url';
+import logoMaskGrp1 from '../../assets/logos-parceiros/Mask-group-1.png?url';
+
 const city = getCityBySlug('espirito-santo')!;
 
+const partnerLogos = [
+  { src: logoMahai, alt: 'Mahai' },
+  { src: logoAtivo1, alt: 'Cliente Scale' },
+  { src: logoAtivo3, alt: 'Cliente Scale' },
+  { src: logoHash, alt: 'Cliente Scale' },
+  { src: logoMaskGrp, alt: 'Cliente Scale' },
+  { src: logoMaskGrp1, alt: 'Cliente Scale' },
+];
+
+const stats = [
+  { value: '+240', label: 'empresas atendidas no Brasil inteiro' },
+  { value: '+16 mi', label: 'gerenciados em anúncios online' },
+  { value: 'ES', label: 'atuação em Vila Velha, Vitória, Serra e todo o estado' },
+];
+
+const services = [
+  {
+    icon: TrendingUp,
+    title: 'Tráfego pago no Espírito Santo',
+    desc: 'Google Ads e Meta Ads para gerar demanda qualificada, com campanhas por cidade, bairro, raio de atendimento e intenção de compra.',
+    href: '/servicos/trafego-pago',
+  },
+  {
+    icon: Search,
+    title: 'SEO local e consultoria de SEO',
+    desc: 'Otimização técnica, conteúdo e autoridade para sua empresa aparecer no Google quando o cliente do ES procura por soluções como a sua.',
+    href: '/servicos/consultoria-seo',
+  },
+  {
+    icon: Globe2,
+    title: 'Criação de sites profissionais',
+    desc: 'Sites institucionais rápidos, responsivos e preparados para converter visitantes em contatos comerciais.',
+    href: '/espirito-santo/criacao-de-sites',
+  },
+  {
+    icon: Megaphone,
+    title: 'Redes sociais e conteúdo',
+    desc: 'Presença digital consistente, criação de peças, calendário editorial e mensagens alinhadas com campanhas e posicionamento.',
+    href: '/servicos/gestao-redes-sociais',
+  },
+];
+
 const cities = [
-  { href: '/vila-velha', name: 'Vila Velha' },
-  { href: '/vitoria', name: 'Vitória' },
-  { href: '/serra', name: 'Serra' },
-  { href: '/espirito-santo/criacao-de-sites', name: 'Todo o ES' },
+  {
+    name: 'Vila Velha',
+    href: '/vila-velha',
+    desc: 'Praia da Costa, Glória, Itapoã, Itaparica e empresas de serviços locais.',
+  },
+  {
+    name: 'Vitória',
+    href: '/vitoria',
+    desc: 'Praia do Canto, Enseada, Centro, Jardim Camburi e negócios de maior ticket.',
+  },
+  {
+    name: 'Serra',
+    href: '/serra',
+    desc: 'Laranjeiras, Jacaraípe, Manguinhos, industriais, comércios e serviços.',
+  },
+  {
+    name: 'Cariacica',
+    href: '/cariacica',
+    desc: 'Campo Grande, Itaquari, Jardim América e operações comerciais da Grande Vitória.',
+  },
+  {
+    name: 'Guarapari',
+    href: '/guarapari',
+    desc: 'Turismo, gastronomia, imóveis, saúde e negócios com demanda sazonal.',
+  },
+];
+
+const segments = [
+  { icon: Landmark, title: 'Serviços profissionais', desc: 'Advogados, contadores, consultores, imobiliárias e prestadores que precisam gerar oportunidades qualificadas.' },
+  { icon: Building2, title: 'Clínicas e negócios locais', desc: 'Marketing para empresas que dependem de agenda, recorrência, reputação e busca local no Google.' },
+  { icon: Target, title: 'Empresas B2B e operações regionais', desc: 'Estruturas de captação, landing pages, CRM e campanhas para vender com previsibilidade.' },
+  { icon: ShieldCheck, title: 'Marcas que precisam de método', desc: 'Planejamento, acompanhamento e decisões claras para sair do improviso e crescer com consistência.' },
+];
+
+const faqItems = [
+  {
+    q: 'A Scale atende empresas de todo o Espírito Santo?',
+    a: 'Sim. Atendemos empresas em Vila Velha, Vitória, Serra, Cariacica, Guarapari, Linhares, Cachoeiro de Itapemirim e outras cidades do ES. O diagnóstico pode ser online ou presencial quando fizer sentido para o projeto.',
+  },
+  {
+    q: 'Qual serviço faz mais sentido para uma empresa do ES com pouca presença digital?',
+    a: 'Depende do momento. Para demanda imediata, normalmente começamos por tráfego pago e landing page. Para construir autoridade e reduzir dependência de anúncios, SEO local e conteúdo entram como frente estratégica.',
+  },
+  {
+    q: 'Vocês fazem apenas anúncios ou cuidam da estratégia completa?',
+    a: 'Cuidamos da estratégia completa: posicionamento, campanhas, criativos, páginas, SEO, CRM, acompanhamento comercial e relatórios em linguagem de negócio.',
+  },
+  {
+    q: 'Quanto custa contratar uma agência de marketing digital no Espírito Santo?',
+    a: 'O investimento varia conforme objetivo, concorrência, canais e estrutura necessária. Antes de propor qualquer plano, fazemos um diagnóstico gratuito para entender onde existe potencial real de crescimento.',
+  },
+  {
+    q: 'Tráfego pago funciona para negócios locais no Espírito Santo?',
+    a: 'Funciona quando existe estratégia. Segmentamos por região, intenção, público e etapa de compra, mas também cuidamos da página, da oferta e do atendimento para o lead virar oportunidade comercial.',
+  },
+  {
+    q: 'A Scale também faz criação de sites no Espírito Santo?',
+    a: 'Sim. Criamos sites institucionais e landing pages com foco em velocidade, SEO técnico, experiência mobile e conversão.',
+  },
 ];
 ---
+
 <LocalLayout
   title="Agência de Marketing Digital no Espírito Santo | Scale"
-  description="Scale: agência de marketing digital no Espírito Santo (ES). Atendemos Vila Velha, Vitória, Serra e todo o estado."
+  description="A Scale é uma agência de marketing digital no Espírito Santo. Tráfego pago, SEO, criação de sites, landing pages e redes sociais para empresas do ES."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Espírito Santo
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Agência de Marketing Digital no Espírito Santo
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Atendemos empresas de todo o Espírito Santo: Vila Velha, Vitória, Serra, Cachoeiro, Linhares e mais.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar orçamento
-        </a>
+  <style>
+    .es-hero-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 96px 96px;
+    }
+
+    .es-map-card {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(0,186,255,0.22), transparent 28%),
+        radial-gradient(circle at 78% 24%, rgba(74,120,255,0.18), transparent 26%),
+        radial-gradient(circle at 48% 78%, rgba(52,211,153,0.14), transparent 28%),
+        linear-gradient(145deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025));
+    }
+
+    .es-route-line {
+      stroke-dasharray: 8 10;
+      animation: route-flow 8s linear infinite;
+    }
+
+    @keyframes route-flow {
+      to { stroke-dashoffset: -180; }
+    }
+
+    .marquee-wrap {
+      -webkit-mask: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      mask: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+  </style>
+
+  <section class="relative -mt-16 overflow-hidden bg-[#010f1c] pt-32 pb-20 md:pt-40 md:pb-28">
+    <div class="absolute inset-0 es-hero-grid opacity-80" aria-hidden="true"></div>
+    <div class="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#010f1c] to-transparent" aria-hidden="true"></div>
+    <div class="absolute -left-32 top-20 h-72 w-72 rounded-full bg-[#00BAFF]/16 blur-3xl" aria-hidden="true"></div>
+    <div class="absolute -right-28 bottom-12 h-80 w-80 rounded-full bg-emerald-400/10 blur-3xl" aria-hidden="true"></div>
+
+    <div class="container relative z-10">
+      <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+        <div class="max-w-3xl">
+          <GlassEffect
+            className="mb-8 inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold !cursor-default"
+            glassClass="bg-[#010f1c]/75"
+            rounded="rounded-full"
+          >
+            <Sparkles size={14} color="#00BAFF" strokeWidth={1.8} />
+            <span class="text-white/65">Agência de marketing digital no Espírito Santo</span>
+          </GlassEffect>
+
+          <h1
+            class="font-heading text-[clamp(2.75rem,6vw,5.6rem)] font-bold leading-[0.98] tracking-tight text-white"
+          >
+            Marketing no ES para empresas que querem crescer com previsibilidade.
+          </h1>
+
+          <p class="mt-7 max-w-2xl text-lg leading-relaxed text-white/62 md:text-xl">
+            A Scale estrutura tráfego pago, SEO, criação de sites, landing pages e redes sociais para empresas do Espírito Santo venderem mais com estratégia, dados e acompanhamento claro.
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <Button href="/contato" variant="ring" size="lg">
+              Solicitar diagnóstico gratuito
+              <ArrowRight size={17} strokeWidth={2.4} />
+            </Button>
+            <a
+              href="#servicos-es"
+              class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/72 transition hover:border-[#00BAFF]/35 hover:text-white"
+            >
+              Ver serviços no ES
+              <ArrowRight size={15} strokeWidth={2.2} />
+            </a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="es-map-card relative overflow-hidden rounded-[10px] border border-white/10 p-6 shadow-2xl shadow-black/35 backdrop-blur">
+            <div class="mb-8 flex items-start justify-between gap-4">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#00BAFF]">Cobertura estadual</p>
+                <h2 class="mt-2 font-heading text-3xl font-bold text-white">Grande Vitória e todo o ES</h2>
+              </div>
+              <div class="rounded-lg border border-white/10 bg-white/5 p-3 text-white/70">
+                <MapPin size={22} strokeWidth={1.8} />
+              </div>
+            </div>
+
+            <div class="relative mx-auto aspect-[4/3] w-full max-w-md">
+              <svg viewBox="0 0 420 320" class="h-full w-full" role="img" aria-label="Mapa abstrato de atendimento no Espírito Santo">
+                <path
+                  d="M244 18 C280 50 304 92 292 136 C282 174 306 207 285 247 C260 294 198 304 160 274 C123 245 101 207 111 159 C119 119 92 83 122 47 C149 14 205 -10 244 18Z"
+                  fill="rgba(255,255,255,0.055)"
+                  stroke="rgba(255,255,255,0.16)"
+                  stroke-width="2"
+                />
+                <path
+                  class="es-route-line"
+                  d="M170 205 C196 188 218 164 226 132 C235 96 253 70 274 50"
+                  fill="none"
+                  stroke="#00BAFF"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                />
+                <path
+                  class="es-route-line"
+                  d="M170 205 C139 190 122 170 118 140 C113 104 128 76 150 52"
+                  fill="none"
+                  stroke="#34d399"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  style="animation-delay:-2s"
+                />
+                {[
+                  { x: 170, y: 205, label: 'Vila Velha' },
+                  { x: 190, y: 184, label: 'Vitória' },
+                  { x: 212, y: 151, label: 'Serra' },
+                  { x: 150, y: 222, label: 'Cariacica' },
+                  { x: 139, y: 252, label: 'Guarapari' },
+                  { x: 265, y: 73, label: 'Linhares' },
+                ].map((point) => (
+                  <g>
+                    <circle cx={point.x} cy={point.y} r="12" fill="rgba(0,186,255,0.12)" />
+                    <circle cx={point.x} cy={point.y} r="5" fill="#00BAFF" />
+                    <text x={point.x + 14} y={point.y + 4} fill="rgba(255,255,255,0.72)" font-size="11" font-weight="600">{point.label}</text>
+                  </g>
+                ))}
+              </svg>
+            </div>
+
+            <div class="mt-7 grid grid-cols-3 gap-3">
+              {stats.map((stat) => (
+                <div class="rounded-[8px] border border-white/10 bg-[#010f1c]/45 p-4">
+                  <p class="font-heading text-2xl font-bold text-white">{stat.value}</p>
+                  <p class="mt-1 text-xs leading-relaxed text-white/45">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-  <section class="section">
-    <div class="container">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        {cities.map((c) => (
-          <a href={c.href} class="block p-5 rounded-xl border border-edge bg-surface-card hover:border-brand-primary hover:shadow-md transition-all text-center">
-            <p class="font-semibold text-ink">{c.name}</p>
-          </a>
+
+  <section class="section-sm overflow-hidden border-y border-white/5 bg-[#010f1c]">
+    <p class="mb-8 text-center text-xs font-semibold uppercase tracking-[0.22em] text-white/25">
+      Empresas de diferentes segmentos confiam na Scale
+    </p>
+    <div class="marquee-wrap overflow-hidden">
+      <div class="flex w-max animate-marquee items-center gap-16">
+        {[...partnerLogos, ...partnerLogos, ...partnerLogos, ...partnerLogos].map((logo) => (
+          <div class="flex h-[72px] flex-shrink-0 items-center justify-center">
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              loading="lazy"
+              class="h-auto max-h-[58px] w-auto max-w-[180px] object-contain opacity-45 brightness-0 invert"
+            />
+          </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] home-bg-grid">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+        <div>
+          <span class="home-label-caps mb-4">Cenário local</span>
+          <h2 class="heading-display-dark">O mercado capixaba tem demanda. O problema é transformar busca em venda.</h2>
+        </div>
+        <p class="text-lg leading-relaxed text-white/68">
+          No Espírito Santo, o cliente compara no Google, pesquisa no Instagram, pede indicação e decide pelo negócio que transmite mais clareza. Por isso, a Scale não trata marketing como postagem ou anúncio isolado. Estruturamos a jornada inteira: atração, página, prova, atendimento e mensuração.
+        </p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+        {[
+          ['Busca local forte', 'Sua empresa precisa aparecer quando alguém procura por serviços em Vila Velha, Vitória, Serra, Cariacica ou qualquer cidade do ES.'],
+          ['Concorrência mais preparada', 'Empresas que combinam site, SEO, tráfego pago e atendimento comercial ganham mercado antes das que improvisam.'],
+          ['Venda não acaba no clique', 'Campanha boa precisa de oferta, página de conversão, resposta rápida e rotina de acompanhamento.'],
+        ].map(([title, desc]) => (
+          <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-7">
+            <CheckCircle2 className="mb-5 h-7 w-7 text-[#34d399]" strokeWidth={1.8} />
+            <h3 class="mb-3 text-lg font-semibold text-white">{title}</h3>
+            <p class="text-sm leading-relaxed text-white/62">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="servicos-es" class="section light-section bg-white">
+    <div class="container">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Serviços</span>
+        <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-slate-950 md:text-5xl">
+          Agência de marketing digital no Espírito Santo com estratégia completa.
+        </h2>
+        <p class="mt-5 text-lg font-medium leading-relaxed text-slate-700">
+          Cada frente entra com um papel claro: gerar demanda, converter melhor, criar autoridade e dar previsibilidade para o comercial.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+        {services.map((service) => {
+          const Icon = service.icon;
+          return (
+            <a href={service.href} class="group rounded-[10px] border border-slate-200 bg-white p-7 shadow-sm transition hover:-translate-y-1 hover:border-brand-primary hover:shadow-xl hover:shadow-blue-950/10">
+              <div class="mb-8 flex items-start justify-between gap-5">
+                <div class="flex h-12 w-12 items-center justify-center rounded-[8px] bg-[#010f1c] text-[#00BAFF]">
+                  <Icon size={22} strokeWidth={1.8} />
+                </div>
+                <span class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-600 transition group-hover:border-brand-primary group-hover:text-brand-primary">
+                  <ArrowRight size={16} strokeWidth={2.2} />
+                </span>
+              </div>
+              <h3 class="mb-3 font-heading text-2xl font-bold text-slate-950">{service.title}</h3>
+              <p class="font-medium leading-relaxed text-slate-700">{service.desc}</p>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section light-section bg-slate-50">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Cidades atendidas</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-slate-950">
+            Atendimento local para a Grande Vitória e interior do ES.
+          </h2>
+          <p class="mt-5 font-medium leading-relaxed text-slate-700">
+            Criamos campanhas e páginas pensando na realidade de cada região. Um negócio de Guarapari não vende igual a uma clínica em Vitória ou uma empresa B2B na Serra.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {cities.map((item) => (
+            <a href={item.href} class="rounded-[10px] border border-slate-200 bg-white p-6 shadow-sm transition hover:border-brand-primary hover:shadow-md">
+              <div class="mb-4 flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center rounded-[8px] bg-green-50 text-green-700">
+                  <MapPin size={18} strokeWidth={2} />
+                </span>
+                <h3 class="font-heading text-xl font-bold text-slate-950">{item.name}</h3>
+              </div>
+              <p class="text-sm font-medium leading-relaxed text-slate-700">{item.desc}</p>
+            </a>
+          ))}
+          <div class="rounded-[10px] border border-dashed border-brand-primary/45 bg-white p-6 shadow-sm">
+            <p class="mb-2 font-heading text-xl font-bold text-slate-950">Outras cidades do ES</p>
+            <p class="text-sm font-medium leading-relaxed text-slate-700">
+              Linhares, Cachoeiro de Itapemirim, Colatina, Aracruz, São Mateus e demais municípios capixabas.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#010f1c] home-bg-grid">
+    <div class="container">
+      <div class="mx-auto mb-12 max-w-3xl text-center">
+        <span class="home-label-caps mb-4">Segmentos</span>
+        <h2 class="heading-display-dark">Para quem a Scale faz sentido no Espírito Santo?</h2>
+        <p class="mt-5 text-lg leading-relaxed text-white/68">
+          Trabalhamos melhor com empresas que querem previsibilidade, clareza comercial e uma operação de marketing conectada com venda.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {segments.map((segment) => {
+          const Icon = segment.icon;
+          return (
+            <div class="rounded-[10px] border border-white/[0.08] bg-white/[0.035] p-6">
+              <Icon className="mb-6 h-8 w-8 text-[#00BAFF]" strokeWidth={1.6} />
+              <h3 class="mb-3 text-lg font-semibold text-white">{segment.title}</h3>
+              <p class="text-sm leading-relaxed text-white/62">{segment.desc}</p>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section light-section bg-white">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Diferencial</span>
+          <h2 class="mt-4 font-heading text-4xl font-bold leading-tight text-slate-950 md:text-5xl">
+            Marketing com execução, leitura comercial e transparência.
+          </h2>
+          <p class="mt-5 text-lg font-medium leading-relaxed text-slate-700">
+            A Scale une estratégia e operação. Você acompanha o que foi feito, por que foi feito, quais números importam e qual é o próximo passo.
+          </p>
+          <div class="mt-8">
+            <Button href="/contato" variant="primary" size="lg">
+              Falar com especialista
+              <ArrowRight size={17} strokeWidth={2.4} />
+            </Button>
+          </div>
+        </div>
+
+        <div class="rounded-[10px] border border-slate-200 bg-slate-50 p-2">
+          <div class="rounded-[8px] border border-slate-200 bg-white p-6 shadow-sm">
+            <div class="mb-6 flex items-center justify-between">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Painel de crescimento</p>
+                <h3 class="mt-1 font-heading text-2xl font-bold text-slate-950">Plano ES - ciclo mensal</h3>
+              </div>
+              <BarChart3 className="h-9 w-9 text-[#00BAFF]" strokeWidth={1.7} />
+            </div>
+            <div class="space-y-4">
+              {[
+                ['Diagnóstico de canais', 'Concorrência, demanda, site, anúncios e atendimento.'],
+                ['Plano de aquisição', 'Canais, verba, páginas, metas e expectativa por etapa.'],
+                ['Execução acompanhada', 'Criativos, campanhas, SEO, relatórios e melhoria contínua.'],
+                ['Leitura comercial', 'Avaliamos não só clique, mas oportunidade, resposta e fechamento.'],
+              ].map(([title, desc], index) => (
+                <div class="grid grid-cols-[auto_1fr] gap-4 rounded-[8px] border border-slate-200 bg-slate-50 p-4">
+                  <span class="flex h-9 w-9 items-center justify-center rounded-full bg-[#010f1c] text-sm font-bold text-white">
+                    {String(index + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <p class="font-semibold text-slate-950">{title}</p>
+                    <p class="mt-1 text-sm font-medium leading-relaxed text-slate-700">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProcessSteps client:visible />
+  <BlogBento />
+  <FaqAccordion client:visible title="Perguntas sobre marketing digital no Espírito Santo." items={faqItems} />
+
+  <section class="relative overflow-hidden bg-[#010f1c] px-6 py-20 text-center">
+    <div class="absolute inset-0 es-hero-grid opacity-60" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-3xl">
+      <span class="home-label-caps mb-4">Diagnóstico gratuito</span>
+      <h2 class="font-heading text-4xl font-bold leading-tight text-white md:text-5xl">
+        Vamos entender onde sua empresa pode crescer no Espírito Santo.
+      </h2>
+      <p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/55">
+        Se fizer sentido, mostramos quais canais priorizar, o que corrigir primeiro e como transformar marketing em uma rotina de crescimento.
+      </p>
+      <div class="mt-9">
+        <Button href="/contato" variant="ring" size="lg">
+          Solicitar diagnóstico gratuito
+          <ArrowRight size={17} strokeWidth={2.4} />
+        </Button>
       </div>
     </div>
   </section>
