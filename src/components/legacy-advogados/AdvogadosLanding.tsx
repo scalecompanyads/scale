@@ -69,16 +69,33 @@ function DeferredSection({ children }: { children: ReactNode }) {
 }
 
 interface AdvogadosPageProps {
+  heroHeadlineLine1?: string;
+  heroHeadlineLine2?: string;
+  heroHeadlineLine3?: string;
   heroHeadline?: string;
   heroHeadlineHighlight?: string;
   heroSubHeadline?: string;
 }
 
-export default function AdvogadosPage({ heroHeadline, heroHeadlineHighlight, heroSubHeadline }: AdvogadosPageProps) {
+export default function AdvogadosPage({
+  heroHeadlineLine1,
+  heroHeadlineLine2,
+  heroHeadlineLine3,
+  heroHeadline,
+  heroHeadlineHighlight,
+  heroSubHeadline,
+}: AdvogadosPageProps) {
   return (
     <main>
       <Navbar />
-      <Hero headline={heroHeadline} headlineHighlight={heroHeadlineHighlight} subHeadline={heroSubHeadline} />
+      <Hero
+        headlineLine1={heroHeadlineLine1}
+        headlineLine2={heroHeadlineLine2}
+        headlineLine3={heroHeadlineLine3}
+        headline={heroHeadline}
+        headlineHighlight={heroHeadlineHighlight}
+        subHeadline={heroSubHeadline}
+      />
       <DeferredSection>
         <Problem />
       </DeferredSection>

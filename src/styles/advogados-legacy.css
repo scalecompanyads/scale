@@ -262,6 +262,24 @@
   font-weight: 400;
 }
 
+/* Hero: título sempre em exatamente 3 linhas */
+.advogados-page .hero-title {
+  font-size: clamp(1.05rem, 2.85vw + 0.35rem, 3.85rem);
+  font-weight: 700;
+  line-height: 1.08;
+  min-height: calc(3 * 1.08em);
+}
+
+.advogados-page .hero-title > span {
+  display: block;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.advogados-page .hero-subheadline {
+  font-weight: 600;
+}
+
 /* Renderiza seções abaixo da dobra sob demanda para reduzir custo inicial. */
 .advogados-page main > section:not(:first-of-type) {
   content-visibility: auto;
