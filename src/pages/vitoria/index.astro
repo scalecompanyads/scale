@@ -1,42 +1,129 @@
 ---
-/** Hub Vitória — /vitoria · Fase 2 (mês 2) */
 import LocalLayout from '@layouts/LocalLayout.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
+
 const city = getCityBySlug('vitoria')!;
+
+const conversionCards = [
+  {
+    title: 'Posicionamento',
+    desc: 'Empresas fortes em Vitoria ainda parecem genericas no digital. Quando a mensagem nao traduz valor, a concorrencia captura a atencao primeiro.',
+  },
+  {
+    title: 'Canais',
+    desc: 'Site, SEO, social e anuncios sem uma tese comum geram dispersao. O problema nao e fazer pouco. E fazer sem direcao.',
+  },
+  {
+    title: 'Concorrencia',
+    desc: 'Mercados mais maduros da Grande Vitoria exigem uma presenca digital mais sofisticada do que uma pagina institucional basica.',
+  },
+  {
+    title: 'Leitura',
+    desc: 'Relatorio bom precisa indicar o proximo movimento. Sem isso, o marketing vira custo recorrente sem aprendizado acumulado.',
+  },
+];
+
+const differentials = [
+  {
+    title: 'Mercado local lido com mais precisao',
+    desc: 'A estrategia considera bairros, perfil de compra, nivel de concorrencia e a forma como a empresa e comparada em Vitoria.',
+  },
+  {
+    title: 'Pagina, oferta e canal no mesmo eixo',
+    desc: 'Nao adianta mandar trafego para uma pagina fraca. Estruturamos presenca, proposta e captacao como uma operacao so.',
+  },
+  {
+    title: 'Crescimento com menos achismo',
+    desc: 'O objetivo e dar clareza sobre onde investir mais, o que cortar e como conectar marketing com demanda real.',
+  },
+];
+
+const relatedItems = [
+  {
+    title: 'Criacao de sites em Vitoria',
+    href: '/vitoria/criacao-de-sites',
+    desc: 'Sites institucionais e comerciais para empresas que precisam parecer mais fortes e converter melhor.',
+    metrics: ['performance', 'conversao'],
+  },
+  {
+    title: 'SEO em Vitoria',
+    href: '/vitoria/seo',
+    desc: 'Posicionamento organico para empresas que querem ser encontradas no Google com mais consistencia.',
+    metrics: ['busca local', 'autoridade'],
+  },
+  {
+    title: 'Trafego pago',
+    href: '/servicos/trafego-pago',
+    desc: 'Google Ads e Meta Ads com leitura de negocio, segmentacao melhor e menos verba desperdicada.',
+    metrics: ['leads', 'retorno'],
+  },
+  {
+    title: 'Gestao de redes sociais',
+    href: '/servicos/gestao-redes-sociais',
+    desc: 'Presenca social com mais coerencia entre marca, conteudo e percepcao de valor.',
+    metrics: ['consistencia', 'marca'],
+  },
+];
+
+const faqs = [
+  {
+    question: 'A Scale atende empresas de Vitoria presencialmente?',
+    answer: 'Sim. Atendemos empresas de Vitoria e da Grande Vitoria, com reunioes presenciais quando faz sentido e operacao continua no digital.',
+  },
+  {
+    question: 'Qual servico costuma funcionar melhor em Vitoria?',
+    answer: 'Depende do momento da empresa. Algumas precisam primeiro ajustar posicionamento e site. Outras ganham mais tracao com SEO ou midia paga. O diagnostico existe justamente para evitar chute.',
+  },
+  {
+    question: 'A Scale atende so empresas grandes?',
+    answer: 'Nao. Atendemos desde operacoes locais em crescimento ate empresas mais estruturadas que precisam de mais clareza na aquisicao.',
+  },
+  {
+    question: 'Em quanto tempo o marketing comeca a gerar resultado?',
+    answer: 'Trafego pago pode gerar sinal rapido. SEO, posicionamento e amadurecimento da presenca digital pedem mais tempo. O importante e definir o papel de cada canal desde o inicio.',
+  },
+];
 ---
+
 <LocalLayout
-  title="Agência de Marketing Digital em Vitória – ES | Scale"
-  description="Scale: agência de marketing digital em Vitória (ES). Criação de sites, SEO, tráfego pago e redes sociais. (27) XXXX-XXXX."
+  title="Agencia de Marketing Digital em Vitoria - ES | Scale"
+  description="Agencia de marketing digital em Vitoria para empresas que querem crescer com mais clareza em SEO, criacao de sites, trafego pago e posicionamento local."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Vitória – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Agência de Marketing Digital em Vitória – ES
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Criação de sites, SEO e tráfego pago para empresas de Vitória e Grande Vitória.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar orçamento
-        </a>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <a href="/vitoria/criacao-de-sites" class="block p-5 rounded-xl border border-edge bg-surface-card hover:border-brand-primary hover:shadow-md transition-all">
-          <p class="font-semibold text-ink text-lg">🌐 Criação de Sites em Vitória</p>
-        </a>
-        <a href="/vitoria/seo" class="block p-5 rounded-xl border border-edge bg-surface-card hover:border-brand-primary hover:shadow-md transition-all">
-          <p class="font-semibold text-ink text-lg">🔍 SEO em Vitória</p>
-        </a>
-      </div>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="Agencia de marketing digital em Vitoria com leitura local."
+    heroTitle="Agencia de Marketing Digital em Vitoria para empresas que querem crescer com mais clareza."
+    heroDescription="A Scale estrutura posicionamento, site, SEO, trafego pago e presenca digital para empresas de Vitoria que precisam transformar marketing em aquisicao mais previsivel e menos improvisada."
+    heroMetrics={[{ value: 'Vitoria', label: 'mercado local', icon: 'search' }, { value: 'Scale', label: 'metodo', icon: 'shield' }]}
+    logosLabel="Empresas da Grande Vitoria que ja confiaram na Scale"
+    problemTitle="Boa empresa sem boa presenca digital perde espaco antes mesmo da conversa comecar."
+    problemParagraphs={[
+      'Em Vitoria, o cliente compara rapido: pesquisa no Google, entra no site, olha redes, percebe clareza e decide se vale chamar.',
+      'Quando a operacao digital nao sustenta a qualidade real da empresa, o mercado passa a enxergar menos valor do que ela de fato entrega.',
+    ]}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia da presenca digital"
+    engineeringTitle="Crescimento mais forte vem de alinhamento, nao de acao solta."
+    engineeringText="A pagina, o canal, a oferta e a leitura comercial precisam conversar. Quando isso acontece, o marketing para de parecer tentativa e passa a funcionar como sistema."
+    differentials={differentials}
+    areasTitle="As principais frentes de crescimento digital em Vitoria."
+    areasText="A Scale organiza as frentes certas para o momento da empresa, sem empilhar servicos desnecessarios."
+    relatedItems={relatedItems}
+    complianceTitle="Clareza de estrategia vale mais do que excesso de execucao."
+    complianceText="Nem todo negocio precisa fazer tudo ao mesmo tempo. O trabalho certo e definir onde esta o maior gargalo comercial e construir a partir disso."
+    complianceTags={['Posicionamento claro', 'Canais com funcao definida', 'Relatorio em linguagem de negocio', 'Leitura comercial', 'Prioridade certa', 'Menos achismo']}
+    videosTitle="Empresas que ja estruturaram crescimento com a Scale"
+    videosText="Quando existe metodo, a empresa entende melhor o que esta funcionando, onde investir e o que precisa ajustar para ganhar tracao."
+    printsTitle="A percepcao muda quando o marketing deixa de ser improviso."
+    printsText="O projeto fica mais claro para quem acompanha e mais confiavel para quem esta prestes a entrar em contato."
+    teamTitle="Mais de 32 profissionais conectando estrategia, criacao, pagina, midia e leitura de resultado."
+    teamText="O crescimento digital de uma empresa nao depende de uma unica acao acertada. Depende de consistencia operacional."
+    faqTitle="Perguntas comuns de empresas que querem crescer em Vitoria."
+    faqs={faqs}
+    finalTitle="Se sua empresa em Vitoria ainda investe sem muita clareza, o proximo ajuste nao precisa ser no escuro."
+    finalText="A Scale ajuda a definir a estrutura certa para crescer com mais confianca, melhor leitura e mais potencial de retorno."
+    ctaLabel="Solicitar diagnostico"
+    areasCtaLabel="Falar com a Scale"
+  />
 </LocalLayout>

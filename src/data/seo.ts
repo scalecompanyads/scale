@@ -29,12 +29,12 @@ export const brand = {
 
 export const nicheLocalServices: Record<string, Pick<Service, 'name' | 'description' | 'keywords' | 'localSlug' | 'slug' | 'shortDesc'>> = {
   'marketing-juridico': {
-    name: 'Marketing Juridico',
+    name: 'Marketing Jurídico',
     slug: 'marketing-juridico',
     localSlug: 'marketing-juridico',
-    shortDesc: 'Marketing juridico, SEO local e conteudo para escritorios de advocacia.',
+    shortDesc: 'Marketing jurídico, SEO local e conteúdo para escritórios de advocacia.',
     description:
-      'Marketing juridico com SEO local, conteudo informativo, site e presenca digital para escritorios de advocacia.',
+      'Marketing jurídico com SEO local, conteúdo informativo, site e presença digital para escritórios de advocacia.',
     keywords: [
       'marketing juridico',
       'marketing para advogados',

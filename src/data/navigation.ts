@@ -25,6 +25,10 @@ export const mainNav: NavItem[] = [
     hasDropdown: true,
     children: [
       {
+        label: 'marketing jurídico',
+        href: '/marketing-juridico',
+      },
+      {
         label: 'Guia de Marketing Jurídico',
         href: '/guia-definitivo-marketing-juridico',
       },

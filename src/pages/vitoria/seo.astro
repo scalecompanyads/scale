@@ -1,29 +1,129 @@
 ---
 import LocalLayout from '@layouts/LocalLayout.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
+
 const city = getCityBySlug('vitoria')!;
+
+const conversionCards = [
+  {
+    title: 'Busca',
+    desc: 'Quem nao aparece bem no Google em Vitoria perde a chance de ser considerado logo no inicio da jornada.',
+  },
+  {
+    title: 'Estrutura',
+    desc: 'SEO nao e so artigo. A pagina, a arquitetura e os sinais tecnicos precisam trabalhar juntos para ganhar tracao.',
+  },
+  {
+    title: 'Contexto local',
+    desc: 'Sem leitura geografica e intencao local, o site pode ate ter visitas, mas dificilmente vira referencia regional.',
+  },
+  {
+    title: 'Ativo',
+    desc: 'SEO bem feito vira patrimonio digital. A empresa reduz dependencia de midia paga e ganha presenca recorrente.',
+  },
+];
+
+const differentials = [
+  {
+    title: 'SEO local com intencao comercial',
+    desc: 'Nao basta crescer em palavra-chave. O foco e aparecer para buscas que aproximam a empresa de oportunidade real.',
+  },
+  {
+    title: 'Tecnico e conteudo no mesmo plano',
+    desc: 'Auditoria, pagina, metadata, linking interno e conteudo precisam caminhar juntos para o Google confiar mais no site.',
+  },
+  {
+    title: 'Leitura clara de evolucao',
+    desc: 'Acompanhamos impressao, clique, pagina indexada e ganho de relevancia sem transformar SEO em relatorio vazio.',
+  },
+];
+
+const relatedItems = [
+  {
+    title: 'Criacao de sites em Vitoria',
+    href: '/vitoria/criacao-de-sites',
+    desc: 'Base tecnica e visual para sustentar SEO local e transformar acesso organico em contato melhor.',
+    metrics: ['velocidade', 'arquitetura'],
+  },
+  {
+    title: 'Consultoria SEO',
+    href: '/servicos/consultoria-seo',
+    desc: 'Diagnostico tecnico, estrategia editorial e plano de crescimento organico para empresas que querem aparecer melhor.',
+    metrics: ['auditoria', 'conteudo'],
+  },
+  {
+    title: 'Guia de SEO local',
+    href: '/blog/seo-local-google-meu-negocio-o-que-fazer-primeiro',
+    desc: 'Entenda os primeiros movimentos para fortalecer busca local e presenca no Google.',
+    metrics: ['mapa', 'negocio local'],
+  },
+  {
+    title: 'Entender o que e SEO',
+    href: '/blog/o-que-e-seo-e-por-que-sua-empresa-precisa',
+    desc: 'Visao pratica sobre como o organico ajuda empresas a serem encontradas com mais consistencia.',
+    metrics: ['fundamento', 'longo prazo'],
+  },
+];
+
+const faqs = [
+  {
+    question: 'Quanto tempo o SEO leva para dar resultado em Vitoria?',
+    answer: 'Depende da concorrencia, da base atual do site e da qualidade da execucao. Normalmente os primeiros sinais aparecem antes, mas ganhos mais fortes pedem alguns meses de consistencia.',
+  },
+  {
+    question: 'SEO local e diferente de SEO tradicional?',
+    answer: 'Sim. No local, a cidade, os bairros, a ficha da empresa, a intencao geografica e a coerencia regional pesam muito mais na estrategia.',
+  },
+  {
+    question: 'Preciso de um site melhor antes de fazer SEO?',
+    answer: 'Em muitos casos, sim. Se o site for lento, confuso ou mal estruturado, ele limita bastante o ganho organico e a conversao do trafego.',
+  },
+  {
+    question: 'Como a Scale mede a evolucao do SEO?',
+    answer: 'Avaliamos palavras-chave, paginas que crescem, impressao, clique, indexacao e relevancia comercial do trafego, nao so numeros soltos.',
+  },
+];
 ---
+
 <LocalLayout
-  title="Agência de SEO em Vitória – ES | Scale"
-  description="Consultoria de SEO em Vitória (ES). Apareça na 1ª página do Google. Diagnóstico gratuito. (27) XXXX-XXXX."
+  title="SEO em Vitoria - ES | Consultoria e Estrategia | Scale"
+  description="SEO em Vitoria para empresas que querem aparecer melhor no Google com estrategia local, base tecnica forte e conteudo orientado por intencao de busca."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Vitória – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        SEO em Vitória – ES
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Consultoria de SEO para empresas de Vitória: posicionamento na 1ª página do Google para clientes locais.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Diagnóstico gratuito
-        </a>
-      </div>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="SEO em Vitoria para empresas que precisam ser encontradas no Google."
+    heroTitle="SEO em Vitoria com foco em visibilidade local, estrutura tecnica e demanda qualificada."
+    heroDescription="A Scale organiza a operacao de SEO para empresas de Vitoria que querem transformar busca organica em um ativo de aquisicao mais previsivel e menos dependente de anuncios."
+    heroMetrics={[{ value: 'SEO', label: 'busca local', icon: 'search' }, { value: 'Estrutura', label: 'tecnica', icon: 'shield' }]}
+    logosLabel="Empresas que ja confiaram na Scale para estruturar crescimento organico"
+    problemTitle="SEO ruim parece conteudo. SEO bom parece presenca de mercado."
+    problemParagraphs={[
+      'Em Vitoria, o cliente procura servicos, compara fornecedores e decide rapido quem merece mais atencao. Se sua empresa nao aparece bem, ela nem entra na disputa.',
+      'Por isso, SEO precisa ser tratado como ativo estrategico, e nao como uma lista de textos publicados sem intencao.',
+    ]}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia organica"
+    engineeringTitle="SEO forte nasce de arquitetura, contexto local e conteudo com funcao."
+    engineeringText="Quando a estrutura do site conversa com o jeito que o cliente busca, o Google entende melhor a empresa e passa a entregar mais visibilidade para as paginas certas."
+    differentials={differentials}
+    areasTitle="As frentes que sustentam o SEO em Vitoria."
+    areasText="A Scale combina base tecnica, leitura de busca, conteudo e pagina para construir crescimento organico mais consistente."
+    relatedItems={relatedItems}
+    complianceTitle="SEO deve construir autoridade, nao virar volume sem direcao."
+    complianceText="Cada pagina precisa existir por um motivo claro: responder uma busca relevante, ganhar contexto local e aproximar a empresa de contatos melhores."
+    complianceTags={['SEO local', 'Arquitetura tecnica', 'Conteudo com intencao', 'Google Business Profile', 'Indexacao', 'Leitura comercial']}
+    videosTitle="Projetos que ganharam mais clareza ao tratar o organico como ativo"
+    videosText="Quando a empresa entende o papel do SEO dentro da aquisicao, ela para de esperar milagre e comeca a construir vantagem consistente."
+    printsTitle="Mais clareza de busca, pagina e contexto muda o jogo."
+    printsText="O crescimento organico melhora quando existe metodo para conectar o que o mercado procura com o que a empresa quer vender."
+    teamTitle="Mais de 32 profissionais apoiando estrategia, conteudo, pagina e crescimento organico."
+    teamText="SEO duradouro depende de base tecnica, execucao consistente e leitura frequente do que o mercado esta sinalizando."
+    faqTitle="Perguntas frequentes sobre SEO em Vitoria."
+    faqs={faqs}
+    finalTitle="Se a sua empresa em Vitoria ainda aparece pouco no Google, o problema pode estar mais na estrutura do que no esforco."
+    finalText="A Scale ajuda a encontrar os gargalos, definir prioridades e construir uma presenca organica mais forte para a cidade."
+    ctaLabel="Solicitar diagnostico SEO"
+    areasCtaLabel="Quero crescer no Google"
+  />
 </LocalLayout>

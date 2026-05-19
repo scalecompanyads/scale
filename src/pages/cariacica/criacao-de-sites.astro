@@ -1,81 +1,73 @@
 ---
 import LocalLayout from '@layouts/LocalLayout.astro';
-import FAQ from '@components/sections/FAQ.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
 
 const city = getCityBySlug('cariacica')!;
 
-const faqs = [
-  { question: 'Qual o prazo para criar um site em Cariacica?', answer: 'Entregamos em 20 a 30 dias úteis após aprovação do briefing e recebimento dos materiais (textos, logo e imagens).' },
-  { question: 'O site aparece no Google para buscas em Cariacica?', answer: 'Sim. Desenvolvemos com SEO técnico e podemos incluir páginas otimizadas para buscas locais como "serviço em Cariacica", aumentando sua visibilidade na região.' },
-  { question: 'Vocês atendem presencialmente em Cariacica?', answer: 'Atendemos de forma remota com a mesma qualidade de um atendimento presencial. Todo o processo é feito por videochamada, e-mail e WhatsApp.' },
-  { question: 'Consigo editar o site depois de pronto?', answer: 'Sim. Entregamos acesso a um CMS simples onde você edita textos e imagens sem precisar de programação.' },
-  { question: 'O site inclui hospedagem e domínio?', answer: 'A hospedagem pode ser inclusa no plano ou você pode usar sua própria. O domínio (ex: suaempresa.com.br) pode ser adquirido por nós ou transferido do seu atual provedor.' },
+const conversionCards = [
+  { title: 'Confianca', desc: 'Em mercados locais, o site ajuda a empresa a parecer mais seria, organizada e pronta para atender melhor.' },
+  { title: 'Performance', desc: 'Pagina lenta ou mal organizada reduz o efeito de SEO, midia paga e da propria indicacao que chega para validar a empresa.' },
+  { title: 'Clareza', desc: 'O visitante precisa entender servico, diferencial e proximo passo rapidamente para que o interesse nao esfrie.' },
+  { title: 'Base', desc: 'Site bom nao e acessorio. E a base que sustenta crescimento, busca local e percepcao comercial da marca.' },
 ];
 
-const benefits = [
-  { title: 'Design responsivo e profissional', desc: 'Site adaptado para celular, tablet e desktop com identidade visual alinhada à sua marca.' },
-  { title: 'SEO técnico incluso', desc: 'Velocidade, meta tags, sitemap, schema markup e otimização para buscas locais em Cariacica.' },
-  { title: 'CMS para edição fácil', desc: 'Gerencie textos, imagens e conteúdo sem precisar de programador.' },
-  { title: 'Carregamento rápido', desc: 'Performance otimizada para melhor experiência do usuário e melhor posicionamento no Google.' },
-  { title: 'SSL e segurança', desc: 'Certificado HTTPS incluso, protegendo os dados dos seus visitantes e clientes.' },
-  { title: 'Suporte pós-entrega', desc: 'Acompanhamento após o go-live para garantir que tudo funcione como esperado.' },
+const differentials = [
+  { title: 'Estrutura tecnica preparada', desc: 'Performance, SEO tecnico e boa leitura mobile entram desde o inicio do projeto.' },
+  { title: 'Pagina mais comercial', desc: 'O foco e construir um site que ajude a vender melhor, e nao apenas uma apresentacao bonita.' },
+  { title: 'Base pronta para evoluir', desc: 'O projeto nasce preparado para SEO, campanhas, novos servicos e crescimento digital no medio prazo.' },
+];
+
+const relatedItems = [
+  { title: 'Hub de Cariacica', href: '/cariacica', desc: 'Entenda como a Scale atua na cidade e quais frentes fazem mais sentido para negocios locais.', metrics: ['hub local', 'estrategia'] },
+  { title: 'Trafego pago em Cariacica', href: '/cariacica/trafego-pago', desc: 'Campanhas para gerar demanda mais rapida e melhor leitura comercial.', metrics: ['midia', 'leads'] },
+  { title: 'Landing pages', href: '/servicos/criacao-de-landing-pages', desc: 'Paginas focadas para campanhas e servicos mais especificos.', metrics: ['campanha', 'conversao'] },
+  { title: 'Quanto custa criar um site', href: '/blog/quanto-custa-criar-um-site-profissional', desc: 'Veja o que impacta escopo, investimento e retorno de um site bem estruturado.', metrics: ['orcamento', 'escopo'] },
+];
+
+const faqs = [
+  { question: 'Um site melhor ajuda empresas de Cariacica a vender mais?', answer: 'Sim. Um site melhor melhora confianca, ajuda na busca local e faz o visitante entender mais rapido porque deve entrar em contato.' },
+  { question: 'O site ja sai preparado para SEO?', answer: 'Sim. A estrutura tecnica e o desenho das paginas ja entram pensando em performance, Google e boa experiencia mobile.' },
+  { question: 'A Scale faz site so institucional?', answer: 'Nao. Criamos sites comerciais, paginas de servico, landing pages e estruturas que sustentam aquisicao e crescimento.' },
+  { question: 'Depois posso usar o site em anuncios e SEO?', answer: 'Sim. Essa e justamente a ideia: construir uma base digital que apoie os proximos movimentos do marketing.' },
 ];
 ---
 
 <LocalLayout
-  title="Criação de Site em Cariacica – ES | Scale"
-  description="Criação de sites profissionais para empresas em Cariacica (ES). Responsivo, rápido e otimizado para o Google. Diagnóstico gratuito. (27) XXXX-XXXX."
+  title="Criacao de Site em Cariacica - ES | Scale"
+  description="Criacao de site em Cariacica para empresas que precisam de uma base digital mais forte, rapida e preparada para SEO, anuncios e conversao."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Cariacica – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Criação de Site para Empresas em Cariacica – ES
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Sites profissionais, responsivos e otimizados para o Google, desenvolvidos para empresas de Cariacica que querem atrair mais clientes pela internet.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar orçamento grátis
-        </a>
-        <a href="tel:+5527XXXXXXXX" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          (27) XXXX-XXXX
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Por que criar um site profissional em Cariacica?</h2>
-        <p class="section-subtitle">Empresas de Cariacica que investem em presença digital captam clientes que os concorrentes perdem.</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {benefits.map(item => (
-          <div class="p-6 rounded-xl border border-edge bg-surface-card">
-            <h3 class="font-semibold text-ink text-lg mb-2">{item.title}</h3>
-            <p class="text-sm text-ink-light leading-relaxed">{item.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <FAQ items={faqs} title="Dúvidas sobre criação de site em Cariacica" />
-
-  <section class="section text-center bg-surface-subtle">
-    <div class="container-narrow">
-      <h2 class="font-heading text-3xl font-bold text-ink mb-4">Sua empresa merece um site à altura</h2>
-      <p class="text-lg text-ink-light mb-8">Diagnóstico gratuito para empresas de Cariacica. Sem compromisso.</p>
-      <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-        Solicitar orçamento grátis
-      </a>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="Criacao de sites em Cariacica para empresas que querem parecer mais fortes."
+    heroTitle="Criacao de Site em Cariacica com foco em clareza comercial, performance e crescimento."
+    heroDescription="A Scale desenvolve sites para empresas de Cariacica que precisam melhorar presenca digital, confianca e conversao com uma base preparada para SEO e campanhas."
+    heroMetrics={[{ value: 'Site', label: 'performance', icon: 'search' }, { value: 'Base', label: 'comercial', icon: 'shield' }]}
+    logosLabel="Empresas que ja confiaram na Scale para construir uma base digital melhor"
+    problemTitle="Site fraco faz a empresa parecer menor, menos preparada e mais dificil de escolher."
+    problemParagraphs={['Em Cariacica, onde muitas empresas ainda disputam mercado com presencas digitais fracas, um bom site se torna diferencial real de percepcao e conversao.', 'A pagina precisa ajudar o cliente a entender valor e diminuir hesitacao antes do contato.']}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia do site"
+    engineeringTitle="O site certo ajuda a empresa a parecer mais forte e a transformar melhor cada visita."
+    engineeringText="Quando performance, mensagem e estrutura caminham juntas, a base digital passa a sustentar SEO, midia paga e uma percepcao comercial mais alta."
+    differentials={differentials}
+    areasTitle="O que a Scale conecta ao criar um site em Cariacica."
+    areasText="O projeto une estrutura tecnica, posicionamento e base pronta para os proximos passos do marketing."
+    relatedItems={relatedItems}
+    complianceTitle="Site bom amplia o efeito dos outros canais e reduz o atrito do processo comercial."
+    complianceText="SEO, anuncio e indicacao funcionam melhor quando chegam em uma pagina que sustenta a atencao e reforca confianca."
+    complianceTags={['Performance', 'Clareza comercial', 'Busca local', 'Base para SEO', 'Conversao', 'Mobile']}
+    videosTitle="Projetos que ficaram mais fortes ao melhorar a base digital"
+    videosText="Quando o site deixa de ser gargalo, a empresa passa a aproveitar melhor o interesse que ja existe no mercado."
+    printsTitle="Mais clareza na pagina melhora a forma como o negocio e percebido."
+    printsText="A base digital certa aumenta confianca, melhora leitura de valor e ajuda o cliente a decidir mais rapido."
+    teamTitle="Mais de 32 profissionais apoiando pagina, estrategia, performance e conversao."
+    teamText="Criar um site que realmente ajude a vender exige mais do que design. Exige estrutura e metodo."
+    faqTitle="Perguntas frequentes sobre criacao de sites em Cariacica."
+    faqs={faqs}
+    finalTitle="Se o seu site atual nao ajuda sua empresa a crescer em Cariacica, talvez ele esteja segurando mais do que voce imagina."
+    finalText="A Scale ajuda a construir uma base digital mais forte para gerar mais confianca, mais visibilidade e melhores contatos."
+    ctaLabel="Solicitar orcamento"
+    areasCtaLabel="Quero um site melhor"
+  />
 </LocalLayout>

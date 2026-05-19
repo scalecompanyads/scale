@@ -1,0 +1,22 @@
+---
+import LocalLayout from '@layouts/LocalLayout.astro';
+import ScaleLegalLocalLanding from '@components/legal/ScaleLegalLocalLanding.astro';
+import { majorCapitalLegalCities } from '@data/legalLocalCities';
+
+export function getStaticPaths() {
+  return majorCapitalLegalCities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+---
+
+<LocalLayout
+  title={`Marketing Jurídico em ${city.name} | SEO, Conteúdo e OAB | Scale`}
+  description={`Marketing jurídico em ${city.name} para escritórios que querem crescer com SEO local, conteúdo informativo, site comercial e comunicação alinhada à ética da OAB.`}
+  city={city}
+>
+  <ScaleLegalLocalLanding city={city} />
+</LocalLayout>

@@ -1,67 +1,73 @@
 ---
 import LocalLayout from '@layouts/LocalLayout.astro';
-import FAQ from '@components/sections/FAQ.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
 
 const city = getCityBySlug('guarapari')!;
 
+const conversionCards = [
+  { title: 'Imagem', desc: 'Em negocios ligados a servico, turismo e comercio, o site precisa passar mais confianca logo no primeiro acesso.' },
+  { title: 'Mobile', desc: 'Boa parte da busca em Guarapari acontece no celular. Se a pagina nao carrega bem, a empresa perde atencao e oportunidade.' },
+  { title: 'SEO', desc: 'Um site melhor ajuda a empresa a aparecer no Google com mais relevancia e a aproveitar melhor o que o mercado ja pesquisa.' },
+  { title: 'Conversao', desc: 'Pagina bonita sem clareza comercial nao basta. O site precisa facilitar o entendimento e o proximo passo do cliente.' },
+];
+
+const differentials = [
+  { title: 'Base pronta para busca local', desc: 'O projeto nasce com performance, organizacao de pagina e estrutura para a empresa disputar melhor visibilidade regional.' },
+  { title: 'Pagina mais alinhada ao mercado', desc: 'A comunicacao precisa refletir o perfil do negocio e o jeito como o cliente escolhe servicos na cidade.' },
+  { title: 'Site que sustenta crescimento', desc: 'A base digital fica preparada para SEO, campanhas e evolucoes futuras sem parecer provisoria.' },
+];
+
+const relatedItems = [
+  { title: 'Hub de Guarapari', href: '/guarapari', desc: 'Visao geral da presenca digital e das frentes que ajudam empresas da cidade a crescer.', metrics: ['hub', 'mercado local'] },
+  { title: 'SEO em Guarapari', href: '/guarapari/seo', desc: 'Estrutura organica para empresas que precisam aparecer melhor no Google local.', metrics: ['SEO', 'Google'] },
+  { title: 'Landing pages', href: '/servicos/criacao-de-landing-pages', desc: 'Paginas especificas para servicos, campanhas e ofertas com foco mais direto em conversao.', metrics: ['campanha', 'foco'] },
+  { title: 'Quanto custa criar um site', href: '/blog/quanto-custa-criar-um-site-profissional', desc: 'Guia para entender melhor escopo, investimento e impacto de um projeto bem resolvido.', metrics: ['orcamento', 'escopo'] },
+];
+
 const faqs = [
-  { question: 'Qual o prazo para criar um site em Guarapari?', answer: 'Entregamos em 20 a 30 dias úteis após aprovação do briefing e recebimento dos materiais (textos, logo e imagens).' },
-  { question: 'O site vai aparecer para buscas locais em Guarapari?', answer: 'Sim. Desenvolvemos com SEO técnico e podemos otimizar páginas para buscas como "serviço em Guarapari", aumentando sua visibilidade no Google local.' },
-  { question: 'Vocês atendem presencialmente em Guarapari?', answer: 'Atendemos de forma remota com a mesma qualidade. Todo o processo é conduzido por videochamada, e-mail e WhatsApp.' },
-  { question: 'Posso editar o site depois de pronto?', answer: 'Sim. Entregamos acesso a um CMS simples onde você edita textos e imagens sem precisar de programador.' },
-  { question: 'O site funciona bem em dispositivos móveis?', answer: 'Sim. Todos os nossos sites são desenvolvidos mobile-first, com design responsivo que se adapta perfeitamente a qualquer dispositivo.' },
+  { question: 'Um site melhor ajuda a captar cliente local e turista?', answer: 'Sim. Em Guarapari, um site forte ajuda a empresa a ser encontrada e a transmitir mais confianca para quem pesquisa antes de comprar ou visitar.' },
+  { question: 'O site ja pode nascer preparado para Google?', answer: 'Sim. A estrutura tecnica e a organizacao das paginas ja entram pensando em performance, busca local e conversao.' },
+  { question: 'A Scale cria site so para negocios de turismo?', answer: 'Nao. Atendemos negocios de servico, comercio, saude, gastronomia e outras operacoes que precisam de uma base digital melhor.' },
+  { question: 'Posso evoluir o site depois com SEO e campanhas?', answer: 'Sim. A ideia e justamente criar uma base que sustente os proximos movimentos de crescimento digital.' },
 ];
 ---
 
 <LocalLayout
-  title="Criação de Site em Guarapari – ES | Scale"
-  description="Criação de sites profissionais para empresas em Guarapari (ES). Responsivo, rápido e otimizado para Google. Atende turismo, comércio e serviços locais."
+  title="Criacao de Site em Guarapari - ES | Scale"
+  description="Criacao de site em Guarapari para empresas que querem mais confianca, mais performance e uma base digital forte para SEO e conversao."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Guarapari – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Criação de Site para Empresas em Guarapari – ES
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Sites profissionais para empresas de Guarapari que querem captar clientes locais e turistas pela internet. Responsivo, rápido e otimizado para o Google.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar orçamento grátis
-        </a>
-        <a href="tel:+5528XXXXXXXX" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          (28) XXXX-XXXX
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container-narrow">
-      <h2 class="font-heading text-2xl font-bold text-ink mb-4">Um site que trabalha por você em Guarapari</h2>
-      <p class="text-ink-light leading-relaxed mb-4">
-        Com o turismo sendo uma das principais forças da economia de Guarapari, ter um site profissional é essencial para captar tanto o cliente local quanto o turista que pesquisa no Google antes de chegar à cidade.
-      </p>
-      <p class="text-ink-light leading-relaxed">
-        Criamos sites rápidos, responsivos e otimizados para o Google, com SEO técnico e CMS incluso para você atualizar o conteúdo com facilidade. Cada detalhe é pensado para converter visitante em cliente.
-      </p>
-    </div>
-  </section>
-
-  <FAQ items={faqs} title="Dúvidas sobre criação de site em Guarapari" />
-
-  <section class="section text-center bg-surface-subtle">
-    <div class="container-narrow">
-      <h2 class="font-heading text-3xl font-bold text-ink mb-4">Coloque sua empresa no Google em Guarapari</h2>
-      <p class="text-lg text-ink-light mb-8">Diagnóstico gratuito, sem compromisso.</p>
-      <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-        Solicitar orçamento grátis
-      </a>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="Criacao de sites em Guarapari para negocios que precisam parecer mais fortes."
+    heroTitle="Criacao de Site em Guarapari com foco em performance, busca local e mais conversao."
+    heroDescription="A Scale desenvolve sites para empresas de Guarapari que querem captar melhor cliente local e turista, com uma base digital mais profissional, rapida e preparada para crescer."
+    heroMetrics={[{ value: 'Site', label: 'performance', icon: 'search' }, { value: 'Base', label: 'para crescer', icon: 'shield' }]}
+    logosLabel="Empresas que ja confiaram na Scale para construir uma base digital melhor"
+    problemTitle="Em uma cidade onde a pesquisa online influencia tanto a decisao, site fraco custa mais do que parece."
+    problemParagraphs={['Em Guarapari, boa parte da comparacao acontece antes da visita, da reserva ou do contato. Por isso, o site precisa passar mais seguranca e clareza.', 'Uma pagina lenta, rasa ou com cara de improviso reduz o efeito de SEO, anuncio e qualquer outro canal que tente levar trafego para ela.']}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia do site"
+    engineeringTitle="Site bom nao e so vitrine. E a base digital que sustenta presenca e crescimento."
+    engineeringText="Quando a pagina e leve, clara e orientada ao mercado, ela melhora confianca, aumenta a chance de contato e fortalece o efeito dos outros canais."
+    differentials={differentials}
+    areasTitle="O que a Scale conecta ao criar um site em Guarapari."
+    areasText="O projeto une performance, leitura comercial, busca local e uma base pronta para evoluir com o negocio."
+    relatedItems={relatedItems}
+    complianceTitle="O melhor anuncio e o melhor SEO perdem forca quando chegam em uma pagina fraca."
+    complianceText="Criar um site melhor nao e um capricho visual. E uma decisao que afeta visibilidade, confianca e conversao ao mesmo tempo."
+    complianceTags={['Performance', 'Mobile', 'Busca local', 'Conversao', 'Confianca', 'Base digital']}
+    videosTitle="Projetos que ganharam mais forca ao melhorar a base digital"
+    videosText="Quando o site deixa de ser um gargalo, o negocio aproveita melhor cada acesso e passa a crescer com mais consistencia."
+    printsTitle="Mais clareza e mais performance mudam a forma como a empresa e percebida."
+    printsText="A presenca digital ganha mais peso quando o cliente sente que esta diante de um negocio mais bem estruturado."
+    teamTitle="Mais de 32 profissionais apoiando pagina, mensagem, performance e leitura de resultado."
+    teamText="Criar um site que ajude a empresa a crescer exige mais do que design. Exige criterio comercial e estrutura tecnica."
+    faqTitle="Perguntas frequentes sobre criacao de sites em Guarapari."
+    faqs={faqs}
+    finalTitle="Se o seu site atual nao ajuda sua empresa a crescer em Guarapari, ele pode estar freando a demanda que ja existe."
+    finalText="A Scale ajuda a construir uma base digital mais forte para gerar mais confianca, mais visibilidade e mais conversao."
+    ctaLabel="Solicitar orcamento"
+    areasCtaLabel="Quero um site melhor"
+  />
 </LocalLayout>

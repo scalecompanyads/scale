@@ -1,70 +1,73 @@
 ---
 import LocalLayout from '@layouts/LocalLayout.astro';
-import FAQ from '@components/sections/FAQ.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
 
 const city = getCityBySlug('guarapari')!;
 
+const conversionCards = [
+  { title: 'Busca local', desc: 'Quem pesquisa em Guarapari geralmente ja tem alguma intencao geografica forte. SEO local ajuda a empresa a entrar nessa disputa antes do clique pago.' },
+  { title: 'Turismo', desc: 'O turista pesquisa antes de viajar. Ganhar visibilidade organica nesse momento abre espaco para demanda que chegaria pronta.' },
+  { title: 'Conteudo', desc: 'Conteudo sem leitura de busca nao sustenta crescimento. E preciso mapear duvidas, servicos e contexto local com mais precisao.' },
+  { title: 'Ativo', desc: 'SEO bem feito acumula autoridade com o tempo e melhora a dependencia da empresa em relacao a midia paga e sazonalidade.' },
+];
+
+const differentials = [
+  { title: 'Estrutura local bem orientada', desc: 'A pagina precisa mostrar contexto regional, servicos relevantes e sinais claros para o Google e para o visitante.' },
+  { title: 'Conteudo com intencao pratica', desc: 'O foco e ganhar relevancia para buscas que podem gerar demanda comercial, e nao produzir volume de texto sem estrategia.' },
+  { title: 'Acompanhamento de evolucao real', desc: 'A Scale observa pagina, impressao, clique e ganho de relevancia para transformar SEO em um ativo compreensivel.' },
+];
+
+const relatedItems = [
+  { title: 'Hub de Guarapari', href: '/guarapari', desc: 'Visao geral da estrategia digital para empresas da cidade e da regiao.', metrics: ['hub local', 'estrategia'] },
+  { title: 'Criacao de sites em Guarapari', href: '/guarapari/criacao-de-sites', desc: 'Base mais forte para SEO local, performance e melhor conversao do acesso organico.', metrics: ['site', 'estrutura'] },
+  { title: 'Guia de SEO local', href: '/blog/seo-local-google-meu-negocio-o-que-fazer-primeiro', desc: 'Primeiros movimentos para melhorar visibilidade em busca geografica.', metrics: ['Google', 'mapa'] },
+  { title: 'Consultoria SEO', href: '/servicos/consultoria-seo', desc: 'Estrutura tecnica e editorial para empresas que querem tratar o organico com mais seriedade.', metrics: ['auditoria', 'crescimento'] },
+];
+
 const faqs = [
-  { question: 'Em quanto tempo o SEO começa a funcionar em Guarapari?', answer: 'Os primeiros sinais de melhora aparecem entre 60 e 90 dias. Resultados consistentes e duradouros chegam a partir de 4 a 6 meses, dependendo da competitividade das palavras-chave.' },
-  { question: 'SEO local é diferente de SEO nacional?', answer: 'Sim. SEO local foca em termos com intenção geográfica, como "restaurante em Guarapari" ou "pousada Guarapari ES". Trabalhamos especificamente para aparecer nessas buscas.' },
-  { question: 'O que está incluso na consultoria de SEO?', answer: 'Auditoria técnica do site, otimização das páginas existentes, estratégia de conteúdo, link building local e relatório mensal de posicionamento e tráfego orgânico.' },
-  { question: 'Preciso de um site antes de contratar SEO?', answer: 'Sim, o SEO é aplicado sobre um site existente. Se você ainda não tem, podemos criar um já otimizado e iniciar o SEO na sequência.' },
-  { question: 'Como acompanho os resultados do SEO?', answer: 'Relatórios mensais com posicionamento de palavras-chave, tráfego orgânico e impressões no Google Search Console. Você acompanha a evolução com dados reais.' },
+  { question: 'SEO em Guarapari ajuda a atrair turista e cliente local?', answer: 'Sim. O SEO local bem estruturado permite que a empresa apareca para quem mora na regiao e para quem pesquisa antes de visitar a cidade.' },
+  { question: 'Quanto tempo leva para o SEO ganhar tracao?', answer: 'Os ganhos variam conforme concorrencia, base atual e qualidade das paginas. O importante e tratar o SEO como ativo de medio prazo e nao como promessa imediata.' },
+  { question: 'Preciso de um site melhor antes de investir em SEO?', answer: 'Em muitos casos, sim. Se o site for lento, raso ou mal estruturado, ele limita tanto o ranqueamento quanto a conversao do acesso organico.' },
+  { question: 'Como a Scale mede resultado no SEO local?', answer: 'Avaliamos busca geografica, paginas relevantes, impressao, clique, posicionamento e valor comercial do trafego que esta sendo conquistado.' },
 ];
 ---
 
 <LocalLayout
-  title="SEO em Guarapari – ES | Consultoria e Gestão | Scale"
-  description="Consultoria de SEO para empresas em Guarapari (ES). Apareça na 1ª página do Google para buscas locais. Auditoria técnica, conteúdo e link building."
+  title="SEO em Guarapari - ES | Estrategia Local | Scale"
+  description="SEO em Guarapari para empresas que querem crescer no Google com mais visibilidade local, paginas melhores e estrategia organica alinhada ao mercado da cidade."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Guarapari – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        SEO em Guarapari – ES: apareça no Google e atraia mais clientes
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Consultoria e gestão de SEO para empresas de Guarapari. Auditoria técnica, otimização de páginas e conteúdo estratégico para sua empresa aparecer na 1ª página do Google.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar diagnóstico gratuito
-        </a>
-        <a href="tel:+5528XXXXXXXX" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          (28) XXXX-XXXX
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container-narrow">
-      <h2 class="font-heading text-2xl font-bold text-ink mb-4">Por que SEO é essencial para empresas de Guarapari</h2>
-      <p class="text-ink-light leading-relaxed mb-4">
-        Em Guarapari, a busca orgânica tem um papel especialmente importante: turistas pesquisam no Google antes de viajar, e clientes locais fazem o mesmo na hora de escolher um serviço. Estar na primeira página não é diferencial, é necessidade.
-      </p>
-      <p class="text-ink-light leading-relaxed mb-4">
-        Nossa consultoria cobre desde a auditoria técnica do seu site até a criação de conteúdo otimizado para palavras-chave com alto potencial de conversão para o mercado de Guarapari.
-      </p>
-      <p class="text-ink-light leading-relaxed">
-        Você recebe relatórios mensais com posicionamento, tráfego orgânico e evolução das principais palavras-chave, com análise clara do que está funcionando.
-      </p>
-    </div>
-  </section>
-
-  <FAQ items={faqs} title="Dúvidas sobre SEO em Guarapari" />
-
-  <section class="section text-center bg-surface-subtle">
-    <div class="container-narrow">
-      <h2 class="font-heading text-3xl font-bold text-ink mb-4">Apareça no Google em Guarapari</h2>
-      <p class="text-lg text-ink-light mb-8">Diagnóstico SEO gratuito para empresas de Guarapari.</p>
-      <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-        Solicitar diagnóstico gratuito
-      </a>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="SEO em Guarapari para empresas que querem ser encontradas com mais consistencia."
+    heroTitle="SEO em Guarapari com foco em busca local, visibilidade organica e demanda mais qualificada."
+    heroDescription="A Scale organiza o SEO para empresas de Guarapari que precisam aparecer melhor no Google, aproveitar busca local e construir um ativo organico que sustente crescimento ao longo do tempo."
+    heroMetrics={[{ value: 'SEO', label: 'local', icon: 'search' }, { value: 'Google', label: 'visibilidade', icon: 'shield' }]}
+    logosLabel="Empresas que ja confiaram na Scale para fortalecer o organico"
+    problemTitle="Em Guarapari, aparecer no Google na hora certa pode significar demanda nova antes da concorrencia reagir."
+    problemParagraphs={['O cliente local e o turista digitalizam a decisao muito antes do contato. Por isso, SEO local importa para quem quer crescer com mais previsibilidade.', 'Quando a empresa constroi paginas melhores e ganha contexto regional, ela para de depender so de anuncio ou de rede social para ser encontrada.']}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia organica"
+    engineeringTitle="SEO local bom combina contexto da cidade, pagina forte e conteudo com funcao."
+    engineeringText="Nao basta produzir texto. O trabalho precisa conectar estrutura tecnica, busca geografica e paginas que o mercado realmente quer encontrar."
+    differentials={differentials}
+    areasTitle="As frentes que ajudam o SEO em Guarapari a ganhar tracao."
+    areasText="A Scale organiza base tecnica, pagina, conteudo e contexto local para melhorar visibilidade e relevancia comercial."
+    relatedItems={relatedItems}
+    complianceTitle="SEO local nao e atalho. E construcao de presenca digital que acumula valor."
+    complianceText="Quando a empresa aparece melhor no Google de forma recorrente, ela ganha mais autonomia para competir ao longo do ano."
+    complianceTags={['Busca local', 'Conteudo com intencao', 'Google', 'Contexto regional', 'Paginas fortes', 'Ativo organico']}
+    videosTitle="Projetos que trataram o organico como ativo e ganharam mais clareza"
+    videosText="Quando a leitura do SEO fica mais madura, a empresa entende melhor como o mercado busca e o que precisa melhorar para ser encontrada."
+    printsTitle="Mais contexto local e pagina melhor mudam o resultado do organico."
+    printsText="O crescimento no Google fica mais consistente quando a empresa deixa de publicar por publicar e passa a construir relevancia."
+    teamTitle="Mais de 32 profissionais apoiando estrategia, pagina, conteudo e visibilidade organica."
+    teamText="SEO forte pede constancia, estrutura e leitura inteligente do comportamento de busca."
+    faqTitle="Perguntas frequentes sobre SEO em Guarapari."
+    faqs={faqs}
+    finalTitle="Se sua empresa em Guarapari ainda aparece pouco no Google, talvez o problema esteja mais na estrutura do que no esforco."
+    finalText="A Scale ajuda a construir um SEO mais claro, local e comercial para transformar busca em ativo de crescimento."
+    ctaLabel="Solicitar diagnostico SEO"
+    areasCtaLabel="Quero crescer no Google"
+  />
 </LocalLayout>

@@ -1,29 +1,73 @@
 ---
 import LocalLayout from '@layouts/LocalLayout.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
+
 const city = getCityBySlug('espirito-santo')!;
+
+const conversionCards = [
+  { title: 'Base', desc: 'Para empresas do ES, o site precisa ser a base digital que sustenta busca, campanha, marca e contato comercial.' },
+  { title: 'Escala', desc: 'Quando a empresa atende mais de uma cidade, a estrutura do site precisa acomodar servicos, regioes e crescimento sem virar bagunca.' },
+  { title: 'Confianca', desc: 'Pagina fraca derruba a percepcao de valor, mesmo quando a empresa entrega bem no offline e em outras frentes.' },
+  { title: 'Performance', desc: 'Velocidade e boa experiencia mobile influenciam SEO, conversao e o aproveitamento de qualquer canal de aquisicao.' },
+];
+
+const differentials = [
+  { title: 'Estrutura pensada para operar no estado', desc: 'O projeto considera cidades, servicos e pagina para que a empresa cresca com mais organizacao regional.' },
+  { title: 'Base tecnica para SEO e campanhas', desc: 'O site nasce preparado para ganhar visibilidade organica e receber trafego com menos desperdicio.' },
+  { title: 'Pagina mais forte para vender melhor', desc: 'Clareza de servico, prova de confianca e melhor experiencia ajudam o negocio a converter mais interesse em conversa.' },
+];
+
+const relatedItems = [
+  { title: 'Hub do Espirito Santo', href: '/espirito-santo', desc: 'Visao geral da estrategia da Scale para empresas que atuam no estado.', metrics: ['estado', 'estrategia'] },
+  { title: 'Criacao de sites em Vitoria', href: '/vitoria/criacao-de-sites', desc: 'Referencia de base digital mais forte para empresas da capital e da Grande Vitoria.', metrics: ['capital', 'site'] },
+  { title: 'Criacao de sites em Vila Velha', href: '/vila-velha/criacao-de-sites', desc: 'Projeto com foco em performance, visibilidade local e conversao comercial.', metrics: ['local', 'conversao'] },
+  { title: 'Landing pages', href: '/servicos/criacao-de-landing-pages', desc: 'Paginas focadas em campanhas, servicos especificos e testes de mensagem.', metrics: ['campanha', 'performance'] },
+];
+
+const faqs = [
+  { question: 'A Scale cria sites para empresas de todo o Espirito Santo?', answer: 'Sim. Atendemos empresas de diferentes cidades do estado e organizamos a estrutura do site conforme escopo, servicos e area de atuacao.' },
+  { question: 'O site pode atender mais de uma cidade?', answer: 'Sim. Quando faz sentido estrategico, a arquitetura pode acomodar paginas regionais, servicos locais e expansao geográfica.' },
+  { question: 'O site ja sai pronto para SEO?', answer: 'Sim. Performance, estrutura tecnica e organizacao das paginas ja entram pensando em visibilidade organica.' },
+  { question: 'A Scale faz so o site ou ajuda no restante da operacao?', answer: 'Tambem ajudamos com SEO, midia paga, landing pages e outras frentes para que o site nao vire uma peça isolada.' },
+];
 ---
+
 <LocalLayout
-  title="Criação de Site no Espírito Santo | Scale"
-  description="Criação de sites para empresas do Espírito Santo. Responsivos, rápidos e otimizados para o Google. Orçamento grátis."
+  title="Criacao de Site no Espirito Santo | Scale"
+  description="Criacao de site no Espirito Santo para empresas que precisam de uma base digital forte, rapida e preparada para SEO, campanhas e crescimento regional."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Espírito Santo
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Criação de Site no Espírito Santo
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Sites profissionais para empresas de todo o ES, com SEO técnico incluso.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar orçamento
-        </a>
-      </div>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="Criacao de sites no Espirito Santo para empresas que querem crescer com mais base."
+    heroTitle="Criacao de Site no Espirito Santo com foco em performance, estrutura e expansao regional."
+    heroDescription="A Scale desenvolve sites para empresas do Espirito Santo que precisam de uma base digital mais forte para atuar em uma ou varias cidades com mais clareza comercial, confianca e visibilidade."
+    heroMetrics={[{ value: 'ES', label: 'escala regional', icon: 'search' }, { value: 'Site', label: 'estrutura', icon: 'shield' }]}
+    logosLabel="Empresas do Espirito Santo que ja confiaram na Scale"
+    problemTitle="Quando a empresa cresce no estado sem uma boa base digital, o site vira gargalo em vez de apoio."
+    problemParagraphs={['Negocios que atendem mais de uma cidade precisam de uma estrutura mais inteligente para comunicar servicos, passar confianca e aparecer melhor no Google.', 'Sem isso, cada nova frente comercial adiciona mais complexidade, mas o site nao acompanha o crescimento real da empresa.']}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia do site"
+    engineeringTitle="Mais do que uma pagina bonita, a empresa precisa de uma base preparada para crescer no estado."
+    engineeringText="Performance, organizacao regional, leitura comercial e flexibilidade tecnica ajudam a empresa a sustentar SEO, campanhas e novas paginas com mais facilidade."
+    differentials={differentials}
+    areasTitle="O que a Scale organiza ao criar um site para o Espirito Santo."
+    areasText="O projeto une estrutura estadual, performance e clareza de oferta para que a empresa cresca sem improvisar a base digital."
+    relatedItems={relatedItems}
+    complianceTitle="Quanto maior a operacao regional, mais importante fica a qualidade da base digital."
+    complianceText="O site precisa acompanhar a ambicao do negocio. Caso contrario, ele limita visibilidade, clareza comercial e conversao."
+    complianceTags={['Estrutura regional', 'Performance', 'SEO tecnico', 'Paginas por cidade', 'Conversao', 'Base escalavel']}
+    videosTitle="Projetos que ficaram mais fortes ao ganhar uma base digital melhor estruturada"
+    videosText="Quando a empresa acerta a fundacao, os outros canais deixam de brigar com a pagina e passam a somar resultado."
+    printsTitle="Mais organizacao digital muda a percepcao de empresas que querem crescer no estado."
+    printsText="Uma base bem resolvida ajuda a transmitir mais maturidade, mais confianca e mais prontidao comercial."
+    teamTitle="Mais de 32 profissionais apoiando estrategia, estrutura, performance e leitura de crescimento."
+    teamText="Criar uma base estadual forte exige mais do que layout. Exige uma visao de expansao sustentada por boa execucao."
+    faqTitle="Perguntas frequentes sobre criacao de sites no Espirito Santo."
+    faqs={faqs}
+    finalTitle="Se a sua empresa quer crescer no Espirito Santo com mais consistencia, o site precisa acompanhar esse tamanho de ambicao."
+    finalText="A Scale ajuda a construir uma base digital mais forte para melhorar percepcao, visibilidade e crescimento regional."
+    ctaLabel="Solicitar orcamento"
+    areasCtaLabel="Quero uma base melhor"
+  />
 </LocalLayout>

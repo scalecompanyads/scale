@@ -1,147 +1,73 @@
 ---
-/**
- * Hub Local Cariacica — /cariacica
- * H1: "Agência de Marketing Digital em Cariacica – ES"
- * Lista todos os serviços disponíveis para Cariacica
- */
 import LocalLayout from '@layouts/LocalLayout.astro';
-import MapEmbed from '@components/ui/MapEmbed.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
 
 const city = getCityBySlug('cariacica')!;
 
-const services = [
-  { href: '/cariacica/criacao-de-sites', icon: '🌐', name: 'Criação de Sites' },
-  { href: '/cariacica/trafego-pago', icon: '💰', name: 'Tráfego Pago' },
+const conversionCards = [
+  { title: 'Potencial', desc: 'Cariacica tem mercado grande e menos maturidade digital em muitos segmentos. Isso abre espaco para quem se posiciona melhor.' },
+  { title: 'Presenca', desc: 'Empresas locais perdem demanda quando dependem so de indicacao, Instagram solto ou um site que nao sustenta confianca.' },
+  { title: 'Google', desc: 'Boa parte da comparacao acontece em buscas locais. Quem aparece com mais clareza tende a receber mais atencao.' },
+  { title: 'Direcao', desc: 'Site, trafego e posicionamento precisam trabalhar em conjunto para o marketing deixar de parecer custo sem previsao.' },
+];
+
+const differentials = [
+  { title: 'Leitura real do mercado de Cariacica', desc: 'A estrategia considera comportamento local, bairros relevantes e a forma como a empresa compete por atencao na regiao.' },
+  { title: 'Base digital mais forte', desc: 'A Scale organiza o que a empresa comunica, onde ela aparece e como o cliente encontra o proximo passo.' },
+  { title: 'Crescimento menos improvisado', desc: 'A ideia e criar uma operacao mais clara, medivel e menos dependente de tentativa e erro.' },
+];
+
+const relatedItems = [
+  { title: 'Criacao de sites em Cariacica', href: '/cariacica/criacao-de-sites', desc: 'Sites mais fortes para melhorar confianca, presenca digital e conversao local.', metrics: ['site', 'conversao'] },
+  { title: 'Trafego pago em Cariacica', href: '/cariacica/trafego-pago', desc: 'Google Ads e Meta Ads para acelerar demanda com mais criterio e menos desperdicio.', metrics: ['leads', 'retorno'] },
+  { title: 'Consultoria SEO', href: '/servicos/consultoria-seo', desc: 'Crescimento organico para empresas que querem depender menos de indicacao e mais de busca.', metrics: ['Google', 'SEO'] },
+  { title: 'Landing pages', href: '/servicos/criacao-de-landing-pages', desc: 'Paginas focadas em servicos e campanhas para melhorar clareza de oferta e conversao.', metrics: ['pagina', 'foco'] },
+];
+
+const faqs = [
+  { question: 'A Scale atende empresas de Cariacica?', answer: 'Sim. Atendemos empresas de Cariacica com leitura do mercado local e foco em construir uma presenca digital mais forte para a regiao.' },
+  { question: 'Cariacica e um bom mercado para investir em marketing digital?', answer: 'Sim. A cidade tem alto volume comercial e, em muitos segmentos, ainda existe bastante espaco para crescer com uma operacao digital melhor estruturada.' },
+  { question: 'Qual servico costuma funcionar melhor em Cariacica?', answer: 'Depende do momento do negocio. Algumas empresas precisam primeiro fortalecer o site, outras ganham mais ao ativar midia paga ou organizar SEO local.' },
+  { question: 'Como saber por onde comecar?', answer: 'O diagnostico avalia seu posicionamento, sua presenca atual e os gargalos de captacao para indicar a prioridade mais coerente.' },
 ];
 ---
 
 <LocalLayout
-  title="Agência de Marketing Digital em Cariacica – ES | Scale"
-  description="Scale é a agência de marketing digital em Cariacica (ES). Criação de sites profissionais e tráfego pago para empresas locais. Orçamento grátis. (27) XXXX-XXXX."
+  title="Agencia de Marketing Digital em Cariacica - ES | Scale"
+  description="Agencia de marketing digital em Cariacica para empresas que querem crescer com mais presenca em site, Google, SEO e canais de aquisicao."
   city={city}
 >
-  <!-- Hero local -->
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Cariacica – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Agência de Marketing Digital em Cariacica – ES
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        A Scale atende empresas de Cariacica com soluções digitais que geram resultados reais. Do Campo Grande ao Alto Laje, do Itacibá ao Porto de Santana, ajudamos negócios locais a crescer com presença online profissional e campanhas que trazem clientes.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Falar com especialista
-        </a>
-        <a href="tel:+5527XXXXXXXX" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          (27) XXXX-XXXX
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- O que a Scale faz por Cariacica -->
-  <section class="section">
-    <div class="container-narrow">
-      <h2 class="font-heading text-2xl font-bold text-ink mb-5">
-        Marketing digital feito para o mercado de Cariacica
-      </h2>
-      <p class="text-ink-light leading-relaxed mb-4">
-        Cariacica é um dos municípios mais populosos do Espírito Santo, com um setor comercial vibrante concentrado em bairros como Campo Grande, Operário, Flexal e Itaquari. Apesar do potencial, boa parte das empresas locais ainda não investe em marketing digital — e é justamente aí que está a oportunidade para o seu negócio se destacar.
-      </p>
-      <p class="text-ink-light leading-relaxed mb-4">
-        A Scale entende as particularidades do mercado capixaba e desenvolve estratégias sob medida para empresas de Cariacica que querem atrair mais clientes pela internet. Seja com um site profissional que transmite credibilidade, ou com campanhas de tráfego pago que entregam resultados imediatos, estamos prontos para ajudar.
-      </p>
-      <p class="text-ink-light leading-relaxed">
-        Nossos clientes em Cariacica saem na frente da concorrência porque aparecem nas primeiras posições do Google quando um cliente em potencial busca pelo serviço ou produto que oferecem — e isso faz toda a diferença no faturamento no fim do mês.
-      </p>
-    </div>
-  </section>
-
-  <!-- Serviços disponíveis em Cariacica -->
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Serviços em Cariacica</h2>
-        <p class="section-subtitle">Soluções digitais desenvolvidas para empresas de Cariacica e região.</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {services.map((s) => (
-          <a href={s.href} class="block p-5 rounded-xl border border-edge bg-surface-card hover:border-brand-primary hover:shadow-md transition-all">
-            <p class="font-semibold text-ink text-lg">{s.icon} {s.name}</p>
-            <p class="text-sm text-ink-light mt-1">em Cariacica – ES</p>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Por que a Scale -->
-  <section class="section">
-    <div class="container-narrow">
-      <h2 class="font-heading text-2xl font-bold text-ink mb-5">
-        Por que escolher a Scale para o seu negócio em Cariacica?
-      </h2>
-      <ul class="space-y-4">
-        <li class="flex gap-3">
-          <span class="text-brand-primary font-bold text-lg shrink-0">01.</span>
-          <div>
-            <p class="font-semibold text-ink">Conhecemos o mercado capixaba</p>
-            <p class="text-ink-light text-sm mt-1">Trabalhamos com empresas de todo o Espírito Santo e entendemos o comportamento do consumidor local, os picos de demanda sazonais e as melhores formas de alcançar o público de Cariacica.</p>
-          </div>
-        </li>
-        <li class="flex gap-3">
-          <span class="text-brand-primary font-bold text-lg shrink-0">02.</span>
-          <div>
-            <p class="font-semibold text-ink">Resultados mensuráveis</p>
-            <p class="text-ink-light text-sm mt-1">Cada projeto é acompanhado por relatórios claros: visitas, leads gerados, custo por aquisição e retorno sobre investimento. Você sabe exatamente o que está recebendo pelo valor investido.</p>
-          </div>
-        </li>
-        <li class="flex gap-3">
-          <span class="text-brand-primary font-bold text-lg shrink-0">03.</span>
-          <div>
-            <p class="font-semibold text-ink">Atendimento próximo e ágil</p>
-            <p class="text-ink-light text-sm mt-1">Somos uma equipe enxuta e dedicada. Seu projeto não fica perdido numa fila de grandes clientes — você tem atenção real e respostas rápidas.</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Mapa + Contato -->
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        <div>
-          <h2 class="font-heading text-3xl font-bold text-ink mb-6">
-            Atendemos Cariacica e toda a Grande Vitória
-          </h2>
-          <address class="not-italic space-y-3">
-            <div class="flex gap-3">
-              <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Telefone</span>
-              <a href="tel:+5527XXXXXXXX" class="text-brand-primary hover:underline">(27) XXXX-XXXX</a>
-            </div>
-            <div class="flex gap-3">
-              <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Email</span>
-              <a href="mailto:contato@scale.com.br" class="text-brand-primary hover:underline">contato@scale.com.br</a>
-            </div>
-            <div class="flex gap-3">
-              <span class="text-sm font-semibold text-ink-light w-20 shrink-0">Horário</span>
-              <span class="text-ink-light">Seg–Sex, 9h às 18h</span>
-            </div>
-          </address>
-          <div class="mt-8">
-            <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-              Solicitar orçamento grátis
-            </a>
-          </div>
-        </div>
-        <MapEmbed title="Scale | Cariacica, ES" />
-      </div>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="Agencia de marketing digital em Cariacica com foco em mercado local."
+    heroTitle="Agencia de Marketing Digital em Cariacica para empresas que querem crescer com mais estrutura."
+    heroDescription="A Scale ajuda empresas de Cariacica a organizarem site, posicionamento, SEO e aquisicao para transformar presenca digital em mais visibilidade, mais confianca e mais demanda."
+    heroMetrics={[{ value: 'Cariacica', label: 'mercado local', icon: 'search' }, { value: 'Scale', label: 'metodo', icon: 'shield' }]}
+    logosLabel="Empresas que ja confiaram na Scale para crescer com mais clareza"
+    problemTitle="Cariacica tem mercado e demanda. O que muitas empresas nao tem ainda e estrutura digital a altura."
+    problemParagraphs={['Quando a empresa comunica mal, aparece pouco ou parece improvisada no digital, ela perde espaco para concorrentes que nem sempre entregam melhor.', 'Por isso, a estrategia certa aqui nao e fazer mais do mesmo. E organizar uma base mais forte para competir melhor por atencao e confianca.']}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia da presenca local"
+    engineeringTitle="Mais resultado em Cariacica vem de pagina forte, canal certo e proposta clara."
+    engineeringText="O marketing funciona melhor quando a empresa sabe como quer ser percebida, onde deve aparecer e o que precisa acontecer depois do clique."
+    differentials={differentials}
+    areasTitle="As principais frentes de crescimento digital em Cariacica."
+    areasText="A Scale monta a base e os canais certos para o momento do negocio, sem empilhar solucao sem prioridade."
+    relatedItems={relatedItems}
+    complianceTitle="Antes de investir mais, vale entender o que esta travando visibilidade e conversao."
+    complianceText="Em muitos casos, o problema nao e falta de esforco. E falta de estrutura para o mercado perceber mais valor na empresa."
+    complianceTags={['Site', 'Google', 'Posicionamento', 'Aquisicao', 'Prioridade', 'Leitura comercial']}
+    videosTitle="Projetos que destravaram crescimento com mais organizacao"
+    videosText="Quando existe metodo, a empresa entende melhor o papel de cada canal e para de desperdiçar energia em acao sem direcao."
+    printsTitle="Mais clareza operacional melhora a percepcao de valor da empresa."
+    printsText="Pagina, estrategia e comunicacao bem alinhadas ajudam o mercado a levar o negocio mais a serio no primeiro contato."
+    teamTitle="Mais de 32 profissionais apoiando estrategia, pagina, midia e acompanhamento comercial."
+    teamText="Crescimento consistente vem de coordenacao, e nao de sorte ou de tentativa isolada."
+    faqTitle="Perguntas frequentes sobre marketing digital em Cariacica."
+    faqs={faqs}
+    finalTitle="Se sua empresa em Cariacica ainda depende demais de acaso ou indicacao, talvez a base digital esteja abaixo do potencial do negocio."
+    finalText="A Scale ajuda a organizar presenca, pagina e aquisicao para transformar mais atencao em oportunidade."
+    ctaLabel="Solicitar diagnostico"
+    areasCtaLabel="Quero crescer em Cariacica"
+  />
 </LocalLayout>

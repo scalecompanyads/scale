@@ -1,87 +1,73 @@
 ---
 import LocalLayout from '@layouts/LocalLayout.astro';
-import FAQ from '@components/sections/FAQ.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
 
 const city = getCityBySlug('guarapari')!;
 
-const services = [
-  { href: '/guarapari/criacao-de-sites', icon: '🌐', name: 'Criação de Sites' },
-  { href: '/guarapari/seo', icon: '🔍', name: 'SEO' },
+const conversionCards = [
+  { title: 'Sazonalidade', desc: 'Em Guarapari, parte da demanda oscila com turismo e temporada. A presenca digital precisa aproveitar esse movimento em vez de correr atras dele.' },
+  { title: 'Busca', desc: 'O cliente local e o turista pesquisam antes. Quem aparece melhor no Google e comunica mais claro sai na frente da decisao.' },
+  { title: 'Confianca', desc: 'Negocios ligados a servicos, comercio e experiencia precisam parecer profissionais no primeiro acesso para converter melhor.' },
+  { title: 'Base', desc: 'Sem site, SEO e estrutura, a empresa depende demais de rede social e indicacao, perdendo previsibilidade ao longo do ano.' },
+];
+
+const differentials = [
+  { title: 'Leitura do mercado local e turistico', desc: 'A estrategia considera o comportamento de quem mora em Guarapari e de quem pesquisa antes de chegar na cidade.' },
+  { title: 'Ativos proprios mais fortes', desc: 'Site, busca local e paginas bem resolvidas ajudam o negocio a depender menos de impulso e mais de presenca consolidada.' },
+  { title: 'Mais clareza para crescer', desc: 'A Scale organiza oferta, canal e pagina para o negocio saber o que esta gerando visibilidade e demanda de verdade.' },
+];
+
+const relatedItems = [
+  { title: 'Criacao de sites em Guarapari', href: '/guarapari/criacao-de-sites', desc: 'Sites para empresas que querem captar cliente local e turista com mais confianca e conversao.', metrics: ['site', 'conversao'] },
+  { title: 'SEO em Guarapari', href: '/guarapari/seo', desc: 'Presenca organica local para negocios que precisam aparecer melhor no Google ao longo do ano.', metrics: ['Google', 'organico'] },
+  { title: 'Landing pages', href: '/servicos/criacao-de-landing-pages', desc: 'Paginas focadas em campanhas, servicos especificos e ofertas sazonais.', metrics: ['campanha', 'foco'] },
+  { title: 'Gestao de redes sociais', href: '/servicos/gestao-redes-sociais', desc: 'Conteudo com mais consistencia para reforcar marca, contexto local e percepcao profissional.', metrics: ['marca', 'presenca'] },
 ];
 
 const faqs = [
-  { question: 'A Scale atende empresas em Guarapari?', answer: 'Sim. Atendemos empresas em Guarapari e em toda a região do ES, de forma remota com a mesma qualidade de um atendimento presencial.' },
-  { question: 'Quais serviços estão disponíveis em Guarapari?', answer: 'Criação de sites profissionais e consultoria de SEO. Entre em contato para saber sobre outros serviços.' },
-  { question: 'Por que marketing digital é importante para empresas de Guarapari?', answer: 'Guarapari tem forte economia no turismo e comércio local. Empresas que aparecem bem no Google captam tanto o cliente local quanto o turista que pesquisa antes de viajar.' },
+  { question: 'A Scale atende empresas em Guarapari?', answer: 'Sim. Atendemos empresas em Guarapari com leitura do contexto local e da demanda sazonal da cidade.' },
+  { question: 'Marketing digital funciona para negocios de turismo e comercio local?', answer: 'Sim. Em Guarapari, busca local, site forte e presenca bem organizada ajudam tanto na demanda recorrente quanto nos picos de temporada.' },
+  { question: 'Preciso investir em tudo ao mesmo tempo?', answer: 'Nao. O ideal e priorizar o que mais limita a captacao hoje e crescer em cima dessa base, sem dispersar verba e energia.' },
+  { question: 'A Scale atende so empresas grandes?', answer: 'Nao. Atendemos negocios locais, empresas em crescimento e operacoes que precisam de mais clareza para vender melhor no digital.' },
 ];
 ---
 
 <LocalLayout
-  title="Agência de Marketing Digital em Guarapari – ES | Scale"
-  description="Scale atende empresas em Guarapari (ES) com criação de sites e SEO. Presença digital para o mercado local e turístico. Diagnóstico gratuito."
+  title="Agencia de Marketing Digital em Guarapari - ES | Scale"
+  description="Agencia de marketing digital em Guarapari para empresas que querem crescer com site, SEO e estrutura digital mais forte para o mercado local e turistico."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Guarapari – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Agência de Marketing Digital em Guarapari – ES
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        A Scale atende empresas em Guarapari com estratégias digitais focadas em resultado. Site profissional e SEO para aparecer no Google e captar mais clientes na região.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Falar com especialista
-        </a>
-        <a href="tel:+5528XXXXXXXX" class="px-8 py-4 text-lg font-semibold rounded-lg border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-ink-inverse transition-colors">
-          (28) XXXX-XXXX
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Serviços em Guarapari</h2>
-        <p class="section-subtitle">Presença digital para empresas e comércio local.</p>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-        {services.map((s) => (
-          <a href={s.href} class="block p-5 rounded-xl border border-edge bg-surface-card hover:border-brand-primary hover:shadow-md transition-all">
-            <p class="font-semibold text-ink text-lg">{s.icon} {s.name}</p>
-            <p class="text-sm text-ink-light mt-1">em Guarapari – ES</p>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="section bg-surface-subtle">
-    <div class="container-narrow">
-      <h2 class="font-heading text-2xl font-bold text-ink mb-4">Marketing digital para o mercado de Guarapari</h2>
-      <p class="text-ink-light leading-relaxed mb-4">
-        Guarapari é um dos destinos turísticos mais importantes do Espírito Santo, com economia ativa no comércio, gastronomia, hotelaria e serviços. Empresas que aparecem bem no Google captam tanto o cliente fixo quanto o turista que pesquisa antes de viajar.
-      </p>
-      <p class="text-ink-light leading-relaxed">
-        Com um site profissional e uma estratégia de SEO bem executada, sua empresa fica visível para quem pesquisa no Google exatamente o que você oferece, na hora certa.
-      </p>
-    </div>
-  </section>
-
-  <FAQ items={faqs} title="Dúvidas sobre nossos serviços em Guarapari" />
-
-  <section class="section text-center">
-    <div class="container-narrow">
-      <h2 class="font-heading text-3xl font-bold text-ink mb-4">Comece a crescer em Guarapari</h2>
-      <p class="text-lg text-ink-light mb-8">Diagnóstico gratuito, sem compromisso.</p>
-      <a href="/contato" class="inline-block px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-        Solicitar diagnóstico gratuito
-      </a>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="Agencia de marketing digital em Guarapari com leitura local e turistica."
+    heroTitle="Agencia de Marketing Digital em Guarapari para negocios que querem crescer com mais presenca."
+    heroDescription="A Scale ajuda empresas de Guarapari a estruturarem site, busca local, posicionamento e ativos digitais para captar mais clientes da regiao e aproveitar melhor a demanda sazonal."
+    heroMetrics={[{ value: 'Guarapari', label: 'mercado local', icon: 'search' }, { value: 'Presenca', label: 'mais forte', icon: 'shield' }]}
+    logosLabel="Empresas que ja confiaram na Scale para crescer com mais estrutura"
+    problemTitle="Em Guarapari, aparecer melhor na hora certa muda o faturamento da temporada e do ano inteiro."
+    problemParagraphs={['Negocios locais que dependem de visibilidade online precisam ser encontrados antes da concorrencia, tanto pelo morador quanto pelo visitante.', 'Quando a empresa organiza bem sua presenca digital, ela aproveita melhor os picos de procura e sustenta mais demanda fora deles.']}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia da presenca local"
+    engineeringTitle="Mais visibilidade em Guarapari nasce de base digital forte, nao de acao isolada."
+    engineeringText="Site, busca local, paginas e comunicacao precisam trabalhar juntos para que a empresa pareca mais preparada e seja escolhida com menos hesitacao."
+    differentials={differentials}
+    areasTitle="As frentes que mais ajudam empresas em Guarapari."
+    areasText="A Scale organiza os ativos e canais que fazem mais sentido para negocios locais e sazonais."
+    relatedItems={relatedItems}
+    complianceTitle="Quem depende de busca local nao pode tratar a pagina como detalhe."
+    complianceText="Em mercados ligados a servico, comercio e turismo, uma base digital ruim desperdiça demanda pronta para comprar."
+    complianceTags={['Busca local', 'Site profissional', 'Sazonalidade', 'Google', 'Marca', 'Conversao']}
+    videosTitle="Projetos que ganharam mais clareza de crescimento com a Scale"
+    videosText="Quando a empresa organiza melhor sua presenca, ela passa a aproveitar com mais criterio o que o mercado local ja esta buscando."
+    printsTitle="Mais presenca digital melhora a percepcao antes do primeiro contato."
+    printsText="O cliente sente mais confianca quando encontra um negocio que parece preparado para atender bem desde o primeiro clique."
+    teamTitle="Mais de 32 profissionais apoiando estrategia, conteudo, pagina e captacao local."
+    teamText="Negocios regionais precisam de metodo para crescer com consistencia, especialmente em mercados mais sazonais."
+    faqTitle="Perguntas frequentes sobre marketing digital em Guarapari."
+    faqs={faqs}
+    finalTitle="Se sua empresa em Guarapari ainda depende demais de acaso, temporada ou indicacao, a estrutura digital pode estar abaixo do potencial do negocio."
+    finalText="A Scale ajuda a construir uma presenca mais forte para o mercado local, com mais clareza, mais confianca e mais chance de conversao."
+    ctaLabel="Solicitar diagnostico"
+    areasCtaLabel="Quero crescer em Guarapari"
+  />
 </LocalLayout>

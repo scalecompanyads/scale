@@ -1,36 +1,73 @@
 ---
 import LocalLayout from '@layouts/LocalLayout.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
+
 const city = getCityBySlug('serra')!;
+
+const conversionCards = [
+  { title: 'Presenca', desc: 'Empresas da Serra disputam atencao em mercados grandes e fragmentados. Sem presenca digital clara, elas entram atrasadas na comparacao.' },
+  { title: 'Oferta', desc: 'Quando a proposta nao fica evidente no site e nas paginas, o cliente nao entende rapido porque deve escolher sua empresa.' },
+  { title: 'Canal', desc: 'SEO, pagina e anuncios precisam cumprir funcoes diferentes. Misturar tudo em uma mesma mensagem gera perda de eficiencia.' },
+  { title: 'Escala', desc: 'Crescimento digital sustentavel vem de sistema, nao de campanhas soltas ou esforco pontual em rede social.' },
+];
+
+const differentials = [
+  { title: 'Leitura de mercado regional', desc: 'A Serra tem polos, bairros e perfis de consumo diferentes. A estrategia local precisa refletir essa variacao.' },
+  { title: 'Base digital mais comercial', desc: 'Site, SEO e canais precisam trabalhar para transformar interesse em conversa melhor, e nao so aumentar visita.' },
+  { title: 'Decisao com mais dados', desc: 'Acompanhamos o que gera visibilidade, clique e contato com mais potencial para a operacao comercial.' },
+];
+
+const relatedItems = [
+  { title: 'Criacao de sites na Serra', href: '/serra/criacao-de-sites', desc: 'Site rapido e profissional para empresas que precisam transmitir mais estrutura e vender melhor.', metrics: ['credibilidade', 'conversao'] },
+  { title: 'Consultoria SEO', href: '/servicos/consultoria-seo', desc: 'Crescimento organico para empresas que querem aparecer melhor no Google e depender menos de midia paga.', metrics: ['Google', 'organico'] },
+  { title: 'Trafego pago', href: '/servicos/trafego-pago', desc: 'Campanhas para acelerar demanda e testar oferta com mais rapidez e controle.', metrics: ['leads', 'retorno'] },
+  { title: 'Redes sociais', href: '/servicos/gestao-redes-sociais', desc: 'Presenca social coerente com marca, posicionamento e percepcao comercial.', metrics: ['marca', 'constancia'] },
+];
+
+const faqs = [
+  { question: 'A Scale atende empresas da Serra?', answer: 'Sim. Atendemos empresas da Serra e da Grande Vitoria com estrategias adaptadas ao contexto local de cada operacao.' },
+  { question: 'Qual servico costuma funcionar melhor para empresas da Serra?', answer: 'Depende do momento. Algumas precisam primeiro de site e posicionamento. Outras ganham mais ao ativar SEO ou midia paga com a base certa.' },
+  { question: 'Vocês atendem so empresas grandes?', answer: 'Nao. Atendemos operacoes locais, empresas em crescimento e negocios mais estruturados que precisam de mais clareza comercial no digital.' },
+  { question: 'Como a Scale define prioridade entre canais?', answer: 'O diagnostico avalia mercado, oferta, maturidade comercial e o gargalo atual da empresa para decidir por onde comecar.' },
+];
 ---
+
 <LocalLayout
-  title="Agência de Marketing Digital em Serra – ES | Scale"
-  description="Scale: agência de marketing digital em Serra (ES). Criação de sites, SEO e tráfego pago. (27) XXXX-XXXX."
+  title="Agencia de Marketing Digital em Serra - ES | Scale"
+  description="Agencia de marketing digital em Serra para empresas que querem crescer com mais clareza em site, SEO, trafego pago e posicionamento regional."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Serra – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Agência de Marketing Digital em Serra – ES
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Marketing digital para empresas de Serra: do site ao Google.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar orçamento
-        </a>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container">
-      <a href="/serra/criacao-de-sites" class="inline-block p-5 rounded-xl border border-edge bg-surface-card hover:border-brand-primary hover:shadow-md transition-all">
-        <p class="font-semibold text-ink text-lg">🌐 Criação de Sites em Serra</p>
-      </a>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="Agencia de marketing digital na Serra com foco em crescimento regional."
+    heroTitle="Agencia de Marketing Digital em Serra para empresas que precisam de mais visibilidade e criterio."
+    heroDescription="A Scale ajuda empresas da Serra a organizarem posicionamento, site, SEO e aquisicao para competir melhor no digital e reduzir o improviso na geracao de demanda."
+    heroMetrics={[{ value: 'Serra', label: 'mercado regional', icon: 'search' }, { value: 'Scale', label: 'metodo', icon: 'shield' }]}
+    logosLabel="Empresas que ja confiaram na Scale para estruturar crescimento"
+    problemTitle="Em mercados maiores, a empresa que comunica mal perde espaco mesmo entregando melhor."
+    problemParagraphs={['Na Serra, a competicao por atencao digital e mais dura em varios segmentos, e a empresa precisa parecer forte antes mesmo do contato.', 'Isso exige uma operacao de marketing mais coordenada, com pagina, canal e proposta apontando na mesma direcao.']}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia da aquisicao"
+    engineeringTitle="Mais presenca digital nao basta. A estrutura precisa ajudar a empresa a ser escolhida."
+    engineeringText="O marketing certo organiza descoberta, percepcao de valor e contato comercial. Sem isso, o negocio ate recebe visita, mas nao converte o que poderia."
+    differentials={differentials}
+    areasTitle="As frentes digitais que mais ajudam empresas da Serra."
+    areasText="A Scale combina base comercial, ativos proprios e canais de aquisicao para criar uma operacao mais consistente."
+    relatedItems={relatedItems}
+    complianceTitle="Antes de investir mais, vale entender onde o digital esta travando hoje."
+    complianceText="Nem sempre o problema esta no anuncio. Em muitos casos ele mora na pagina, no posicionamento ou na falta de prioridade entre canais."
+    complianceTags={['Posicionamento', 'Site comercial', 'SEO local', 'Midia com leitura', 'Prioridade', 'Menos desperdicio']}
+    videosTitle="Empresas que destravaram crescimento com mais clareza operacional"
+    videosText="Quando existe metodo, a empresa deixa de depender de tentativa e erro e comeca a investir com mais confianca."
+    printsTitle="A confianca cresce quando o projeto fica mais claro para todo mundo."
+    printsText="Pagina, estrategia e leitura de resultado bem feitas melhoram a percepcao interna e externa do marketing."
+    teamTitle="Mais de 32 profissionais acompanhando estrategia, criacao, pagina, midia e leitura comercial."
+    teamText="Crescimento consistente depende de uma operacao coordenada e nao de execucao isolada."
+    faqTitle="Perguntas frequentes sobre marketing digital na Serra."
+    faqs={faqs}
+    finalTitle="Se sua empresa na Serra quer crescer com mais previsibilidade, o proximo passo nao precisa ser aleatorio."
+    finalText="A Scale ajuda a organizar a estrutura certa para gerar mais visibilidade, melhor percepcao de valor e contatos mais alinhados."
+    ctaLabel="Solicitar diagnostico"
+    areasCtaLabel="Quero crescer com a Scale"
+  />
 </LocalLayout>

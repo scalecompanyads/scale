@@ -1,35 +1,73 @@
 ---
 import LocalLayout from '@layouts/LocalLayout.astro';
+import ScaleLocalLanding from '@components/local/ScaleLocalLanding.astro';
 import { getCityBySlug } from '@data/cities';
+
 const city = getCityBySlug('serra')!;
+
+const conversionCards = [
+  { title: 'Imagem', desc: 'Um site fraco faz a empresa parecer menor do que realmente e, em mercados competitivos, isso reduz confianca logo no primeiro clique.' },
+  { title: 'Velocidade', desc: 'Pagina lenta aumenta abandono e reduz o efeito de SEO e midia. Cada segundo de atraso custa atencao e oportunidade.' },
+  { title: 'Clareza', desc: 'O visitante precisa entender proposta, servico e proximo passo sem se perder em navegacao ou texto generico.' },
+  { title: 'Base', desc: 'O site nao e so vitrine. Ele sustenta SEO, campanhas, prova social e a percepcao comercial da marca.' },
+];
+
+const differentials = [
+  { title: 'Site pensado para conversao', desc: 'Cada pagina e desenhada para reduzir atrito, reforcar confianca e facilitar o contato do visitante certo.' },
+  { title: 'Estrutura tecnica mais forte', desc: 'Performance, mobile, SEO tecnico e organizacao do conteudo entram desde o inicio do projeto.' },
+  { title: 'Base pronta para crescer', desc: 'O site nasce preparado para receber trafego, ranquear melhor e acompanhar a evolucao da empresa na Serra.' },
+];
+
+const relatedItems = [
+  { title: 'Hub da Serra', href: '/serra', desc: 'Visao geral da atuacao da Scale na Serra e das frentes que fazem mais sentido para empresas locais.', metrics: ['hub local', 'estrategia'] },
+  { title: 'Consultoria SEO', href: '/servicos/consultoria-seo', desc: 'SEO tecnico e estrategico para fazer o site aparecer melhor no Google.', metrics: ['Google', 'organico'] },
+  { title: 'Landing pages', href: '/servicos/criacao-de-landing-pages', desc: 'Paginas de campanha para ofertas mais especificas e testes de conversao.', metrics: ['campanha', 'performance'] },
+  { title: 'Quanto custa criar um site', href: '/blog/quanto-custa-criar-um-site-profissional', desc: 'Entenda os fatores que impactam investimento, escopo e retorno de um projeto bem feito.', metrics: ['orcamento', 'escopo'] },
+];
+
+const faqs = [
+  { question: 'Quanto tempo leva para criar um site na Serra?', answer: 'O prazo varia conforme escopo, volume de paginas e materiais. A ideia e construir uma base bem resolvida, e nao apressar uma entrega que nao sustente o crescimento.' },
+  { question: 'O site ja sai preparado para aparecer no Google?', answer: 'Sim. A estrutura tecnica, performance e organizacao do conteudo ja entram pensando em SEO e leitura comercial.' },
+  { question: 'A Scale cria so site institucional?', answer: 'Nao. Fazemos sites comerciais, institucionais, paginas de servico e estruturas preparadas para SEO e campanhas.' },
+  { question: 'Posso usar o site depois em anuncios e SEO?', answer: 'Sim. Essa e justamente a ideia: criar uma base digital que suporte diferentes canais de aquisicao.' },
+];
 ---
+
 <LocalLayout
-  title="Criação de Site em Serra – ES | Scale"
-  description="Sites profissionais para empresas de Serra (ES). Responsivos, rápidos e com SEO incluso. (27) XXXX-XXXX."
+  title="Criacao de Site em Serra - ES | Scale"
+  description="Criacao de site em Serra para empresas que precisam de uma base digital mais forte, rapida e preparada para SEO, campanhas e conversao."
   city={city}
 >
-  <section class="section bg-surface-subtle">
-    <div class="container">
-      <span class="inline-flex items-center gap-2 bg-green-50 border border-green-200 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
-        📍 Serra – ES
-      </span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-4">
-        Criação de Site em Serra – ES
-      </h1>
-      <p class="text-lg text-ink-light leading-relaxed mb-8 max-w-2xl">
-        Sites profissionais para empresas de Serra, responsivos, rápidos e otimizados para o Google.
-      </p>
-      <div class="flex gap-4 flex-wrap">
-        <a href="/contato" class="px-8 py-4 text-lg font-semibold rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary border-2 border-brand-primary transition-colors">
-          Solicitar orçamento grátis
-        </a>
-      </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container-narrow">
-      <!-- TODO: Dev 2 preenche na Fase 2 -->
-      <p class="text-ink-light leading-relaxed">Conteúdo a ser criado na Fase 2.</p>
-    </div>
-  </section>
+  <ScaleLocalLanding
+    heroEyebrow="Criacao de sites na Serra para empresas que precisam parecer mais fortes."
+    heroTitle="Criacao de Site em Serra com foco em performance, clareza comercial e crescimento."
+    heroDescription="A Scale desenvolve sites para empresas da Serra que precisam transformar presenca digital em uma base real de captacao, confianca e conversao."
+    heroMetrics={[{ value: 'Site', label: 'performance', icon: 'search' }, { value: 'Base', label: 'comercial', icon: 'shield' }]}
+    logosLabel="Empresas que ja confiaram na Scale para construir sua base digital"
+    problemTitle="Site fraco derruba a percepcao de valor antes da empresa ter chance de vender."
+    problemParagraphs={['Na Serra, onde a disputa por atencao e forte em muitos segmentos, a empresa precisa passar mais confianca no primeiro acesso.', 'Por isso o site precisa ser tratado como ativo comercial e nao como uma formalidade visual.']}
+    conversionCards={conversionCards}
+    engineeringKicker="Engenharia do site"
+    engineeringTitle="O site certo precisa parecer forte, carregar rapido e ajudar o cliente a decidir."
+    engineeringText="Quando performance, mensagem e estrutura trabalham juntas, a pagina deixa de ser so institucional e passa a sustentar aquisicao de verdade."
+    differentials={differentials}
+    areasTitle="O que a Scale conecta ao criar um site na Serra."
+    areasText="O projeto une performance, posicionamento, leitura comercial e base tecnica para sustentar os proximos passos do marketing."
+    relatedItems={relatedItems}
+    complianceTitle="Um bom site reduz atrito, melhora confianca e amplia o efeito dos outros canais."
+    complianceText="SEO, anuncio e conteudo rendem melhor quando a empresa tem uma pagina que sustenta a atencao e conduz para o contato."
+    complianceTags={['Performance', 'Mobile', 'SEO tecnico', 'Clareza comercial', 'Conversao', 'Base para crescer']}
+    videosTitle="Projetos que ganharam mais forca depois de melhorar a base digital"
+    videosText="Quando o site deixa de ser um gargalo, os outros canais tambem passam a performar melhor e com mais previsibilidade."
+    printsTitle="Mais clareza na pagina muda a forma como a empresa e percebida."
+    printsText="Um site bem resolvido melhora confianca, leitura de valor e a qualidade dos contatos que chegam."
+    teamTitle="Mais de 32 profissionais apoiando estrategia, experiencia, conteudo e tecnologia."
+    teamText="Criar um site que realmente ajude a vender exige mais do que design. Exige metodo e leitura comercial."
+    faqTitle="Perguntas frequentes sobre criacao de sites na Serra."
+    faqs={faqs}
+    finalTitle="Se o seu site atual nao ajuda sua empresa a crescer na Serra, talvez ele esteja custando mais do que parece."
+    finalText="A Scale ajuda a construir uma base digital mais forte para melhorar percepcao, visibilidade e conversao."
+    ctaLabel="Solicitar orcamento"
+    areasCtaLabel="Quero um site melhor"
+  />
 </LocalLayout>
