@@ -6,7 +6,7 @@ import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 import { ScaleLogo } from "@/components/legacy-advogados/ui/scale-logo";
 import { cn } from "@/components/legacy-advogados/lib/utils";
 
-const proofPoints = ["200+ escritórios atendidos", "Compliance OAB garantido"];
+const proofPoints = ["+ 200 escritórios", "Compliance com OAB Garantido"];
 
 const squad = [
   {
@@ -42,10 +42,21 @@ interface HeroProps {
 }
 
 const DEFAULT_HEADLINE_LINES = [
-  "Advogados que dependem",
-  "de indicação",
-  "crescem devagar.",
+  "Agência Especializada",
+  "para Escritórios de",
+  "Advocacia",
 ] as const;
+
+const DEFAULT_SUBHEADLINE =
+  "Implementamos uma máquina de aquisição de novos contratos com uma estrutura validada";
+
+const HERO_EYEBROW = "Marketing Jurídico";
+
+function HeroEyebrow({ className }: { className?: string }) {
+  return (
+    <p className={cn("section-label mb-4 normal-case tracking-wide", className)}>{HERO_EYEBROW}</p>
+  );
+}
 
 function resolveHeadlineLines({
   headlineLine1,
@@ -117,31 +128,52 @@ function SquadPanels({ className }: { className?: string }) {
   );
 }
 
-function HeroCTAs({ className }: { className?: string }) {
+function HeroCTAs({ className, mobile }: { className?: string; mobile?: boolean }) {
   return (
-    <div className={cn("flex w-full flex-col items-center justify-center gap-4 sm:flex-row", className)}>
+    <div
+      className={cn(
+        "flex w-full min-w-0 max-w-full flex-col items-stretch justify-center gap-4",
+        !mobile && "sm:flex-row sm:items-center",
+        className
+      )}
+    >
       <ShinyButton
         openLeadForm
-        className="min-h-[3.25rem] px-10 py-5 text-lg"
+        className={cn(
+          "min-h-[3.25rem] w-full max-w-full whitespace-normal text-center leading-snug",
+          mobile ? "px-5 py-4 text-sm sm:text-base" : "px-10 py-5 text-lg sm:w-auto"
+        )}
         aria-label="Quero atrair clientes com previsibilidade"
       >
         Quero atrair clientes com previsibilidade
         <ArrowRight className="h-5 w-5" />
       </ShinyButton>
-      <a href="#problema" className="btn-outline">
+      <a
+        href="#problema"
+        className={cn("btn-outline text-center", mobile ? "w-full max-w-full" : "sm:w-auto")}
+      >
         Entender o problema primeiro
       </a>
     </div>
   );
 }
 
-function HeroProofPoints({ className }: { className?: string }) {
+function HeroProofPoints({ className, mobile }: { className?: string; mobile?: boolean }) {
   return (
-    <div className={cn("flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-8", className)}>
+    <div
+      className={cn(
+        "flex w-full min-w-0 max-w-full flex-col items-center justify-center gap-3",
+        !mobile && "sm:flex-row sm:gap-8",
+        className
+      )}
+    >
       {proofPoints.map((point) => (
-        <div key={point} className="flex items-center gap-2">
+        <div
+          key={point}
+          className={cn("flex max-w-full items-center gap-2", mobile && "justify-center text-center")}
+        >
           <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-brand-blue" />
-          <span className="text-sm text-content-secondary">{point}</span>
+          <span className="text-sm leading-snug text-content-secondary">{point}</span>
         </div>
       ))}
     </div>
@@ -151,11 +183,9 @@ function HeroProofPoints({ className }: { className?: string }) {
 export function Hero(props: HeroProps) {
   const { subHeadline } = props;
   const [titleLine1, titleLine2, titleLine3] = resolveHeadlineLines(props);
-  const sub = subHeadline ?? "Escritórios que constroem uma máquina de aquisição crescem com previsibilidade.";
-  const titleMobile = `${titleLine1} ${titleLine2}`;
-
+  const sub = subHeadline ?? DEFAULT_SUBHEADLINE;
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden pb-16 pt-4 sm:pt-6 lg:min-h-screen lg:items-stretch lg:justify-center lg:pt-[100px] lg:pb-12">
+    <section className="relative flex min-h-screen items-center overflow-x-hidden pb-16 pt-4 sm:pt-6 lg:min-h-screen lg:items-stretch lg:justify-center lg:overflow-hidden lg:pt-[100px] lg:pb-12">
       <div className="pointer-events-none absolute inset-0 bg-gradient-hero" />
       <div
         className="pointer-events-none absolute inset-0 opacity-100"
@@ -165,53 +195,56 @@ export function Hero(props: HeroProps) {
           backgroundSize: "60px 60px",
         }}
       />
-      <div className="glow-blue pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[700px] -translate-x-1/2 opacity-25 lg:left-0" />
+      <div className="glow-blue pointer-events-none absolute -top-40 left-1/2 h-[min(500px,80vw)] w-[min(700px,120vw)] -translate-x-1/2 opacity-25 lg:left-0 lg:h-[500px] lg:w-[700px]" />
 
-      {/* Mobile — layout original centralizado */}
-      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-6 lg:hidden">
-        <div className="mx-auto flex w-full flex-col items-center gap-10">
-          <div className="mx-auto w-full max-w-6xl text-center">
+      {/* Mobile — centralizado, sem overflow horizontal */}
+      <div className="container-page relative z-10 w-full min-w-0 max-w-full lg:hidden">
+        <div className="mx-auto flex w-full min-w-0 max-w-full flex-col items-center gap-8 sm:gap-10">
+          <div className="w-full min-w-0 max-w-full text-center">
             <div className="mb-4 flex justify-center">
-              <a href="#" className="inline-flex py-0.5" aria-label="Scale Company — início">
-                <ScaleLogo heightClass="h-9" className="max-w-[240px]" />
+              <a href="#" className="inline-flex max-w-full py-0.5" aria-label="Scale Company — início">
+                <ScaleLogo heightClass="h-9" className="max-w-[min(240px,100%)]" />
               </a>
             </div>
 
-            <h1 className="mb-3 text-center font-display text-[1.65rem] font-bold leading-[1.08] tracking-tight text-white sm:text-3xl sm:leading-[1.06] md:text-display-2xl md:leading-[0.98] md:tracking-[-0.03em]">
-              {titleMobile}{" "}
-              <span className="text-gradient-white">{titleLine3}</span>
+            <HeroEyebrow className="mx-auto !mb-3" />
+
+            <h1 className="hero-title-mobile mb-3 w-full max-w-full text-balance font-display font-bold leading-[1.12] tracking-tight text-white">
+              <span className="block">{titleLine1}</span>
+              <span className="block">{titleLine2}</span>
+              <span className="block">{titleLine3}</span>
             </h1>
 
-            <div className="mx-auto w-[70%] max-w-full text-center">
-              <p className="hero-subheadline mb-6 mt-2 text-center font-display text-base font-semibold leading-snug text-brand-blue sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
-                {sub}
-              </p>
+            <p className="hero-subheadline text-gradient-blue-metallic mx-auto mb-5 mt-2 w-full max-w-xl text-pretty text-center font-display text-base font-semibold leading-snug sm:text-lg">
+              {sub}
+            </p>
 
-              <p className="mx-auto mb-8 max-w-2xl text-center text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg">
-                A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
-                <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
-              </p>
-            </div>
+            <p className="mx-auto mb-6 w-full max-w-xl text-pretty text-center text-sm leading-relaxed text-content-secondary sm:text-base">
+              A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
+              <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
+            </p>
           </div>
 
-          <SquadPanels className="-mt-[40px] h-[min(37.2vh,336px)] min-h-[228px] sm:h-[min(36vh,372px)] md:mt-0 md:h-[min(60vh,620px)] md:min-h-[380px]" />
+          <SquadPanels className="h-[min(32vh,280px)] min-h-[200px] w-full min-w-0 max-w-full sm:h-[min(34vh,320px)]" />
 
-          <HeroCTAs />
-          <HeroProofPoints />
+          <HeroCTAs mobile className="px-0" />
+          <HeroProofPoints mobile />
         </div>
       </div>
 
-      {/* Desktop — duas colunas, alinhado à esquerda */}
-      <div className="relative z-10 mx-auto hidden w-[80vw] max-w-[80vw] flex-1 items-center lg:flex">
+      {/* Desktop — duas colunas, alinhado ao menu (container-page) */}
+      <div className="container-page relative z-10 hidden w-full flex-1 items-center lg:flex">
         <div className="grid w-full items-center gap-12 xl:gap-16 lg:grid-cols-2">
           <div className="flex w-full max-w-[41.4rem] flex-col items-start justify-center text-left">
+            <HeroEyebrow className="!mb-3" />
+
             <h1 className="hero-title mb-3 w-full max-w-[41.4rem] text-left font-display font-bold tracking-tight text-white md:tracking-[-0.03em]">
               <span className="block whitespace-nowrap">{titleLine1}</span>
               <span className="block whitespace-nowrap">{titleLine2}</span>
-              <span className="block whitespace-nowrap text-gradient-white">{titleLine3}</span>
+              <span className="block whitespace-nowrap">{titleLine3}</span>
             </h1>
 
-            <p className="hero-subheadline mb-4 mt-2 max-w-[41.4rem] text-left font-display text-base font-semibold leading-snug text-brand-blue sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
+            <p className="hero-subheadline text-gradient-blue-metallic mb-4 mt-2 max-w-[41.4rem] text-left font-display text-base font-semibold leading-snug sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
               {sub}
             </p>
 

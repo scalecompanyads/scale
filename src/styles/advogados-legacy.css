@@ -200,6 +200,25 @@
     background-clip: text;
   }
 
+  .text-gradient-blue-metallic {
+    background: linear-gradient(
+      115deg,
+      #d6ecff 0%,
+      #7ec0ff 12%,
+      #0077ff 28%,
+      #003e99 48%,
+      #1a8fff 62%,
+      #5eb8ff 78%,
+      #b3ddff 92%,
+      #0077ff 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
   .text-gradient-orange {
     background: linear-gradient(135deg, #ff8533 0%, #ff6a00 100%);
     -webkit-background-clip: text;
@@ -233,6 +252,7 @@
 /* -- TYPOGRAPHY OVERRIDES (/advogados) -- */
 .advogados-page {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 .advogados-page h1,
@@ -262,22 +282,52 @@
   font-weight: 400;
 }
 
-/* Hero: título sempre em exatamente 3 linhas */
-.advogados-page .hero-title {
-  font-size: clamp(1.05rem, 2.85vw + 0.35rem, 3.85rem);
-  font-weight: 700;
-  line-height: 1.08;
-  min-height: calc(3 * 1.08em);
+/* Hero desktop: título em 3 linhas fixas */
+@media (min-width: 1024px) {
+  .advogados-page .hero-title {
+    font-size: clamp(1.05rem, 2.85vw + 0.35rem, 3.85rem);
+    font-weight: 700;
+    line-height: 1.08;
+    min-height: calc(3 * 1.08em);
+  }
+
+  .advogados-page .hero-title > span {
+    display: block;
+    font-weight: 700;
+    white-space: nowrap;
+  }
 }
 
-.advogados-page .hero-title > span {
+/* Hero mobile: 3 linhas com quebra natural, sem estourar a tela */
+.advogados-page .hero-title-mobile {
+  font-size: clamp(1.76rem, 6.76vw, 2.6rem);
+  font-weight: 700;
+}
+
+.advogados-page .hero-title-mobile > span {
   display: block;
   font-weight: 700;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .advogados-page .hero-subheadline {
   font-weight: 600;
+}
+
+.advogados-page .hero-subheadline.text-gradient-blue-metallic {
+  font-weight: 600;
+  animation: hero-blue-metallic-shine 10s ease-in-out infinite;
+}
+
+@keyframes hero-blue-metallic-shine {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 /* Renderiza seções abaixo da dobra sob demanda para reduzir custo inicial. */
