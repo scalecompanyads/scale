@@ -296,6 +296,23 @@
     font-weight: 700;
     white-space: nowrap;
   }
+
+  /* /marketing-juridico — título longo: menor e com quebra, sem invadir a coluna da imagem */
+  .marketing-juridico-page .hero-desktop-copy {
+    max-width: 34rem;
+  }
+
+  .marketing-juridico-page .hero-title {
+    font-size: clamp(0.95rem, 2.1vw + 0.15rem, 2.55rem);
+    min-height: auto;
+    line-height: 1.12;
+  }
+
+  .marketing-juridico-page .hero-title > span {
+    white-space: normal;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
 }
 
 /* Hero mobile: 3 linhas com quebra natural, sem estourar a tela */

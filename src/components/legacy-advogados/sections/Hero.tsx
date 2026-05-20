@@ -235,13 +235,13 @@ export function Hero(props: HeroProps) {
       {/* Desktop — duas colunas, alinhado ao menu (container-page) */}
       <div className="container-page relative z-10 hidden w-full flex-1 items-center lg:flex">
         <div className="grid w-full items-center gap-12 xl:gap-16 lg:grid-cols-2">
-          <div className="flex w-full max-w-[41.4rem] flex-col items-start justify-center text-left">
+          <div className="hero-desktop-copy flex w-full min-w-0 max-w-[41.4rem] flex-col items-start justify-center text-left">
             <HeroEyebrow className="!mb-3" />
 
-            <h1 className="hero-title mb-3 w-full max-w-[41.4rem] text-left font-display font-bold tracking-tight text-white md:tracking-[-0.03em]">
-              <span className="block whitespace-nowrap">{titleLine1}</span>
-              <span className="block whitespace-nowrap">{titleLine2}</span>
-              <span className="block whitespace-nowrap">{titleLine3}</span>
+            <h1 className="hero-title mb-3 w-full min-w-0 max-w-full text-left font-display font-bold tracking-tight text-white md:tracking-[-0.03em]">
+              <span className="block">{titleLine1}</span>
+              <span className="block">{titleLine2}</span>
+              <span className="block">{titleLine3}</span>
             </h1>
 
             <p className="hero-subheadline text-gradient-blue-metallic mb-4 mt-2 max-w-[41.4rem] text-left font-display text-base font-semibold leading-snug sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
