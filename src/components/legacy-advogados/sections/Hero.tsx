@@ -53,6 +53,14 @@ const DEFAULT_HEADLINE_LINES = [
 const DEFAULT_SUBHEADLINE =
   "Implementamos uma máquina de aquisição de novos contratos com uma estrutura validada";
 
+const HERO_EYEBROW = "Marketing Jurídico";
+
+function HeroEyebrow({ className }: { className?: string }) {
+  return (
+    <p className={cn("section-label mb-4 normal-case tracking-wide", className)}>{HERO_EYEBROW}</p>
+  );
+}
+
 function resolveHeadlineLines({
   headlineLine1,
   headlineLine2,
@@ -248,6 +256,8 @@ export function Hero(props: HeroProps) {
               </a>
             </div>
 
+            {!isMarketing && <HeroEyebrow className="mx-auto !mb-3" />}
+
             <HeroTitleLines
               marketing={isMarketing}
               line1={titleLine1}
@@ -262,7 +272,9 @@ export function Hero(props: HeroProps) {
             <p
               className={cn(
                 "hero-subheadline mx-auto mb-5 mt-2 w-full max-w-xl text-pretty text-center font-display font-semibold leading-snug",
-                isMarketing ? "text-gradient-blue-metallic" : "text-gradient-blue-metallic sm:text-lg"
+                isMarketing
+                  ? "text-gradient-blue-metallic"
+                  : "text-gradient-blue-metallic text-base sm:text-lg"
               )}
             >
               {sub}
@@ -284,8 +296,10 @@ export function Hero(props: HeroProps) {
       {/* Desktop — /advogados: duas colunas alinhadas à esquerda */}
       {!isMarketing && (
         <div className="container-page relative z-10 hidden w-full flex-1 items-center lg:flex">
-          <div className="grid w-full items-center gap-12 lg:grid-cols-2 xl:gap-16">
-            <div className="flex w-full min-w-0 max-w-[41.4rem] flex-col items-start justify-center text-left">
+          <div className="grid w-full items-center gap-12 xl:gap-16 lg:grid-cols-2">
+            <div className="hero-desktop-copy flex w-full min-w-0 max-w-[41.4rem] flex-col items-start justify-center text-left">
+              <HeroEyebrow className="!mb-3" />
+
               <HeroTitleLines
                 marketing={false}
                 line1={titleLine1}
@@ -294,7 +308,7 @@ export function Hero(props: HeroProps) {
                 className="hero-title mb-3 w-full min-w-0 max-w-full text-left font-display font-bold tracking-tight text-white md:tracking-[-0.03em]"
               />
 
-              <p className="hero-subheadline text-gradient-blue-metallic mb-4 mt-2 max-w-[41.4rem] text-left font-display font-semibold leading-snug sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
+              <p className="hero-subheadline text-gradient-blue-metallic mb-4 mt-2 max-w-[41.4rem] text-left font-display text-base font-semibold leading-snug sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
                 {sub}
               </p>
 
@@ -308,7 +322,7 @@ export function Hero(props: HeroProps) {
             </div>
 
             <div className="flex w-full min-w-0 items-center justify-end">
-              <SquadPanels className="aspect-[4/3] w-full max-w-[644px]" />
+              <SquadPanels className="aspect-[4/3] max-w-[644px]" />
             </div>
           </div>
         </div>

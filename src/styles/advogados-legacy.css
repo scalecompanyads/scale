@@ -337,7 +337,7 @@
 
 /* Hero mobile — /advogados */
 .advogados-page:not(.marketing-juridico-page) .hero-title-mobile {
-  font-size: clamp(1.35rem, 5.2vw, 2rem);
+  font-size: clamp(1.76rem, 6.76vw, 2.6rem);
   font-weight: 700;
 }
 
