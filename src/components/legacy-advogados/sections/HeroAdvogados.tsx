@@ -6,7 +6,7 @@ import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 import { ScaleLogo } from "@/components/legacy-advogados/ui/scale-logo";
 import { cn } from "@/components/legacy-advogados/lib/utils";
 
-const proofPoints = ["+ 200 escrit├│rios", "Compliance com OAB Garantido"];
+const proofPoints = ["+ 200 escritórios", "Compliance com OAB Garantido"];
 
 const squad = [
   {
@@ -25,7 +25,7 @@ const squad = [
   },
   {
     name: "Vitor Escocard",
-    role: "S├│cio da Scale Company",
+    role: "Sócio da Scale Company",
     image: "/images/hero-squad-3-480.webp",
     srcSet: "/images/hero-squad-3-320.webp 320w, /images/hero-squad-3-480.webp 480w",
     bg: "bg-[#4ecdc4]",
@@ -42,15 +42,15 @@ interface HeroProps {
 }
 
 const DEFAULT_HEADLINE_LINES = [
-  "Ag├¬ncia Especializada",
-  "para Escrit├│rios de",
+  "Agência Especializada",
+  "para Escritórios de",
   "Advocacia",
 ] as const;
 
 const DEFAULT_SUBHEADLINE =
-  "Implementamos uma m├íquina de aquisi├º├úo de novos contratos com uma estrutura validada";
+  "Implementamos uma máquina de aquisição de novos contratos com uma estrutura validada";
 
-const HERO_EYEBROW = "Marketing Jur├¡dico";
+const HERO_EYEBROW = "Marketing Jurídico";
 
 function HeroEyebrow({ className }: { className?: string }) {
   return (
@@ -68,10 +68,10 @@ function resolveHeadlineLines({
   if (headlineLine1 && headlineLine2 && headlineLine3) {
     return [headlineLine1, headlineLine2, headlineLine3];
   }
-  if (headline === "Marketing jur├¡dico para escrit├│rios que querem") {
+  if (headline === "Marketing jurídico para escritórios que querem") {
     return [
-      "Marketing jur├¡dico para",
-      "escrit├│rios que querem",
+      "Marketing jurídico para",
+      "escritórios que querem",
       headlineHighlight ?? "atrair clientes com previsibilidade.",
     ];
   }
@@ -197,12 +197,12 @@ export function HeroAdvogados(props: HeroProps) {
       />
       <div className="glow-blue pointer-events-none absolute -top-40 left-1/2 h-[min(500px,80vw)] w-[min(700px,120vw)] -translate-x-1/2 opacity-25" />
 
-      {/* Mobile ÔÇö centralizado, sem overflow horizontal */}
+      {/* Mobile — centralizado */}
       <div className="container-page relative z-10 w-full min-w-0 max-w-full lg:hidden">
         <div className="mx-auto flex w-full min-w-0 max-w-full flex-col items-center gap-8 sm:gap-10">
           <div className="w-full min-w-0 max-w-full text-center">
             <div className="mb-4 flex justify-center">
-              <a href="#" className="inline-flex max-w-full py-0.5" aria-label="Scale Company ÔÇö in├¡cio">
+              <a href="#" className="inline-flex max-w-full py-0.5" aria-label="Scale Company — início">
                 <ScaleLogo heightClass="h-9" className="max-w-[min(240px,100%)]" />
               </a>
             </div>
@@ -232,7 +232,7 @@ export function HeroAdvogados(props: HeroProps) {
         </div>
       </div>
 
-      {/* Desktop ÔÇö duas colunas, alinhado ao menu (container-page) */}
+      {/* Desktop — duas colunas */}
       <div className="container-page relative z-10 hidden w-full flex-1 items-center lg:flex">
         <div className="grid w-full items-center gap-12 xl:gap-16 lg:grid-cols-2">
           <div className="hero-desktop-copy flex w-full min-w-0 max-w-[41.4rem] flex-col items-start justify-center text-left">
