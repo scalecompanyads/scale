@@ -1,7 +1,8 @@
 ---
 import BaseHead from '@components/layout/BaseHead.astro';
-import AdvogadosLandingWithProvider from '@components/legacy-advogados/AdvogadosLandingWithProvider';
+import MarketingJuridicoLandingWithProvider from '@components/legacy-advogados/MarketingJuridicoLandingWithProvider';
 import '../styles/advogados-legacy.css';
+import '../styles/marketing-juridico-legacy.css';
 ---
 
 <!DOCTYPE html>
@@ -51,13 +52,6 @@ import '../styles/advogados-legacy.css';
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KS5L52P9"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <AdvogadosLandingWithProvider
-    heroVariant="marketing-juridico"
-    heroHeadlineLine1="Advogados que dependem"
-    heroHeadlineLine2="de indicação"
-    heroHeadlineLine3="crescem devagar."
-    heroSubHeadline="Escritórios que constroem uma máquina de aquisição crescem com previsibilidade."
-    client:load
-  />
+  <MarketingJuridicoLandingWithProvider client:load />
   </body>
 </html>

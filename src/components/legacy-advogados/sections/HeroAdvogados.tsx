@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "@/components/legacy-advogados/ui/next-image-shim";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
@@ -6,7 +6,7 @@ import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 import { ScaleLogo } from "@/components/legacy-advogados/ui/scale-logo";
 import { cn } from "@/components/legacy-advogados/lib/utils";
 
-const proofPoints = ["+ 200 escritórios", "Compliance com OAB Garantido"];
+const proofPoints = ["+ 200 escrit├│rios", "Compliance com OAB Garantido"];
 
 const squad = [
   {
@@ -25,17 +25,14 @@ const squad = [
   },
   {
     name: "Vitor Escocard",
-    role: "Sócio da Scale Company",
+    role: "S├│cio da Scale Company",
     image: "/images/hero-squad-3-480.webp",
     srcSet: "/images/hero-squad-3-320.webp 320w, /images/hero-squad-3-480.webp 480w",
     bg: "bg-[#4ecdc4]",
   },
 ] as const;
 
-export type HeroVariant = "default" | "marketing-juridico";
-
 interface HeroProps {
-  variant?: HeroVariant;
   headlineLine1?: string;
   headlineLine2?: string;
   headlineLine3?: string;
@@ -45,15 +42,15 @@ interface HeroProps {
 }
 
 const DEFAULT_HEADLINE_LINES = [
-  "Agência Especializada",
-  "para Escritórios de",
+  "Ag├¬ncia Especializada",
+  "para Escrit├│rios de",
   "Advocacia",
 ] as const;
 
 const DEFAULT_SUBHEADLINE =
-  "Implementamos uma máquina de aquisição de novos contratos com uma estrutura validada";
+  "Implementamos uma m├íquina de aquisi├º├úo de novos contratos com uma estrutura validada";
 
-const HERO_EYEBROW = "Marketing Jurídico";
+const HERO_EYEBROW = "Marketing Jur├¡dico";
 
 function HeroEyebrow({ className }: { className?: string }) {
   return (
@@ -71,10 +68,10 @@ function resolveHeadlineLines({
   if (headlineLine1 && headlineLine2 && headlineLine3) {
     return [headlineLine1, headlineLine2, headlineLine3];
   }
-  if (headline === "Marketing jurídico para escritórios que querem") {
+  if (headline === "Marketing jur├¡dico para escrit├│rios que querem") {
     return [
-      "Marketing jurídico para",
-      "escritórios que querem",
+      "Marketing jur├¡dico para",
+      "escrit├│rios que querem",
       headlineHighlight ?? "atrair clientes com previsibilidade.",
     ];
   }
@@ -183,53 +180,12 @@ function HeroProofPoints({ className, mobile }: { className?: string; mobile?: b
   );
 }
 
-function HeroTitleLines({
-  line1,
-  line2,
-  line3,
-  marketing,
-  className,
-}: {
-  line1: string;
-  line2: string;
-  line3: string;
-  marketing: boolean;
-  className?: string;
-}) {
-  if (marketing) {
-    return (
-      <h1 className={className}>
-        <span className="hero-title-bold block">{line1}</span>
-        <span className="hero-title-bold block">{line2}</span>
-        <span className="hero-title-light block">{line3}</span>
-      </h1>
-    );
-  }
-
-  return (
-    <h1 className={className}>
-      <span className="block">{line1}</span>
-      <span className="block">{line2}</span>
-      <span className="block">{line3}</span>
-    </h1>
-  );
-}
-
-export function Hero(props: HeroProps) {
-  const { variant = "default", subHeadline } = props;
-  const isMarketing = variant === "marketing-juridico";
+export function HeroAdvogados(props: HeroProps) {
+  const { subHeadline } = props;
   const [titleLine1, titleLine2, titleLine3] = resolveHeadlineLines(props);
   const sub = subHeadline ?? DEFAULT_SUBHEADLINE;
-
   return (
-    <section
-      className={cn(
-        "relative flex min-h-screen items-center overflow-x-hidden pb-16 pt-4 sm:pt-6",
-        isMarketing
-          ? "lg:min-h-screen lg:items-stretch lg:justify-center lg:overflow-hidden lg:pt-[100px] lg:pb-12"
-          : "lg:min-h-[90vh] lg:pt-[100px] lg:pb-12"
-      )}
-    >
+    <section className="relative flex min-h-screen items-center overflow-x-hidden pb-16 pt-4 sm:pt-6 lg:min-h-[90vh] lg:pt-[100px] lg:pb-12">
       <div className="pointer-events-none absolute inset-0 bg-gradient-hero" />
       <div
         className="pointer-events-none absolute inset-0 opacity-100"
@@ -239,44 +195,27 @@ export function Hero(props: HeroProps) {
           backgroundSize: "60px 60px",
         }}
       />
-      <div
-        className={cn(
-          "glow-blue pointer-events-none absolute -top-40 h-[min(500px,80vw)] w-[min(700px,120vw)] -translate-x-1/2 opacity-25",
-          isMarketing ? "left-1/2 lg:left-0 lg:h-[500px] lg:w-[700px]" : "left-1/2"
-        )}
-      />
+      <div className="glow-blue pointer-events-none absolute -top-40 left-1/2 h-[min(500px,80vw)] w-[min(700px,120vw)] -translate-x-1/2 opacity-25" />
 
-      {/* Mobile */}
+      {/* Mobile ÔÇö centralizado, sem overflow horizontal */}
       <div className="container-page relative z-10 w-full min-w-0 max-w-full lg:hidden">
         <div className="mx-auto flex w-full min-w-0 max-w-full flex-col items-center gap-8 sm:gap-10">
           <div className="w-full min-w-0 max-w-full text-center">
             <div className="mb-4 flex justify-center">
-              <a href="#" className="inline-flex max-w-full py-0.5" aria-label="Scale Company — início">
+              <a href="#" className="inline-flex max-w-full py-0.5" aria-label="Scale Company ÔÇö in├¡cio">
                 <ScaleLogo heightClass="h-9" className="max-w-[min(240px,100%)]" />
               </a>
             </div>
 
-            {!isMarketing && <HeroEyebrow className="mx-auto !mb-3" />}
+            <HeroEyebrow className="mx-auto !mb-3" />
 
-            <HeroTitleLines
-              marketing={isMarketing}
-              line1={titleLine1}
-              line2={titleLine2}
-              line3={titleLine3}
-              className={cn(
-                "hero-title-mobile mb-3 w-full max-w-full text-balance font-display leading-[1.12] tracking-tight text-white",
-                isMarketing ? "font-normal" : "font-bold"
-              )}
-            />
+            <h1 className="hero-title-mobile mb-3 w-full max-w-full text-balance font-display font-bold leading-[1.12] tracking-tight text-white">
+              <span className="block">{titleLine1}</span>
+              <span className="block">{titleLine2}</span>
+              <span className="block">{titleLine3}</span>
+            </h1>
 
-            <p
-              className={cn(
-                "hero-subheadline mx-auto mb-5 mt-2 w-full max-w-xl text-pretty text-center font-display font-semibold leading-snug",
-                isMarketing
-                  ? "text-gradient-blue-metallic"
-                  : "text-gradient-blue-metallic text-base sm:text-lg"
-              )}
-            >
+            <p className="hero-subheadline text-gradient-blue-metallic mx-auto mb-5 mt-2 w-full max-w-xl text-pretty text-center font-display text-base font-semibold leading-snug sm:text-lg">
               {sub}
             </p>
 
@@ -293,71 +232,36 @@ export function Hero(props: HeroProps) {
         </div>
       </div>
 
-      {/* Desktop — /advogados: duas colunas alinhadas à esquerda */}
-      {!isMarketing && (
-        <div className="container-page relative z-10 hidden w-full flex-1 items-center lg:flex">
-          <div className="grid w-full items-center gap-12 xl:gap-16 lg:grid-cols-2">
-            <div className="hero-desktop-copy flex w-full min-w-0 max-w-[41.4rem] flex-col items-start justify-center text-left">
-              <HeroEyebrow className="!mb-3" />
+      {/* Desktop ÔÇö duas colunas, alinhado ao menu (container-page) */}
+      <div className="container-page relative z-10 hidden w-full flex-1 items-center lg:flex">
+        <div className="grid w-full items-center gap-12 xl:gap-16 lg:grid-cols-2">
+          <div className="hero-desktop-copy flex w-full min-w-0 max-w-[41.4rem] flex-col items-start justify-center text-left">
+            <HeroEyebrow className="!mb-3" />
 
-              <HeroTitleLines
-                marketing={false}
-                line1={titleLine1}
-                line2={titleLine2}
-                line3={titleLine3}
-                className="hero-title mb-3 w-full min-w-0 max-w-full text-left font-display font-bold tracking-tight text-white md:tracking-[-0.03em]"
-              />
+            <h1 className="hero-title mb-3 w-full min-w-0 max-w-full text-left font-display font-bold tracking-tight text-white md:tracking-[-0.03em]">
+              <span className="block">{titleLine1}</span>
+              <span className="block">{titleLine2}</span>
+              <span className="block">{titleLine3}</span>
+            </h1>
 
-              <p className="hero-subheadline text-gradient-blue-metallic mb-4 mt-2 max-w-[41.4rem] text-left font-display text-base font-semibold leading-snug sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
-                {sub}
-              </p>
+            <p className="hero-subheadline text-gradient-blue-metallic mb-4 mt-2 max-w-[41.4rem] text-left font-display text-base font-semibold leading-snug sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
+              {sub}
+            </p>
 
-              <p className="mb-8 max-w-[41.4rem] text-left text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg lg:mb-6">
-                A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
-                <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
-              </p>
+            <p className="mb-8 max-w-[41.4rem] text-left text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg lg:mb-6">
+              A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
+              <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
+            </p>
 
-              <HeroCTAs className="!items-start !justify-start sm:flex-wrap" />
-              <HeroProofPoints className="mt-8 !items-start lg:mt-6" />
-            </div>
+            <HeroCTAs className="!items-start !justify-start sm:flex-wrap" />
+            <HeroProofPoints className="mt-8 !items-start lg:mt-6" />
+          </div>
 
-            <div className="flex w-full min-w-0 items-center justify-end">
-              <SquadPanels className="aspect-[4/3] max-w-[644px]" />
-            </div>
+          <div className="flex w-full min-w-0 items-center justify-end">
+            <SquadPanels className="aspect-[4/3] max-w-[644px]" />
           </div>
         </div>
-      )}
-
-      {/* Desktop — /marketing-juridico: coluna única centralizada */}
-      {isMarketing && (
-        <div className="container-page hero-desktop-container relative z-10 hidden w-full flex-1 items-center lg:flex">
-          <div className="hero-desktop-stack flex w-full min-w-0 max-w-full flex-col items-center gap-10 xl:gap-12">
-            <div className="hero-desktop-copy mx-auto flex w-full min-w-0 max-w-[62.1rem] flex-col items-center text-center">
-              <HeroTitleLines
-                marketing
-                line1={titleLine1}
-                line2={titleLine2}
-                line3={titleLine3}
-                className="hero-title mb-3 w-full min-w-0 max-w-full text-center font-display font-normal tracking-tight text-white md:tracking-[-0.03em]"
-              />
-
-              <p className="hero-subheadline text-gradient-blue-metallic mx-auto mb-4 mt-2 max-w-[62.1rem] text-center font-display font-semibold">
-                {sub}
-              </p>
-
-              <p className="mx-auto max-w-[62.1rem] text-center text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg">
-                A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
-                <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
-              </p>
-            </div>
-
-            <SquadPanels className="mx-auto aspect-[4/3] h-auto min-h-[320px] w-full max-w-[72rem]" />
-
-            <HeroCTAs className="w-full !items-center !justify-center sm:flex-wrap" />
-            <HeroProofPoints className="w-full !items-center !justify-center" />
-          </div>
-        </div>
-      )}
+      </div>
 
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-surface-950 to-transparent" />
     </section>

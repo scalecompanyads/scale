@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { Navbar } from "@/components/legacy-advogados/sections/Navbar";
-import { HeroAdvogados } from "@/components/legacy-advogados/sections/HeroAdvogados";
+import { HeroMarketingJuridico } from "@/components/legacy-advogados/sections/HeroMarketingJuridico";
 
 const Problem = lazy(() =>
   import("@/components/legacy-advogados/sections/Problem").then((m) => ({ default: m.Problem }))
@@ -68,11 +68,11 @@ function DeferredSection({ children }: { children: ReactNode }) {
   );
 }
 
-export default function AdvogadosPage() {
+export default function MarketingJuridicoLanding() {
   return (
     <main>
       <Navbar />
-      <HeroAdvogados />
+      <HeroMarketingJuridico />
       <DeferredSection>
         <Problem />
       </DeferredSection>
