@@ -255,7 +255,7 @@
   overflow-x: hidden;
 }
 
-.advogados-page h1,
+.advogados-page h1:not(.hero-title):not(.hero-title-mobile),
 .advogados-page h2,
 .advogados-page h3,
 .advogados-page h4,
@@ -282,54 +282,101 @@
   font-weight: 400;
 }
 
-/* Hero desktop: título em 3 linhas fixas */
+/* Hero desktop — /advogados (duas colunas) */
 @media (min-width: 1024px) {
-  .advogados-page .hero-title {
+  .advogados-page:not(.marketing-juridico-page) .hero-title {
     font-size: clamp(1.05rem, 2.85vw + 0.35rem, 3.85rem);
     font-weight: 700;
     line-height: 1.08;
     min-height: calc(3 * 1.08em);
   }
 
-  .advogados-page .hero-title > span {
+  .advogados-page:not(.marketing-juridico-page) .hero-title > span {
     display: block;
     font-weight: 700;
     white-space: nowrap;
   }
 
-  /* /marketing-juridico — título longo: menor e com quebra, sem invadir a coluna da imagem */
+  /* Hero desktop — /marketing-juridico (empilhado, centralizado) */
+  .marketing-juridico-page .hero-desktop-container {
+    max-width: 120rem;
+  }
+
+  .marketing-juridico-page .hero-desktop-stack {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+
   .marketing-juridico-page .hero-desktop-copy {
-    max-width: 34rem;
+    align-items: center;
+    text-align: center;
   }
 
   .marketing-juridico-page .hero-title {
-    font-size: clamp(0.95rem, 2.1vw + 0.15rem, 2.55rem);
-    min-height: auto;
-    line-height: 1.12;
+    font-size: clamp(1.68rem, 4.41vw + 0.56rem, 6.09rem);
+    font-weight: 400;
+    line-height: 1.08;
+    min-height: calc(3 * 1.08em);
+    margin-top: 50px;
   }
 
   .marketing-juridico-page .hero-title > span {
-    white-space: normal;
-    overflow-wrap: break-word;
-    max-width: 100%;
+    display: block;
+    white-space: nowrap;
+  }
+
+  .marketing-juridico-page .hero-title-bold {
+    font-weight: 700;
+  }
+
+  .marketing-juridico-page .hero-title-light {
+    font-weight: 500;
   }
 }
 
-/* Hero mobile: 3 linhas com quebra natural, sem estourar a tela */
-.advogados-page .hero-title-mobile {
-  font-size: clamp(1.76rem, 6.76vw, 2.6rem);
+/* Hero mobile — /advogados */
+.advogados-page:not(.marketing-juridico-page) .hero-title-mobile {
+  font-size: clamp(1.35rem, 5.2vw, 2rem);
   font-weight: 700;
 }
 
-.advogados-page .hero-title-mobile > span {
+.advogados-page:not(.marketing-juridico-page) .hero-title-mobile > span {
   display: block;
   font-weight: 700;
   white-space: normal;
   overflow-wrap: anywhere;
 }
 
+/* Hero mobile — /marketing-juridico */
+.marketing-juridico-page .hero-title-mobile {
+  font-size: clamp(2.19rem, 8.51vw, 3.45rem);
+}
+
+.marketing-juridico-page .hero-title-mobile > span {
+  display: block;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.marketing-juridico-page .hero-title-mobile .hero-title-bold {
+  font-weight: 700;
+}
+
+.marketing-juridico-page .hero-title-mobile .hero-title-light {
+  font-weight: 500;
+}
+
 .advogados-page .hero-subheadline {
+  font-size: clamp(0.875rem, 1.75vw + 0.2rem, 1.125rem);
   font-weight: 600;
+  line-height: 1.35;
+}
+
+@media (max-width: 1023px) {
+  .marketing-juridico-page .hero-subheadline {
+    font-size: clamp(1.006rem, 2.01vw + 0.23rem, 1.294rem);
+  }
 }
 
 .advogados-page .hero-subheadline.text-gradient-blue-metallic {

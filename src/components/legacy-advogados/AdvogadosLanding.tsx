@@ -68,7 +68,10 @@ function DeferredSection({ children }: { children: ReactNode }) {
   );
 }
 
+import type { HeroVariant } from "@/components/legacy-advogados/sections/Hero";
+
 interface AdvogadosPageProps {
+  heroVariant?: HeroVariant;
   heroHeadlineLine1?: string;
   heroHeadlineLine2?: string;
   heroHeadlineLine3?: string;
@@ -78,6 +81,7 @@ interface AdvogadosPageProps {
 }
 
 export default function AdvogadosPage({
+  heroVariant,
   heroHeadlineLine1,
   heroHeadlineLine2,
   heroHeadlineLine3,
@@ -89,6 +93,7 @@ export default function AdvogadosPage({
     <main>
       <Navbar />
       <Hero
+        variant={heroVariant}
         headlineLine1={heroHeadlineLine1}
         headlineLine2={heroHeadlineLine2}
         headlineLine3={heroHeadlineLine3}

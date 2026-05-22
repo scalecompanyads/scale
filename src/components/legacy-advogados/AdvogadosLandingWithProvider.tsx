@@ -2,7 +2,10 @@ import AdvogadosLanding from "@/components/legacy-advogados/AdvogadosLanding";
 import { LeadFormProvider } from "@/components/legacy-advogados/contexts/lead-form-context";
 import { LeadFormModal } from "@/components/legacy-advogados/ui/lead-form-modal";
 
+import type { HeroVariant } from "@/components/legacy-advogados/sections/Hero";
+
 interface Props {
+  heroVariant?: HeroVariant;
   heroHeadlineLine1?: string;
   heroHeadlineLine2?: string;
   heroHeadlineLine3?: string;
@@ -12,6 +15,7 @@ interface Props {
 }
 
 export default function AdvogadosLandingWithProvider({
+  heroVariant,
   heroHeadlineLine1,
   heroHeadlineLine2,
   heroHeadlineLine3,
@@ -22,6 +26,7 @@ export default function AdvogadosLandingWithProvider({
   return (
     <LeadFormProvider>
       <AdvogadosLanding
+        heroVariant={heroVariant}
         heroHeadlineLine1={heroHeadlineLine1}
         heroHeadlineLine2={heroHeadlineLine2}
         heroHeadlineLine3={heroHeadlineLine3}
