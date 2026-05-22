@@ -50,14 +50,6 @@ const DEFAULT_HEADLINE_LINES = [
 const DEFAULT_SUBHEADLINE =
   "Implementamos uma máquina de aquisição de novos contratos com uma estrutura validada";
 
-const HERO_EYEBROW = "Marketing Jurídico";
-
-function HeroEyebrow({ className }: { className?: string }) {
-  return (
-    <p className={cn("section-label mb-4 normal-case tracking-wide", className)}>{HERO_EYEBROW}</p>
-  );
-}
-
 function resolveHeadlineLines({
   headlineLine1,
   headlineLine2,
@@ -207,15 +199,13 @@ export function Hero(props: HeroProps) {
               </a>
             </div>
 
-            <HeroEyebrow className="mx-auto !mb-3" />
-
-            <h1 className="hero-title-mobile mb-3 w-full max-w-full text-balance font-display font-bold leading-[1.12] tracking-tight text-white">
-              <span className="block">{titleLine1}</span>
-              <span className="block">{titleLine2}</span>
-              <span className="block">{titleLine3}</span>
+            <h1 className="hero-title-mobile mb-3 w-full max-w-full text-balance font-display font-normal leading-[1.12] tracking-tight text-white">
+              <span className="hero-title-bold block">{titleLine1}</span>
+              <span className="hero-title-bold block">{titleLine2}</span>
+              <span className="hero-title-light block">{titleLine3}</span>
             </h1>
 
-            <p className="hero-subheadline text-gradient-blue-metallic mx-auto mb-5 mt-2 w-full max-w-xl text-pretty text-center font-display text-base font-semibold leading-snug sm:text-lg">
+            <p className="hero-subheadline mx-auto mb-5 mt-2 w-full max-w-xl text-pretty text-center font-display font-semibold text-white">
               {sub}
             </p>
 
@@ -232,34 +222,30 @@ export function Hero(props: HeroProps) {
         </div>
       </div>
 
-      {/* Desktop — duas colunas, alinhado ao menu (container-page) */}
-      <div className="container-page relative z-10 hidden w-full flex-1 items-center lg:flex">
-        <div className="grid w-full items-center gap-12 xl:gap-16 lg:grid-cols-2">
-          <div className="hero-desktop-copy flex w-full min-w-0 max-w-[41.4rem] flex-col items-start justify-center text-left">
-            <HeroEyebrow className="!mb-3" />
-
-            <h1 className="hero-title mb-3 w-full min-w-0 max-w-full text-left font-display font-bold tracking-tight text-white md:tracking-[-0.03em]">
-              <span className="block">{titleLine1}</span>
-              <span className="block">{titleLine2}</span>
-              <span className="block">{titleLine3}</span>
+      {/* Desktop — coluna única empilhada e centralizada */}
+      <div className="container-page hero-desktop-container relative z-10 hidden w-full flex-1 items-center lg:flex">
+        <div className="hero-desktop-stack flex w-full min-w-0 max-w-full flex-col items-center gap-10 xl:gap-12">
+          <div className="hero-desktop-copy mx-auto flex w-full min-w-0 max-w-[62.1rem] flex-col items-center text-center">
+            <h1 className="hero-title mb-3 mt-[50px] w-full min-w-0 max-w-full text-center font-display font-normal tracking-tight text-white md:tracking-[-0.03em]">
+              <span className="hero-title-bold block">{titleLine1}</span>
+              <span className="hero-title-bold block">{titleLine2}</span>
+              <span className="hero-title-light block">{titleLine3}</span>
             </h1>
 
-            <p className="hero-subheadline text-gradient-blue-metallic mb-4 mt-2 max-w-[41.4rem] text-left font-display text-base font-semibold leading-snug sm:text-lg sm:leading-tight md:text-display-md md:leading-[1.06]">
+            <p className="hero-subheadline mx-auto mb-4 mt-2 max-w-[62.1rem] text-center font-display font-semibold text-white">
               {sub}
             </p>
 
-            <p className="mb-8 max-w-[41.4rem] text-left text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg lg:mb-6">
+            <p className="mx-auto max-w-[62.1rem] text-center text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg">
               A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
               <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
             </p>
-
-            <HeroCTAs className="!items-start !justify-start sm:flex-wrap" />
-            <HeroProofPoints className="mt-8 !items-start lg:mt-6" />
           </div>
 
-          <div className="flex w-full min-w-0 items-center justify-end">
-            <SquadPanels className="aspect-[4/3] max-w-[644px]" />
-          </div>
+          <SquadPanels className="mx-auto aspect-[4/3] h-auto min-h-[320px] w-full max-w-[72rem]" />
+
+          <HeroCTAs className="w-full !items-center !justify-center sm:flex-wrap" />
+          <HeroProofPoints className="w-full !items-center !justify-center" />
         </div>
       </div>
 
