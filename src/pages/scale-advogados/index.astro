@@ -1,0 +1,3298 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import ScaleAdvogadosV3Hero from '@components/legal/ScaleAdvogadosV3Hero';
+import {
+  legalAreas,
+  legalOffer,
+  legalTeam,
+  oabCompliance,
+} from '@data/legalSeo';
+import { brand, getCanonicalUrl, organizationId, websiteId } from '@data/seo';
+import '@styles/scale-advogados-v3-hero.css';
+import {
+  ArrowRight,
+  BadgeCheck,
+  BarChart3,
+  Eye,
+  FileText,
+  Gauge,
+  Layers,
+  LineChart,
+  MessageCircle,
+  MousePointerClick,
+  ShieldCheck,
+  X,
+} from 'lucide-react';
+
+const canonical = getCanonicalUrl('/scale-advogados');
+const pageDescription =
+  'Tráfego pago para advogados com campanhas de fundo de funil, landing pages ultrarrápidas, qualificação inteligente e comunicação alinhada à OAB.';
+
+const conversionCards = [
+  {
+    title: 'Verba',
+    desc: 'Agência generalista compra volume. No jurídico, volume barato costuma virar triagem cara, WhatsApp lotado e equipe comercial cansada.',
+    Icon: MousePointerClick,
+  },
+  {
+    title: 'Filtro',
+    desc: 'A campanha já nasce com intenção, negativas e linguagem de qualificação para reduzir curiosos antes do primeiro contato.',
+    Icon: Gauge,
+  },
+  {
+    title: 'WhatsApp',
+    desc: 'O contato chega com mais contexto, área, urgência e fit comercial. Menos atendimento desperdiçado, mais conversa com chance real.',
+    Icon: FileText,
+  },
+  {
+    title: 'Contrato',
+    desc: 'A leitura não termina no lead. Acompanhamos origem, qualidade, atendimento e sinais que aproximam mídia de honorários.',
+    Icon: LineChart,
+  },
+];
+
+const badLeadTypes = [
+  {
+    label: 'Gente curiosa',
+    description: 'Que quer informacao gratuita, nao contrato.',
+  },
+  {
+    label: 'Gente sem dinheiro',
+    description: 'Que nao tem como pagar os honorarios.',
+  },
+  {
+    label: 'Gente que nunca vai fechar',
+    description: 'Que ja decidiu nao contratar, so esta pesquisando.',
+  },
+];
+
+const agencyFailures = [
+  'Nao analisam o atendimento',
+  'Nao entendem o funil',
+  'Nao acompanham o fechamento',
+  'Nao otimizam com base em resultado real',
+];
+
+const technologyDifferentials = [
+  {
+    title: 'Milissegundos valem contratos',
+    desc:
+      'Desenvolvemos landing pages em Astro e JAMstack para que o clique pago encontre uma página leve, estável e pronta para converter no celular.',
+    Icon: Layers,
+  },
+  {
+    title: 'Grafite, silêncio visual e respeito',
+    desc:
+      'A estética é parte da venda: grafite, contraste limpo e minimalismo institucional criam autoridade sem parecer anúncio desesperado.',
+    Icon: Eye,
+  },
+  {
+    title: 'O fim do achismo comercial',
+    desc:
+      'Mapeamos clique no WhatsApp, formulário, origem da campanha e sinais de qualidade para saber qual palavra-chave trouxe oportunidade real.',
+    Icon: BarChart3,
+  },
+];
+
+const specialtyHighlights = [
+  {
+    title: 'Advocacia Criminal: urgência e sigilo',
+    href: '/trafego-pago-para-advogados/advogados-criminalistas',
+    desc:
+      'O mercado criminal não perdoa lentidão. Capturamos o momento da dor sem sensacionalismo, com página rápida, mensagem discreta e foco em conversa válida.',
+    metrics: ['custo por conversa válida', 'tempo até primeiro atendimento'],
+  },
+  {
+    title: 'Direito Previdenciário: triagem documental',
+    href: '/trafego-pago-para-advogados/advogados-previdenciarios',
+    desc:
+      'Volume vazio quebra a operação previdenciária. O funil separa curiosidade de demanda madura e favorece contatos com documentos e contexto para análise.',
+    metrics: ['custo por lead com documento', 'CNIS e laudos prontos'],
+  },
+  {
+    title: 'Tributário e Empresarial: aquisição B2B',
+    href: '/trafego-pago-para-advogados/advogados-empresariais',
+    secondaryHref: '/trafego-pago-para-advogados/advogados-tributaristas',
+    desc:
+      'CEO e diretor financeiro não respondem a anúncio amador. O funil filtra porte, cargo, escopo e problema antes da conversa comercial.',
+    metrics: ['custo por decisor', 'porte da empresa'],
+  },
+  {
+    title: 'Família e Imobiliário: clareza patrimonial',
+    href: '/trafego-pago-para-advogados/advogados-de-familia',
+    secondaryHref: '/trafego-pago-para-advogados/advogados-imobiliarios',
+    desc:
+      'Demandas sensíveis exigem discrição e definição. Segmentamos divórcio, guarda, inventário, locação e bloqueios patrimoniais sem misturar dores diferentes.',
+    metrics: ['custo por demanda definida', 'privacidade no contato'],
+  },
+];
+
+const faqs = [
+  {
+    question: 'Por que a Scale não trata a aquisição de contratos jurídicos como um marketing comum?',
+    answer: 'Porque fechar contratos de alto padrão exige intenção qualificada, confiança técnica e processos ágeis de atendimento. Por isso, nossa assessoria não foca em curtidas ou cliques baratos, mas sim em estruturar uma máquina previsível que une anúncios de intenção, páginas ultrarrápidas, automações inteligentes de qualificação primária e treinamento comercial de fechamento.'
+  },
+  {
+    question: 'Quanto tempo leva para a máquina começar a gerar reuniões e contratos?',
+    answer: 'A nossa implementação completa leva até 15 dias para ir ao ar. Logo nas primeiras semanas com os anúncios ativos e o funil comercial alinhado, os primeiros leads qualificados começam a chegar. O tempo até as assinaturas de contrato varia conforme o ticket e a área do escritório, mas o sistema de atração é desenhado para acelerar esse ciclo comercial desde o primeiro dia.'
+  },
+  {
+    question: 'A implementação da máquina de aquisição respeita o Provimento 205/2021 da OAB?',
+    answer: 'Absolutamente. Toda a comunicação, design visual dos criativos, landing pages e mensagens automáticas são estruturados seguindo o caráter estritamente informativo e sóbrio exigido pelo código de ética da OAB. Nada vai ao ar sem a prévia validação e aprovação do seu escritório.'
+  }
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${canonical}#service`,
+  name: 'Tráfego Pago para Advogados',
+  alternateName: legalOffer.name,
+  description: pageDescription,
+  url: canonical,
+  provider: {
+    '@id': organizationId,
+  },
+  isPartOf: {
+    '@id': websiteId,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Brasil',
+  },
+  serviceType: 'Gestão de Google Ads e Meta Ads para escritórios de advocacia',
+  audience: {
+    '@type': 'Audience',
+    audienceType: 'Advogados e escritórios de advocacia',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Áreas jurídicas atendidas',
+    itemListElement: legalAreas.map((area) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: `Tráfego pago para ${area.name}`,
+        description: area.metaDescription,
+      },
+    })),
+  },
+  brand: {
+    '@type': 'Brand',
+    name: brand.name,
+  },
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${canonical}#faq`,
+  isPartOf: {
+    '@id': websiteId,
+  },
+  mainEntity: faqs.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer },
+  })),
+};
+---
+
+<BaseLayout
+  title="Tráfego Pago para Advogados | Motor de Captação Jurídica | Scale"
+  description={pageDescription}
+  canonical={canonical}
+  showFooter={false}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script slot="head" is:inline>
+    document.documentElement.classList.add('trafego-advogados-page');
+  </script>
+  <style slot="head" is:global>
+    html.trafego-advogados-page #header-outer,
+    html.trafego-advogados-page #mobile-panel,
+    html.trafego-advogados-page #nav-overlay {
+      display: none !important;
+    }
+
+    html.trafego-advogados-page #main-content {
+      padding-top: 0 !important;
+    }
+
+    /* Oculta o preloader nesta página */
+    html.trafego-advogados-page #preloader {
+      display: none !important;
+    }
+  </style>
+
+  <div class="paid-advogados">
+    <ScaleAdvogadosV3Hero
+      heading="Descubra como implementar um sistema"
+      headingAccent="previsível e escalável de captação de clientes:"
+      description="Coloque o controle do seu faturamento em suas mãos com um diagnóstico gratuito e personalizado."
+      primaryCtaHref="#scale-form-modal"
+      primaryCtaLabel="Solicitar diagnóstico"
+      client:load
+    />
+        <section class="scale-section scale-section--dark scale-problem scale-problem--final">
+      <div class="scale-container scale-problem__container">
+        <div class="scale-problem__intro">
+          <div class="scale-section-heading">
+            <h2>
+              O problema não é falta de competência jurídica.
+              <span> É depender de um fluxo que você não controla.</span>
+            </h2>
+            <p>
+              A indicação é valiosa, mas cria uma estrutura frágil e ciclos de insegurança:
+            </p>
+          </div>
+
+          <div class="scale-problem-leads">
+            <article class="scale-problem-lead-card">
+              <p class="scale-problem-lead-card__title">Aquisição concentrada</p>
+              <p class="scale-problem-lead-card__description">
+                A entrada de clientes refém da rede de contatos de quem deveria focar na estratégia.
+              </p>
+            </article>
+            <article class="scale-problem-lead-card">
+              <p class="scale-problem-lead-card__title">Agenda Instável</p>
+              <p class="scale-problem-lead-card__description">
+                Zero clareza e falta de dados de onde virão os próximos honorários.
+              </p>
+            </article>
+            <article class="scale-problem-lead-card">
+              <p class="scale-problem-lead-card__title">Sócios Sobrecarregados</p>
+              <p class="scale-problem-lead-card__description">
+                Você apaga incêndios, atende, vende e advoga ao mesmo tempo.
+              </p>
+            </article>
+          </div>
+
+          <div class="scale-problem__closing">
+            <span>
+              A culpa por atrair apenas "curiosos" não é sua. Advocacia não é e-commerce. Exige filtro, posicionamento premium e qualificação.
+            </span>
+          </div>
+
+          <div class="scale-problem__cta">
+            <button type="button" class="scale-btn-cta" onclick="window.__openScaleModal()">
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true" focusable="false" style="display: inline-block; vertical-align: middle;">
+                <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/>
+              </svg>
+              Quero entender meu cenário
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- SEÇÃO MÁQUINA DE AQUISIÇÃO (ENTREGÁVEIS / DIFERENCIAL) -->
+        <section class="scale-section scale-section--dark scale-machine-section">
+      <div class="scale-container">
+        <!-- Topo da Seção -->
+        <div class="scale-section-heading">
+          <span class="scale-kicker">Diferencial</span>
+          <h2>Não fazemos apenas marketing. Implementamos uma <span>Máquina de Aquisição</span>.</h2>
+          <p>
+            Agências comuns entregam posts e relatórios de vaidade. Nós estruturamos uma engrenagem integrada de tecnologia, design e vendas focada em honorários recorrentes no seu caixa.
+          </p>
+          <p class="scale-problem-subtitle" style="font-weight: 500; color: rgba(255, 255, 255, 0.9); font-size: 1.15rem; max-width: 760px; margin: 1.5rem auto 0; line-height: 1.6;">
+            A sua operação em funcionamento:
+          </p>
+        </div>
+
+        <!-- Layout Split Mobile First -->
+        <div class="scale-machine-layout">
+          <!-- Grade de Entregáveis / Pilares (4 Itens) -->
+          <div class="scale-machine-grid">
+            
+            <article class="scale-machine-card">
+              <div class="scale-machine-card__header">
+                <div class="scale-machine-card__icon scale-machine-card__icon--blue">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                </div>
+                <h3>Tráfego de Intenção</h3>
+              </div>
+              <p>Campanhas de fundo de funil focadas 100% em quem já busca pelo seu serviço.</p>
+            </article>
+
+            <article class="scale-machine-card">
+              <div class="scale-machine-card__header">
+                <div class="scale-machine-card__icon scale-machine-card__icon--green">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+                </div>
+                <h3>Engenharia de Conversão</h3>
+              </div>
+              <p>Landing pages ultrarrápidas que não perdem o lead por lentidão no celular.</p>
+            </article>
+
+            <article class="scale-machine-card">
+              <div class="scale-machine-card__header">
+                <div class="scale-machine-card__icon scale-machine-card__icon--purple">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <h3>Filtro e CRM</h3>
+              </div>
+              <p>Automações com IA para qualificação primária 24/7 e organização visual do seu pipeline de contratos.</p>
+            </article>
+
+            <article class="scale-machine-card">
+              <div class="scale-machine-card__header">
+                <div class="scale-machine-card__icon scale-machine-card__icon--orange">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="2" y1="12" x2="4" y2="12"/></svg>
+                </div>
+                <h3>Posicionamento Premium</h3>
+              </div>
+              <p>Design corporativo, edição de vídeo cinematográfica, 100% alinhados ao provimento da OAB.</p>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- SEÇÃO MÉTODO SCALE -->
+        <section id="metodo" class="scale-section scale-section--dark scale-method-section">
+      <div class="scale-container">
+        <!-- Cabeçalho do Método -->
+        <div class="scale-section-heading">
+          <span class="scale-kicker">Método Scale</span>
+          <h2>Do primeiro contato aos primeiros anúncios: uma <span>Máquina Previsível de Aquisição de Contratos</span> para seu Escritório em até 15 dias</h2>
+        </div>
+
+        <!-- Grade de Passos (01 ao 05) -->
+        <div class="scale-method-grid">
+          
+          <!-- Passo 01 -->
+          <article class="scale-method-card">
+            <div class="scale-method-card__top">
+              <span class="scale-method-card__num">01</span>
+              <h3>Raio-X Comercial</h3>
+            </div>
+            <p>Mapeamento rápido do seu cenário e histórico de perda de clientes.</p>
+          </article>
+
+          <!-- Passo 02 -->
+          <article class="scale-method-card">
+            <div class="scale-method-card__top">
+              <span class="scale-method-card__num">02</span>
+              <h3>Plano Estratégico (Gratuito)</h3>
+            </div>
+            <p>Definição de canais, mensagens e funil, sem custo inicial.</p>
+          </article>
+
+          <!-- Passo 03 -->
+          <article class="scale-method-card">
+            <div class="scale-method-card__top">
+              <span class="scale-method-card__num">03</span>
+              <h3>Setup e Imersão</h3>
+            </div>
+            <p>Alinhamento técnico de vendas, copy e criação visual.</p>
+          </article>
+
+          <!-- Passo 04 -->
+          <article class="scale-method-card">
+            <div class="scale-method-card__top">
+              <span class="scale-method-card__num">04</span>
+              <h3>Ativos no Ar (Em 15 dias)</h3>
+            </div>
+            <p>Campanhas rodando, página no ar e primeiros testes de conversão.</p>
+          </article>
+
+          <!-- Passo 05 -->
+          <article class="scale-method-card">
+            <div class="scale-method-card__top">
+              <span class="scale-method-card__num">05</span>
+              <h3>Otimização Semanal</h3>
+            </div>
+            <p>Uma equipe com mais de 6 especialistas ajustando o custo e a qualidade das reuniões geradas.</p>
+          </article>
+
+        </div>
+
+        <!-- CTA do Método -->
+        <div class="scale-method-cta" style="margin-top: 3.5rem; display: flex; justify-content: center;">
+          <button type="button" class="scale-btn-cta" onclick="window.__openScaleModal()">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true" focusable="false" style="display: inline-block; vertical-align: middle;">
+              <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/>
+            </svg>
+            Quero minha máquina de aquisição
+          </button>
+        </div>
+      </div>
+    </section>
+
+<!-- SEÇÃO TESTEMUNHOS DESTAQUES (RESULTADOS REAIS) -->
+        <section class="scale-section scale-section--dark scale-spotlight-section">
+      <div class="scale-container">
+        <!-- Topo da Seção -->
+        <div class="scale-section-heading">
+          <span class="scale-kicker">Resultados reais de operações reais</span>
+          <h2>Não são promessas, são honorários mapeados de quem superou a dependência da indicação.</h2>
+        </div>
+
+        <!-- Menu de Abas (Tabs) -->
+        <div class="scale-spotlight-tabs-wrapper">
+          <div class="scale-spotlight-tabs" role="tablist" aria-label="Casos de sucesso de advogados">
+            <button class="scale-spotlight-tab active" role="tab" aria-selected="true" data-target="spotlight-case-01">
+              R$ 300k Mapeados
+            </button>
+            <button class="scale-spotlight-tab" role="tab" aria-selected="false" data-target="spotlight-case-02">
+              R$ 14,6k em 2 Contratos
+            </button>
+            <button class="scale-spotlight-tab" role="tab" aria-selected="false" data-target="spotlight-case-03">
+              R$ 8,4k em 5 Dias
+            </button>
+            <button class="scale-spotlight-tab" role="tab" aria-selected="false" data-target="spotlight-case-04">
+              Contrato no 1º Dia
+            </button>
+          </div>
+        </div>
+
+        <!-- Container de Casos Spotlight -->
+        <div class="scale-spotlight-container">
+          
+          <!-- Caso 01 (R$ 300k) -->
+          <div class="scale-spotlight-content active" id="spotlight-case-01" role="tabpanel">
+            <div class="scale-spotlight-visual-side">
+              <div class="scale-phone-mockup scale-spotlight-img-trigger">
+                <div class="scale-phone-screen">
+                  <img src="/scale-advogados/assets/whatsapp-testimonial-02.png" alt="Testemunho Miranda Advogados - R$ 300k de honorários" class="scale-spotlight-img" />
+                  <div class="scale-phone-overlay">
+                    <div class="scale-phone-expand-btn">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="scale-spotlight-text-side">
+              <span class="scale-spotlight-badge">R$ 300.000,00 Mapeados</span>
+              <h3>Acelerando o comercial e branding no Instagram</h3>
+              <p class="scale-spotlight-description">
+                Reestruturação de branding e tráfego ativo com processos cirúrgicos pré-atendimento.
+              </p>
+              <blockquote class="scale-spotlight-quote">
+                <p>
+                  "Se tudo der certo, tem uns 300k de honorários engatilhados. E na expectativa para os próximos meses."
+                </p>
+                <cite style="display:block;margin-top:0.5rem;font-size:0.85rem;color:rgba(255,255,255,0.4);font-weight:700;text-transform:uppercase;">— Kaio</cite>
+              </blockquote>
+            </div>
+          </div>
+
+          <!-- Caso 02 (R$ 14,6k) -->
+          <div class="scale-spotlight-content" id="spotlight-case-02" role="tabpanel">
+            <div class="scale-spotlight-visual-side">
+              <div class="scale-phone-mockup scale-spotlight-img-trigger">
+                <div class="scale-phone-screen">
+                  <img src="/scale-advogados/assets/whatsapp-testimonial-01.png" alt="Testemunho Dra. Ester Souza - R$ 14,6k em contratos" class="scale-spotlight-img" />
+                  <div class="scale-phone-overlay">
+                    <div class="scale-phone-expand-btn">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="scale-spotlight-text-side">
+              <span class="scale-spotlight-badge">R$ 14,6k em 2 Contratos</span>
+              <h3>Engenharia de captação focada em alto ticket</h3>
+              <p class="scale-spotlight-description">
+                Diferente de campanhas comuns que trazem volume desqualificado, a engenharia de captação Scale focou em leads com fit financeiro real. O resultado foi o fechamento rápido de dois contratos de alto valor.
+              </p>
+              <blockquote class="scale-spotlight-quote">
+                <p>
+                  "Nós estamos em contato com todos os leads que chegaram. Todos engajaram. 02 fecharam contrato e estamos em tratativa com os demais. 5750,00 e 8927,00."
+                </p>
+              </blockquote>
+            </div>
+          </div>
+
+          <!-- Caso 03 (R$ 8,4k em 5 dias) -->
+          <div class="scale-spotlight-content" id="spotlight-case-03" role="tabpanel">
+            <div class="scale-spotlight-visual-side">
+              <div class="scale-phone-mockup scale-spotlight-img-trigger">
+                <div class="scale-phone-screen">
+                  <img src="/scale-advogados/assets/whatsapp-testimonial-04.png" alt="Testemunho Dra. Thalyta Caline - R$ 8,4k em 5 dias" class="scale-spotlight-img" />
+                  <div class="scale-phone-overlay">
+                    <div class="scale-phone-expand-btn">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="scale-spotlight-text-side">
+              <span class="scale-spotlight-badge">R$ 8,4k em 5 Dias</span>
+              <h3>Velocidade cirúrgica e conversão acelerada</h3>
+              <p class="scale-spotlight-description">
+                Com a estrutura ágil de funil e criativo qualificador da Scale, o primeiro contrato de grande de união estável foi assinado em apenas 5 dias de veiculação ativa.
+              </p>
+              <blockquote class="scale-spotlight-quote">
+                <p>
+                  "Que maravilhhaaa, primeiro contrato de muitos fechado. E olha que só temos 5 dias de campanhas ativas... Fechamos este contrato por R$ 8.400,00."
+                </p>
+              </blockquote>
+            </div>
+          </div>
+
+          <!-- Caso 04 (Contrato no 1º Dia) -->
+          <div class="scale-spotlight-content" id="spotlight-case-04" role="tabpanel">
+            <div class="scale-spotlight-visual-side">
+              <div class="scale-phone-mockup scale-spotlight-img-trigger">
+                <div class="scale-phone-screen">
+                  <img src="/scale-advogados/assets/whatsapp-testimonial-05.png" alt="Testemunho Contrato no 1º Dia" class="scale-spotlight-img" />
+                  <div class="scale-phone-overlay">
+                    <div class="scale-phone-expand-btn">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="scale-spotlight-text-side">
+              <span class="scale-spotlight-badge">Contrato no 1º Dia</span>
+              <h3>Desperdício Zero: O poder do clique qualificado</h3>
+              <p class="scale-spotlight-description">
+                Agências generalistas gastam semanas queimando verba com leads frios. Com o Método Scale, a estrutura é validada de forma que o primeiro lead converteu em contrato assinado.
+              </p>
+              <blockquote class="scale-spotlight-quote">
+                <p>
+                  "Vocês já têm algum depoimento de contrato fechado em 1 dia de campanha pagando honorários iniciais? Se não, agora vocês tem! Boaaaaa primeiro lead e já veio fechamento."
+                </p>
+              </blockquote>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CTA de Depoimentos -->
+        <div class="scale-spotlight-cta" style="margin-top: 3.5rem; display: flex; justify-content: center;">
+          <button type="button" class="scale-btn-cta" onclick="window.__openScaleModal()">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true" focusable="false" style="display: inline-block; vertical-align: middle;">
+              <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/>
+            </svg>
+            Ver plano para meu escritório
+          </button>
+        </div>
+      </div>
+    </section>
+
+<!-- Script de Abas e Lightbox dos Depoimentos -->
+    <script is:inline>
+      (function initSpotlightTestimonials() {
+        // Tab switcher logic
+        const tabs = document.querySelectorAll('.scale-spotlight-tab');
+        const contents = document.querySelectorAll('.scale-spotlight-content');
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            const target = tab.dataset.target;
+
+            // Reset active states
+            tabs.forEach(t => {
+              t.classList.remove('active');
+              t.setAttribute('aria-selected', 'false');
+            });
+            contents.forEach(c => c.classList.remove('active'));
+
+            // Set active active
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+            const targetContent = document.getElementById(target);
+            if (targetContent) {
+              targetContent.classList.add('active');
+            }
+          });
+        });
+
+        // Lightbox trigger logic
+        const triggerElements = document.querySelectorAll('.scale-spotlight-img-trigger');
+        const lightbox = document.getElementById('scale-lightbox');
+        const lightboxImage = document.getElementById('scale-lightbox-image');
+
+        if (lightbox && lightboxImage) {
+          triggerElements.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+              const img = trigger.querySelector('.scale-spotlight-img');
+              if (img) {
+                lightboxImage.src = img.src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+              }
+            });
+          });
+        }
+      })();
+    </script>
+
+    <!-- VIDEOS -->
+    <section class="scale-section scale-section--dark scale-section--proof" id="videos" style="padding-top: 0; padding-bottom: 5rem;">
+      <div class="scale-container">
+        <div class="scale-section-heading" style="text-align:center;margin-bottom:45px;">
+          <span class="scale-kicker">Histórias de Sucesso</span>
+          <h2>Relatos em vídeo de quem vivenciou a implementação</h2>
+        </div>
+
+        <div class="scale-videos__grid">
+          <div class="scale-video-wrapper scale-video-card" data-video-id="hZxR3DadbTg">
+            <picture>
+              <source srcset="/scale-advogados/assets/capa-depoimento-bichara%20(1).webp" type="image/webp">
+              <img src="/scale-advogados/assets/capa-depoimento-bichara.png" alt="Depoimento Bichara Advogados" class="scale-video-card__poster" loading="lazy" decoding="async">
+            </picture>
+            <div class="scale-video-card__play"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg></div>
+          </div>
+          <div class="scale-video-wrapper scale-video-card" data-video-id="4V0ArJKXb-4">
+            <picture>
+              <source srcset="/scale-advogados/assets/capa-drvitor-miranda%20copy.webp" type="image/webp">
+              <img src="/scale-advogados/assets/capa-drvitor-miranda.png" alt="Depoimento Dr. Vitor Miranda" class="scale-video-card__poster" loading="lazy" decoding="async">
+            </picture>
+            <div class="scale-video-card__play"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUTORIDADE E OPERAÇÃO -->
+        <section class="scale-section scale-section--dark scale-authority-section" id="autoridade">
+      <div class="scale-container">
+        <div class="scale-authority-grid">
+          
+          <!-- Lado Esquerdo: Copys de Autoridade -->
+          <div class="scale-authority-copy">
+            <span class="scale-kicker">Autoridade</span>
+            <h2>Quem constrói a sua máquina de aquisição?</h2>
+            <p class="scale-authority-lead">
+              A Scale é uma assessoria de crescimento corporativo especializada no mercado jurídico de alto padrão.
+            </p>
+            
+            <div class="scale-authority-text">
+              <p>
+                A partir de nossa sede em Vila Velha - ES, unimos análise de dados, programação de alta performance e inteligência de vendas para escalar operações em todo o Brasil.
+              </p>
+            </div>
+
+            <!-- Métricas e Expertise -->
+            <div class="scale-authority-metrics">
+              <div class="scale-auth-metric">
+                <span class="scale-auth-metric__num">R$ 30M+</span>
+                <span class="scale-auth-metric__label">Em honorários mapeados</span>
+              </div>
+              <div class="scale-auth-metric">
+                <span class="scale-auth-metric__num">32+</span>
+                <span class="scale-auth-metric__label">Especialistas dedicados</span>
+              </div>
+              <div class="scale-auth-metric">
+                <span class="scale-auth-metric__num">200+</span>
+                <span class="scale-auth-metric__label">Escritórios estruturados</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lado Direito: Foto da Galera / Escritório -->
+          <div class="scale-authority-visual">
+            <div class="scale-authority-img-wrapper">
+              <img src="/scale-advogados/assets/foto-galera-scale.jpg" alt="Equipe Scale no escritório" class="scale-authority-img" />
+              <div class="scale-authority-glass-overlay">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="scale-auth-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Operação 100% interna e dedicada</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+<!-- VIDEO LIGHTBOX -->
+    <div class="scale-video-lightbox" id="scale-video-lightbox">
+      <button class="scale-video-lightbox__close" id="scale-video-lightbox-close" aria-label="Fechar">&times;</button>
+      <div class="scale-video-lightbox__content" id="scale-video-lightbox-content"></div>
+    </div>
+
+    <!-- LIGHTBOX PRINTS (REUTILIZADA PELOS PRINTS DO WHATSAPP) -->
+    <div class="scale-lightbox" id="scale-lightbox" role="dialog" aria-modal="true" aria-label="Visualizar depoimento">
+      <button class="scale-lightbox__close" id="scale-lightbox-close" aria-label="Fechar">&times;</button>
+      <img src="" alt="Print de depoimento ampliado" class="scale-lightbox__image" id="scale-lightbox-image">
+    </div>
+
+    <section id="faq" class="scale-section scale-section--light">
+      <div class="scale-container scale-container--narrow">
+        <div class="scale-section-heading">
+          <span class="scale-kicker">FAQ</span>
+          <h2>Dúvidas reais de sócios e gestores.</h2>
+        </div>
+
+        <div class="scale-faq">
+          {faqs.map((item) => (
+            <details class="scale-faq__item">
+              <summary>
+                {item.question}
+                <span>+</span>
+              </summary>
+              <p>{item.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="scale-section scale-section--dark scale-final">
+      <div class="scale-container scale-container--narrow">
+        <span class="scale-kicker">Diagnóstico</span>
+        <h2>Advogados que crescem de verdade pensam como empresários.</h2>
+        <p>
+          Pare de depender apenas de indicações instáveis ou de ações isoladas de marketing. Implemente um ecossistema integrado de atração, qualificação e vendas, e assuma o controle definitivo sobre o crescimento do seu escritório.
+        </p>
+        <div class="scale-final__cta">
+          <button type="button" class="scale-btn-cta" onclick="window.__openScaleModal()">
+            <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true" focusable="false" style="display: inline-block; vertical-align: middle;">
+              <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/>
+            </svg>
+            Construir minha Máquina de Aquisição
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== LEAD FORM MODAL ===== -->
+  <div id="scale-form-modal" role="dialog" aria-modal="true" aria-labelledby="scale-form-modal-title" style="position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:1rem;background:rgba(0,0,0,.6);backdrop-filter:blur(12px);opacity:0;pointer-events:none;transition:opacity .25s ease;">
+    <div style="position:relative;width:100%;max-width:480px;background:#0d0d14;border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.7);" onmousedown="event.stopPropagation()">
+
+      <!-- Close -->
+      <button type="button" id="scale-form-modal-close" aria-label="Fechar" style="position:absolute;right:14px;top:14px;background:rgba(255,255,255,.08);border:none;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:18px;line-height:1;z-index:2;">&#x2715;</button>
+
+      <div id="scale-form-panel" style="padding:2rem 2rem 1.5rem;">
+        <h2 id="scale-form-modal-title" style="margin:0 0 .35rem;color:#fff;font-size:1.25rem;font-weight:700;line-height:1.25;text-align:center;padding-right:1.5rem;">Você está a poucos passos de tomar a decisão certa.</h2>
+        <p style="margin:0 0 1.5rem;text-align:center;color:rgba(255,255,255,.6);font-size:.875rem;">Preencha abaixo e nosso time entra em contato rapidamente.</p>
+
+        <div style="display:grid;gap:1rem;">
+          <!-- Nome -->
+          <div>
+            <label for="sfm-nome" style="display:block;margin-bottom:.35rem;color:rgba(255,255,255,.7);font-size:.8125rem;font-weight:500;">Nome completo</label>
+            <input id="sfm-nome" type="text" autocomplete="name" placeholder="Seu nome" style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:.9375rem;outline:none;box-sizing:border-box;transition:border-color .2s;" />
+          </div>
+
+          <!-- WhatsApp -->
+          <div>
+            <label for="sfm-tel" style="display:block;margin-bottom:.35rem;color:rgba(255,255,255,.7);font-size:.8125rem;font-weight:500;">WhatsApp</label>
+            <input id="sfm-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(11) 99999-9999" style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:.9375rem;outline:none;box-sizing:border-box;transition:border-color .2s;" />
+          </div>
+
+          <!-- Instagram -->
+          <div>
+            <label for="sfm-arroba" style="display:block;margin-bottom:.35rem;color:rgba(255,255,255,.7);font-size:.8125rem;font-weight:500;">@ do Instagram (advogado ou escritório)</label>
+            <input id="sfm-arroba" type="text" autocomplete="username" placeholder="@escritorio" style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:.9375rem;outline:none;box-sizing:border-box;transition:border-color .2s;" />
+          </div>
+
+          <!-- Faturamento -->
+          <div>
+            <label for="sfm-fat" style="display:block;margin-bottom:.35rem;color:rgba(255,255,255,.7);font-size:.8125rem;font-weight:500;">Faturamento mensal aproximado</label>
+            <select id="sfm-fat" style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:.9375rem;outline:none;box-sizing:border-box;transition:border-color .2s;appearance:none;cursor:pointer;">
+              <option value="" style="background:#0d0d14;">Selecione...</option>
+              <option value="menos_30k" style="background:#0d0d14;">Menos de R$ 30 mil</option>
+              <option value="30_50k" style="background:#0d0d14;">Entre R$ 30 mil e R$ 50 mil</option>
+              <option value="50_100k" style="background:#0d0d14;">Entre R$ 50 mil e R$ 100 mil</option>
+              <option value="100k_plus" style="background:#0d0d14;">Mais de R$ 100 mil</option>
+              <option value="prefiro_nao_informar" style="background:#0d0d14;">Prefiro não informar</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <p id="sfm-error" style="display:none;margin:.75rem 0 0;color:#f87171;font-size:.8125rem;text-align:center;"></p>
+
+        <!-- Submit -->
+        <button type="button" id="sfm-submit" style="margin-top:1.25rem;width:100%;padding:.9rem 1rem;background:linear-gradient(135deg,#0f6fff 0%,#0954c8 100%);border:none;border-radius:10px;color:#fff;font-size:1rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.5rem;transition:opacity .2s,transform .15s;box-shadow:0 8px 24px rgba(15,111,255,.28);">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
+          Enviar
+        </button>
+
+        <p style="margin:.75rem 0 0;text-align:center;color:rgba(255,255,255,.38);font-size:.72rem;line-height:1.5;">Ao clicar em Enviar você concorda com nossos Termos de Uso e Política de Privacidade.</p>
+      </div>
+
+      <!-- Success Panel -->
+      <div id="scale-form-success" style="display:none;padding:2.5rem 2rem;text-align:center;">
+        <div style="margin:0 auto 1.25rem;width:56px;height:56px;border-radius:50%;background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.3);display:flex;align-items:center;justify-content:center;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p style="margin:0;color:#fff;font-size:1.1rem;font-weight:700;">Entraremos em contato em até 30 minutos.</p>
+        <p style="margin:.5rem 0 0;color:rgba(255,255,255,.5);font-size:.8125rem;">*Válido em horário comercial, dias úteis.</p>
+        <button type="button" id="sfm-close-success" style="margin-top:1.5rem;padding:.65rem 2rem;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:transparent;color:rgba(255,255,255,.7);font-size:.875rem;cursor:pointer;">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function initScaleFormModal() {
+      var modal   = document.getElementById('scale-form-modal');
+      var closeBtn = document.getElementById('scale-form-modal-close');
+      var panel   = document.getElementById('scale-form-panel');
+      var success = document.getElementById('scale-form-success');
+      var closeSuccessBtn = document.getElementById('sfm-close-success');
+      var submitBtn = document.getElementById('sfm-submit');
+      var errorEl = document.getElementById('sfm-error');
+
+      var MAKE_URL  = 'https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve';
+      var EXCEL_URL = 'https://script.google.com/macros/s/AKfycbwdcXNSA-sUdCtT4JXky5JMTDihkGb1zNL41DLlgFTpOU1aMWs2xw0HmxpWiMIKYIDx/exec';
+
+      var faturamentoLabels = {
+        menos_30k: 'Menos de R$ 30 mil',
+        '30_50k': 'Entre R$ 30 mil e R$ 50 mil',
+        '50_100k': 'Entre R$ 50 mil e R$ 100 mil',
+        '100k_plus': 'Mais de R$ 100 mil',
+        prefiro_nao_informar: 'Prefiro não informar'
+      };
+
+      function stripCC(v) {
+        // Remove +55 ou 55 do início se o número total tiver 12 ou 13 dígitos (com código do país)
+        var d = v.replace(/\D/g, '');
+        if ((d.length === 12 || d.length === 13) && d.slice(0, 2) === '55') {
+          d = d.slice(2);
+        }
+        return d;
+      }
+
+      function maskPhone(v) {
+        var d = stripCC(v).slice(0, 11);
+        if (d.length <= 2) return d.length ? '(' + d : d;
+        if (d.length <= 6) return '(' + d.slice(0,2) + ') ' + d.slice(2);
+        if (d.length <= 10) return '(' + d.slice(0,2) + ') ' + d.slice(2,6) + '-' + d.slice(6);
+        return '(' + d.slice(0,2) + ') ' + d.slice(2,7) + '-' + d.slice(7);
+      }
+
+      function digitsOnly(v) { return stripCC(v.replace(/\D/g,'')); }
+
+      function getAttribution() {
+        if (typeof window === 'undefined') return {};
+        var p = new URLSearchParams(window.location.search);
+        return {
+          utm_source: p.get('utm_source') || '',
+          utm_medium: p.get('utm_medium') || '',
+          utm_campaign: p.get('utm_campaign') || '',
+          utm_content: p.get('utm_content') || '',
+          utm_term: p.get('utm_term') || '',
+          gclid: p.get('gclid') || '',
+          fbclid: p.get('fbclid') || ''
+        };
+      }
+
+      function openModal() {
+        if (!modal) return;
+        modal.style.opacity = '1';
+        modal.style.pointerEvents = 'auto';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.style.opacity = '0';
+        modal.style.pointerEvents = 'none';
+        document.body.style.overflow = '';
+        // Reset form
+        if (panel) panel.style.display = 'block';
+        if (success) success.style.display = 'none';
+        if (errorEl) { errorEl.style.display = 'none'; errorEl.textContent = ''; }
+        ['sfm-nome','sfm-tel','sfm-arroba','sfm-fat'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+        if (submitBtn) { submitBtn.disabled = false; }
+      }
+
+      window.__openScaleModal = openModal;
+
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (closeSuccessBtn) closeSuccessBtn.addEventListener('click', closeModal);
+      if (modal) modal.addEventListener('mousedown', function(e) {
+        if (e.target === modal) closeModal();
+      });
+
+      // Phone mask
+      var telEl = document.getElementById('sfm-tel');
+      if (telEl) {
+        telEl.addEventListener('input', function() {
+          var pos = this.selectionStart;
+          this.value = maskPhone(this.value);
+        });
+      }
+
+      // Hero CTA — intercept hash link
+      document.querySelectorAll('a[href="#scale-form-modal"]').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          openModal();
+        });
+      });
+
+      // Keyboard close
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && modal.style.pointerEvents !== 'none') closeModal();
+      });
+
+      if (submitBtn) {
+        submitBtn.addEventListener('click', function() {
+          if (errorEl) { errorEl.style.display = 'none'; errorEl.textContent = ''; }
+
+          var nome    = (document.getElementById('sfm-nome') || {}).value || '';
+          var tel     = (document.getElementById('sfm-tel') || {}).value || '';
+          var arroba  = (document.getElementById('sfm-arroba') || {}).value || '';
+          var fat     = (document.getElementById('sfm-fat') || {}).value || '';
+
+          if (nome.trim().length < 2) { showError('Informe seu nome completo.'); return; }
+          if (digitsOnly(tel).length < 10) { showError('Informe um WhatsApp válido com DDD.'); return; }
+          if (!fat) { showError('Selecione uma faixa de faturamento.'); return; }
+
+          var handle = arroba.trim();
+          if (handle && !handle.startsWith('@')) handle = '@' + handle;
+
+          var leadId = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : ('lead-' + Date.now() + '-' + Math.random().toString(36).slice(2,10));
+          var attribution = getAttribution();
+
+          var payload = Object.assign({
+            lead_id: leadId,
+            nome: nome.trim(),
+            perfilArroba: handle,
+            telefone: tel,
+            telefoneDigits: digitsOnly(tel),
+            faturamento: fat,
+            faturamentoLabel: faturamentoLabels[fat] || fat,
+            consentiuContato: true,
+            origem: 'scale-advogados-modal',
+            form_name: 'scale_advogados_lp',
+            pagina: '/scale-advogados',
+            criadoEm: new Date().toISOString()
+          }, attribution);
+
+          // GTM push
+          if (typeof window !== 'undefined') {
+            var w = window;
+            w.dataLayer = w.dataLayer || [];
+            w.dataLayer.push({ event: 'lead_submit_success', payload: payload });
+          }
+
+          // Show success immediately
+          if (panel) panel.style.display = 'none';
+          if (success) success.style.display = 'block';
+
+          // Webhooks (fire-and-forget)
+          fetch(MAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(function(){});
+          fetch(EXCEL_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), mode: 'no-cors' }).catch(function(){});
+        });
+      }
+
+      function showError(msg) {
+        if (!errorEl) return;
+        errorEl.textContent = msg;
+        errorEl.style.display = 'block';
+      }
+    })();
+  </script>
+
+  <script is:inline>
+    (function initScaleSections() {
+      function run() {
+        // Videos Lightbox
+        const videoLightbox = document.getElementById('scale-video-lightbox');
+        const videoContent = document.getElementById('scale-video-lightbox-content');
+        const videoClose = document.getElementById('scale-video-lightbox-close');
+
+        function closeVideo() {
+          if (!videoLightbox) return;
+          videoLightbox.classList.remove('active');
+          if (videoContent) videoContent.innerHTML = '';
+          document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.scale-video-wrapper').forEach(function(wrapper) {
+          wrapper.addEventListener('click', function() {
+            var id = wrapper.dataset.videoId;
+            if (!id || !videoContent) return;
+            videoContent.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            if (videoLightbox) videoLightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          });
+        });
+
+        if (videoClose) videoClose.addEventListener('click', closeVideo);
+        if (videoLightbox) videoLightbox.addEventListener('click', function(e) {
+          if (e.target === videoLightbox) closeVideo();
+        });
+
+        // Prints Infinite Marquee (Legacy) - Lightbox only
+        var container = document.getElementById('scale-stagger-testimonials');
+        var lightbox = document.getElementById('scale-lightbox');
+        var lightboxImage = document.getElementById('scale-lightbox-image');
+        var lightboxClose = document.getElementById('scale-lightbox-close');
+
+        function closePrint() {
+          if (lightbox) lightbox.classList.remove('active');
+          if (lightboxImage) lightboxImage.src = '';
+          document.body.style.overflow = '';
+        }
+
+        if (lightboxClose) lightboxClose.addEventListener('click', closePrint);
+        if (lightbox) {
+          lightbox.addEventListener('click', function(event) {
+            if (event.target === lightbox) closePrint();
+          });
+        }
+
+        if (container && lightbox && lightboxImage) {
+          var images = [];
+          for (var i = 1; i <= 19; i++) {
+            images.push('/scale-advogados/depoimentos-whatsapp/testimonial-' + (i < 10 ? '0' + i : i) + '.webp');
+          }
+
+          // Double array for seamless loop marquee
+          var doubledImages = images.concat(images);
+
+          function renderPrints() {
+            var fragment = document.createDocumentFragment();
+            doubledImages.forEach(function(src) {
+              var card = document.createElement('div');
+              card.className = 'scale-print-marquee-card';
+              
+              card.onclick = function() {
+                openPrint(src);
+              };
+
+              var img = document.createElement('img');
+              img.alt = 'Print de depoimento';
+              img.loading = 'lazy';
+              img.decoding = 'async';
+              img.src = src;
+
+              card.appendChild(img);
+              fragment.appendChild(card);
+            });
+            container.appendChild(fragment);
+          }
+
+          function openPrint(src) {
+            lightboxImage.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+
+          renderPrints();
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', run);
+      } else {
+        run();
+      }
+    })();
+  </script>
+  
+  <style is:global>
+    /* CTA Customizado Azul WhatsApp */
+    .scale-btn-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 36px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #0f6fff 0%, #0954c8 100%);
+      border: 1px solid rgba(15, 111, 255, 0.34);
+      color: #ffffff !important;
+      font-weight: 600;
+      font-size: 1.05rem;
+      line-height: 1.5;
+      text-decoration: none !important;
+      transition: all 0.2s ease;
+      box-shadow:
+        0 14px 30px rgba(15, 111, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+    }
+    .scale-btn-cta:hover {
+      opacity: 1;
+      background: linear-gradient(135deg, #1d7cff 0%, #0f6fff 100%);
+      transform: translateY(-1.5px);
+      box-shadow:
+        0 16px 36px rgba(15, 111, 255, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* DEPOIMENTOS */
+    .scale-stagger-wrapper {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 32px;
+      display: flex;
+      align-items: center;
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+    
+    .scale-prints-track {
+      display: flex;
+      gap: 24px;
+      width: max-content;
+      animation: scaleMarqueeScroll 45s linear infinite;
+      padding: 10px 0;
+    }
+    
+    .scale-prints-track:hover {
+      animation-play-state: paused;
+    }
+    
+    .scale-print-marquee-card {
+      width: 280px;
+      height: 500px;
+      flex-shrink: 0;
+      background: #050505;
+      border: 1px solid rgba(255, 255, 255, .08);
+      overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .45);
+      cursor: pointer;
+      border-radius: 16px;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+    
+    .scale-print-marquee-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #050505;
+      border-radius: 16px;
+      transition: transform .3s ease;
+    }
+    
+    .scale-print-marquee-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0, 119, 255, 0.45);
+      box-shadow: 0 24px 60px rgba(0, 119, 255, 0.16);
+    }
+    
+    .scale-print-marquee-card:hover img {
+      transform: scale(1.02);
+    }
+    
+    @keyframes scaleMarqueeScroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* VIDEO GRID */
+    .scale-videos__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .scale-video-card {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      background: #050505;
+      border: 1px solid rgba(255,255,255,.08);
+      cursor: pointer;
+      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      transition: transform .3s ease, border-color .3s ease;
+    }
+    .scale-video-card:hover { transform: translateY(-4px); border-color: rgba(0,119,255,.45); }
+    .scale-video-card__poster { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .scale-video-card__play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      background: rgba(0,0,0,.35);
+      transition: background .2s ease;
+    }
+    .scale-video-card:hover .scale-video-card__play { background: rgba(0,0,0,.5); }
+
+    /* LIGHTBOXES */
+    .scale-video-lightbox, .scale-lightbox { position: fixed; inset: 0; z-index: 9998; display: flex; align-items: center; justify-content: center; padding: 24px; background: rgba(0, 0, 0, .88); backdrop-filter: blur(10px); opacity: 0; pointer-events: none; transition: opacity .25s ease; }
+    .scale-video-lightbox.active, .scale-lightbox.active { opacity: 1; pointer-events: auto; }
+    .scale-video-lightbox__close, .scale-lightbox__close { position: absolute; right: 24px; top: 18px; font-size: 38px; color: #fff; z-index: 2; cursor: pointer; background: transparent; border: none; }
+    .scale-video-lightbox__content { width: min(420px, 94vw); aspect-ratio: 9/16; background: #000; border: 1px solid rgba(255, 255, 255, .1); border-radius: 16px; overflow: hidden; }
+    .scale-video-lightbox__content iframe { width: 100%; height: 100%; border: 0; }
+    .scale-lightbox__image { max-height: 88vh; max-width: min(520px, 92vw); object-fit: contain; border: 1px solid rgba(255, 255, 255, .12); border-radius: 12px; }
+
+    @media (max-width: 768px) {
+      .scale-videos__grid { grid-template-columns: 1fr; max-width: 390px; }
+      .scale-video-card { aspect-ratio: 9/16; }
+      .scale-stagger-wrapper { min-height: auto; margin-top: 16px; }
+      .scale-print-marquee-card { width: 200px; height: 356px; }
+    }
+  </style>
+
+  <style>
+    .paid-advogados {
+      --scale-bg: #010000;
+      --scale-bg-card: #06070a;
+      --scale-surface: #0a0c12;
+      --scale-border: rgba(255, 255, 255, 0.08);
+      --scale-border-strong: rgba(0, 119, 255, 0.32);
+      --scale-text: #ffffff;
+      --scale-muted: #cbd5e1;
+      --scale-soft: rgba(255, 255, 255, 0.66);
+      --scale-blue: #0077ff;
+      --scale-blue-soft: rgba(0, 119, 255, 0.1);
+      --home-bg: #010000;
+      background: var(--scale-bg);
+      color: var(--scale-text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    .scale-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .scale-container--narrow {
+      max-width: 820px;
+      text-align: center;
+    }
+
+    .scale-hero {
+      position: relative;
+      display: flex;
+      min-height: 92svh;
+      margin-top: 0;
+      padding: 10rem 0 6.5rem;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .scale-hero__picture,
+    .scale-hero__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .scale-hero__picture {
+      z-index: 0;
+    }
+
+    .scale-hero__image {
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .scale-hero__container {
+      z-index: 1;
+    }
+
+    .scale-hero__content {
+      max-width: 620px;
+    }
+
+    .scale-eyebrow,
+    .scale-kicker,
+    .scale-card-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.625rem;
+      color: var(--scale-blue);
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .scale-hero__headline {
+      margin: 1rem 0 1.5rem;
+      font-size: 2.1rem;
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: 0;
+      color: transparent;
+      background: linear-gradient(180deg, #ffffff 0%, #b8beca 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .scale-hero__subheadline {
+      max-width: 580px;
+      margin: 0 0 2rem;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .scale-hero__ctas,
+    .scale-final__cta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .scale-secondary-button {
+      display: inline-flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 0.95rem 1.4rem;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 180ms ease, background 180ms ease, color 180ms ease;
+    }
+
+    .scale-secondary-button:hover {
+      border-color: rgba(255, 255, 255, 0.38);
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+    }
+
+    .scale-authority {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2.2rem;
+      color: var(--scale-muted);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .scale-authority__item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .scale-authority__item svg {
+      color: var(--scale-blue);
+      flex: 0 0 auto;
+    }
+
+    .scale-section {
+      position: relative;
+      padding: 6.5rem 0;
+      overflow: clip;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .scale-section::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      width: min(600px, 58vw);
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(0, 119, 255, 0.32), transparent);
+      pointer-events: none;
+    }
+
+    .scale-section--dark {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0)),
+        #010000;
+    }
+
+    .scale-section--light {
+      background: linear-gradient(180deg, #f5f8fc 0%, #edf3fa 100%);
+      color: #0c1424;
+      border-top-color: rgba(0, 119, 255, 0.12);
+    }
+
+    .scale-section--light::before {
+      background: linear-gradient(90deg, transparent, rgba(0, 119, 255, 0.22), transparent);
+    }
+
+    .scale-split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .scale-split--visual {
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+    }
+
+    .scale-section-heading {
+      max-width: 820px;
+      margin: 0 auto 3.5rem;
+      text-align: center;
+    }
+
+    .scale-section-heading--left {
+      margin: 0;
+      text-align: left;
+    }
+
+    .scale-section-heading h2,
+    .scale-final h2 {
+      margin: 1rem 0 1.2rem;
+      font-size: 2.1rem;
+      line-height: 1.13;
+      font-weight: 700;
+      letter-spacing: 0;
+      color: transparent;
+      background: linear-gradient(180deg, #ffffff 0%, #b5bbc7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .scale-section--light .scale-section-heading h2,
+    .scale-section--light .scale-area-card h3,
+    .scale-section--light .scale-faq summary {
+      color: #0c1424;
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+    }
+
+    .scale-section-heading p,
+    .scale-final p {
+      color: var(--scale-soft);
+      font-size: 1.02rem;
+      line-height: 1.75;
+    }
+
+    .scale-section-heading p + p {
+      margin-top: 1rem;
+    }
+
+    .scale-section--light .scale-section-heading p,
+    .scale-section--light .scale-area-card p,
+    .scale-section--light .scale-faq p {
+      color: #425066;
+    }
+
+    .scale-card-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .scale-section--legacy-method-hidden {
+      display: none;
+    }
+
+    .scale-problem--bugged {
+      display: none;
+    }
+
+    .scale-problem--clean {
+      display: none;
+    }
+
+    .scale-section.scale-problem--final {
+      padding-top: 1.5rem;
+    }
+
+    .scale-problem__container {
+      display: grid;
+      gap: 5rem;
+      max-width: 1100px;
+    }
+
+    .scale-problem .scale-section-heading {
+      max-width: 860px;
+      margin-bottom: 0;
+    }
+
+    .scale-problem .scale-section-heading h2 span {
+      color: var(--scale-blue);
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+    }
+
+    .scale-problem__intro,
+    .scale-problem__failures {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .scale-problem-leads {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .scale-problem-lead-card {
+      padding: 1.5rem 1.35rem 1.2rem;
+      border-radius: 1rem;
+      background: #ffffff;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .scale-problem-lead-card__title {
+      margin: 0 0 0.45rem;
+      color: #101828;
+      font-size: 1rem;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    .scale-problem-lead-card__description {
+      margin: 0;
+      color: #5b6473;
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
+    .scale-problem__closing {
+      display: grid;
+      gap: 0.35rem;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .scale-problem__closing p,
+    .scale-problem__closing span {
+      margin: 0;
+      color: var(--scale-soft);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .scale-problem__closing strong {
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 850;
+      line-height: 1.1;
+    }
+
+    .scale-problem__cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .scale-problem-hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 32px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #0a0a0f;
+      font-weight: 600;
+      text-decoration: none;
+      transition:
+        opacity 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .scale-problem-hero-cta:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .scale-problem-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+    }
+
+    .scale-problem-failure-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .scale-problem-failure-card {
+      display: flex;
+      min-height: 5.8rem;
+      align-items: center;
+      gap: 0.95rem;
+      padding: 1.3rem 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1rem;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+      box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+
+    .scale-problem-failure-card:first-child,
+    .scale-problem-failure-card:last-child {
+      grid-column: span 2;
+    }
+
+    .scale-problem-failure-card__icon {
+      display: inline-flex;
+      width: 2.4rem;
+      height: 2.4rem;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(239, 68, 68, 0.24);
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+    }
+
+    .scale-problem-failure-card span {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .scale-problem-quote {
+      padding: 2.2rem 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1.2rem;
+      background: rgba(255, 255, 255, 0.03);
+      text-align: center;
+      box-shadow: inset 0 2px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    .scale-problem-quote p {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    .scale-problem-quote span {
+      display: block;
+      margin-top: 0.75rem;
+      color: var(--scale-soft);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .scale-card-grid--two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .scale-card,
+    .scale-area-card,
+    .scale-oab-strip,
+    .scale-team-card,
+    .scale-faq__item {
+      border: 1px solid var(--scale-border);
+    }
+
+    .scale-card {
+      min-height: 230px;
+      padding: 1.6rem;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .scale-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--scale-border-strong);
+      background: rgba(0, 119, 255, 0.04);
+    }
+
+    .scale-card__icon,
+    .scale-oab-strip__icon {
+      display: flex;
+      width: 2.7rem;
+      height: 2.7rem;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.15rem;
+      background: var(--scale-blue-soft);
+      color: var(--scale-blue);
+    }
+
+    .scale-card h3,
+    .scale-area-card h3,
+    .scale-team-card h3 {
+      margin: 0 0 0.75rem;
+      color: #ffffff;
+      font-size: 1.18rem;
+      line-height: 1.25;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .scale-card p {
+      margin: 0;
+      color: var(--scale-muted);
+      font-size: 0.94rem;
+      line-height: 1.65;
+    }
+
+    .scale-area-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 119, 255, 0.28);
+      box-shadow: 0 24px 60px rgba(12, 20, 36, 0.13);
+    }
+
+    .scale-card-label {
+      margin-bottom: 0.9rem;
+      color: var(--scale-blue);
+      font-size: 0.68rem;
+    }
+
+    .scale-section--conversion {
+      background-image:
+        linear-gradient(90deg, rgba(0, 119, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(180deg, #010000 0%, #05070c 100%);
+      background-size: 92px 100%, auto;
+    }
+
+    .scale-conversion-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+      gap: clamp(2.4rem, 6vw, 5.5rem);
+      align-items: start;
+    }
+
+    .scale-conversion-copy {
+      position: sticky;
+      top: 8rem;
+      max-width: 560px;
+    }
+
+    .scale-conversion-system {
+      display: grid;
+      gap: 2.1rem;
+    }
+
+    .scale-conversion-flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .scale-conversion-flow__item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-height: 5.6rem;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 0.5rem;
+      text-align: center;
+    }
+
+    .scale-conversion-flow__item:not(:last-child) {
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .scale-conversion-flow__item span {
+      color: var(--scale-blue);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+    }
+
+    .scale-conversion-flow__item strong {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.9rem;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .scale-conversion-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .scale-conversion-item {
+      position: relative;
+      display: block;
+      padding: 2.2rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .scale-conversion-item:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(0, 119, 255, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .scale-conversion-item__bg-num {
+      position: absolute;
+      bottom: -15px;
+      right: 10px;
+      font-size: 8rem;
+      font-weight: 800;
+      line-height: 1;
+      color: rgba(0, 119, 255, 0.05);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .scale-conversion-item__head {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .scale-conversion-icon {
+      display: flex;
+      width: 3rem;
+      height: 3rem;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 119, 255, 0.08);
+      border: 1px solid rgba(0, 119, 255, 0.2);
+      border-radius: 10px;
+      color: var(--scale-blue);
+    }
+
+    .scale-conversion-item h3 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.25rem;
+      line-height: 1.25;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .scale-conversion-item p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .scale-area-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .scale-area-card {
+      padding: 1.75rem;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 18px 44px rgba(12, 20, 36, 0.08);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .scale-area-card__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.2rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .scale-area-card h3 {
+      margin-top: 0.35rem;
+      font-size: 1.45rem;
+    }
+
+    .scale-icon-link {
+      display: flex;
+      width: 2.6rem;
+      height: 2.6rem;
+      flex: 0 0 auto;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(12, 20, 36, 0.12);
+      color: #0c1424;
+      transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+    }
+
+    .scale-icon-link:hover {
+      border-color: var(--scale-blue);
+      background: rgba(0, 119, 255, 0.08);
+      color: var(--scale-blue);
+    }
+
+    .scale-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .scale-tags span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid rgba(12, 20, 36, 0.1);
+      background: rgba(12, 20, 36, 0.04);
+      padding: 0.42rem 0.7rem;
+      color: #4b5a70;
+      font-size: 0.75rem;
+      font-weight: 750;
+    }
+
+    .scale-tags--dark span {
+      border-color: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .scale-related-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      margin-top: 1.15rem;
+      color: var(--scale-blue);
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .scale-oab-strip {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      border-color: rgba(0, 119, 255, 0.25);
+      background: rgba(0, 119, 255, 0.03);
+      padding: 3rem;
+    }
+
+    .scale-oab-strip__head {
+      display: flex;
+      gap: 1.1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .scale-oab-strip__icon {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin: 0;
+      flex: 0 0 auto;
+    }
+
+    .scale-oab-strip h2 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 2rem;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    .scale-oab-strip p {
+      max-width: 820px;
+      margin: 0;
+      color: var(--scale-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .scale-oab-strip__action {
+      justify-self: end;
+    }
+
+    .scale-section--team {
+      padding-bottom: 5rem;
+    }
+
+    .scale-team-carousel {
+      overflow: hidden;
+      padding: 1.9rem 0;
+      background: linear-gradient(180deg, rgba(0, 119, 255, 0.06), rgba(255, 255, 255, 0.01));
+      box-shadow: inset 0 28px 52px rgba(0, 0, 0, 0.46), inset 0 -28px 52px rgba(0, 0, 0, 0.46);
+    }
+
+    .scale-team-carousel__track {
+      display: flex;
+      width: max-content;
+      gap: 1rem;
+      animation: scaleTeamMove 28s linear infinite;
+      will-change: transform;
+    }
+
+    .scale-team-carousel:hover .scale-team-carousel__track {
+      animation-play-state: paused;
+    }
+
+    .scale-team-card {
+      width: 260px;
+      flex: 0 0 auto;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+      box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.38), 0 12px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    .scale-team-card__photo {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #050505;
+    }
+
+    .scale-team-card__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: grayscale(0.12) brightness(0.86);
+      transition: filter 180ms ease, transform 180ms ease;
+    }
+
+    .scale-team-card:hover img {
+      filter: grayscale(0) brightness(1);
+      transform: scale(1.03);
+    }
+
+    .scale-team-card__copy {
+      min-height: 86px;
+      padding: 0.9rem 1rem 1rem;
+    }
+
+    .scale-team-card h3 {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .scale-team-card p {
+      margin: 0.45rem 0 0;
+      color: var(--scale-blue);
+      font-size: 0.62rem;
+      font-weight: 850;
+      line-height: 1.35;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .scale-team-card--plus {
+      display: flex;
+      min-height: 346px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-color: rgba(0, 186, 255, 0.24);
+      background: linear-gradient(145deg, rgba(0, 186, 255, 0.13), rgba(255, 255, 255, 0.018));
+      text-align: center;
+    }
+
+    .scale-team-card--plus strong {
+      color: #ffffff;
+      font-size: 3.8rem;
+      line-height: 1;
+      font-weight: 950;
+    }
+
+    .scale-team-card--plus span {
+      margin-top: 0.6rem;
+      color: var(--scale-muted);
+      font-size: 0.85rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .scale-faq {
+      border-top: 1px solid rgba(12, 20, 36, 0.1);
+    }
+
+    .scale-faq__item {
+      border-width: 0 0 1px;
+      border-color: rgba(12, 20, 36, 0.1);
+      background: transparent;
+      text-align: left;
+    }
+
+    .scale-faq summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.35rem 0;
+      cursor: pointer;
+      list-style: none;
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .scale-faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .scale-faq summary span {
+      color: var(--scale-blue);
+      font-size: 1.6rem;
+      line-height: 1;
+      transition: transform 160ms ease;
+    }
+
+    .scale-faq__item[open] summary span {
+      transform: rotate(45deg);
+    }
+
+    .scale-faq p {
+      margin: -0.4rem 0 1.35rem;
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
+
+    .scale-final {
+      text-align: center;
+      padding-bottom: 7rem;
+    }
+
+    .scale-final .scale-kicker {
+      justify-content: center;
+    }
+
+    .scale-final__cta {
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    @keyframes scaleTeamMove {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .scale-hero__headline {
+        font-size: 3.25rem;
+      }
+
+      .scale-section-heading h2,
+      .scale-final h2 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .scale-hero__container {
+        max-width: 1600px;
+        padding-left: 3rem;
+        padding-right: 1.5rem;
+      }
+
+      .scale-hero__content {
+        max-width: 540px;
+      }
+    }
+
+    @media (min-width: 1180px) {
+      .scale-hero__headline {
+        font-size: 3.55rem;
+      }
+
+      .scale-section-heading h2,
+      .scale-final h2 {
+        font-size: 3.15rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .scale-problem-leads,
+      .scale-problem-failure-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scale-problem-failure-card:first-child,
+      .scale-problem-failure-card:last-child {
+        grid-column: auto;
+      }
+
+      .scale-split,
+      .scale-split--visual,
+      .scale-oab-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .scale-oab-strip__action {
+        justify-self: start;
+      }
+
+      .scale-conversion-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .scale-conversion-copy {
+        position: static;
+        max-width: 820px;
+      }
+
+      .scale-conversion-item {
+        grid-template-columns: 3.5rem minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .scale-container {
+        padding: 0 1.25rem;
+      }
+
+      .scale-problem__container {
+        gap: 3.5rem;
+      }
+
+      .scale-section.scale-problem--final {
+        padding: 0.75rem 0 4.5rem;
+      }
+
+      .scale-problem-hero-cta {
+        border: 1px solid rgba(15, 111, 255, 0.34);
+        background: linear-gradient(135deg, #0f6fff 0%, #0954c8 100%);
+        color: #ffffff;
+        box-shadow:
+          0 14px 30px rgba(15, 111, 255, 0.28),
+          inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      }
+
+      .scale-problem-hero-cta:hover {
+        opacity: 1;
+        background: linear-gradient(135deg, #1d7cff 0%, #0f6fff 100%);
+      }
+
+      .scale-problem-lead-card,
+      .scale-problem-failure-card,
+      .scale-problem-quote {
+        border-radius: 0.9rem;
+      }
+
+      .scale-problem-quote {
+        padding: 1.7rem 1.1rem;
+      }
+
+      .scale-hero {
+        min-height: 112svh;
+        padding: 8rem 0 8rem;
+        align-items: end;
+      }
+
+      .scale-hero__image {
+        object-fit: contain;
+        object-position: center top;
+        background: #010000;
+      }
+
+      .scale-hero__content {
+        max-width: none;
+        text-align: center;
+      }
+
+      .scale-eyebrow,
+      .scale-hero__ctas,
+      .scale-authority {
+        justify-content: center;
+      }
+
+      .scale-hero__headline {
+        font-size: 1.85rem;
+        line-height: 1.16;
+      }
+
+      .scale-hero__subheadline {
+        font-size: 0.96rem;
+      }
+
+      .scale-secondary-button {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .scale-section {
+        padding: 4.5rem 0;
+      }
+
+      .scale-section-heading,
+      .scale-section-heading--left {
+        text-align: center;
+      }
+
+      .scale-section-heading h2,
+      .scale-final h2 {
+        font-size: 2rem;
+      }
+
+      .scale-card-grid--two,
+      .scale-area-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scale-card {
+        min-height: auto;
+      }
+
+      .scale-conversion-system {
+        gap: 1.6rem;
+      }
+
+      .scale-conversion-flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .scale-conversion-flow__item {
+        min-height: 4.7rem;
+        padding: 0.85rem 1rem;
+      }
+
+      .scale-conversion-flow__item:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .scale-conversion-flow__item:nth-child(-n + 2) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .scale-conversion-item {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+        padding: 1.25rem 0;
+      }
+
+
+      .scale-conversion-item__marker {
+        padding-top: 0;
+      }
+
+      .scale-conversion-item__head {
+        align-items: flex-start;
+      }
+
+      .scale-hero__image {
+        object-fit: contain;
+        object-position: center top;
+        background: #010000;
+      }
+
+      .scale-hero__content {
+        max-width: none;
+        text-align: center;
+      }
+
+      .scale-eyebrow,
+      .scale-hero__ctas,
+      .scale-authority {
+        justify-content: center;
+      }
+
+      .scale-hero__headline {
+        font-size: 1.85rem;
+        line-height: 1.16;
+      }
+
+      .scale-hero__subheadline {
+        font-size: 0.96rem;
+      }
+
+      .scale-secondary-button {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .scale-section {
+        padding: 4.5rem 0;
+      }
+
+      .scale-section-heading,
+      .scale-section-heading--left {
+        text-align: center;
+      }
+
+      .scale-section-heading h2,
+      .scale-final h2 {
+        font-size: 2rem;
+      }
+
+      .scale-card-grid--two,
+      .scale-area-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scale-card {
+        min-height: auto;
+      }
+
+      .scale-conversion-system {
+        gap: 1.6rem;
+      }
+
+      .scale-conversion-flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .scale-conversion-flow__item {
+        min-height: 4.7rem;
+        padding: 0.85rem 1rem;
+      }
+
+      .scale-conversion-flow__item:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .scale-conversion-flow__item:nth-child(-n + 2) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .scale-conversion-item {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+        padding: 1.25rem 0;
+      }
+
+      .scale-conversion-item__marker {
+        padding-top: 0;
+      }
+
+      .scale-conversion-item__head {
+        align-items: flex-start;
+      }
+
+      .scale-conversion-item h3 {
+        font-size: 1.05rem;
+      }
+
+      .scale-oab-strip {
+        padding: 1.5rem;
+      }
+
+      .scale-oab-strip__head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .scale-oab-strip h2 {
+        font-size: 1.65rem;
+      }
+
+      .scale-team-card {
+        width: 210px;
+      }
+
+      .scale-team-card--plus {
+        min-height: 296px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scale-team-carousel__track {
+        animation: none;
+      }
+
+      .scale-card,
+      .scale-conversion-item,
+      .scale-area-card,
+      .scale-team-card__photo img {
+        transition: none;
+      }
+    }
+
+    /* ==========================================================================
+       SEÇÃO MÁQUINA DE AQUISIÇÃO (ENTREGÁVEIS)
+       ========================================================================== */
+    .scale-machine-section {
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      background: linear-gradient(180deg, #010000 0%, #05070a 100%);
+    }
+
+    .scale-machine-section .scale-section-heading h2 span {
+      background: linear-gradient(90deg, #0077ff 0%, #00d2ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .scale-machine-layout {
+      margin-top: 2rem;
+    }
+
+
+
+    /* Grade de Entregáveis (9 Itens) */
+    .scale-machine-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .scale-machine-card {
+      position: relative;
+      padding: 1.6rem 1.5rem;
+      border-radius: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.008) 100%);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .scale-machine-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0, 119, 255, 0.25);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 119, 255, 0.015) 100%);
+      box-shadow: 0 20px 45px rgba(0, 119, 255, 0.05);
+    }
+
+    .scale-machine-card__header {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .scale-machine-card h3 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .scale-machine-card p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    /* Icones Dinâmicos */
+    .scale-machine-card__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.2rem;
+      height: 2.2rem;
+      border-radius: 0.65rem;
+      flex: 0 0 auto;
+    }
+
+    .scale-machine-card__icon--blue {
+      background: rgba(0, 119, 255, 0.1);
+      color: #0077ff;
+      border: 1px solid rgba(0, 119, 255, 0.15);
+    }
+
+    .scale-machine-card__icon--green {
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.15);
+    }
+
+    .scale-machine-card__icon--purple {
+      background: rgba(139, 92, 246, 0.1);
+      color: #8b5cf6;
+      border: 1px solid rgba(139, 92, 246, 0.15);
+    }
+
+    .scale-machine-card__icon--orange {
+      background: rgba(245, 158, 11, 0.1);
+      color: #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.15);
+    }
+
+    /* Responsividade */
+    @media (max-width: 1024px) {
+      .scale-machine-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .scale-machine-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .scale-machine-card {
+        padding: 1.4rem;
+      }
+    }
+
+    /* ==========================================================================
+       SEÇÃO MÉTODO SCALE
+       ========================================================================== */
+    .scale-method-section {
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      background: linear-gradient(180deg, #05070a 0%, #010000 100%);
+    }
+
+    .scale-method-section .scale-section-heading h2 span {
+      background: linear-gradient(90deg, #0077ff 0%, #00d2ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .scale-method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .scale-method-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 2.2rem 2rem;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.008) 100%);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .scale-method-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 119, 255, 0.3);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(0, 119, 255, 0.02) 100%);
+      box-shadow: 
+        0 25px 55px rgba(0, 119, 255, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .scale-method-card__top {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .scale-method-card__num {
+      font-size: 2.5rem;
+      font-weight: 950;
+      line-height: 1;
+      font-family: Inter, system-ui, sans-serif;
+      background: linear-gradient(180deg, #0077ff 0%, rgba(0, 119, 255, 0.2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.04em;
+    }
+
+    .scale-method-card h3 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .scale-method-card p {
+      margin: 0 0 1.75rem;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.94rem;
+      line-height: 1.65;
+    }
+
+    .scale-method-card__list {
+      margin: auto 0 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 1.5rem;
+    }
+
+    .scale-method-card__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+    }
+
+    .scale-method-check {
+      color: #00d2ff;
+      flex: 0 0 auto;
+      margin-top: 0.25rem;
+    }
+
+    .scale-method-card__list span {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+
+    /* Responsividade */
+    @media (max-width: 1024px) {
+      .scale-method-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .scale-method-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-top: 2.5rem;
+      }
+      .scale-method-card {
+        padding: 1.8rem 1.6rem;
+      }
+      .scale-method-card__num {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* ==========================================================================
+       SEÇÃO TESTEMUNHOS DESTAQUES (RESULTADOS REAIS)
+       ========================================================================== */
+    .scale-spotlight-section {
+      position: relative;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      background: linear-gradient(180deg, #010000 0%, #05070a 100%);
+      padding: 7rem 0 5rem;
+    }
+
+    .scale-spotlight-section .scale-section-heading h2 span {
+      background: linear-gradient(90deg, #0077ff 0%, #00d2ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Menu de Abas (Tabs) */
+    .scale-spotlight-tabs-wrapper {
+      position: relative;
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 0.75rem;
+      margin-bottom: 3.5rem;
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .scale-spotlight-tabs-wrapper::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+
+    .scale-spotlight-tabs {
+      display: flex;
+      gap: 0.75rem;
+      width: max-content;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .scale-spotlight-tab {
+      padding: 0.85rem 1.45rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.02);
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    .scale-spotlight-tab:hover {
+      border-color: rgba(0, 119, 255, 0.3);
+      color: #ffffff;
+      background: rgba(0, 119, 255, 0.04);
+    }
+
+    .scale-spotlight-tab.active {
+      border-color: rgba(0, 119, 255, 0.45);
+      background: #0077ff;
+      color: #ffffff;
+      box-shadow: 
+        0 10px 25px rgba(0, 119, 255, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+
+    /* Container de Slides */
+    .scale-spotlight-container {
+      position: relative;
+      width: 100%;
+    }
+
+    .scale-spotlight-content {
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .scale-spotlight-content.active {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+      gap: clamp(2.5rem, 6vw, 4.5rem);
+      align-items: center;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Lado Esquerdo - Celular Mockup */
+    .scale-spotlight-visual-side {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .scale-phone-mockup {
+      position: relative;
+      width: 100%;
+      max-width: 290px;
+      height: auto;
+      border-radius: 2.5rem;
+      border: 8px solid #0f131a;
+      background: #000000;
+      box-shadow: 
+        0 30px 65px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .scale-phone-mockup:hover {
+      border-color: #1a2230;
+      box-shadow: 
+        0 40px 85px rgba(0, 119, 255, 0.14),
+        0 0 0 1px rgba(0, 119, 255, 0.22);
+    }
+
+    .scale-phone-screen {
+      position: relative;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      background: #0b0f16;
+    }
+
+    .scale-phone-screen img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .scale-phone-mockup:hover .scale-phone-screen img {
+      transform: scale(1.035);
+    }
+
+    /* Hover expand icon overlay */
+    .scale-phone-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .scale-phone-mockup:hover .scale-phone-overlay {
+      opacity: 1;
+    }
+
+    .scale-phone-expand-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: rgba(0, 119, 255, 0.95);
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 119, 255, 0.3);
+      transform: scale(0.9);
+      transition: transform 0.25s ease;
+    }
+
+    .scale-phone-mockup:hover .scale-phone-expand-btn {
+      transform: scale(1);
+    }
+
+    /* Lado Direito - Conteúdo e Copy */
+    .scale-spotlight-text-side {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .scale-spotlight-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(0, 210, 255, 0.25);
+      background: rgba(0, 210, 255, 0.08);
+      color: #00d2ff;
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .scale-spotlight-text-side h3 {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+    }
+
+    .scale-spotlight-description {
+      margin: 0;
+      color: var(--scale-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .scale-spotlight-quote {
+      position: relative;
+      margin: 0;
+      padding: 1.35rem 1.5rem 1.35rem 2rem;
+      border-left: 3px solid var(--scale-blue);
+      background: rgba(255, 255, 255, 0.015);
+      border-radius: 0 0.8rem 0.8rem 0;
+      width: 100%;
+    }
+
+    .scale-spotlight-quote p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* Selo / Benefício da Engenharia */
+    .scale-spotlight-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .scale-spotlight-features label {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 0.72rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .scale-spotlight-features-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .scale-spotlight-feature-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: rgba(255, 255, 255, 0.01);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.8rem;
+      font-weight: 750;
+    }
+
+    .scale-spotlight-feature-tag svg {
+      color: #00d2ff;
+      flex: 0 0 auto;
+    }
+
+    /* Responsividade */
+    @media (max-width: 991px) {
+      .scale-spotlight-content.active {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .scale-spotlight-visual-side {
+        order: 1;
+      }
+      .scale-spotlight-text-side {
+        order: 2;
+      }
+      .scale-phone-mockup {
+        max-width: 280px;
+      }
+      .scale-spotlight-tabs {
+        margin: 0;
+      }
+    }
+
+    /* ==========================================================================
+       SEÇÃO AUTORIDADE (SOBRE A SCALE)
+       ========================================================================== */
+    .scale-authority-section {
+      position: relative;
+      background: linear-gradient(180deg, #05070a 0%, #010000 100%);
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 7rem 0;
+    }
+
+    .scale-authority-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(3rem, 5vw, 6rem);
+      align-items: center;
+    }
+
+    .scale-authority-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.25rem;
+    }
+
+    .scale-authority-section .scale-kicker {
+      color: var(--scale-blue);
+      font-size: 0.72rem;
+      font-weight: 850;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    .scale-authority-section h2 {
+      margin: 0;
+      color: #ffffff;
+      font-size: clamp(1.8rem, 3vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      background: linear-gradient(180deg, #ffffff 0%, #b5bbc7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .scale-authority-lead {
+      margin: 0;
+      color: var(--scale-muted);
+      font-size: 1.15rem;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .scale-authority-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .scale-authority-text p {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.98rem;
+      line-height: 1.7;
+    }
+
+    .scale-authority-text p strong {
+      color: #ffffff;
+      font-weight: 750;
+    }
+
+    /* Métricas de Autoridade */
+    .scale-authority-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.5rem 0;
+      margin: 0.75rem 0;
+    }
+
+    .scale-auth-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .scale-auth-metric__num {
+      font-size: clamp(1.8rem, 3.2vw, 2.35rem);
+      font-weight: 850;
+      background: linear-gradient(180deg, #ffffff 0%, #0077ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      line-height: 1;
+    }
+
+    .scale-auth-metric__label {
+      font-size: 0.76rem;
+      font-weight: 750;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.35;
+    }
+
+    /* Tags de Autoridade */
+    .scale-authority-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .scale-auth-tag {
+      font-size: 0.76rem;
+      font-weight: 750;
+      padding: 0.45rem 0.85rem;
+      border-radius: 0.5rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.82);
+      transition: all 0.25s ease;
+    }
+
+    .scale-auth-tag:hover {
+      border-color: rgba(0, 119, 255, 0.35);
+      background: rgba(0, 119, 255, 0.06);
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Lado Direito: Visual Galera */
+    .scale-authority-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .scale-authority-img-wrapper {
+      position: relative;
+      width: 100%;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+      aspect-ratio: 1 / 1;
+    }
+
+    .scale-authority-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.92) contrast(1.02);
+      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+    }
+
+    .scale-authority-img-wrapper:hover .scale-authority-img {
+      transform: scale(1.03) rotate(0.3deg);
+      filter: brightness(1);
+    }
+
+    /* Glassmorphic Badge Overlay */
+    .scale-authority-glass-overlay {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.95rem 1.4rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(2, 2, 5, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 800;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+
+    .scale-authority-img-wrapper:hover .scale-authority-glass-overlay {
+      border-color: rgba(0, 119, 255, 0.3);
+      background: rgba(0, 119, 255, 0.08);
+    }
+
+    .scale-auth-icon {
+      color: #0077ff;
+      flex-shrink: 0;
+      animation: authIconFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes authIconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    /* Responsividade */
+    @media (max-width: 991px) {
+      .scale-authority-section {
+        padding: 5rem 0;
+      }
+      .scale-authority-grid {
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+      }
+      .scale-authority-copy {
+        order: 2;
+      }
+      .scale-authority-visual {
+        order: 1;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .scale-authority-metrics {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        text-align: center;
+      }
+      .scale-auth-metric {
+        align-items: center;
+      }
+      .scale-authority-glass-overlay {
+        bottom: 1rem;
+        left: 1rem;
+        right: 1rem;
+        padding: 0.8rem 1.1rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</BaseLayout>

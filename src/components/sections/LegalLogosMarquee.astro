@@ -1,49 +1,17 @@
 ---
+import { legalLogos } from '@data/legalLogos';
+
 interface Props {
   label?: string;
   class?: string;
 }
 
 const {
-  label = 'Escritórios de advocacia que já confiaram na Scale',
+  label = 'Escritorios de advocacia que ja confiaram na Scale',
   class: className = '',
 } = Astro.props;
 
-const basePath = '/scale-advogados/assets/logos-escritorios-adv';
-const logos = [
-  {
-    file: 'Full Branco.png',
-    alt: 'Escritório de advocacia cliente da Scale',
-  },
-  {
-    file: 'gberti-logo-branco-horizontal.png',
-    alt: 'G Berti Advocacia',
-  },
-  {
-    file: 'image2.png',
-    alt: 'Escritório de advocacia cliente da Scale',
-  },
-  {
-    file: 'Imagem do WhatsApp de 2025-02-17 à(s) 17.43.37_300846c1-Photoroom.png',
-    alt: 'Escritório de advocacia cliente da Scale',
-  },
-  {
-    file: 'JRA.png',
-    alt: 'JRA Advocacia',
-  },
-  {
-    file: 'logothiagovetor.png',
-    alt: 'Thiago Advocacia',
-  },
-  {
-    file: 'LOGOTIPO-02 (1).png',
-    alt: 'Escritório de advocacia cliente da Scale',
-  },
-].map((logo) => ({
-  ...logo,
-  src: encodeURI(`${basePath}/${logo.file}`),
-}));
-
+const logos = legalLogos;
 const marqueeLogos = [...logos, ...logos, ...logos, ...logos];
 ---
 
@@ -54,7 +22,6 @@ const marqueeLogos = [...logos, ...logos, ...logos, ...logos];
       {marqueeLogos.map((logo, index) => (
         <div class="legal-logos-strip__item" aria-hidden={index >= logos.length ? 'true' : undefined}>
           <img
-            class={logo.className}
             src={logo.src}
             alt={index >= logos.length ? '' : logo.alt}
             loading="lazy"
@@ -154,7 +121,6 @@ const marqueeLogos = [...logos, ...logos, ...logos, ...logos];
     .legal-logos-strip__item img {
       max-height: 2.65rem;
     }
-
   }
 
   @media (prefers-reduced-motion: reduce) {

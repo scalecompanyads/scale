@@ -1,0 +1,21 @@
+---
+import BaseHead from "@components/layout/BaseHead.astro";
+import LegalCrmHeroPage from "@components/legal-crm/LegalCrmHeroPage";
+import Preloader from "@components/ui/Preloader.astro";
+import "../styles/global.css";
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <BaseHead
+      title="CRM Jurídico para Advogados | Scale"
+      description="Página de apresentação do CRM jurídico da Scale para escritórios e advogados."
+      includeFonts={true}
+    />
+  </head>
+  <body>
+    <Preloader />
+    <LegalCrmHeroPage client:load />
+  </body>
+</html>

@@ -18,9 +18,10 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   noindex?: boolean;
+  showFooter?: boolean;
 }
 
-const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
+const { title, description, canonical, ogImage, ogType, noindex, showFooter = true } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -45,7 +46,7 @@ const { title, description, canonical, ogImage, ogType, noindex } = Astro.props;
     <main id="main-content" class="pt-16">
       <slot />
     </main>
-    <Footer />
+    {showFooter && <Footer />}
     <LeadCaptureModal client:load />
     <Analytics />
     <SpeedInsights />
