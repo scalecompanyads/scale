@@ -146,7 +146,7 @@
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 20px;
   background:
-    radial-gradient(circle at 50% 35%, rgba(18, 66, 146, 0.18) 0%, rgba(18, 66, 146, 0.08) 28%, transparent 54%),
+    radial-gradient(circle at 50% 32%, rgba(84, 117, 160, 0.18) 0%, rgba(84, 117, 160, 0) 48%),
     linear-gradient(180deg, #10141c 0%, #07090f 100%);
   display: flex;
   flex-direction: column;
@@ -163,21 +163,17 @@
   background:
     radial-gradient(
       circle at 50% -70%,
-      transparent 60%,
-      rgba(15, 71, 166, 0.04) 63%,
-      rgba(15, 71, 166, 0.08) 65%,
-      rgba(15, 71, 166, 0.14) 67%,
-      rgba(15, 71, 166, 0.24) 69%,
-      rgba(15, 71, 166, 0.34) 71%,
-      rgba(15, 71, 166, 0.44) 73%,
-      rgba(15, 71, 166, 0.52) 75%,
-      rgba(15, 71, 166, 0.58) 77%,
-      rgba(24, 82, 184, 0.62) 80%,
-      rgba(20, 60, 128, 0.7) 85%,
-      rgba(13, 31, 61, 0.86) 90%,
+      transparent 58%,
+      rgba(92, 120, 154, 0.04) 63%,
+      rgba(82, 108, 140, 0.08) 65%,
+      rgba(66, 88, 116, 0.16) 68%,
+      rgba(49, 66, 88, 0.28) 71%,
+      rgba(35, 47, 63, 0.46) 75%,
+      rgba(21, 29, 40, 0.68) 80%,
+      rgba(12, 17, 24, 0.9) 88%,
       #080b10 95%
     ),
-    radial-gradient(circle at 50% 35%, rgba(18, 66, 146, 0.12) 0%, transparent 52%);
+    radial-gradient(circle at 50% 36%, rgba(118, 152, 198, 0.08) 0%, transparent 52%);
 }
 
 .scale-v3-hero-shell .hero-grid {

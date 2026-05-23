@@ -47,7 +47,7 @@ export default function ScaleAdvogadosV3Hero({
   const heroDescription = isDefaultDescription || normalizeCopy(description).includes('controle do seu faturamento') ? (
     <>
       Coloque o <strong>controle do seu faturamento</strong> em suas maos
-      <br className="hero-sub__break" />
+      {' '}<br className="hero-sub__break" />
       com um <strong>diagnostico gratuito e personalizado</strong>.
     </>
   ) : (
@@ -117,7 +117,7 @@ export default function ScaleAdvogadosV3Hero({
             {isDefaultDescription ? (
               <>
                 Coloque o <strong>controle do seu faturamento</strong> em suas mãos
-                <br className="hero-sub__break" />
+                {' '}<br className="hero-sub__break" />
                 com um <strong>diagnóstico gratuito e personalizado</strong>.
               </>
             ) : (
