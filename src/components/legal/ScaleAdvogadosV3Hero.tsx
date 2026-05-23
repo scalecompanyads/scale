@@ -116,9 +116,9 @@ export default function ScaleAdvogadosV3Hero({
           <p className="hero-sub">
             {isDefaultDescription ? (
               <>
-                Coloque o <strong>controle do seu faturamento</strong> em suas mãos
+                Receba um <strong>Receba um Mapa Estratégico Completo da Operação</strong>
                 {' '}<br className="hero-sub__break" />
-                com um <strong>diagnóstico gratuito e personalizado</strong>.
+                de Crescimento do seu Escritório.
               </>
             ) : (
               heroDescription
