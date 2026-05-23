@@ -194,6 +194,7 @@
 }
 
 .scale-v3-hero-shell .icon-pipeline {
+  --side-node-size: 46px;
   position: relative;
   z-index: 1;
   display: flex;
@@ -207,8 +208,8 @@
 
 .scale-v3-hero-shell .pipeline-flow {
   position: absolute;
-  left: 88px;
-  right: 88px;
+  left: calc(var(--side-node-size) / 2);
+  right: calc(var(--side-node-size) / 2);
   top: 50%;
   height: 28px;
   transform: translateY(-50%);
@@ -548,12 +549,9 @@
   }
 
   .scale-v3-hero-shell .icon-pipeline {
+    --side-node-size: 38px;
+    width: min(100%, 286px);
     margin-bottom: 24px;
-  }
-
-  .scale-v3-hero-shell .pipeline-flow {
-    left: 74px;
-    right: 74px;
   }
 
   .scale-v3-hero-shell .hero-content {
@@ -649,11 +647,6 @@
 
   .scale-v3-hero-shell .hero-sub {
     font-size: 1rem;
-  }
-
-  .scale-v3-hero-shell .pipeline-flow {
-    left: 62px;
-    right: 62px;
   }
 
   .scale-v3-hero-shell .brands-track {
