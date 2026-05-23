@@ -18,10 +18,26 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   noindex?: boolean;
+  showHeader?: boolean;
   showFooter?: boolean;
+  showGlassFilter?: boolean;
+  showPreloader?: boolean;
+  showLeadCaptureModal?: boolean;
 }
 
-const { title, description, canonical, ogImage, ogType, noindex, showFooter = true } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogType,
+  noindex,
+  showHeader = true,
+  showFooter = true,
+  showGlassFilter = true,
+  showPreloader = true,
+  showLeadCaptureModal = true,
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -40,14 +56,14 @@ const { title, description, canonical, ogImage, ogType, noindex, showFooter = tr
     <slot name="head" />
   </head>
   <body>
-    <Preloader />
-    <GlassFilter />
-    <Header />
-    <main id="main-content" class="pt-16">
+    {showPreloader && <Preloader />}
+    {showGlassFilter && <GlassFilter />}
+    {showHeader && <Header />}
+    <main id="main-content" class:list={[showHeader && 'pt-16']}>
       <slot />
     </main>
     {showFooter && <Footer />}
-    <LeadCaptureModal client:load />
+    {showLeadCaptureModal && <LeadCaptureModal client:load />}
     <Analytics />
     <SpeedInsights />
   </body>

@@ -203,13 +203,14 @@ const faqSchema = {
   title="Tráfego Pago para Advogados | Motor de Captação Jurídica | Scale"
   description={pageDescription}
   canonical={canonical}
+  showHeader={false}
   showFooter={false}
+  showGlassFilter={false}
+  showPreloader={false}
+  showLeadCaptureModal={false}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
-  <script slot="head" is:inline>
-    document.documentElement.classList.add('trafego-advogados-page');
-  </script>
   <style slot="head" is:global>
     html.trafego-advogados-page #header-outer,
     html.trafego-advogados-page #mobile-panel,
@@ -217,7 +218,7 @@ const faqSchema = {
       display: none !important;
     }
 
-    html.trafego-advogados-page #main-content {
+    #main-content {
       padding-top: 0 !important;
     }
 
@@ -234,7 +235,6 @@ const faqSchema = {
       description="Coloque o controle do seu faturamento em suas mãos com um diagnóstico gratuito e personalizado."
       primaryCtaHref="#scale-form-modal"
       primaryCtaLabel="Solicitar diagnóstico"
-      client:load
     />
         <section class="scale-section scale-section--dark scale-problem scale-problem--final">
       <div class="scale-container scale-problem__container">
@@ -584,48 +584,55 @@ const faqSchema = {
 <!-- Script de Abas e Lightbox dos Depoimentos -->
     <script is:inline>
       (function initSpotlightTestimonials() {
-        // Tab switcher logic
-        const tabs = document.querySelectorAll('.scale-spotlight-tab');
-        const contents = document.querySelectorAll('.scale-spotlight-content');
+        function run() {
+          // Tab switcher logic
+          const tabs = document.querySelectorAll('.scale-spotlight-tab');
+          const contents = document.querySelectorAll('.scale-spotlight-content');
 
-        tabs.forEach(tab => {
-          tab.addEventListener('click', () => {
-            const target = tab.dataset.target;
+          tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+              const target = tab.dataset.target;
 
-            // Reset active states
-            tabs.forEach(t => {
-              t.classList.remove('active');
-              t.setAttribute('aria-selected', 'false');
-            });
-            contents.forEach(c => c.classList.remove('active'));
+              tabs.forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+              });
+              contents.forEach(c => c.classList.remove('active'));
 
-            // Set active active
-            tab.classList.add('active');
-            tab.setAttribute('aria-selected', 'true');
-            const targetContent = document.getElementById(target);
-            if (targetContent) {
-              targetContent.classList.add('active');
-            }
-          });
-        });
-
-        // Lightbox trigger logic
-        const triggerElements = document.querySelectorAll('.scale-spotlight-img-trigger');
-        const lightbox = document.getElementById('scale-lightbox');
-        const lightboxImage = document.getElementById('scale-lightbox-image');
-
-        if (lightbox && lightboxImage) {
-          triggerElements.forEach(trigger => {
-            trigger.addEventListener('click', () => {
-              const img = trigger.querySelector('.scale-spotlight-img');
-              if (img) {
-                lightboxImage.src = img.src;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
+              tab.classList.add('active');
+              tab.setAttribute('aria-selected', 'true');
+              const targetContent = document.getElementById(target);
+              if (targetContent) {
+                targetContent.classList.add('active');
               }
             });
           });
+
+          // Lightbox trigger logic
+          const triggerElements = document.querySelectorAll('.scale-spotlight-img-trigger');
+          const lightbox = document.getElementById('scale-lightbox');
+          const lightboxImage = document.getElementById('scale-lightbox-image');
+
+          if (lightbox && lightboxImage) {
+            triggerElements.forEach(trigger => {
+              trigger.addEventListener('click', () => {
+                const img = trigger.querySelector('.scale-spotlight-img');
+                if (img) {
+                  lightboxImage.src = img.src;
+                  lightbox.classList.add('active');
+                  document.body.style.overflow = 'hidden';
+                }
+              });
+            });
+          }
         }
+
+        if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+          window.requestIdleCallback(run, { timeout: 1200 });
+          return;
+        }
+
+        window.setTimeout(run, 180);
       })();
     </script>
 
@@ -995,6 +1002,15 @@ const faqSchema = {
 
   <script is:inline>
     (function initScaleSections() {
+      function scheduleTask(callback) {
+        if (typeof window !== 'undefined' && 'requestIdleCallback' in window) {
+          window.requestIdleCallback(callback, { timeout: 1500 });
+          return;
+        }
+
+        window.setTimeout(callback, 250);
+      }
+
       function run() {
         // Videos Lightbox
         const videoLightbox = document.getElementById('scale-video-lightbox');
@@ -1079,7 +1095,27 @@ const faqSchema = {
             document.body.style.overflow = 'hidden';
           }
 
-          renderPrints();
+          function mountPrints() {
+            if (container.dataset.ready === 'true') return;
+            container.dataset.ready = 'true';
+            scheduleTask(renderPrints);
+          }
+
+          if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+              var isVisible = entries.some(function(entry) {
+                return entry.isIntersecting;
+              });
+
+              if (!isVisible) return;
+              observer.disconnect();
+              mountPrints();
+            }, { rootMargin: '320px 0px' });
+
+            observer.observe(container);
+          } else {
+            mountPrints();
+          }
         }
       }
       if (document.readyState === 'loading') {
@@ -1503,6 +1539,11 @@ const faqSchema = {
 
     .scale-section.scale-problem--final {
       padding-top: 1.5rem;
+    }
+
+    .paid-advogados > section:nth-of-type(n + 2) {
+      content-visibility: auto;
+      contain-intrinsic-size: 960px;
     }
 
     .scale-problem__container {

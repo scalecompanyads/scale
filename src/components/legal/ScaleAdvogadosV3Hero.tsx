@@ -1,9 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-
 import { legalLogos } from '@data/legalLogos';
 import { FileText, Gauge, LineChart } from 'lucide-react';
-
-type BeamState = 'p1' | 'splash' | 'p2' | 'idle';
 
 interface Props {
   heading: string;
@@ -26,6 +22,13 @@ function WhatsAppIcon() {
   );
 }
 
+function normalizeCopy(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
 export default function ScaleAdvogadosV3Hero({
   heading,
   headingAccent,
@@ -33,193 +36,32 @@ export default function ScaleAdvogadosV3Hero({
   primaryCtaHref,
   primaryCtaLabel,
 }: Props) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const pipelineRef = useRef<HTMLDivElement>(null);
-  const beamSvgRef = useRef<SVGSVGElement>(null);
-  const nodeStackRef = useRef<HTMLDivElement>(null);
-  const nodeXRef = useRef<HTMLDivElement>(null);
-  const nodeShieldRef = useRef<HTMLDivElement>(null);
-  const beamGlowRef = useRef<SVGPathElement>(null);
-  const beamCoreRef = useRef<SVGPathElement>(null);
-  const gradientRef = useRef<SVGLinearGradientElement>(null);
-  const splashRef = useRef<HTMLDivElement>(null);
+  const isDefaultDescription =
+    /controle do seu faturamento/i.test(description) &&
+    /diagn/i.test(description) &&
+    /gratuito/i.test(description);
+  const isDefaultHeadingAccent =
+    /previs/i.test(headingAccent) && /escal/i.test(headingAccent) && /capt/i.test(headingAccent);
+  const isDefaultPrimaryCta = /solicitar/i.test(primaryCtaLabel) && /diagn/i.test(primaryCtaLabel);
 
-  useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = menuOpen ? 'hidden' : previousOverflow;
+  const heroDescription = isDefaultDescription || normalizeCopy(description).includes('controle do seu faturamento') ? (
+    <>
+      Coloque o <strong>controle do seu faturamento</strong> em suas maos
+      <br className="hero-sub__break" />
+      com um <strong>diagnostico gratuito e personalizado</strong>.
+    </>
+  ) : (
+    description
+  );
 
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [menuOpen]);
-
-  useEffect(() => {
-    const pipeline = pipelineRef.current;
-    const beamSvg = beamSvgRef.current;
-    const nodeStack = nodeStackRef.current;
-    const nodeX = nodeXRef.current;
-    const nodeShield = nodeShieldRef.current;
-    const beamGlow = beamGlowRef.current;
-    const beamCore = beamCoreRef.current;
-    const gradient = gradientRef.current;
-    const splash = splashRef.current;
-
-    if (
-      !pipeline ||
-      !beamSvg ||
-      !nodeStack ||
-      !nodeX ||
-      !nodeShield ||
-      !beamGlow ||
-      !beamCore ||
-      !gradient ||
-      !splash
-    ) {
-      return;
-    }
-
-    let frameId = 0;
-    let state: BeamState = 'p1';
-    let lastStateChange = performance.now();
-
-    const setBeamVisibility = (visible: boolean) => {
-      beamGlow.style.opacity = visible ? '0.6' : '0';
-      beamCore.style.opacity = visible ? '1' : '0';
-    };
-
-    const setBeamProgress = (percentage: number) => {
-      const center = percentage * 100;
-      gradient.setAttribute('x1', `${center - 5}%`);
-      gradient.setAttribute('x2', `${center + 5}%`);
-      gradient.setAttribute('y1', '0%');
-      gradient.setAttribute('y2', '0%');
-    };
-
-    const updatePath = () => {
-      const pRect = pipeline.getBoundingClientRect();
-      const sRect = nodeStack.getBoundingClientRect();
-      const xRect = nodeX.getBoundingClientRect();
-      const shRect = nodeShield.getBoundingClientRect();
-
-      const startX = sRect.left + sRect.width / 2 - pRect.left;
-      const startY = sRect.top + sRect.height / 2 - pRect.top;
-      const midX = xRect.left + xRect.width / 2 - pRect.left;
-      const midY = xRect.top + xRect.height / 2 - pRect.top;
-      const endX = shRect.left + shRect.width / 2 - pRect.left;
-      const endY = shRect.top + shRect.height / 2 - pRect.top;
-      const d = `M ${startX},${startY} L ${midX},${midY} L ${endX},${endY}`;
-
-      beamSvg.setAttribute('viewBox', `0 0 ${pRect.width} ${pRect.height}`);
-      beamSvg.setAttribute('width', `${pRect.width}`);
-      beamSvg.setAttribute('height', `${pRect.height}`);
-      beamGlow.setAttribute('d', d);
-      beamCore.setAttribute('d', d);
-    };
-
-    const animateSplash = () => {
-      splash.classList.remove('animate');
-      void splash.offsetWidth;
-      splash.classList.add('animate');
-    };
-
-    const tick = (timestamp: number) => {
-      const elapsed = timestamp - lastStateChange;
-
-      if (state === 'p1') {
-        const progress = Math.min(elapsed / 800, 1);
-        setBeamProgress(progress * 0.5);
-
-        if (progress < 0.4) {
-          nodeStack.classList.add('active');
-        } else {
-          nodeStack.classList.remove('active');
-        }
-
-        if (progress >= 1) {
-          nodeStack.classList.remove('active');
-          setBeamVisibility(false);
-          animateSplash();
-          state = 'splash';
-          lastStateChange = timestamp;
-        }
-      } else if (state === 'splash') {
-        if (elapsed >= 800) {
-          splash.classList.remove('animate');
-          setBeamVisibility(true);
-          setBeamProgress(0.5);
-          state = 'p2';
-          lastStateChange = timestamp;
-        }
-      } else if (state === 'p2') {
-        const progress = Math.min(elapsed / 800, 1);
-        setBeamProgress(0.5 + progress * 0.5);
-
-        if (progress > 0.6) {
-          nodeShield.classList.add('active');
-        } else {
-          nodeShield.classList.remove('active');
-        }
-
-        if (progress >= 1) {
-          nodeShield.classList.remove('active');
-          state = 'idle';
-          lastStateChange = timestamp;
-        }
-      } else if (elapsed >= 1000) {
-        setBeamVisibility(true);
-        setBeamProgress(0);
-        state = 'p1';
-        lastStateChange = timestamp;
-      }
-
-      frameId = window.requestAnimationFrame(tick);
-    };
-
-    const handleResize = () => {
-      updatePath();
-    };
-
-    updatePath();
-    setBeamVisibility(true);
-    setBeamProgress(0);
-
-    window.addEventListener('resize', handleResize);
-    frameId = window.requestAnimationFrame(tick);
-
-    return () => {
-      window.cancelAnimationFrame(frameId);
-      window.removeEventListener('resize', handleResize);
-      nodeStack.classList.remove('active');
-      nodeShield.classList.remove('active');
-      splash.classList.remove('animate');
-    };
-  }, []);
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
-
-  const heroDescription =
-    description ===
-    'Coloque o controle do seu faturamento em suas maos com um diagnostico gratuito e personalizado.' ? (
-      <>
-        Coloque o <strong>controle do seu faturamento</strong> em suas maos
-        <br className="hero-sub__break" />
-        com um <strong>diagnostico gratuito e personalizado</strong>.
-      </>
-    ) : (
-      description
-    );
-
-  const heroHeadingAccent =
-    headingAccent === 'previsivel e escalavel de captacao de clientes:' ? (
-      <>
-        <span className="hero-heading__emphasis">previsivel e escalavel</span> de captacao de
-        clientes:
-      </>
-    ) : (
-      headingAccent
-    );
+  const heroHeadingAccent = isDefaultHeadingAccent || normalizeCopy(headingAccent).startsWith('previsivel e escalavel') ? (
+    <>
+      <span className="hero-heading__emphasis">previsível e escalável</span> de captação de
+      clientes:
+    </>
+  ) : (
+    headingAccent
+  );
 
   return (
     <div className="scale-v3-hero-shell">
@@ -228,25 +70,13 @@ export default function ScaleAdvogadosV3Hero({
           <img src="/images/scale-logo.svg" alt="Scale Company" />
         </a>
 
-        <button
-          type="button"
-          className={`menu-toggle${menuOpen ? ' active' : ''}`}
-          aria-expanded={menuOpen}
-          aria-controls="hero-nav-menu"
-          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
-          onClick={() => setMenuOpen((value) => !value)}
-        >
-          <span />
-          <span />
-        </button>
-
-        <div id="hero-nav-menu" className={`nav-menu${menuOpen ? ' active' : ''}`}>
+        <div className="nav-menu">
           <div className="nav-actions">
-            <a className="btn-login" href="#metodo" onClick={closeMenu}>
-              Ver metodo
+            <a className="btn-login" href="#metodo">
+              Ver método
             </a>
-            <a className="btn-signup" href={primaryCtaHref} onClick={closeMenu}>
-              Diagnostico
+            <a className="btn-signup" href={primaryCtaHref}>
+              Diagnóstico
             </a>
           </div>
         </div>
@@ -255,73 +85,25 @@ export default function ScaleAdvogadosV3Hero({
       <section className="hero-card" aria-labelledby="hero-title">
         <div className="hero-grid" aria-hidden="true" />
 
-        <div className="icon-pipeline" ref={pipelineRef}>
-          <svg ref={beamSvgRef} className="beam-svg" aria-hidden="true" focusable="false">
-            <defs>
-              <filter id="scale-v3-glow">
-                <feGaussianBlur stdDeviation="2" result="blur" />
-                <feComposite in="SourceGraphic" in2="blur" operator="over" />
-              </filter>
-              <linearGradient
-                id="scale-v3-beam-gradient"
-                ref={gradientRef}
-                gradientUnits="userSpaceOnUse"
-              >
-                <stop offset="0%" stopColor="#0f6fff" stopOpacity="0" />
-                <stop offset="20%" stopColor="#0f6fff" stopOpacity="0.8" />
-                <stop offset="50%" stopColor="#ffffff" stopOpacity="1" />
-                <stop offset="80%" stopColor="#8cc8ff" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#8cc8ff" stopOpacity="0" />
-              </linearGradient>
-            </defs>
-            <path
-              ref={beamGlowRef}
-              stroke="url(#scale-v3-beam-gradient)"
-              strokeWidth="2"
-              fill="none"
-              filter="url(#scale-v3-glow)"
-              opacity="0.6"
-            />
-            <path
-              ref={beamCoreRef}
-              stroke="url(#scale-v3-beam-gradient)"
-              strokeWidth="0.8"
-              fill="none"
-            />
-          </svg>
-
-          <div
-            ref={nodeStackRef}
-            id="node-stack"
-            className="icon-node node-light-right"
-            aria-label="Sistema previsivel"
-          >
-            <Gauge size={20} strokeWidth={1.8} aria-hidden="true" />
+        <div className="icon-pipeline" aria-hidden="true">
+          <div className="pipeline-flow">
+            <span className="pipeline-flow__line" />
+            <span className="pipeline-flow__beam" />
+            <span className="pipeline-flow__pulse" />
           </div>
 
-          <div className="pipeline-line" aria-hidden="true" />
+          <div className="icon-node node-light-right">
+            <Gauge size={20} strokeWidth={1.8} />
+          </div>
 
           <div className="icon-center-wrap">
-            <div ref={splashRef} className="splash" aria-hidden="true" />
-            <div
-              ref={nodeXRef}
-              id="node-x"
-              className="icon-node-center"
-              aria-label="Controle do faturamento"
-            >
-              <LineChart size={28} strokeWidth={1.8} aria-hidden="true" />
+            <div className="icon-node-center">
+              <LineChart size={28} strokeWidth={1.8} />
             </div>
           </div>
 
-          <div className="pipeline-line right" aria-hidden="true" />
-
-          <div
-            ref={nodeShieldRef}
-            id="node-shield"
-            className="icon-node node-light-left"
-            aria-label="Diagnostico personalizado"
-          >
-            <FileText size={20} strokeWidth={1.8} aria-hidden="true" />
+          <div className="icon-node node-light-left">
+            <FileText size={20} strokeWidth={1.8} />
           </div>
         </div>
 
@@ -331,10 +113,20 @@ export default function ScaleAdvogadosV3Hero({
             {' '}
             <strong>{heroHeadingAccent}</strong>
           </h1>
-          <p className="hero-sub">{heroDescription}</p>
+          <p className="hero-sub">
+            {isDefaultDescription ? (
+              <>
+                Coloque o <strong>controle do seu faturamento</strong> em suas mãos
+                <br className="hero-sub__break" />
+                com um <strong>diagnóstico gratuito e personalizado</strong>.
+              </>
+            ) : (
+              heroDescription
+            )}
+          </p>
           <a href={primaryCtaHref} className="btn-cta">
             <WhatsAppIcon />
-            {primaryCtaLabel}
+            {isDefaultPrimaryCta ? 'Solicitar diagnóstico' : primaryCtaLabel}
           </a>
         </div>
       </section>
