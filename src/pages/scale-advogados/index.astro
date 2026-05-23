@@ -211,6 +211,13 @@ const faqSchema = {
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <!-- Google Tag Manager -->
+  <script slot="head">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KS5L52P9');</script>
+  <!-- End Google Tag Manager -->
   <style slot="head" is:global>
     html.trafego-advogados-page #header-outer,
     html.trafego-advogados-page #mobile-panel,
@@ -227,6 +234,11 @@ const faqSchema = {
       display: none !important;
     }
   </style>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KS5L52P9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
   <div class="paid-advogados">
     <ScaleAdvogadosV3Hero
@@ -793,7 +805,7 @@ const faqSchema = {
           <!-- Instagram -->
           <div>
             <label for="sfm-arroba" style="display:block;margin-bottom:.35rem;color:rgba(255,255,255,.7);font-size:.8125rem;font-weight:500;">@ do Instagram (advogado ou escritório)</label>
-            <input id="sfm-arroba" type="text" autocomplete="username" placeholder="@escritorio" style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:.9375rem;outline:none;box-sizing:border-box;transition:border-color .2s;" />
+            <input id="sfm-arroba" type="text" autocomplete="off" inputmode="text" value="@" placeholder="@seuescritorio" style="width:100%;padding:.75rem 1rem;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:#fff;font-size:.9375rem;outline:none;box-sizing:border-box;transition:border-color .2s;" />
           </div>
 
           <!-- Faturamento -->
@@ -904,10 +916,12 @@ const faqSchema = {
         if (panel) panel.style.display = 'block';
         if (success) success.style.display = 'none';
         if (errorEl) { errorEl.style.display = 'none'; errorEl.textContent = ''; }
-        ['sfm-nome','sfm-tel','sfm-arroba','sfm-fat'].forEach(function(id) {
+        ['sfm-nome','sfm-tel','sfm-fat'].forEach(function(id) {
           var el = document.getElementById(id);
           if (el) el.value = '';
         });
+        var arrobaEl = document.getElementById('sfm-arroba');
+        if (arrobaEl) arrobaEl.value = '@';
         if (submitBtn) { submitBtn.disabled = false; }
       }
 
