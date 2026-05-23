@@ -1,7 +1,8 @@
 ---
 import BaseHead from '@components/layout/BaseHead.astro';
-import AdvogadosLandingWithProvider from '@components/legacy-advogados/AdvogadosLandingWithProvider';
+import MarketingJuridicoLandingWithProvider from '@components/legacy-advogados/MarketingJuridicoLandingWithProvider';
 import '../styles/advogados-legacy.css';
+import '../styles/marketing-juridico-legacy.css';
 ---
 
 <!DOCTYPE html>
@@ -46,16 +47,11 @@ import '../styles/advogados-legacy.css';
       includeFonts={false}
     />
   </head>
-  <body class="advogados-page">
+  <body class="advogados-page marketing-juridico-page">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KS5L52P9"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
-  <AdvogadosLandingWithProvider
-    heroHeadline="Marketing jurídico para escritórios que querem"
-    heroHeadlineHighlight="atrair clientes com previsibilidade."
-    heroSubHeadline="Escritórios que constroem uma máquina de aquisição não dependem de indicação."
-    client:load
-  />
+  <MarketingJuridicoLandingWithProvider client:load />
   </body>
 </html>

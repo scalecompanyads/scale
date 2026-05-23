@@ -12,7 +12,9 @@
       "Bash(curl -s http://localhost:4321/blog)",
       "Bash(node --input-type=module)",
       "Bash(cat)",
-      "Bash(node /tmp/debug-blog.mjs)"
+      "Bash(node /tmp/debug-blog.mjs)",
+      "Bash(cwebp:*)",
+      "Bash(ffmpeg:*)"
     ]
   }
 }
