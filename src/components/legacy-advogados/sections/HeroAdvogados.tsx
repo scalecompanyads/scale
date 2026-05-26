@@ -320,7 +320,7 @@ export function HeroAdvogados(props: HeroProps) {
 
       {/* Mobile — centralizado */}
       <div className="container-page relative z-10 w-full min-w-0 max-w-full lg:hidden">
-        <div className="mx-auto flex w-full min-w-0 max-w-full flex-col items-center gap-8 sm:gap-10">
+        <div className="mx-auto flex w-full min-w-0 max-w-full flex-col items-center gap-4 sm:gap-6">
           <div className="w-full min-w-0 max-w-full text-center">
             <div className="mb-4 flex justify-center">
               <a href="#" className="inline-flex max-w-full py-0.5" aria-label="Scale Company — início">
@@ -373,7 +373,7 @@ export function HeroAdvogados(props: HeroProps) {
               <span className="font-medium text-white">Previsibilidade de honorários e crescimento.</span>
             </p>
 
-            <HeroProofPoints className="!items-start" />
+            <HeroProofPoints className="!items-start !justify-start" />
           </div>
 
           <div className="flex w-full min-w-0 items-center justify-end">
