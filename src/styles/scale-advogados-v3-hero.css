@@ -494,6 +494,10 @@
     margin-bottom: 10px;
   }
 
+  .scale-v3-hero-shell .nav-logo {
+    display: none;
+  }
+
   .scale-v3-hero-shell .menu-toggle {
     display: none;
   }
