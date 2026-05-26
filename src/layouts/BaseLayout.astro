@@ -23,6 +23,7 @@ interface Props {
   showGlassFilter?: boolean;
   showPreloader?: boolean;
   showLeadCaptureModal?: boolean;
+  includeFonts?: boolean;
 }
 
 const {
@@ -37,6 +38,7 @@ const {
   showGlassFilter = true,
   showPreloader = true,
   showLeadCaptureModal = true,
+  includeFonts = true,
 } = Astro.props;
 ---
 
@@ -50,6 +52,7 @@ const {
       ogImage={ogImage}
       ogType={ogType}
       noindex={noindex}
+      includeFonts={includeFonts}
     />
     {!noindex && <SchemaOrganizationGraph />}
     {!noindex && <SchemaBreadcrumbs />}

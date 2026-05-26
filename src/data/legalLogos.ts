@@ -8,34 +8,34 @@ export const legalLogosBasePath = '/scale-advogados/assets/logos-escritorios-adv
 
 export const legalLogos: LegalLogo[] = [
   {
-    file: 'Full Branco.png',
+    file: 'full-branco.webp',
     alt: 'Escritorio de advocacia cliente da Scale',
   },
   {
-    file: 'gberti-logo-branco-horizontal.png',
+    file: 'gberti-logo-branco-horizontal.webp',
     alt: 'G Berti Advocacia',
   },
   {
-    file: 'image2.png',
+    file: 'image2.webp',
     alt: 'Escritorio de advocacia cliente da Scale',
   },
   {
-    file: 'Imagem do WhatsApp de 2025-02-17 à(s) 17.43.37_300846c1-Photoroom.png',
+    file: 'whatsapp-logo.webp',
     alt: 'Escritorio de advocacia cliente da Scale',
   },
   {
-    file: 'JRA.png',
+    file: 'JRA.webp',
     alt: 'JRA Advocacia',
   },
   {
-    file: 'logothiagovetor.png',
+    file: 'logothiagovetor.webp',
     alt: 'Thiago Advocacia',
   },
   {
-    file: 'LOGOTIPO-02 (1).png',
+    file: 'logotipo-02.webp',
     alt: 'Escritorio de advocacia cliente da Scale',
   },
 ].map((logo) => ({
   ...logo,
-  src: encodeURI(`${legalLogosBasePath}/${logo.file}`),
+  src: `${legalLogosBasePath}/${logo.file}`,
 }));

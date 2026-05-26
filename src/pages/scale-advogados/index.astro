@@ -208,9 +208,12 @@ const faqSchema = {
   showGlassFilter={false}
   showPreloader={false}
   showLeadCaptureModal={false}
+  includeFonts={false}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <link slot="head" rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript slot="head"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" /></noscript>
   <!-- Google Tag Manager -->
   <script slot="head">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -444,7 +447,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="scale-spotlight-visual-side">
               <div class="scale-phone-mockup scale-spotlight-img-trigger">
                 <div class="scale-phone-screen">
-                  <img src="/scale-advogados/assets/whatsapp-testimonial-02.png" alt="Testemunho Miranda Advogados - R$ 300k de honorários" class="scale-spotlight-img" />
+                  <img src="/scale-advogados/assets/whatsapp-testimonial-02.webp" alt="Testemunho Miranda Advogados - R$ 300k de honorários" class="scale-spotlight-img" />
                   <div class="scale-phone-overlay">
                     <div class="scale-phone-expand-btn">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
@@ -468,7 +471,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="scale-spotlight-visual-side">
               <div class="scale-phone-mockup scale-spotlight-img-trigger">
                 <div class="scale-phone-screen">
-                  <img src="/scale-advogados/assets/whatsapp-testimonial-01.png" alt="Testemunho Dra. Ester Souza - R$ 14,6k em contratos" class="scale-spotlight-img" />
+                  <img src="/scale-advogados/assets/whatsapp-testimonial-01.webp" alt="Testemunho Dra. Ester Souza - R$ 14,6k em contratos" class="scale-spotlight-img" />
                   <div class="scale-phone-overlay">
                     <div class="scale-phone-expand-btn">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
@@ -491,7 +494,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="scale-spotlight-visual-side">
               <div class="scale-phone-mockup scale-spotlight-img-trigger">
                 <div class="scale-phone-screen">
-                  <img src="/scale-advogados/assets/whatsapp-testimonial-04.png" alt="Testemunho Dra. Thalyta Caline - R$ 8,4k em 5 dias" class="scale-spotlight-img" />
+                  <img src="/scale-advogados/assets/whatsapp-testimonial-04.webp" alt="Testemunho Dra. Thalyta Caline - R$ 8,4k em 5 dias" class="scale-spotlight-img" />
                   <div class="scale-phone-overlay">
                     <div class="scale-phone-expand-btn">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
@@ -514,7 +517,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="scale-spotlight-visual-side">
               <div class="scale-phone-mockup scale-spotlight-img-trigger">
                 <div class="scale-phone-screen">
-                  <img src="/scale-advogados/assets/whatsapp-testimonial-05.png" alt="Testemunho Contrato no 1º Dia" class="scale-spotlight-img" />
+                  <img src="/scale-advogados/assets/whatsapp-testimonial-05.webp" alt="Testemunho Contrato no 1º Dia" class="scale-spotlight-img" />
                   <div class="scale-phone-overlay">
                     <div class="scale-phone-expand-btn">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
@@ -653,7 +656,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="scale-bento">
         <div class="scale-bento__item" style="grid-area:trafego">
           <span class="scale-bento__label">Tráfego</span>
-          <img src="/scale-advogados/assets/google-meta-dashboard-dark.png" alt="Dashboard de tráfego pago" loading="lazy" decoding="async" />
+          <img src="/scale-advogados/assets/google-meta-dashboard-dark.webp" alt="Dashboard de tráfego pago" loading="lazy" decoding="async" />
         </div>
         <div class="scale-bento__item" style="grid-area:landing">
           <span class="scale-bento__label">Landing Page</span>
