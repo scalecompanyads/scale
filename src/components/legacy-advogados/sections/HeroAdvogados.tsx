@@ -1,10 +1,12 @@
 ﻿"use client";
 
+import { useState } from "react";
 import Image from "@/components/legacy-advogados/ui/next-image-shim";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { ShinyButton } from "@/components/legacy-advogados/ui/shiny-button";
 import { ScaleLogo } from "@/components/legacy-advogados/ui/scale-logo";
 import { cn } from "@/components/legacy-advogados/lib/utils";
+import { digitsOnly, maskPhoneBR } from "@/components/legacy-advogados/lib/phone-mask";
 
 const proofPoints = ["+ 200 escritórios", "Compliance com OAB Garantido"];
 
@@ -42,19 +44,138 @@ interface HeroProps {
 }
 
 const DEFAULT_HEADLINE_LINES = [
-  "Agência Especializada",
-  "para Escritórios de",
-  "Advocacia",
+  "Marketing Jurídico.",
+  "Assessoria focada em",
+  "Captação para Advogados.",
 ] as const;
 
 const DEFAULT_SUBHEADLINE =
-  "Implementamos uma máquina de aquisição de novos contratos com uma estrutura validada";
+  "Implementação em 15 dias da Máquina de Aquisição de novos contratos com um método validado para Advocacia.";
 
-const HERO_EYEBROW = "Marketing Jurídico";
+const MAKE_WEBHOOK_URL = "https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve";
+const EXCEL_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwdcXNSA-sUdCtT4JXky5JMTDihkGb1zNL41DLlgFTpOU1aMWs2xw0HmxpWiMIKYIDx/exec";
 
-function HeroEyebrow({ className }: { className?: string }) {
+const FATURAMENTO_OPTIONS = [
+  { value: "menos_30k", label: "Menos de R$ 30 mil" },
+  { value: "30_50k", label: "Entre R$ 30 mil e R$ 50 mil" },
+  { value: "50_100k", label: "Entre R$ 50 mil e R$ 100 mil" },
+  { value: "100k_plus", label: "Mais de R$ 100 mil" },
+] as const;
+
+type Faturamento = (typeof FATURAMENTO_OPTIONS)[number]["value"];
+
+function HeroInlineForm() {
+  const [form, setForm] = useState({ nome: "", perfilArroba: "", telefone: "", faturamento: "" as Faturamento | "" });
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async () => {
+    setError(null);
+    if (form.nome.trim().length < 2) { setError("Informe seu nome completo."); return; }
+    if (digitsOnly(form.telefone).length < 10) { setError("Informe um WhatsApp válido com DDD."); return; }
+    const h = form.perfilArroba.trim().replace(/^@+/, "");
+    if (h.length < 2) { setError("Informe o @ do perfil profissional."); return; }
+    if (!form.faturamento) { setError("Selecione uma faixa de faturamento."); return; }
+
+    setSubmitting(true);
+    const perfilNormalizado = form.perfilArroba.trim().startsWith("@") ? form.perfilArroba.trim() : `@${form.perfilArroba.trim()}`;
+    const params = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : new URLSearchParams();
+    const payload = {
+      lead_id: crypto?.randomUUID?.() ?? `lead-${Date.now()}`,
+      nome: form.nome.trim(),
+      perfilArroba: perfilNormalizado,
+      telefone: form.telefone,
+      telefoneDigits: digitsOnly(form.telefone),
+      faturamento: form.faturamento,
+      faturamentoLabel: FATURAMENTO_OPTIONS.find((o) => o.value === form.faturamento)?.label ?? form.faturamento,
+      origem: "hero-inline-form",
+      pagina: typeof window !== "undefined" ? window.location.pathname : "/advogados",
+      utm_source: params.get("utm_source") ?? "",
+      utm_medium: params.get("utm_medium") ?? "",
+      utm_campaign: params.get("utm_campaign") ?? "",
+      createdAt: new Date().toISOString(),
+    };
+    try {
+      await fetch(MAKE_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    } catch {}
+    try {
+      await fetch(EXCEL_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload), mode: "no-cors" });
+    } catch {}
+    if (typeof window !== "undefined") {
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: "lead_submit_success", ...payload });
+    }
+    setSubmitting(false);
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="w-full rounded-2xl border border-white/[0.1] bg-black/60 p-6 text-center backdrop-blur-sm">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-green-500/40 bg-green-500/20">
+          <CheckCircle2 className="h-8 w-8 text-green-400" />
+        </div>
+        <p className="font-display text-lg font-bold text-white">Entraremos em contato em até 30 minutos</p>
+        <p className="mt-2 text-xs text-content-tertiary">*Válido apenas em horários comerciais.</p>
+      </div>
+    );
+  }
+
   return (
-    <p className={cn("section-label mb-4 normal-case tracking-wide", className)}>{HERO_EYEBROW}</p>
+    <div className="w-full rounded-2xl border border-white/[0.1] bg-black/60 p-6 backdrop-blur-sm md:p-8">
+      <h3 className="mb-1 text-center font-display text-lg font-bold text-white">Aplique agora</h3>
+      <p className="mb-5 text-center text-sm text-content-secondary">Preencha e receba contato do nosso time.</p>
+      <div className="space-y-4">
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-content-secondary">Nome completo</label>
+          <input type="text" className="input w-full" placeholder="Seu nome" value={form.nome} onChange={(e) => setForm((f) => ({ ...f, nome: e.target.value }))} />
+        </div>
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-content-secondary">WhatsApp</label>
+          <input type="tel" inputMode="numeric" className="input w-full" placeholder="(11) 99999-9999" value={form.telefone} onChange={(e) => setForm((f) => ({ ...f, telefone: maskPhoneBR(e.target.value) }))} />
+        </div>
+        <div>
+          <label className="mb-1.5 block text-sm font-medium text-content-secondary">@ do Instagram</label>
+          <input type="text" className="input w-full" placeholder="@escritorio" value={form.perfilArroba} onChange={(e) => setForm((f) => ({ ...f, perfilArroba: e.target.value }))} />
+        </div>
+        <div>
+          <label className="mb-4 block text-sm font-medium text-content-secondary">Faturamento mensal</label>
+          <div className="faturamento-track-wrapper">
+            <div className="faturamento-track">
+              <div className="faturamento-track-fill" style={{ width: `${(FATURAMENTO_OPTIONS.findIndex((o) => o.value === form.faturamento) === -1 ? 0 : FATURAMENTO_OPTIONS.findIndex((o) => o.value === form.faturamento)) / 3 * 100}%` }} />
+              {FATURAMENTO_OPTIONS.map((opt, i) => (
+                <button
+                  key={opt.value}
+                  type="button"
+                  onClick={() => setForm((f) => ({ ...f, faturamento: opt.value }))}
+                  className={cn("faturamento-checkpoint", form.faturamento === opt.value && "active")}
+                  style={{ left: `${(i / 3) * 100}%` }}
+                  aria-label={opt.label}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="mt-4 flex justify-between">
+            {FATURAMENTO_OPTIONS.map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => setForm((f) => ({ ...f, faturamento: opt.value }))}
+                className={cn("text-[11px] leading-tight text-center max-w-[72px] transition-all duration-200 cursor-pointer", form.faturamento === opt.value ? "text-white font-semibold scale-105" : "text-content-tertiary hover:text-content-secondary")}
+              >
+                {opt.label.replace("Entre ", "").replace("Menos de ", "< ").replace("Mais de ", "> ")}
+              </button>
+            ))}
+          </div>
+        </div>
+        {error && <p className="text-center text-sm text-red-400">{error}</p>}
+        <button type="button" disabled={submitting} onClick={handleSubmit} className="w-full rounded-lg bg-brand-blue px-6 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50 inline-flex items-center justify-center gap-2">
+          {submitting ? <Loader2 className="h-5 w-5 animate-spin" /> : "Enviar"}
+        </button>
+        <p className="text-center text-xs text-content-tertiary">Ao enviar, você concorda em receber mensagens e ligações da Scale Company.</p>
+      </div>
+    </div>
   );
 }
 
@@ -207,8 +328,6 @@ export function HeroAdvogados(props: HeroProps) {
               </a>
             </div>
 
-            <HeroEyebrow className="mx-auto !mb-3" />
-
             <h1 className="hero-title-mobile mb-3 w-full max-w-full text-balance font-display font-bold leading-[1.12] tracking-tight text-white">
               <span className="block">{titleLine1}</span>
               <span className="block">{titleLine2}</span>
@@ -220,14 +339,13 @@ export function HeroAdvogados(props: HeroProps) {
             </p>
 
             <p className="mx-auto mb-6 w-full max-w-xl text-pretty text-center text-sm leading-relaxed text-content-secondary sm:text-base">
-              A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
-              <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
+              Estruturamos e otimizamos todo o seu processo de geração de contratos.{" "}
+              <span className="font-medium text-white">Previsibilidade de honorários e crescimento.</span>
             </p>
           </div>
 
-          <SquadPanels className="h-[min(32vh,280px)] min-h-[200px] w-full min-w-0 max-w-full sm:h-[min(34vh,320px)]" />
+          <HeroInlineForm />
 
-          <HeroCTAs mobile className="px-0" />
           <HeroProofPoints mobile />
         </div>
       </div>
@@ -236,7 +354,9 @@ export function HeroAdvogados(props: HeroProps) {
       <div className="container-page relative z-10 hidden w-full flex-1 items-center lg:flex">
         <div className="grid w-full items-center gap-12 xl:gap-16 lg:grid-cols-2">
           <div className="hero-desktop-copy flex w-full min-w-0 max-w-[41.4rem] flex-col items-start justify-center text-left">
-            <HeroEyebrow className="!mb-3" />
+            <a href="#" className="mb-6 inline-flex" aria-label="Scale Company — início">
+              <ScaleLogo heightClass="h-10" className="max-w-[260px]" />
+            </a>
 
             <h1 className="hero-title mb-3 w-full min-w-0 max-w-full text-left font-display font-bold tracking-tight text-white md:tracking-[-0.03em]">
               <span className="block">{titleLine1}</span>
@@ -249,16 +369,17 @@ export function HeroAdvogados(props: HeroProps) {
             </p>
 
             <p className="mb-8 max-w-[41.4rem] text-left text-sm leading-relaxed text-content-secondary sm:text-base md:text-lg lg:mb-6">
-              A Scale Company estrutura, executa e otimiza todo o seu processo de geração de clientes.{" "}
-              <span className="font-medium text-white">Do primeiro clique até o fechamento do contrato.</span>
+              Estruturamos e otimizamos todo o seu processo de geração de contratos.{" "}
+              <span className="font-medium text-white">Previsibilidade de honorários e crescimento.</span>
             </p>
 
-            <HeroCTAs className="!items-start !justify-start sm:flex-wrap" />
-            <HeroProofPoints className="mt-8 !items-start lg:mt-6" />
+            <HeroProofPoints className="!items-start" />
           </div>
 
           <div className="flex w-full min-w-0 items-center justify-end">
-            <SquadPanels className="aspect-[4/3] max-w-[644px]" />
+            <div className="w-full max-w-[440px]">
+              <HeroInlineForm />
+            </div>
           </div>
         </div>
       </div>

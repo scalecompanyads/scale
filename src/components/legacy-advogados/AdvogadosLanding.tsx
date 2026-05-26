@@ -1,5 +1,4 @@
 import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
-import { Navbar } from "@/components/legacy-advogados/sections/Navbar";
 import { HeroAdvogados } from "@/components/legacy-advogados/sections/HeroAdvogados";
 
 const Problem = lazy(() =>
@@ -71,7 +70,6 @@ function DeferredSection({ children }: { children: ReactNode }) {
 export default function AdvogadosPage() {
   return (
     <main>
-      <Navbar />
       <HeroAdvogados />
       <DeferredSection>
         <Problem />
