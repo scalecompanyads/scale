@@ -233,6 +233,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     html.trafego-advogados-page #preloader {
       display: none !important;
     }
+
+    /* Mobile Fixed Header */
+    .scale-mobile-header {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      height: 56px;
+      padding: 0 16px;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(6, 8, 16, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .scale-mobile-header__logo {
+      display: flex;
+      align-items: center;
+    }
+    .scale-mobile-header__logo img {
+      height: 28px;
+      width: auto;
+    }
+    .scale-mobile-header__cta {
+      padding: 8px 16px;
+      border-radius: 8px;
+      background: #0077ff;
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease;
+    }
+    .scale-mobile-header__cta:active {
+      background: #005bc7;
+    }
+    @media (max-width: 768px) {
+      .scale-mobile-header {
+        display: flex;
+      }
+      .paid-advogados {
+        padding-top: 56px;
+      }
+    }
   </style>
 
   <!-- Google Tag Manager (noscript) -->
@@ -240,198 +289,122 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
+  <!-- Mobile Fixed Header -->
+  <header class="scale-mobile-header">
+    <a href="/scale-advogados" class="scale-mobile-header__logo">
+      <img src="/images/scale-logo.svg" alt="Scale Company" />
+    </a>
+    <button type="button" class="scale-mobile-header__cta" onclick="window.__openScaleModal()">
+      Aplicar agora
+    </button>
+  </header>
+
   <div class="paid-advogados">
     <ScaleAdvogadosV3Hero
-      heading="Descubra como implementar um sistema"
+      heading="Sua Advocacia com uma máquina"
       headingAccent="previsível e escalável de captação de clientes:"
       description="Coloque o controle do seu faturamento em suas mãos com um diagnóstico gratuito e personalizado."
       primaryCtaHref="#scale-form-modal"
       primaryCtaLabel="Solicitar diagnóstico"
     />
-        <section class="scale-section scale-section--dark scale-problem scale-problem--final">
-      <div class="scale-container scale-problem__container">
-        <div class="scale-problem__intro">
-          <div class="scale-section-heading">
-            <h2>
-              O problema não é falta de competência jurídica.
-              <span> É depender de um fluxo que você não controla.</span>
-            </h2>
-            <p>
-              A indicação é valiosa, mas cria uma estrutura frágil e ciclos de insegurança:
-            </p>
-          </div>
 
-          <div class="scale-problem-leads">
-            <article class="scale-problem-lead-card">
-              <p class="scale-problem-lead-card__title">Aquisição concentrada</p>
-              <p class="scale-problem-lead-card__description">
-                A entrada de clientes refém da rede de contatos de quem deveria focar na estratégia.
-              </p>
-            </article>
-            <article class="scale-problem-lead-card">
-              <p class="scale-problem-lead-card__title">Agenda Instável</p>
-              <p class="scale-problem-lead-card__description">
-                Zero clareza e falta de dados de onde virão os próximos honorários.
-              </p>
-            </article>
-            <article class="scale-problem-lead-card">
-              <p class="scale-problem-lead-card__title">Sócios Sobrecarregados</p>
-              <p class="scale-problem-lead-card__description">
-                Você apaga incêndios, atende, vende e advoga ao mesmo tempo.
-              </p>
-            </article>
+    <!-- PIPELINE ANIMADO + TERMINAIS -->
+    <section class="scale-pipeline-section">
+      <div class="scale-pipeline-container">
+        <!-- Nós superiores -->
+        <div class="scale-pipeline-nodes">
+          <div class="scale-pipeline-node">
+            <div class="scale-pipeline-node__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <span class="scale-pipeline-node__label">AQUISIÇÃO</span>
           </div>
-
-          <div class="scale-problem__closing">
-            <span>
-              A culpa por atrair apenas "curiosos" não é sua. Advocacia não é e-commerce. Exige filtro, posicionamento premium e qualificação.
-            </span>
+          <div class="scale-pipeline-node">
+            <div class="scale-pipeline-node__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            </div>
+            <span class="scale-pipeline-node__label">CRIATIVOS</span>
           </div>
-
-          <div class="scale-problem__cta">
-            <button type="button" class="scale-btn-cta" onclick="window.__openScaleModal()">
-              <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true" focusable="false" style="display: inline-block; vertical-align: middle;">
-                <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/>
-              </svg>
-              Quero entender meu cenário
-            </button>
+          <div class="scale-pipeline-node">
+            <div class="scale-pipeline-node__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <span class="scale-pipeline-node__label">CRM</span>
+          </div>
+          <div class="scale-pipeline-node">
+            <div class="scale-pipeline-node__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="scale-pipeline-node__label">COMERCIAL</span>
           </div>
         </div>
-      </div>
-    </section>
 
-<!-- SEÇÃO MÁQUINA DE AQUISIÇÃO (ENTREGÁVEIS / DIFERENCIAL) -->
-        <section class="scale-section scale-section--dark scale-machine-section">
-      <div class="scale-container">
-        <!-- Topo da Seção -->
-        <div class="scale-section-heading">
-          <span class="scale-kicker">Diferencial</span>
-          <h2>Não fazemos apenas marketing. Implementamos uma <span>Máquina de Aquisição</span>.</h2>
-          <p>
-            Agências comuns entregam posts e relatórios de vaidade. Nós estruturamos uma engrenagem integrada de tecnologia, design e vendas focada em honorários recorrentes no seu caixa.
-          </p>
-          <p class="scale-problem-subtitle" style="font-weight: 500; color: rgba(255, 255, 255, 0.9); font-size: 1.15rem; max-width: 760px; margin: 1.5rem auto 0; line-height: 1.6;">
-            A sua operação em funcionamento:
-          </p>
+        <!-- Linhas dos ícones → hub + hub → terminais -->
+        <div class="scale-pipeline-svg-wrap">
+          <svg class="scale-pipeline-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <!-- Linhas verticais de cada ícone (12.5%, 37.5%, 62.5%, 87.5%) -->
+            <line class="scale-pipeline-line-svg" x1="12.5%" y1="0" x2="12.5%" y2="40" />
+            <line class="scale-pipeline-line-svg" x1="37.5%" y1="0" x2="37.5%" y2="40" />
+            <line class="scale-pipeline-line-svg" x1="62.5%" y1="0" x2="62.5%" y2="40" />
+            <line class="scale-pipeline-line-svg" x1="87.5%" y1="0" x2="87.5%" y2="40" />
+            <!-- Linha horizontal -->
+            <line class="scale-pipeline-line-svg" x1="12.5%" y1="40" x2="87.5%" y2="40" />
+            <!-- Linha central descendo -->
+            <line class="scale-pipeline-line-svg" x1="50%" y1="40" x2="50%" y2="100" />
+            <!-- Beams animados descendo dos ícones -->
+            <line class="scale-pipeline-beam-svg scale-pipeline-beam--v" x1="12.5%" y1="0" x2="12.5%" y2="40" />
+            <line class="scale-pipeline-beam-svg scale-pipeline-beam--v" x1="37.5%" y1="0" x2="37.5%" y2="40" />
+            <line class="scale-pipeline-beam-svg scale-pipeline-beam--v" x1="62.5%" y1="0" x2="62.5%" y2="40" />
+            <line class="scale-pipeline-beam-svg scale-pipeline-beam--v" x1="87.5%" y1="0" x2="87.5%" y2="40" />
+            <!-- Beam horizontal -->
+            <line class="scale-pipeline-beam-svg scale-pipeline-beam--h" x1="12.5%" y1="40" x2="87.5%" y2="40" />
+            <!-- Beam central descendo -->
+            <line class="scale-pipeline-beam-svg scale-pipeline-beam--down" x1="50%" y1="40" x2="50%" y2="100" />
+          </svg>
         </div>
 
-        <!-- Layout Split Mobile First -->
-        <div class="scale-machine-layout">
-          <!-- Grade de Entregáveis / Pilares (4 Itens) -->
-          <div class="scale-machine-grid">
-            
-            <article class="scale-machine-card">
-              <div class="scale-machine-card__header">
-                <div class="scale-machine-card__icon scale-machine-card__icon--blue">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                </div>
-                <h3>Tráfego de Intenção</h3>
-              </div>
-              <p>Campanhas de fundo de funil focadas 100% em quem já busca pelo seu serviço.</p>
-            </article>
-
-            <article class="scale-machine-card">
-              <div class="scale-machine-card__header">
-                <div class="scale-machine-card__icon scale-machine-card__icon--green">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
-                </div>
-                <h3>Engenharia de Conversão</h3>
-              </div>
-              <p>Landing pages ultrarrápidas que não perdem o lead por lentidão no celular.</p>
-            </article>
-
-            <article class="scale-machine-card">
-              <div class="scale-machine-card__header">
-                <div class="scale-machine-card__icon scale-machine-card__icon--purple">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                </div>
-                <h3>Filtro e CRM</h3>
-              </div>
-              <p>Automações com IA para qualificação primária 24/7 e organização visual do seu pipeline de contratos.</p>
-            </article>
-
-            <article class="scale-machine-card">
-              <div class="scale-machine-card__header">
-                <div class="scale-machine-card__icon scale-machine-card__icon--orange">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="2" y1="12" x2="4" y2="12"/></svg>
-                </div>
-                <h3>Posicionamento Premium</h3>
-              </div>
-              <p>Design corporativo, edição de vídeo cinematográfica, 100% alinhados ao provimento da OAB.</p>
-            </article>
-
+        <!-- Nó central (hub) -->
+        <div class="scale-pipeline-hub">
+          <div class="scale-pipeline-hub__icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           </div>
         </div>
-      </div>
-    </section>
 
-<!-- SEÇÃO MÉTODO SCALE -->
-        <section id="metodo" class="scale-section scale-section--dark scale-method-section">
-      <div class="scale-container">
-        <!-- Cabeçalho do Método -->
-        <div class="scale-section-heading">
-          <span class="scale-kicker">Método Scale</span>
-          <h2>Do primeiro contato aos primeiros anúncios: uma <span>Máquina Previsível de Aquisição de Contratos</span> para seu Escritório em até 15 dias</h2>
-        </div>
-
-        <!-- Grade de Passos (01 ao 05) -->
-        <div class="scale-method-grid">
-          
-          <!-- Passo 01 -->
-          <article class="scale-method-card">
-            <div class="scale-method-card__top">
-              <span class="scale-method-card__num">01</span>
-              <h3>Raio-X Comercial</h3>
+        <!-- Terminais Mac -->
+        <div class="scale-pipeline-terminals">
+          <div class="scale-terminal">
+            <div class="scale-terminal__bar">
+              <span class="scale-terminal__dot scale-terminal__dot--red"></span>
+              <span class="scale-terminal__dot scale-terminal__dot--yellow"></span>
+              <span class="scale-terminal__dot scale-terminal__dot--green"></span>
+              <span class="scale-terminal__title">~/leads · ativos</span>
             </div>
-            <p>Mapeamento rápido do seu cenário e histórico de perda de clientes.</p>
-          </article>
-
-          <!-- Passo 02 -->
-          <article class="scale-method-card">
-            <div class="scale-method-card__top">
-              <span class="scale-method-card__num">02</span>
-              <h3>Plano Estratégico (Gratuito)</h3>
+            <div class="scale-terminal__body" data-terminal="leads">
+              <p class="scale-terminal__line"><span class="scale-terminal__prompt">$</span> novo lead recebido...</p>
             </div>
-            <p>Definição de canais, mensagens e funil, sem custo inicial.</p>
-          </article>
-
-          <!-- Passo 03 -->
-          <article class="scale-method-card">
-            <div class="scale-method-card__top">
-              <span class="scale-method-card__num">03</span>
-              <h3>Setup e Imersão</h3>
+          </div>
+          <div class="scale-terminal scale-terminal--highlight">
+            <div class="scale-terminal__bar">
+              <span class="scale-terminal__dot scale-terminal__dot--red"></span>
+              <span class="scale-terminal__dot scale-terminal__dot--yellow"></span>
+              <span class="scale-terminal__dot scale-terminal__dot--green"></span>
+              <span class="scale-terminal__title">~/whatsapp · rec</span>
             </div>
-            <p>Alinhamento técnico de vendas, copy e criação visual.</p>
-          </article>
-
-          <!-- Passo 04 -->
-          <article class="scale-method-card">
-            <div class="scale-method-card__top">
-              <span class="scale-method-card__num">04</span>
-              <h3>Ativos no Ar (Em 15 dias)</h3>
+            <div class="scale-terminal__body" data-terminal="whatsapp">
+              <p class="scale-terminal__line"><span class="scale-terminal__prompt">$</span> conectando...</p>
             </div>
-            <p>Campanhas rodando, página no ar e primeiros testes de conversão.</p>
-          </article>
-
-          <!-- Passo 05 -->
-          <article class="scale-method-card">
-            <div class="scale-method-card__top">
-              <span class="scale-method-card__num">05</span>
-              <h3>Otimização Semanal</h3>
+          </div>
+          <div class="scale-terminal">
+            <div class="scale-terminal__bar">
+              <span class="scale-terminal__dot scale-terminal__dot--red"></span>
+              <span class="scale-terminal__dot scale-terminal__dot--yellow"></span>
+              <span class="scale-terminal__dot scale-terminal__dot--green"></span>
+              <span class="scale-terminal__title">~/contratos</span>
             </div>
-            <p>Uma equipe com mais de 6 especialistas ajustando o custo e a qualidade das reuniões geradas.</p>
-          </article>
-
-        </div>
-
-        <!-- CTA do Método -->
-        <div class="scale-method-cta" style="margin-top: 3.5rem; display: flex; justify-content: center;">
-          <button type="button" class="scale-btn-cta" onclick="window.__openScaleModal()">
-            <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true" focusable="false" style="display: inline-block; vertical-align: middle;">
-              <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/>
-            </svg>
-            Quero minha máquina de aquisição
-          </button>
+            <div class="scale-terminal__body" data-terminal="contratos">
+              <p class="scale-terminal__line"><span class="scale-terminal__prompt">$</span> pipeline carregando...</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -481,11 +454,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
             <div class="scale-spotlight-text-side">
-              <span class="scale-spotlight-badge">R$ 300.000,00 Mapeados</span>
-              <h3>Acelerando o comercial e branding no Instagram</h3>
-              <p class="scale-spotlight-description">
-                Reestruturação de branding e tráfego ativo com processos cirúrgicos pré-atendimento.
-              </p>
               <blockquote class="scale-spotlight-quote">
                 <p>
                   "Se tudo der certo, tem uns 300k de honorários engatilhados. E na expectativa para os próximos meses."
@@ -510,11 +478,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
             <div class="scale-spotlight-text-side">
-              <span class="scale-spotlight-badge">R$ 14,6k em 2 Contratos</span>
-              <h3>Engenharia de captação focada em alto ticket</h3>
-              <p class="scale-spotlight-description">
-                Diferente de campanhas comuns que trazem volume desqualificado, a engenharia de captação Scale focou em leads com fit financeiro real. O resultado foi o fechamento rápido de dois contratos de alto valor.
-              </p>
               <blockquote class="scale-spotlight-quote">
                 <p>
                   "Nós estamos em contato com todos os leads que chegaram. Todos engajaram. 02 fecharam contrato e estamos em tratativa com os demais. 5750,00 e 8927,00."
@@ -538,11 +501,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
             <div class="scale-spotlight-text-side">
-              <span class="scale-spotlight-badge">R$ 8,4k em 5 Dias</span>
-              <h3>Velocidade cirúrgica e conversão acelerada</h3>
-              <p class="scale-spotlight-description">
-                Com a estrutura ágil de funil e criativo qualificador da Scale, o primeiro contrato de grande de união estável foi assinado em apenas 5 dias de veiculação ativa.
-              </p>
               <blockquote class="scale-spotlight-quote">
                 <p>
                   "Que maravilhhaaa, primeiro contrato de muitos fechado. E olha que só temos 5 dias de campanhas ativas... Fechamos este contrato por R$ 8.400,00."
@@ -566,11 +524,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
             <div class="scale-spotlight-text-side">
-              <span class="scale-spotlight-badge">Contrato no 1º Dia</span>
-              <h3>Desperdício Zero: O poder do clique qualificado</h3>
-              <p class="scale-spotlight-description">
-                Agências generalistas gastam semanas queimando verba com leads frios. Com o Método Scale, a estrutura é validada de forma que o primeiro lead converteu em contrato assinado.
-              </p>
               <blockquote class="scale-spotlight-quote">
                 <p>
                   "Vocês já têm algum depoimento de contrato fechado em 1 dia de campanha pagando honorários iniciais? Se não, agora vocês tem! Boaaaaa primeiro lead e já veio fechamento."
@@ -657,71 +610,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
         <div class="scale-videos__grid">
-          <div class="scale-video-wrapper scale-video-card" data-video-id="hZxR3DadbTg">
-            <picture>
-              <source srcset="/scale-advogados/assets/capa-depoimento-bichara%20(1).webp" type="image/webp">
-              <img src="/scale-advogados/assets/capa-depoimento-bichara.png" alt="Depoimento Bichara Advogados" class="scale-video-card__poster" loading="lazy" decoding="async">
-            </picture>
-            <div class="scale-video-card__play"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg></div>
+          <div class="scale-video-wrapper scale-video-card scale-video-card--inline scale-video-card--local" data-video-id="bichara-local">
+            <video
+              src="/scale-advogados/assets/bichara.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              loading="lazy"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;"
+            ></video>
+            <button type="button" class="scale-video-unmute-btn" aria-label="Ver depoimento com áudio">
+              Clique aqui para ver o depoimento
+            </button>
           </div>
-          <div class="scale-video-wrapper scale-video-card" data-video-id="4V0ArJKXb-4">
-            <picture>
-              <source srcset="/scale-advogados/assets/capa-drvitor-miranda%20copy.webp" type="image/webp">
-              <img src="/scale-advogados/assets/capa-drvitor-miranda.png" alt="Depoimento Dr. Vitor Miranda" class="scale-video-card__poster" loading="lazy" decoding="async">
-            </picture>
-            <div class="scale-video-card__play"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/></svg></div>
+          <div class="scale-video-wrapper scale-video-card scale-video-card--inline scale-video-card--local" data-video-id="vitor-local">
+            <video
+              src="/scale-advogados/assets/depoimento-vitor.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              loading="lazy"
+              style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;"
+            ></video>
+            <button type="button" class="scale-video-unmute-btn" aria-label="Ver depoimento com áudio">
+              Clique aqui para ver o depoimento
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- AUTORIDADE E OPERAÇÃO -->
-        <section class="scale-section scale-section--dark scale-authority-section" id="autoridade">
-      <div class="scale-container">
-        <div class="scale-authority-grid">
-          
-          <!-- Lado Esquerdo: Copys de Autoridade -->
-          <div class="scale-authority-copy">
-            <span class="scale-kicker">Autoridade</span>
-            <h2>Quem constrói a sua máquina de aquisição?</h2>
-            <p class="scale-authority-lead">
-              A Scale é uma assessoria de crescimento corporativo especializada no mercado jurídico de alto padrão.
-            </p>
-            
-            <div class="scale-authority-text">
-              <p>
-                A partir de nossa sede em Vila Velha - ES, unimos análise de dados, programação de alta performance e inteligência de vendas para escalar operações em todo o Brasil.
-              </p>
-            </div>
 
-            <!-- Métricas e Expertise -->
-            <div class="scale-authority-metrics">
-              <div class="scale-auth-metric">
-                <span class="scale-auth-metric__num">R$ 30M+</span>
-                <span class="scale-auth-metric__label">Em honorários mapeados</span>
-              </div>
-              <div class="scale-auth-metric">
-                <span class="scale-auth-metric__num">32+</span>
-                <span class="scale-auth-metric__label">Especialistas dedicados</span>
-              </div>
-              <div class="scale-auth-metric">
-                <span class="scale-auth-metric__num">200+</span>
-                <span class="scale-auth-metric__label">Escritórios estruturados</span>
-              </div>
-            </div>
-          </div>
+<!-- SEÇÃO PORTFÓLIO — TUDO QUE FAZEMOS -->
+    <section class="scale-section scale-section--dark scale-portfolio-section">
+      <div class="scale-portfolio-heading">
+        <h2>Ecosistema 360°</h2>
+        <p>Cada peça de uma máquina de aquisição funcionando.</p>
+      </div>
 
-          <!-- Lado Direito: Foto da Galera / Escritório -->
-          <div class="scale-authority-visual">
-            <div class="scale-authority-img-wrapper">
-              <img src="/scale-advogados/assets/foto-galera-scale.jpg" alt="Equipe Scale no escritório" class="scale-authority-img" />
-              <div class="scale-authority-glass-overlay">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="scale-auth-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span>Operação 100% interna e dedicada</span>
-              </div>
-            </div>
-          </div>
-
+      <div class="scale-bento">
+        <div class="scale-bento__item" style="grid-area:trafego">
+          <span class="scale-bento__label">Tráfego</span>
+          <img src="/scale-advogados/assets/google-meta-dashboard-dark.png" alt="Dashboard de tráfego pago" loading="lazy" decoding="async" />
+        </div>
+        <div class="scale-bento__item" style="grid-area:landing">
+          <span class="scale-bento__label">Landing Page</span>
+          <video src="/scale-advogados/assets/landing-page-demo.mp4" autoplay muted loop playsinline loading="lazy"></video>
+        </div>
+        <div class="scale-bento__item" style="grid-area:artes">
+          <span class="scale-bento__label">Artes</span>
+          <img src="/scale-advogados/assets/arte-social-damas-lima.png" alt="Arte para redes sociais" loading="lazy" decoding="async" />
+        </div>
+        <div class="scale-bento__item" style="grid-area:video">
+          <span class="scale-bento__label">Edição de Vídeo</span>
+          <video src="/scale-advogados/assets/video-editing-bg.mp4" autoplay muted loop playsinline loading="lazy" style="object-position: left center;"></video>
+        </div>
+        <div class="scale-bento__item" style="grid-area:crm">
+          <span class="scale-bento__label">Comercial</span>
+          <video src="/scale-advogados/assets/comercial-gabriel.mp4" autoplay muted loop playsinline loading="lazy"></video>
+        </div>
+        <div class="scale-bento__item" style="grid-area:comercial">
+          <span class="scale-bento__label">CRM</span>
+          <video src="/scale-advogados/assets/crm-demo.mp4" autoplay muted loop playsinline loading="lazy" style="object-position: center top;"></video>
         </div>
       </div>
     </section>
@@ -1041,7 +993,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         document.querySelectorAll('.scale-video-wrapper').forEach(function(wrapper) {
           wrapper.addEventListener('click', function() {
             var id = wrapper.dataset.videoId;
-            if (!id || !videoContent) return;
+            if (!id) return;
+
+            var video = wrapper.querySelector('video');
+            if (video) {
+              var btn = wrapper.querySelector('.scale-video-unmute-btn');
+              if (video.muted) {
+                video.muted = false;
+                video.currentTime = 0;
+                video.play();
+                if (btn) btn.classList.add('hidden');
+              } else {
+                if (video.paused) {
+                  video.play();
+                  if (btn) btn.classList.add('hidden');
+                } else {
+                  video.pause();
+                }
+              }
+              return;
+            }
+
+            var iframe = wrapper.querySelector('iframe');
+            if (iframe) {
+              var src = iframe.src;
+              if (src.indexOf('mute=1') !== -1) {
+                iframe.src = src.replace('mute=1', 'mute=0');
+              }
+              return;
+            }
+            if (!videoContent) return;
             videoContent.innerHTML = '<iframe src="https://www.youtube.com/embed/' + id + '?autoplay=1&rel=0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
             if (videoLightbox) videoLightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1052,6 +1033,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (videoLightbox) videoLightbox.addEventListener('click', function(e) {
           if (e.target === videoLightbox) closeVideo();
         });
+
+        // Terminal typing simulation
+        var terminalMessages = {
+          leads: [
+            '→ Lead: Maria Silva · Direito Trabalhista',
+            '→ Lead: Carlos Souza · Revisão de Contrato',
+            '→ Lead: Ana Oliveira · Divórcio Consensual',
+            '→ Lead: Roberto Lima · Holding Familiar',
+            '→ Qualificação: 4/4 leads com fit',
+            '→ Lead: Fernanda Costa · Direito Imobiliário',
+            '→ Lead: Lucas Almeida · Planejamento Sucessório',
+          ],
+          whatsapp: [
+            '📱 "Boa tarde, preciso de um advogado trabalhista"',
+            '📱 "Vi o anúncio de vocês, quanto custa uma consulta?"',
+            '📱 "Meu caso é urgente, podem me atender hoje?"',
+            '📱 "Quero agendar reunião sobre holding familiar"',
+            '📱 "Recebi indicação de vocês, como funciona?"',
+            '📱 "Preciso revisar um contrato de locação"',
+          ],
+          contratos: [
+            '✓ Contrato #247 · R$ 4.500 · Assinado',
+            '✓ Contrato #248 · R$ 12.000 · Assinado',
+            '⏳ Pipeline: 8 em negociação',
+            '✓ Contrato #249 · R$ 3.200 · Assinado',
+            '$ Receita mês: R$ 47.800',
+            '✓ Contrato #250 · R$ 8.900 · Assinado',
+          ]
+        };
+        var terminalIndexes = { leads: 0, whatsapp: 0, contratos: 0 };
+
+        function addTerminalLine(key) {
+          var el = document.querySelector('[data-terminal="' + key + '"]');
+          if (!el) return;
+          var msgs = terminalMessages[key];
+          var msg = msgs[terminalIndexes[key] % msgs.length];
+          terminalIndexes[key]++;
+          var p = document.createElement('p');
+          p.className = 'scale-terminal__line';
+          p.innerHTML = '<span class="scale-terminal__prompt">$</span> ' + msg;
+          p.style.animationDelay = '0s';
+          el.appendChild(p);
+          if (el.children.length > 6) el.removeChild(el.children[0]);
+          el.scrollTop = el.scrollHeight;
+        }
+
+        setInterval(function() { addTerminalLine('leads'); }, 3200);
+        setInterval(function() { addTerminalLine('whatsapp'); }, 2800);
+        setInterval(function() { addTerminalLine('contratos'); }, 4000);
+        setTimeout(function() { addTerminalLine('leads'); }, 800);
+        setTimeout(function() { addTerminalLine('whatsapp'); }, 1200);
+        setTimeout(function() { addTerminalLine('contratos'); }, 1600);
+
 
         // Prints Infinite Marquee (Legacy) - Lightbox only
         var container = document.getElementById('scale-stagger-testimonials');
@@ -1254,6 +1288,336 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       cursor: pointer;
       box-shadow: 0 16px 40px rgba(0,0,0,.45);
       transition: transform .3s ease, border-color .3s ease;
+    }
+    .scale-video-card--inline {
+      cursor: default;
+    }
+    .scale-video-card--local {
+      cursor: pointer;
+    }
+    .scale-video-unmute-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(0, 119, 255, 0.9);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.6);
+      animation: scale-pulse-btn 2s ease-in-out infinite;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .scale-video-unmute-btn:hover {
+      background: rgba(0, 119, 255, 1);
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    .scale-video-unmute-btn.hidden {
+      display: none;
+    }
+    @keyframes scale-pulse-btn {
+      0% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0.6); }
+      70% { box-shadow: 0 0 0 14px rgba(0, 119, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 119, 255, 0); }
+    }
+
+    /* PIPELINE ANIMADO + TERMINAIS */
+    .scale-pipeline-section {
+      padding: 60px 0 80px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .scale-pipeline-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .scale-pipeline-nodes {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      margin-bottom: 0;
+    }
+    .scale-pipeline-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .scale-pipeline-node__icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(180deg, #14181f 0%, #0c0f15 100%);
+      box-shadow: 4px 6px 14px rgba(0,0,0,0.4);
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .scale-pipeline-node__icon svg {
+      stroke: rgba(220,230,245,0.75);
+    }
+    .scale-pipeline-node__icon:hover {
+      border-color: rgba(0,119,255,0.4);
+      transform: translateY(-2px);
+    }
+    .scale-pipeline-node__label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    /* Linhas SVG — ícones → barra horizontal → hub → terminais */
+    .scale-pipeline-svg-wrap {
+      width: 100%;
+      height: 100px;
+      position: relative;
+    }
+    .scale-pipeline-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .scale-pipeline-line-svg {
+      stroke: rgba(140, 200, 255, 0.35);
+      stroke-width: 0.8;
+      fill: none;
+      vector-effect: non-scaling-stroke;
+    }
+    .scale-pipeline-beam-svg {
+      fill: none;
+      stroke: rgba(100, 180, 255, 0.8);
+      stroke-width: 0.3;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+      filter: drop-shadow(0 0 2px rgba(100,180,255,0.4));
+    }
+    .scale-pipeline-beam--v {
+      stroke-dasharray: 12 28;
+      animation: beam-v 1.8s linear infinite;
+    }
+    .scale-pipeline-beam--v:nth-child(8) { animation-delay: 0.3s; }
+    .scale-pipeline-beam--v:nth-child(9) { animation-delay: 0.6s; }
+    .scale-pipeline-beam--v:nth-child(10) { animation-delay: 0.9s; }
+    @keyframes beam-v {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -40; }
+    }
+    .scale-pipeline-beam--h {
+      stroke-dasharray: 30 690;
+      animation: beam-h 3.5s linear infinite;
+    }
+    @keyframes beam-h {
+      0% { stroke-dashoffset: 720; }
+      100% { stroke-dashoffset: 0; }
+    }
+    .scale-pipeline-beam--down {
+      stroke-dasharray: 14 46;
+      animation: beam-down 2s linear infinite;
+    }
+    @keyframes beam-down {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -60; }
+    }
+
+    /* Hub central */
+    .scale-pipeline-hub {
+      margin: -6px 0;
+      z-index: 2;
+    }
+    .scale-pipeline-hub__icon {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #1a1f2e 0%, #0f1218 100%);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 24px rgba(0,119,255,0.12), 4px 8px 20px rgba(0,0,0,0.5);
+      animation: hub-pulse 3s ease-in-out infinite;
+    }
+    .scale-pipeline-hub__icon svg {
+      stroke: rgba(180,210,255,0.85);
+    }
+    @keyframes hub-pulse {
+      0%, 100% { box-shadow: 0 0 24px rgba(0,119,255,0.12), 4px 8px 20px rgba(0,0,0,0.5); }
+      50% { box-shadow: 0 0 36px rgba(0,119,255,0.25), 4px 8px 20px rgba(0,0,0,0.5); }
+    }
+
+    /* Terminais Mac */
+    .scale-pipeline-terminals {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      width: 100%;
+      margin-top: 32px;
+    }
+    .scale-terminal {
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(12,14,20,0.9);
+      overflow: hidden;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+    }
+    .scale-terminal--highlight {
+      border-color: rgba(0,119,255,0.2);
+      box-shadow: 0 0 20px rgba(0,119,255,0.06);
+    }
+    .scale-terminal__bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .scale-terminal__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .scale-terminal__dot--red { background: #ff5f57; }
+    .scale-terminal__dot--yellow { background: #febc2e; }
+    .scale-terminal__dot--green { background: #28c840; }
+    .scale-terminal__title {
+      margin-left: 8px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.4);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+    .scale-terminal__body {
+      flex: 1;
+      padding: 12px 14px;
+      font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+      font-size: 0.75rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+      overflow: hidden;
+    }
+    .scale-terminal__line {
+      margin: 0 0 4px;
+      opacity: 0;
+      animation: terminal-line-in 0.3s ease forwards;
+    }
+    .scale-terminal__prompt {
+      color: #28c840;
+      margin-right: 6px;
+    }
+    @keyframes terminal-line-in {
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      .scale-pipeline-nodes { gap: 24px; flex-wrap: wrap; justify-content: center; }
+      .scale-pipeline-node__icon { width: 48px; height: 48px; }
+      .scale-pipeline-node__icon svg { width: 20px; height: 20px; }
+      .scale-pipeline-node__label { font-size: 0.6rem; }
+      .scale-pipeline-svg-wrap { height: 80px; }
+      .scale-pipeline-terminals { grid-template-columns: 1fr; }
+      .scale-pipeline-terminals .scale-terminal:not(.scale-terminal--highlight) { display: none; }
+      .scale-terminal { min-height: 140px; }
+    }
+
+    /* ECOSISTEMA — BENTO GRID */
+    .scale-portfolio-section {
+      padding: 100px 0 80px;
+      width: 100%;
+      overflow: hidden;
+    }
+    .scale-portfolio-heading {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 0 24px;
+    }
+    .scale-portfolio-heading h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 500;
+      color: #fff;
+      margin: 0 0 12px;
+    }
+    .scale-portfolio-heading p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      margin: 0;
+    }
+    .scale-bento {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 200px 200px 200px;
+      grid-template-areas:
+        "trafego  trafego  landing  artes"
+        "video    crm      landing  artes"
+        "video    crm     comercial comercial";
+      gap: 10px;
+      padding: 0 24px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .scale-bento__item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #0a0c12;
+      border: 1px solid rgba(255,255,255,0.07);
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .scale-bento__item:hover {
+      transform: translateY(-4px) scale(1.015);
+      border-color: rgba(0,119,255,0.35);
+      box-shadow: 0 20px 50px rgba(0,119,255,0.1);
+    }
+    .scale-bento__item img,
+    .scale-bento__item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .scale-bento__label {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      z-index: 2;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) {
+      .scale-bento {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 160px 160px 160px 160px;
+        grid-template-areas:
+          "trafego   trafego"
+          "landing   artes"
+          "video     crm"
+          "comercial comercial";
+        gap: 8px;
+        padding: 0 12px;
+      }
     }
     .scale-video-card:hover { transform: translateY(-4px); border-color: rgba(0,119,255,.45); }
     .scale-video-card__poster { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -1500,7 +1864,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       margin: 1rem 0 1.2rem;
       font-size: 2.1rem;
       line-height: 1.13;
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: 0;
       color: transparent;
       background: linear-gradient(180deg, #ffffff 0%, #b5bbc7 100%);
@@ -2895,9 +3259,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     .scale-spotlight-content.active {
       display: grid;
-      grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-      gap: clamp(2.5rem, 6vw, 4.5rem);
-      align-items: center;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      justify-items: center;
+      text-align: center;
       opacity: 1;
       transform: translateY(0);
     }
@@ -2913,7 +3278,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .scale-phone-mockup {
       position: relative;
       width: 100%;
-      max-width: 290px;
+      max-width: 377px;
       height: auto;
       border-radius: 2.5rem;
       border: 8px solid #0f131a;
@@ -2992,7 +3357,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .scale-spotlight-text-side {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 1.25rem;
     }
 
@@ -3101,7 +3466,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         order: 2;
       }
       .scale-phone-mockup {
-        max-width: 280px;
+        max-width: 364px;
       }
       .scale-spotlight-tabs {
         margin: 0;
