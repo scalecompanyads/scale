@@ -180,6 +180,19 @@ const schema = {
     '@type': 'Brand',
     name: brand.name,
   },
+  award: 'Google Ads Search Certification',
+  certifications: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      credentialCategory: 'Certification',
+      name: 'Google Ads Search Certification',
+      url: 'https://www.credential.net/cdf1811d-e059-4074-9e10-b571c0bf86f8',
+      recognizedBy: {
+        '@type': 'Organization',
+        name: 'Google Skillshop'
+      }
+    }
+  ]
 };
 
 const faqSchema = {
@@ -488,10 +501,18 @@ const faqSchema = {
     <!-- VIDEOS -->
     <section class="scale-section scale-section--dark scale-section--proof" id="videos">
       <div class="scale-container">
-        <div class="scale-section-heading" style="text-align:center;margin-bottom:60px;">
-          <span class="scale-kicker">Depoimentos</span>
+        <div class="scale-section-heading" style="text-align:center;margin-bottom:40px;">
+          <span class="scale-kicker">Depoimentos & Resultados</span>
           <h2>Advogados que já estruturaram o crescimento com a Scale</h2>
           <p style="max-width:800px;margin:24px auto 0;">Histórias de escritórios que saíram do improviso e passaram a acompanhar aquisição, atendimento e conversão com mais clareza.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; md:flex-row; justify-content: center; align-items: center; gap: 20px; margin-bottom: 50px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); padding: 24px; border-radius: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
+           <img src="https://pdf.ms.credential.net/badge/image?env=production&credential=6j8zkser" alt="Selo Oficial Google Ads Search Certification" style="height: 110px; width: auto; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));" />
+           <div style="text-align: left;">
+             <h3 style="font-size: 1.15rem; font-weight: 700; color: #00BAFF; margin-bottom: 6px; font-family: 'Inter', sans-serif;">Gestão Certificada pelo Google</h3>
+             <p style="font-size: 0.9rem; color: rgba(255,255,255,0.7); line-height: 1.5;">A Scale possui o selo <a href="https://www.credential.net/cdf1811d-e059-4074-9e10-b571c0bf86f8" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">Google Ads Search Certification</a>, garantindo domínio técnico absoluto sobre a plataforma de busca focada em intenção e performance para a área jurídica.</p>
+           </div>
         </div>
 
         <div class="scale-videos__grid">
