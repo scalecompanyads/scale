@@ -13,8 +13,6 @@ const FATURAMENTO = [
   { value: 'acima_200k', label: 'Acima de R$ 200 mil' },
 ] as const;
 
-const MODAL_STEPS = ['Nome', 'Contato', 'Instagram', 'Faturamento', 'Confirmar'] as const;
-
 type Props = {
   variant: 'modal' | 'page';
   /** Chamado após envio com sucesso (ex.: fechar modal). */
@@ -31,8 +29,6 @@ export default function LeadForm({ variant, onSuccess }: Props) {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [skippedWebhook, setSkippedWebhook] = useState(false);
-  const [step, setStep] = useState(0);
-  const [consent, setConsent] = useState(false);
   const [attribution, setAttribution] = useState<LeadAttribution>(() =>
     getLeadAttribution()
   );
@@ -40,11 +36,11 @@ export default function LeadForm({ variant, onSuccess }: Props) {
   const isModal = variant === 'modal';
 
   const inputClass = isModal
-    ? 'w-full px-4 py-3 text-base text-slate-900 bg-white border border-slate-200 rounded-lg transition-shadow focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary placeholder:text-slate-400'
+    ? 'w-full px-4 py-3 text-base text-slate-900 bg-slate-50 border border-slate-200 rounded-lg transition-shadow focus:outline-none focus:ring-2 focus:ring-[#1630DF] focus:border-[#1630DF] placeholder:text-slate-400'
     : 'w-full px-4 py-3 text-base text-ink bg-surface-card border border-edge rounded-lg transition-shadow focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-brand-primary placeholder:text-ink-light';
 
   const labelClass = isModal
-    ? 'block text-sm font-medium text-slate-800 mb-2'
+    ? 'block text-sm font-semibold text-slate-800 mb-2'
     : 'block text-sm font-medium text-ink mb-2';
 
   useEffect(() => {
@@ -55,63 +51,20 @@ export default function LeadForm({ variant, onSuccess }: Props) {
     return instagram.trim().replace(/^@+/, '');
   }
 
-  function validateCurrentStep(): boolean {
-    setError(null);
-
-    if (step === 0 && nome.trim().length < 2) {
-      setError('Informe seu nome completo.');
-      return false;
-    }
-
-    if (step === 1) {
-      if (!email.trim() || !email.includes('@')) {
-        setError('Informe um e-mail válido.');
-        return false;
-      }
-      if (phoneDigits.replace(/\D/g, '').length < 10) {
-        setError('Informe um WhatsApp válido com DDD.');
-        return false;
-      }
-    }
-
-    if (step === 2) {
-      const ig = cleanInstagram();
-      if (ig.length < 2) {
-        setError('Informe o @ do Instagram da empresa.');
-        return false;
-      }
-      if (ig.length > 64) {
-        setError('Use no máximo 64 caracteres no @.');
-        return false;
-      }
-    }
-
-    if (step === 4 && !consent) {
-      setError('É necessário aceitar o contato para continuar.');
-      return false;
-    }
-
-    return true;
-  }
-
-  function goNext() {
-    if (!validateCurrentStep()) return;
-    setStep((current) => Math.min(current + 1, MODAL_STEPS.length - 1));
-  }
-
-  function goBack() {
-    setError(null);
-    setStep((current) => Math.max(current - 1, 0));
-  }
-
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setError(null);
-    if (isModal && !validateCurrentStep()) {
+    
+    if (nome.trim().length < 2) {
+      setError('Informe seu nome completo.');
+      return;
+    }
+    if (!email.trim() || !email.includes('@')) {
+      setError('Informe um e-mail válido.');
       return;
     }
     if (phoneDigits.replace(/\D/g, '').length < 10) {
-      setError('Informe um telefone válido com DDD.');
+      setError('Informe um WhatsApp válido com DDD.');
       return;
     }
     const ig = cleanInstagram();
@@ -119,6 +72,7 @@ export default function LeadForm({ variant, onSuccess }: Props) {
       setError('Informe o @ do Instagram.');
       return;
     }
+
     setLoading(true);
     const result = await submitLead({
       nome: nome.trim(),
@@ -128,6 +82,7 @@ export default function LeadForm({ variant, onSuccess }: Props) {
       instagram: ig ? `@${ig}` : '',
     });
     setLoading(false);
+    
     if (result.ok) {
       if (result.skippedWebhook && import.meta.env.PROD) {
         setError(
@@ -150,7 +105,7 @@ export default function LeadForm({ variant, onSuccess }: Props) {
       <div
         className={
           isModal
-            ? 'rounded-xl bg-white p-6 text-center text-slate-900 shadow-xl'
+            ? 'rounded-xl bg-white p-6 text-center text-slate-900'
             : 'rounded-xl border border-edge bg-surface-card p-8 text-center text-ink'
         }
       >
@@ -164,211 +119,6 @@ export default function LeadForm({ variant, onSuccess }: Props) {
           </p>
         )}
       </div>
-    );
-  }
-
-  if (isModal) {
-    return (
-      <form className="space-y-5" onSubmit={handleSubmit} noValidate>
-        <input type="hidden" name="utm_source" value={attribution.utm_source} />
-        <input type="hidden" name="utm_medium" value={attribution.utm_medium} />
-        <input type="hidden" name="utm_campaign" value={attribution.utm_campaign} />
-        <input type="hidden" name="utm_content" value={attribution.utm_content} />
-        <input type="hidden" name="utm_term" value={attribution.utm_term} />
-        <input type="hidden" name="gclid" value={attribution.gclid} />
-        <input type="hidden" name="fbclid" value={attribution.fbclid} />
-        <input type="hidden" name="referrer" value={attribution.referrer} />
-        <input type="hidden" name="landing_page" value={attribution.landing_page} />
-        <input type="hidden" name="pagina" value={attribution.pagina} />
-        <input type="hidden" name="origem_trafego" value={attribution.origem_trafego} />
-        <input type="hidden" name="canal" value={attribution.canal} />
-        <input type="hidden" name="is_organic" value={String(attribution.is_organic)} />
-
-        <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-slate-500">
-            <span>
-              Etapa {step + 1} de {MODAL_STEPS.length}
-            </span>
-            <span>{MODAL_STEPS[step]}</span>
-          </div>
-          <div className="h-2 overflow-hidden rounded-full bg-slate-100">
-            <div
-              className="h-full rounded-full bg-brand-primary transition-all"
-              style={{ width: `${((step + 1) / MODAL_STEPS.length) * 100}%` }}
-            />
-          </div>
-        </div>
-
-        {step === 0 && (
-          <div>
-            <label htmlFor="lead-nome" className={labelClass}>
-              Nome completo <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="lead-nome"
-              name="nome"
-              type="text"
-              required
-              autoComplete="name"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              className={inputClass}
-              placeholder="Seu nome"
-            />
-          </div>
-        )}
-
-        {step === 1 && (
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="lead-email" className={labelClass}>
-                E-mail profissional <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="lead-email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={inputClass}
-                placeholder="seu@email.com"
-              />
-            </div>
-            <div>
-              <label htmlFor="lead-telefone" className={labelClass}>
-                WhatsApp <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="lead-telefone"
-                name="telefone"
-                type="tel"
-                required
-                autoComplete="tel"
-                inputMode="numeric"
-                value={formatPhoneBR(phoneDigits)}
-                onChange={(e) => {
-                  const d = e.target.value.replace(/\D/g, '').slice(0, 11);
-                  setPhoneDigits(d);
-                }}
-                className={inputClass}
-                placeholder="(11) 99999-9999"
-              />
-            </div>
-          </div>
-        )}
-
-        {step === 2 && (
-          <div>
-            <label htmlFor="lead-instagram" className={labelClass}>
-              @ do Instagram da empresa <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="lead-instagram"
-              name="instagram"
-              type="text"
-              required
-              value={instagram}
-              onChange={(e) => setInstagram(e.target.value)}
-              className={inputClass}
-              placeholder="@suaempresa"
-              autoComplete="username"
-            />
-            <p className="mt-2 text-xs text-slate-500">
-              Informe como aparece no Instagram, com ou sem @.
-            </p>
-          </div>
-        )}
-
-        {step === 3 && (
-          <fieldset>
-            <legend className={labelClass}>Faturamento atual</legend>
-            <div className="space-y-2">
-              {FATURAMENTO.map((o) => (
-                <label
-                  key={o.value}
-                  className={`flex cursor-pointer items-center gap-3 rounded-lg border px-4 py-3 text-sm transition-colors ${
-                    faturamento === o.value
-                      ? 'border-brand-primary bg-brand-primary/10 text-slate-950'
-                      : 'border-slate-200 bg-white text-slate-700 hover:border-slate-300'
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="faturamento"
-                    value={o.value}
-                    checked={faturamento === o.value}
-                    onChange={(e) => setFaturamento(e.target.value)}
-                    className="h-4 w-4 accent-brand-primary"
-                  />
-                  {o.label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-        )}
-
-        {step === 4 && (
-          <div className="space-y-4">
-            <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
-              <p className="font-semibold text-slate-900">Confirme seus dados</p>
-              <p className="mt-2">{nome}</p>
-              <p>{email}</p>
-              <p>{formatPhoneBR(phoneDigits)}</p>
-              <p>{cleanInstagram() ? `@${cleanInstagram()}` : ''}</p>
-            </div>
-            <label className="flex cursor-pointer items-start gap-3 text-sm text-slate-700">
-              <input
-                type="checkbox"
-                checked={consent}
-                onChange={(e) => setConsent(e.target.checked)}
-                className="mt-1 h-4 w-4 shrink-0 accent-brand-primary"
-              />
-              <span>
-                Concordo em receber mensagens e ligações da Scale para dar continuidade ao atendimento.
-              </span>
-            </label>
-          </div>
-        )}
-
-        {error && (
-          <p className="text-sm text-red-600" role="alert">
-            {error}
-          </p>
-        )}
-
-        <div className="flex items-center justify-between gap-3">
-          {step > 0 ? (
-            <button
-              type="button"
-              onClick={goBack}
-              className="rounded-lg px-4 py-3 text-sm font-semibold text-slate-600 hover:bg-slate-100"
-            >
-              Voltar
-            </button>
-          ) : (
-            <span />
-          )}
-          {step < MODAL_STEPS.length - 1 ? (
-            <button
-              type="button"
-              onClick={goNext}
-              className="rounded-lg bg-brand-primary px-6 py-3 text-sm font-semibold text-ink-inverse transition-colors hover:bg-brand-secondary"
-            >
-              Continuar
-            </button>
-          ) : (
-            <button
-              type="submit"
-              disabled={loading}
-              className="rounded-lg bg-brand-primary px-6 py-3 text-sm font-semibold text-ink-inverse transition-colors hover:bg-brand-secondary disabled:opacity-60"
-            >
-              {loading ? 'Enviando...' : 'Enviar'}
-            </button>
-          )}
-        </div>
-      </form>
     );
   }
 
@@ -428,7 +178,7 @@ export default function LeadForm({ variant, onSuccess }: Props) {
 
       <div>
         <label htmlFor="lead-telefone" className={labelClass}>
-          Telefone <span className="text-red-500">*</span>
+          WhatsApp <span className="text-red-500">*</span>
         </label>
         <input
           id="lead-telefone"
@@ -443,48 +193,50 @@ export default function LeadForm({ variant, onSuccess }: Props) {
             setPhoneDigits(d);
           }}
           className={inputClass}
-          placeholder="DDD + número"
+          placeholder="(11) 99999-9999"
         />
       </div>
 
-      <div>
-        <label htmlFor="lead-faturamento" className={labelClass}>
-          Faturamento atual
-        </label>
-        <select
-          id="lead-faturamento"
-          name="faturamento"
-          value={faturamento}
-          onChange={(e) => setFaturamento(e.target.value)}
-          className={inputClass}
-        >
-          {FATURAMENTO.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
-            </option>
-          ))}
-        </select>
-      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="lead-faturamento" className={labelClass}>
+            Faturamento atual
+          </label>
+          <select
+            id="lead-faturamento"
+            name="faturamento"
+            value={faturamento}
+            onChange={(e) => setFaturamento(e.target.value)}
+            className={inputClass}
+          >
+            {FATURAMENTO.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div>
-        <label htmlFor="lead-instagram" className={labelClass}>
-          @ no Instagram <span className="text-red-500">*</span>
-        </label>
-        <input
-          id="lead-instagram"
-          name="instagram"
-          type="text"
-          required
-          value={instagram}
-          onChange={(e) => setInstagram(e.target.value)}
-          className={inputClass}
-          placeholder="@suaempresa"
-          autoComplete="off"
-        />
+        <div>
+          <label htmlFor="lead-instagram" className={labelClass}>
+            @ no Instagram <span className="text-red-500">*</span>
+          </label>
+          <input
+            id="lead-instagram"
+            name="instagram"
+            type="text"
+            required
+            value={instagram}
+            onChange={(e) => setInstagram(e.target.value)}
+            className={inputClass}
+            placeholder="@suaempresa"
+            autoComplete="off"
+          />
+        </div>
       </div>
 
       {error && (
-        <p className="text-sm text-red-600" role="alert">
+        <p className="text-sm text-red-600 font-medium" role="alert">
           {error}
         </p>
       )}
@@ -492,9 +244,13 @@ export default function LeadForm({ variant, onSuccess }: Props) {
       <button
         type="submit"
         disabled={loading}
-        className="w-full px-8 py-4 font-semibold text-base rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary transition-colors border-2 border-brand-primary disabled:opacity-60"
+        className={
+          isModal 
+            ? "w-full px-8 py-3.5 font-semibold text-base rounded-lg bg-[#1630DF] text-white hover:bg-[#00BAFF] transition-colors border-2 border-[#1630DF] hover:border-[#00BAFF] disabled:opacity-60 mt-2 shadow-md shadow-[#1630DF]/20"
+            : "w-full px-8 py-4 font-semibold text-base rounded-lg bg-brand-primary text-ink-inverse hover:bg-brand-secondary transition-colors border-2 border-brand-primary disabled:opacity-60"
+        }
       >
-        {loading ? 'Enviando…' : 'Enviar'}
+        {loading ? 'Enviando…' : 'Enviar agora'}
       </button>
     </form>
   );
