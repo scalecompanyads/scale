@@ -1,12 +1,29 @@
 import { legalLogos } from '@data/legalLogos';
-import { FileText, Gauge, LineChart } from 'lucide-react';
+import { FileText, Gauge, LineChart, type LucideIcon } from 'lucide-react';
+
+interface HeroChannelCard {
+  title: string;
+  description: string;
+  label?: string;
+  logo?: 'google-ads' | 'meta-ads' | 'journey';
+  highlights?: string[];
+  Icon: LucideIcon;
+}
 
 interface Props {
+  eyebrow?: string;
   heading: string;
   headingAccent: string;
   description: string;
   primaryCtaHref: string;
   primaryCtaLabel: string;
+  supportNote?: string;
+  navHelperHref?: string;
+  navHelperLabel?: string;
+  brandsLabel?: string;
+  channelTitle?: string;
+  channelDescription?: string;
+  channelCards?: HeroChannelCard[];
 }
 
 const brandLogos = legalLogos;
@@ -22,6 +39,73 @@ function WhatsAppIcon() {
   );
 }
 
+function GoogleAdsLogo() {
+  return (
+    <svg viewBox="0 0 64 64" width="30" height="30" aria-hidden="true" focusable="false">
+      <g transform="matrix(0.257748 0 0 0.257745 -0.361416 2.515516)">
+        <path
+          d="M85.9 28.6c2.4-6.3 5.7-12.1 10.6-16.8 19.6-19.1 52-14.3 65.3 9.7 10 18.2 20.6 36 30.9 54l51.6 89.8c14.3 25.1-1.2 56.8-29.6 61.1-17.4 2.6-33.7-5.4-42.7-21l-45.4-78.8c-.3-.6-.7-1.1-1.1-1.6-1.6-1.3-2.3-3.2-3.3-4.9L88.8 62.2c-3.9-6.8-5.7-14.2-5.5-22 .3-4 .8-8 2.6-11.6"
+          fill="#4285F4"
+        />
+        <path
+          d="M85.9 28.6c-.9 3.6-1.7 7.2-1.9 11-.3 8.4 1.8 16.2 6 23.5l32.9 56.9c1 1.7 1.8 3.4 2.8 5l-18.1 31.1-25.3 43.6c-.4 0-.5-.2-.6-.5-.1-.8.2-1.5.4-2.3 4.1-15 .7-28.3-9.6-39.7-6.3-6.9-14.3-10.8-23.5-12.1-12-1.7-22.6 1.4-32.1 8.9-1.7 1.3-2.8 3.2-4.8 4.2-.4 0-.6-.2-.7-.5l14.3-24.9L85.2 29.7c.2-.4.5-.7.7-1.1"
+          fill="#FBBC04"
+        />
+        <path
+          d="M11.8 158l5.7-5.1c24.3-19.2 60.8-5.3 66.1 25.1 1.3 7.3.6 14.3-1.6 21.3-.1.6-.2 1.1-.4 1.7-.9 1.6-1.7 3.3-2.7 4.9-8.9 14.7-22 22-39.2 20.9C20 225.4 4.5 210.6 1.8 191c-1.3-9.5.6-18.4 5.5-26.6 1-1.8 2.2-3.4 3.3-5.2.5-.4.3-1.2 1.2-1.2"
+          fill="#34A853"
+        />
+        <path d="M11.8 158c-.4.4-.4 1.1-1.1 1.2-.1-.7.3-1.1.7-1.6l.4.4" fill="#FBBC04" />
+        <path d="M81.6 201c-.4-.7 0-1.2.4-1.7l.4.4-.8 1.3" fill="#FBBC04" />
+      </g>
+    </svg>
+  );
+}
+
+function MetaLogo() {
+  return (
+    <svg viewBox="0 0 16 16" width="32" height="32" aria-hidden="true" focusable="false">
+      <path
+        fillRule="evenodd"
+        d="M8.217 5.243C9.145 3.988 10.171 3 11.483 3 13.96 3 16 6.153 16.001 9.907c0 2.29-.986 3.725-2.757 3.725-1.543 0-2.395-.866-3.924-3.424l-.667-1.123-.118-.197a55 55 0 0 0-.53-.877l-1.178 2.08c-1.673 2.925-2.615 3.541-3.923 3.541C1.086 13.632 0 12.217 0 9.973 0 6.388 1.995 3 4.598 3q.477-.001.924.122c.31.086.611.22.913.407.577.359 1.154.915 1.782 1.714m1.516 2.224q-.378-.615-.727-1.133L9 6.326c.845-1.305 1.543-1.954 2.372-1.954 1.723 0 3.102 2.537 3.102 5.653 0 1.188-.39 1.877-1.195 1.877-.773 0-1.142-.51-2.61-2.87zM4.846 4.756c.725.1 1.385.634 2.34 2.001A212 212 0 0 0 5.551 9.3c-1.357 2.126-1.826 2.603-2.581 2.603-.777 0-1.24-.682-1.24-1.9 0-2.602 1.298-5.264 2.846-5.264q.137 0 .27.018"
+        fill="#0866FF"
+      />
+    </svg>
+  );
+}
+
+function JourneyLogo() {
+  return (
+    <svg viewBox="0 0 64 64" width="30" height="30" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="journeyGradient" x1="8" y1="32" x2="56" y2="32" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#4285F4" />
+          <stop offset="0.5" stopColor="#34A853" />
+          <stop offset="1" stopColor="#0866FF" />
+        </linearGradient>
+      </defs>
+      <circle cx="12" cy="32" r="8" fill="#4285F4" />
+      <circle cx="32" cy="20" r="8" fill="#34A853" />
+      <circle cx="52" cy="32" r="8" fill="#0866FF" />
+      <path
+        d="M18 30c4-5 8-8 14-8h0c6 0 10 3 14 8"
+        fill="none"
+        stroke="url(#journeyGradient)"
+        strokeWidth="4"
+        strokeLinecap="round"
+      />
+      <path
+        d="M18 34c4 5 8 8 14 8h0c6 0 10-3 14-8"
+        fill="none"
+        stroke="url(#journeyGradient)"
+        strokeWidth="4"
+        strokeLinecap="round"
+        opacity="0.85"
+      />
+    </svg>
+  );
+}
+
 function normalizeCopy(value: string) {
   return value
     .normalize('NFD')
@@ -29,12 +113,27 @@ function normalizeCopy(value: string) {
     .toLowerCase();
 }
 
+function getChannelLogo(logo?: HeroChannelCard['logo']) {
+  if (logo === 'google-ads') return <GoogleAdsLogo />;
+  if (logo === 'meta-ads') return <MetaLogo />;
+  if (logo === 'journey') return <JourneyLogo />;
+  return null;
+}
+
 export default function ScaleAdvogadosV3Hero({
+  eyebrow,
   heading,
   headingAccent,
   description,
   primaryCtaHref,
   primaryCtaLabel,
+  supportNote,
+  navHelperHref = '#metodo',
+  navHelperLabel = 'Ver metodo',
+  brandsLabel = 'Escritorios que confiam na Scale',
+  channelTitle,
+  channelDescription,
+  channelCards = [],
 }: Props) {
   const isDefaultDescription =
     /controle do seu faturamento/i.test(description) &&
@@ -63,6 +162,9 @@ export default function ScaleAdvogadosV3Hero({
     headingAccent
   );
 
+  const mainChannels = channelCards.filter(c => c.logo !== 'journey');
+  const journeyChannel = channelCards.find(c => c.logo === 'journey');
+
   return (
     <div className="scale-v3-hero-shell">
       <nav className="hero-nav" aria-label="Navegacao principal da pagina">
@@ -72,7 +174,7 @@ export default function ScaleAdvogadosV3Hero({
 
         <div className="nav-menu">
           <div className="nav-actions">
-            <a className="btn-login" href="#metodo">
+            <a className="btn-login" href={navHelperHref}>
               Ver método
             </a>
             <a className="btn-signup" href={primaryCtaHref}>
@@ -108,6 +210,7 @@ export default function ScaleAdvogadosV3Hero({
         </div>
 
         <div className="hero-content">
+          {eyebrow ? <p className="hero-eyebrow">{eyebrow}</p> : null}
           <h1 id="hero-title" className="hero-heading">
             {heading}
             {' '}
@@ -128,11 +231,12 @@ export default function ScaleAdvogadosV3Hero({
             <WhatsAppIcon />
             {isDefaultPrimaryCta ? 'Solicitar diagnóstico' : primaryCtaLabel}
           </a>
+          {supportNote ? <p className="hero-support-note">{supportNote}</p> : null}
         </div>
       </section>
 
       <div className="brands-shell">
-        <p className="brands-label">Escritorios que confiam na Scale</p>
+        <p className="brands-label">{brandsLabel}</p>
         <div className="brands" aria-label="Escritorios de advocacia que ja confiaram na Scale">
           <div className="brands-track">
             {brandLogos.map((logo) => (
@@ -148,6 +252,106 @@ export default function ScaleAdvogadosV3Hero({
           </div>
         </div>
       </div>
+
+      {channelCards.length ? (
+        <section className="hero-channels" aria-label={channelTitle ?? 'Canais de aquisicao juridica'}>
+          <div className="hero-channels__layout-header">
+            {channelTitle ? <h2 className="hero-channels__title">{channelTitle}</h2> : null}
+            {channelDescription ? <p className="hero-channels__description">{channelDescription}</p> : null}
+          </div>
+
+          <div className="hero-channels__pillars">
+            {mainChannels.map((card) => {
+              const Icon = card.Icon;
+              const logo = getChannelLogo(card.logo);
+              const cardClassName = ['hero-channel-card', `hero-channel-card--${card.logo}`];
+
+              return (
+                <article className={cardClassName.join(' ')} key={card.title}>
+                  <div className="hero-channel-card__header">
+                    <div className="hero-channel-card__brand">
+                      <div className="hero-channel-card__icon">
+                        {logo ?? <Icon size={20} strokeWidth={1.8} />}
+                      </div>
+                      <div className="hero-channel-card__headline">
+                        {card.label ? <span className="hero-channel-card__label">{card.label}</span> : null}
+                        <h3>{card.title}</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="hero-channel-card__copy">
+                    <p dangerouslySetInnerHTML={{ __html: card.description }} />
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          {journeyChannel ? (
+            <article className="hero-channel-card hero-channel-card--journey hero-channel-card--wide">
+              <div className="hero-channel-card__journey-grid">
+                <div className="hero-channel-card__journey-text">
+                  <div className="hero-channel-card__header">
+                    <div className="hero-channel-card__brand">
+                      <div className="hero-channel-card__icon">
+                        <JourneyLogo />
+                      </div>
+                      <div className="hero-channel-card__headline">
+                        {journeyChannel.label ? <span className="hero-channel-card__label">{journeyChannel.label}</span> : null}
+                        <h3>{journeyChannel.title}</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="hero-channel-card__copy">
+                    <p dangerouslySetInnerHTML={{ __html: journeyChannel.description }} />
+                  </div>
+                </div>
+
+                <div className="journey-visual-pipeline" aria-hidden="true">
+                  <div className="journey-visual-pipeline__track-row">
+                    <div className="journey-visual-pipeline__node journey-visual-pipeline__node--google">
+                      <div className="journey-visual-pipeline__node-icon">
+                        <GoogleAdsLogo />
+                      </div>
+                      <span className="journey-visual-pipeline__node-label">Google Ads</span>
+                      <span className="journey-visual-pipeline__node-sub">Busca Ativa</span>
+                    </div>
+
+                    <div className="journey-visual-pipeline__connector">
+                      <span className="journey-visual-pipeline__beam journey-visual-pipeline__beam--left"></span>
+                      <div className="journey-visual-pipeline__hub">
+                        <div className="journey-visual-pipeline__hub-core"></div>
+                        <span className="journey-visual-pipeline__hub-label">INTEGRAÇÃO</span>
+                      </div>
+                      <span className="journey-visual-pipeline__beam journey-visual-pipeline__beam--right"></span>
+                    </div>
+
+                    <div className="journey-visual-pipeline__node journey-visual-pipeline__node--meta">
+                      <div className="journey-visual-pipeline__node-icon">
+                        <MetaLogo />
+                      </div>
+                      <span className="journey-visual-pipeline__node-label">Meta Ads</span>
+                      <span className="journey-visual-pipeline__node-sub">Autoridade</span>
+                    </div>
+                  </div>
+
+                  <div className="journey-visual-pipeline__vertical-connector">
+                    <span className="journey-visual-pipeline__vertical-beam"></span>
+                  </div>
+
+                  <div className="journey-visual-pipeline__node journey-visual-pipeline__node--whatsapp">
+                    <div className="journey-visual-pipeline__node-icon journey-visual-pipeline__node-icon--whatsapp">
+                      <WhatsAppIcon />
+                    </div>
+                    <span className="journey-visual-pipeline__node-label">WhatsApp</span>
+                    <span className="journey-visual-pipeline__node-sub">Conversa Comercial</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ) : null}
+        </section>
+      ) : null}
     </div>
   );
 }
