@@ -164,6 +164,7 @@ export default function ScaleAdvogadosV3Hero({
 
   const mainChannels = channelCards.filter(c => c.logo !== 'journey');
   const journeyChannel = channelCards.find(c => c.logo === 'journey');
+  const showChannelBridge = Boolean(journeyChannel && mainChannels.length === 2);
 
   return (
     <div className="scale-v3-hero-shell">
@@ -260,96 +261,101 @@ export default function ScaleAdvogadosV3Hero({
             {channelDescription ? <p className="hero-channels__description">{channelDescription}</p> : null}
           </div>
 
-          <div className="hero-channels__pillars">
-            {mainChannels.map((card) => {
-              const Icon = card.Icon;
-              const logo = getChannelLogo(card.logo);
-              const cardClassName = ['hero-channel-card', `hero-channel-card--${card.logo}`];
+          <div className="hero-channels__flow">
+            <div className="hero-channels__pillars">
+              {mainChannels.map((card, index) => {
+                const Icon = card.Icon;
+                const logo = getChannelLogo(card.logo);
+                const cardClassName = ['hero-channel-card', `hero-channel-card--${card.logo}`];
 
-              return (
-                <article className={cardClassName.join(' ')} key={card.title}>
-                  <div className="hero-channel-card__header">
-                    <div className="hero-channel-card__brand">
-                      <div className="hero-channel-card__icon">
-                        {logo ?? <Icon size={20} strokeWidth={1.8} />}
+                return (
+                  <div key={card.title}>
+                    <article className={cardClassName.join(' ')}>
+                      <div className="hero-channel-card__header">
+                        <div className="hero-channel-card__brand">
+                          <div className="hero-channel-card__icon">
+                            {logo ?? <Icon size={20} strokeWidth={1.8} />}
+                          </div>
+                          <div className="hero-channel-card__headline">
+                            {card.label ? <span className="hero-channel-card__label">{card.label}</span> : null}
+                            <h3>{card.title}</h3>
+                          </div>
+                        </div>
                       </div>
-                      <div className="hero-channel-card__headline">
-                        {card.label ? <span className="hero-channel-card__label">{card.label}</span> : null}
-                        <h3>{card.title}</h3>
+                      <div className="hero-channel-card__copy">
+                        <p dangerouslySetInnerHTML={{ __html: card.description }} />
                       </div>
-                    </div>
+                    </article>
+
+                    {showChannelBridge && index === 0 ? (
+                      <div className="hero-channels__bridge hero-channels__bridge--mobile" aria-hidden="true">
+                        <span className="hero-channels__bridge-arm hero-channels__bridge-arm--left" />
+                        <span className="hero-channels__bridge-arm hero-channels__bridge-arm--right" />
+                        <div className="hero-channels__bridge-core">
+                          <WhatsAppIcon />
+                        </div>
+                        <span className="hero-channels__bridge-drop" />
+                      </div>
+                    ) : null}
                   </div>
-                  <div className="hero-channel-card__copy">
-                    <p dangerouslySetInnerHTML={{ __html: card.description }} />
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
 
-          {journeyChannel ? (
-            <article className="hero-channel-card hero-channel-card--journey hero-channel-card--wide">
-              <div className="hero-channel-card__journey-grid">
-                <div className="hero-channel-card__journey-text">
-                  <div className="hero-channel-card__header">
-                    <div className="hero-channel-card__brand">
-                      <div className="hero-channel-card__icon">
-                        <JourneyLogo />
-                      </div>
-                      <div className="hero-channel-card__headline">
-                        {journeyChannel.label ? <span className="hero-channel-card__label">{journeyChannel.label}</span> : null}
-                        <h3>{journeyChannel.title}</h3>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="hero-channel-card__copy">
-                    <p dangerouslySetInnerHTML={{ __html: journeyChannel.description }} />
-                  </div>
-                </div>
-
-                <div className="journey-visual-pipeline" aria-hidden="true">
-                  <div className="journey-visual-pipeline__track-row">
-                    <div className="journey-visual-pipeline__node journey-visual-pipeline__node--google">
-                      <div className="journey-visual-pipeline__node-icon">
-                        <GoogleAdsLogo />
-                      </div>
-                      <span className="journey-visual-pipeline__node-label">Google Ads</span>
-                      <span className="journey-visual-pipeline__node-sub">Busca Ativa</span>
-                    </div>
-
-                    <div className="journey-visual-pipeline__connector">
-                      <span className="journey-visual-pipeline__beam journey-visual-pipeline__beam--left"></span>
-                      <div className="journey-visual-pipeline__hub">
-                        <div className="journey-visual-pipeline__hub-core"></div>
-                        <span className="journey-visual-pipeline__hub-label">INTEGRAÇÃO</span>
-                      </div>
-                      <span className="journey-visual-pipeline__beam journey-visual-pipeline__beam--right"></span>
-                    </div>
-
-                    <div className="journey-visual-pipeline__node journey-visual-pipeline__node--meta">
-                      <div className="journey-visual-pipeline__node-icon">
-                        <MetaLogo />
-                      </div>
-                      <span className="journey-visual-pipeline__node-label">Meta Ads</span>
-                      <span className="journey-visual-pipeline__node-sub">Autoridade</span>
-                    </div>
-                  </div>
-
-                  <div className="journey-visual-pipeline__vertical-connector">
-                    <span className="journey-visual-pipeline__vertical-beam"></span>
-                  </div>
-
-                  <div className="journey-visual-pipeline__node journey-visual-pipeline__node--whatsapp">
-                    <div className="journey-visual-pipeline__node-icon journey-visual-pipeline__node-icon--whatsapp">
+            {journeyChannel ? (
+              <>
+                {showChannelBridge ? (
+                  <div className="hero-channels__bridge hero-channels__bridge--desktop" aria-hidden="true">
+                    <span className="hero-channels__bridge-arm hero-channels__bridge-arm--left" />
+                    <span className="hero-channels__bridge-arm hero-channels__bridge-arm--right" />
+                    <div className="hero-channels__bridge-core">
                       <WhatsAppIcon />
                     </div>
-                    <span className="journey-visual-pipeline__node-label">WhatsApp</span>
-                    <span className="journey-visual-pipeline__node-sub">Conversa Comercial</span>
+                    <span className="hero-channels__bridge-drop" />
                   </div>
-                </div>
-              </div>
-            </article>
-          ) : null}
+                ) : null}
+
+                <article className="hero-channel-card hero-channel-card--journey hero-channel-card--wide">
+                  <div className="hero-channel-card__journey-grid">
+                    <div className="hero-channel-card__journey-text">
+                      <div className="hero-channel-card__header">
+                        <div className="hero-channel-card__brand">
+                          <div className="hero-channel-card__icon">
+                            <JourneyLogo />
+                          </div>
+                          <div className="hero-channel-card__headline">
+                            {journeyChannel.label ? <span className="hero-channel-card__label">{journeyChannel.label}</span> : null}
+                            <h3>{journeyChannel.title}</h3>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="hero-channel-card__copy">
+                        <p dangerouslySetInnerHTML={{ __html: journeyChannel.description }} />
+                      </div>
+                    </div>
+
+                    <div className="journey-whatsapp-focus" aria-hidden="true">
+                      <span className="journey-whatsapp-focus__halo" />
+                      <div className="journey-whatsapp-focus__icon">
+                        <WhatsAppIcon />
+                      </div>
+                      <span className="journey-whatsapp-focus__label">WhatsApp do escritório</span>
+                      <p className="journey-whatsapp-focus__copy">
+                        O ponto em que intenção e autoridade viram conversa comercial.
+                      </p>
+                      {journeyChannel.highlights?.length ? (
+                        <div className="journey-whatsapp-focus__chips">
+                          {journeyChannel.highlights.map((highlight) => (
+                            <span key={highlight}>{highlight}</span>
+                          ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                </article>
+              </>
+            ) : null}
+          </div>
         </section>
       ) : null}
     </div>

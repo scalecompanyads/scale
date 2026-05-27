@@ -831,10 +831,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             A advocacia mudou. Hoje, quando alguém tem um problema jurídico, o primeiro lugar que
             procura é o Google. Se o seu escritório não está lá, você está deixando dinheiro na mesa.
           </p>
-          <button type="button" class="scale-btn-cta scale-btn-cta--desktop-only" onclick="window.__openScaleModal()">
-            <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
-            Quero saber como funciona
-          </button>
         </div>
 
         <div class="scale-problem-stage">
@@ -865,7 +861,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </span>
           </div>
 
-          <div class="scale-problem-mobile-cta">
+          <div class="scale-problem-cta">
             <button type="button" class="scale-btn-cta" onclick="window.__openScaleModal()">
               <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" style="display: inline-block; vertical-align: middle; margin-right: 8px;"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
               Quero saber como funciona
@@ -979,9 +975,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           })();
 
           (function liveNotificationLoop() {
+            const notificationTrigger = document.querySelector('.scale-pipeline-phone-mockup');
             // Expose a public trigger hook for instant activation when step 4 is highlighted
             window.__triggerImmediateWhatsAppNotification = function() {
               if (typeof addNextNotification === 'function') {
+                startNotificationLoop();
                 addNextNotification();
               }
             };
@@ -1001,6 +999,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (!container) return;
 
             let poolIndex = 0;
+            let notificationLoopStarted = false;
+            let notificationIntervalId = null;
+            let notificationStopTimeoutId = null;
+            const notificationLoopDurationMs = 16000;
 
             function createNotificationElement(data) {
               const notif = document.createElement('article');
@@ -1065,12 +1067,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               }, 100);
             }
 
-            // Start by pushing 2 initial ones
-            setTimeout(addNextNotification, 500);
-            setTimeout(addNextNotification, 2000);
+            function startNotificationLoop() {
+              if (notificationLoopStarted) return;
+              notificationLoopStarted = true;
 
-            // Infinite loop every 4.2 seconds
-            setInterval(addNextNotification, 4200);
+              setTimeout(addNextNotification, 120);
+              setTimeout(addNextNotification, 820);
+              notificationIntervalId = window.setInterval(addNextNotification, 2400);
+              notificationStopTimeoutId = window.setTimeout(() => {
+                if (notificationIntervalId !== null) {
+                  window.clearInterval(notificationIntervalId);
+                  notificationIntervalId = null;
+                }
+              }, notificationLoopDurationMs);
+            }
+
+            if ('IntersectionObserver' in window && notificationTrigger) {
+              const notificationObserver = new IntersectionObserver((entries) => {
+                const hasVisibleEntry = entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.35);
+                if (!hasVisibleEntry) return;
+                startNotificationLoop();
+                notificationObserver.disconnect();
+              }, {
+                threshold: [0.35]
+              });
+
+              notificationObserver.observe(notificationTrigger);
+            } else {
+              startNotificationLoop();
+            }
           })();
         </script>
 
@@ -3259,25 +3284,11 @@ background: linear-gradient(180deg, #ffffff 0%, #b8beca 100%);
       text-shadow: 0 0 10px rgba(239, 68, 68, 0.15);
     }
 
-    .scale-btn-cta--desktop-only {
-      display: inline-flex !important;
-    }
-    
-    .scale-problem-mobile-cta {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .scale-btn-cta--desktop-only {
-        display: none !important;
-      }
-      
-      .scale-problem-mobile-cta {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        margin-top: 1.5rem;
-      }
+    .scale-problem-cta {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 1.5rem;
     }
 
     .scale-problem__intro,
@@ -4982,16 +4993,19 @@ background: linear-gradient(180deg, #ffffff 0%, #b8beca 100%);
 
     .scale-problem__shell {
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      gap: clamp(2rem, 5vw, 4.5rem);
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 4vw, 3.25rem);
       align-items: start;
+      justify-items: center;
     }
 
     .scale-problem-copy {
       display: grid;
       gap: 1.3rem;
       align-content: start;
-      max-width: 460px;
+      max-width: 780px;
+      justify-items: center;
+      text-align: center;
     }
 
     .scale-problem-copy h2 {
@@ -5034,6 +5048,9 @@ background: linear-gradient(180deg, #ffffff 0%, #b8beca 100%);
     .scale-problem-stage {
       display: grid;
       gap: 1.15rem;
+      width: 100%;
+      max-width: 1040px;
+      margin: 0 auto;
     }
 
     .scale-problem-lead-card__title {
