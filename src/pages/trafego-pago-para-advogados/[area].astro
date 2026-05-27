@@ -12,6 +12,7 @@ import {
   technologyImpactCards,
   type LegalArea,
 } from '@data/legalSeo';
+import { majorCapitalLegalCities } from '@data/legalLocalCities';
 import { brand, getCanonicalUrl, organizationId, websiteId } from '@data/seo';
 import {
   ArrowRight,
@@ -454,6 +455,25 @@ const faqItems = [
             </a>
           ))}
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-[#f5f7fb] light-section border-t border-edge" style="padding-top: 4rem; padding-bottom: 4rem;">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center mb-10">
+        <span class="text-xs font-bold uppercase tracking-[0.22em] text-[#1630DF]">Atuação Nacional</span>
+        <h2 class="mt-4 font-heading text-3xl font-bold leading-tight text-ink md:text-4xl">
+          Marketing jurídico estruturado nas principais capitais
+        </h2>
+      </div>
+      <div class="flex flex-wrap justify-center gap-3">
+        {majorCapitalLegalCities.map((city) => (
+          <a href={`/${city.slug}/marketing-juridico`} class="group flex items-center gap-2 rounded-full border border-edge bg-white px-4 py-2 text-sm font-semibold text-ink-light transition-all hover:border-[#1630DF] hover:text-[#1630DF] hover:shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-ink-muted group-hover:text-[#1630DF] transition-colors"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            {city.name} - {city.stateAbbr}
+          </a>
+        ))}
       </div>
     </div>
   </section>
