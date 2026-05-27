@@ -1,0 +1,193 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import Button from '@components/ui/Button.astro';
+import GlassEffect from '@components/ui/GlassEffect.astro';
+
+const credentialSchema = {
+  "@context": [
+    "https://schema.org"
+  ],
+  "@type": "EducationalOccupationalCredential",
+  "name": "Google Ads Search Certification",
+  "description": "Demonstrate your mastery of building and optimizing Google Search campaigns. Certified users will exhibit the ability to leverage automated solutions like Smart Bidding to boost campaign performance for specific marketing objectives.",
+  "url": "https://www.credential.net/cdf1811d-e059-4074-9e10-b571c0bf86f8",
+  "credentialCategory": "Certification",
+  "recognizedBy": {
+    "@type": "Organization",
+    "name": "Google Skillshop"
+  }
+};
+---
+
+<BaseLayout
+  title="Scale: Agência com Certificação Oficial Google Ads"
+  description="A Scale é uma agência de marketing oficialmente certificada pelo Google em Search Campaigns. Estratégia avançada e inteligência artificial para o seu ROI."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(credentialSchema)} />
+  </Fragment>
+
+  <style>
+    .cert-section {
+      position: relative;
+      background-color: #010f1c;
+      color: #fff;
+      overflow: hidden;
+      padding: 10rem 0 6rem;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+    }
+    .cert-grid {
+      background-size: 72px 72px;
+      background-image:
+        linear-gradient(to right,  rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.018) 1px, transparent 1px);
+      mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+      -webkit-mask-image: linear-gradient(to bottom, transparent, black 40%, black 60%, transparent);
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .cert-glow {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 80vw; height: 60vh;
+      background: radial-gradient(circle at 50% 50%, rgba(0,186,255,0.12) 0%, rgba(22,48,223,0.08) 40%, transparent 70%);
+      border-radius: 50%;
+      filter: blur(72px);
+      pointer-events: none;
+    }
+    .cert-badge-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+      border-radius: 1rem;
+      padding: 1rem;
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid rgba(255,255,255,0.09);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(0,186,255,0.06), inset 0 1px 0 rgba(255,255,255,0.07);
+      backdrop-filter: blur(12px);
+    }
+    .cert-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.55) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cert-subtitle {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+    
+    .benefit-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      transition: all 0.3s;
+    }
+    .benefit-card:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(0,186,255,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0,186,255,0.1);
+    }
+    .benefit-icon {
+      width: 48px; height: 48px;
+      border-radius: 12px;
+      background: rgba(0,186,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      color: #00BAFF;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+
+  <section class="cert-section text-center">
+    <div class="cert-grid"></div>
+    <div class="cert-glow"></div>
+    
+    <div class="container relative z-10 max-w-5xl mx-auto px-6">
+      <div class="flex flex-col items-center">
+        <GlassEffect
+          className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold mb-8 !cursor-default"
+          glassClass="bg-[#010f1c]/75"
+          rounded="rounded-full"
+        >
+          <span style="color: rgba(0,186,255,0.70);">✦</span>
+          <span style="color: rgba(255,255,255,0.65);">Qualificação Verificada Google</span>
+        </GlassEffect>
+
+        <div class="cert-badge-wrapper group">
+          <div class="absolute inset-0 bg-[#00BAFF]/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+          <img 
+            src="https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/6j8zkser" 
+            alt="Google Ads Search Certification" 
+            class="max-w-xs md:max-w-sm rounded object-contain relative z-10"
+            loading="eager"
+          />
+        </div>
+
+        <h1 class="cert-title">
+          Marketing com <br />
+          Chancela Internacional.
+        </h1>
+        
+        <p class="cert-subtitle">
+          A Scale superou os rigorosos testes globais e conquistou a <strong>Google Ads Search Certification</strong>. 
+          Isso significa que suas campanhas estão nas mãos de quem realmente domina o algoritmo de busca.
+        </p>
+
+        <div class="flex items-center gap-4 flex-wrap justify-center mb-20">
+          <Button href="/contato" variant="primary" size="lg">
+            Ter campanhas validadas
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </Button>
+          <a href="https://www.credential.net/cdf1811d-e059-4074-9e10-b571c0bf86f8" target="_blank" rel="noopener noreferrer" class="text-sm text-white/50 hover:text-[#00BAFF] transition-colors underline underline-offset-4">
+            Verificar credencial oficial ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">Estratégia Avançada</h3>
+          <p class="text-sm text-white/50 leading-relaxed">
+            Nossa equipe demonstrou maestria teórica e prática em criar, otimizar e escalar campanhas de Google Search, garantindo o melhor índice de qualidade para as palavras-chave do seu negócio.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">Inteligência Artificial</h3>
+          <p class="text-sm text-white/50 leading-relaxed">
+            Certificados em Smart Bidding, nós sabemos exatamente como "ensinar" a inteligência artificial do Google a encontrar leads qualificados, reduzindo seu CPA (Custo Por Aquisição).
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-white">Foco em ROI Real</h3>
+          <p class="text-sm text-white/50 leading-relaxed">
+            Não otimizamos apenas para cliques vazios. Aplicamos as diretrizes oficiais do Google para conectar o tráfego de pesquisa diretamente às metas financeiras e de faturamento da sua empresa.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
