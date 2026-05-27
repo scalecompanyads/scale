@@ -30,10 +30,8 @@ const resolvedOgImage = ogImage
   ? new URL(ogImage, siteUrl).href
   : new URL('/assets/brand/og-default.jpg', siteUrl).href;
 const normalizedPathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const googleTagExcludedPrefixes = ['/advogado', '/advogados', '/scale-adbogados', '/scale-advogados'];
-const includeGoogleTag = !googleTagExcludedPrefixes.some(
-  (path) => normalizedPathname === path || normalizedPathname.startsWith(`${path}/`)
-);
+// Removida exclusão do GA4: garantindo que as rotas de alta conversão sejam registradas
+const includeGoogleTag = true;
 ---
 
 <meta charset="UTF-8" />
