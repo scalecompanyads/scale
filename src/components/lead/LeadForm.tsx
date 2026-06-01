@@ -86,7 +86,7 @@ export default function LeadForm({ variant, onSuccess }: Props) {
     if (result.ok) {
       if (result.skippedWebhook && import.meta.env.PROD) {
         setError(
-          'Não foi possível registrar seu envio neste momento. Envie um e-mail para contato@scale.com.br ou tente novamente mais tarde.'
+          'Não foi possível registrar seu envio neste momento. Envie um e-mail para contato@scalecompany.com.br ou tente novamente mais tarde.'
         );
         return;
       }

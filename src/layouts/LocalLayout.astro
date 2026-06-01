@@ -17,9 +17,10 @@ interface Props {
   city: City;
   canonical?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, description, city, canonical, ogImage } = Astro.props;
+const { title, description, city, canonical, ogImage, noindex } = Astro.props;
 ---
 
 <BaseLayout
@@ -27,6 +28,7 @@ const { title, description, city, canonical, ogImage } = Astro.props;
   description={description}
   canonical={canonical}
   ogImage={ogImage}
+  noindex={noindex}
 >
   <SchemaLocalBusiness slot="head" city={city} />
   <SchemaLocalService slot="head" city={city} />

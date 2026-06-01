@@ -10,7 +10,7 @@ export const brand = {
   name: 'Scale',
   legalName: 'Scale Marketing Digital',
   url: SITE_URL,
-  telephone: '+55-22-99764-7844',
+  telephone: undefined as string | undefined,
   email: 'contato@scalecompany.com.br',
   logo: `${SITE_URL}/assets/brand/logo.png`,
   image: `${SITE_URL}/assets/brand/og-default.jpg`,
@@ -24,7 +24,10 @@ export const brand = {
     addressCountry: 'BR',
   },
   areaServed: ['Vila Velha', 'Vitoria', 'Serra', 'Cariacica', 'Guarapari', 'Espirito Santo'],
-  sameAs: [] as string[],
+  sameAs: [
+    'https://www.instagram.com/scalecompany_/',
+    'https://www.linkedin.com/company/scale-company-br/',
+  ],
 };
 
 export const nicheLocalServices: Record<string, Pick<Service, 'name' | 'description' | 'keywords' | 'localSlug' | 'slug' | 'shortDesc'>> = {
