@@ -25,7 +25,7 @@ const schema = {
   '@id': `${canonical}#webpage`,
   url: canonical,
   name: `Marketing digital em ${market.name}`,
-  description: `Serviços de marketing digital da Scale para empresas em ${market.name}.`,
+  description: `A Scale atende empresas em ${market.name} com trafego pago, SEO, sites e estrategia digital orientada a geracao de demanda.`,
   isPartOf: {
     '@id': websiteId,
   },
@@ -54,7 +54,7 @@ const outcomes = [
 
 <BaseLayout
   title={`Agência de Marketing Digital em ${market.name} | Scale`}
-  description={`Marketing digital em ${market.name}: tráfego pago, SEO, criação de sites, landing pages e redes sociais para empresas que querem crescer com previsibilidade.`}
+  description={`A Scale atende empresas em ${market.name} com trafego pago, SEO, sites, landing pages e estrategia digital para gerar demanda com mais previsibilidade.`}
   canonical={canonical}
 >
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
@@ -213,4 +213,3 @@ const outcomes = [
     </div>
   </section>
 </BaseLayout>
-
