@@ -12,6 +12,10 @@ export interface NavItem {
 
 export const mainNav: NavItem[] = [
   {
+    label: 'Sobre',
+    href: '/sobre',
+  },
+  {
     label: 'Serviços',
     href: '/#serviços',
   },

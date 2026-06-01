@@ -4,10 +4,10 @@ import { motion, useInView, useMotionValue, animate } from 'framer-motion';
 import { useRef, useEffect } from 'react';
 
 const stats = [
-  { num: 50,  prefix: '',    suffix: '+',   label: 'clientes atendidos',      sub: 'Vila Velha e ES' },
-  { num: 2,   prefix: 'R$', suffix: 'M+',  label: 'em resultados gerados',   sub: 'para nossos clientes' },
+  { num: 250, prefix: '',    suffix: '+',   label: 'escritórios atendidos',   sub: 'em todo o Brasil' },
+  { num: 5,   prefix: 'R$',  suffix: 'M+',  label: 'em anúncios gerenciados', sub: 'para nossos clientes' },
+  { num: 200, prefix: 'R$',  suffix: 'k+',  label: 'investidos em tráfego',   sub: 'todos os meses' },
   { num: 4,   prefix: '',    suffix: '+',   label: 'anos de mercado',         sub: 'com foco em resultado' },
-  { num: 98,  prefix: '',    suffix: '%',   label: 'satisfação dos clientes', sub: 'em pesquisa interna' },
 ];
 
 function Counter({ num, prefix = '', suffix = '' }: { num: number; prefix?: string; suffix?: string }) {

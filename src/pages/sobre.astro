@@ -5,35 +5,434 @@
  */
 import BaseLayout from '@layouts/BaseLayout.astro';
 import LocalCTA from '@components/sections/LocalCTA.astro';
+import ScaleTestimonialSlider from '@components/ui/TestimonialSlider';
+import StatsCounter from '@components/ui/StatsCounter';
+import '@styles/scale-advogados-v3-hero.css';
 ---
 
 <BaseLayout
-  title="Sobre a Scale | Agência de Marketing Digital em Vila Velha – ES"
-  description="Conheça a Scale: agência de marketing digital localizada em Vila Velha (ES), especializada em criar resultados reais para empresas locais e de todo o Brasil."
+  title="Sobre a Scale | Agência de Marketing Jurídico em Vila Velha – ES"
+  description="Conheça a Scale: de uma agência que começou no quarto do Gabriel a uma especialista nacional em Marketing Jurídico com mais de 250 clientes."
+  showHeader={true}
+  showFooter={true}
+  showGlassFilter={false}
+  showPreloader={false}
 >
-  <section class="section">
-    <div class="container-narrow">
-      <span class="section-label">Nossa história</span>
-      <h1 class="font-heading text-4xl sm:text-5xl font-extrabold text-ink leading-tight mb-6">
-        Uma agência de Vila Velha com resultado de nível nacional
-      </h1>
-      <!-- TODO: preencher texto com a história real da Scale -->
-      <p class="text-lg text-ink-light leading-relaxed mb-4">
-        Conteúdo sobre a Scale a ser adicionado: fundação, equipe, missão e valores. Somos uma <strong>agência de marketing</strong> com foco em resultados reais para nossos clientes.
-      </p>
-      <p class="text-lg text-ink-light leading-relaxed mb-10">
-        Nossos <strong>serviços de marketing</strong> envolvem estratégia completa, desde anúncios no <strong>Google Ads</strong> até presença ativa nas <strong>redes sociais</strong>, para garantir que você tenha um fluxo constante de oportunidades de negócio.
-      </p>
+  <style>
+    /* Estilos base da página sobre premium */
+    body {
+      background-color: #03050a;
+      color: #fff;
+    }
 
-      <a href="/certificacao-google-ads" class="inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#00BAFF]/30 bg-[#00BAFF]/10 hover:bg-[#00BAFF]/20 transition-all hover:scale-105 group text-ink decoration-none shadow-sm">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00BAFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          <path d="M9 12l2 2 4-4"/>
-        </svg>
-        <span class="font-bold text-sm text-[#010000] group-hover:text-[#1630DF] transition-colors">Agência Oficialmente Certificada pelo Google</span>
-      </a>
+    .sobre-hero {
+      position: relative;
+      padding-top: 140px;
+      padding-bottom: 80px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 186, 255, 0.08) 0%, transparent 60%);
+    }
+
+    .sobre-hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(0, 186, 255, 0.1);
+      border: 1px solid rgba(0, 186, 255, 0.2);
+      color: #00BAFF;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    .sobre-hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      max-width: 900px;
+      margin: 0 auto 32px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .sobre-hero-desc {
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 650px;
+      margin: 0 auto 48px;
+      line-height: 1.6;
+    }
+
+    .sobre-bento-section {
+      padding: 80px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sobre-bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+      grid-auto-rows: minmax(300px, auto);
+    }
+
+    .bento-card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 40px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s ease;
+    }
+    
+    .bento-card:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.04), transparent 40%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    .bento-card:hover::before {
+      opacity: 1;
+    }
+
+    .bento-span-8 { grid-column: span 12; }
+    .bento-span-4 { grid-column: span 12; }
+    
+    @media (min-width: 992px) {
+      .bento-span-8 { grid-column: span 8; }
+      .bento-span-4 { grid-column: span 4; }
+    }
+
+    .bento-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(0, 186, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: #00BAFF;
+    }
+
+    .bento-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .bento-card p {
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
+      font-size: 1.05rem;
+    }
+
+    .bento-data-list {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 24px;
+    }
+    .bento-data-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+    .bento-data-label { color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem; }
+    .bento-data-value { color: #fff; font-family: monospace; }
+
+    /* Squad Section */
+    .squad-section {
+      padding: 100px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .squad-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .squad-header h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .squad-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 32px;
+    }
+    @media (min-width: 768px) {
+      .squad-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .squad-card {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: #0d0d14;
+    }
+
+    .squad-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      filter: grayscale(100%) contrast(1.1);
+      transition: filter 0.5s ease, transform 0.8s ease;
+      opacity: 0.8;
+    }
+
+    .squad-card:hover .squad-img {
+      filter: grayscale(0%) contrast(1);
+      transform: scale(1.03);
+      opacity: 1;
+    }
+
+    .squad-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px 24px 24px;
+      background: linear-gradient(to top, rgba(3,5,10,1) 0%, rgba(3,5,10,0.8) 50%, transparent 100%);
+      transform: translateY(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .squad-card:hover .squad-info {
+      transform: translateY(0);
+    }
+
+    .squad-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .squad-role {
+      color: #00BAFF;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+      font-family: monospace;
+    }
+
+    .squad-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 100%, rgba(0, 186, 255, 0.15), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .squad-card:hover .squad-glow {
+      opacity: 1;
+    }
+
+  </style>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="sobre-hero reveal-fade">
+      <div class="sobre-hero-kicker">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        Nossa História
+      </div>
+      <h1>A máquina por trás da advocacia escalável.</h1>
+      <p class="sobre-hero-desc">
+        A Scale começou pequena, em outubro de 2021, com uma promessa simples: fugir das métricas de vaidade. Hoje, somos a operação responsável pelo tráfego de mais de 250 escritórios de advocacia no Brasil.
+      </p>
+    </section>
+
+    <!-- STATS -->
+    <div class="reveal-up" style="position: relative; z-index: 10; margin-top: -40px;">
+      <StatsCounter client:visible />
     </div>
-  </section>
 
-  <LocalCTA city="Vila Velha" />
+    <!-- BENTO GRID -->
+    <section class="sobre-bento-section">
+      <div class="sobre-bento-grid reveal-stagger">
+        
+        <!-- CARD: A Jornada -->
+        <div class="bento-card bento-span-8 reveal-up bento-hover-effect">
+          <div class="bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Crescimento orgânico e técnico</h3>
+          <p>
+            No início, atendíamos negócios locais de todos os tamanhos. A exigência do mercado nos forçou a estruturar processos técnicos de altíssima performance. Foi dessa maturidade, e da demanda por estratégias estritamente focadas em conversão, que tomamos a decisão de nos <strong>especializar exclusivamente no nicho jurídico</strong>.
+          </p>
+          <div style="margin-top: auto; padding-top: 32px;">
+             <p style="font-size: 0.9rem; border-left: 2px solid #00BAFF; padding-left: 16px;">
+               "Milissegundos importam e cada clique no WhatsApp custa caro. Não podíamos ser uma agência de likes, tínhamos que ser uma máquina de aquisição."
+             </p>
+          </div>
+        </div>
+
+        <!-- CARD: Dados Corporativos -->
+        <div class="bento-card bento-span-4 reveal-up bento-hover-effect">
+          <div class="bento-icon" style="background: rgba(255, 255, 255, 0.05); color: #fff;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Registro Oficial</h3>
+          <p style="font-size: 0.9rem;">Operação 100% regular e infraestrutura alocada no Espírito Santo.</p>
+          
+          <div class="bento-data-list">
+            <div class="bento-data-item">
+              <span class="bento-data-label">Empresa</span>
+              <span class="bento-data-value">Scale Company</span>
+            </div>
+            <div class="bento-data-item">
+              <span class="bento-data-label">Razão</span>
+              <span class="bento-data-value">Digital Days LTDA</span>
+            </div>
+            <div class="bento-data-item">
+              <span class="bento-data-label">CNPJ</span>
+              <span class="bento-data-value">44.021.911/0001-70</span>
+            </div>
+            <div class="bento-data-item">
+              <span class="bento-data-label">Sede</span>
+              <span class="bento-data-value">Vila Velha - ES</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SQUAD / SÓCIOS -->
+    <section class="squad-section">
+      <div class="squad-header reveal-up">
+        <h2>Os arquitetos da máquina</h2>
+        <p style="color: rgba(255,255,255,0.6); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+          Sócios à frente da operação diária, combinando tráfego, tecnologia e conversão.
+        </p>
+      </div>
+
+      <div class="squad-grid reveal-stagger">
+        <!-- Gabriel -->
+        <div class="squad-card reveal-up">
+          <img src="/images/hero-squad-1-480.webp" alt="Gabriel Dias" class="squad-img" />
+          <div class="squad-glow"></div>
+          <div class="squad-info">
+            <h4 class="squad-name">Gabriel Dias</h4>
+            <span class="squad-role">Sócio-Administrador</span>
+          </div>
+        </div>
+
+        <!-- Pedro -->
+        <div class="squad-card reveal-up">
+          <img src="/images/hero-squad-2-480.webp" alt="Pedro Clark" class="squad-img" />
+          <div class="squad-glow"></div>
+          <div class="squad-info">
+            <h4 class="squad-name">Pedro Clark</h4>
+            <span class="squad-role">Sócio-Administrador</span>
+          </div>
+        </div>
+
+        <!-- Vitor -->
+        <div class="squad-card reveal-up">
+          <img src="/images/hero-squad-3-480.webp" alt="Vitor Escocard" class="squad-img" />
+          <div class="squad-glow"></div>
+          <div class="squad-info">
+            <h4 class="squad-name">Vitor Escocard</h4>
+            <span class="squad-role">Sócio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS NOVO PADRÃO DARK -->
+    <section class="scale-section scale-section--dark scale-spotlight-section" style="padding-top: 80px; padding-bottom: 80px; background-color: #03050a; border-top: 1px solid rgba(255,255,255,0.05);">
+      <div class="scale-container">
+        <div class="scale-section-heading" style="text-align:center; margin-bottom: 40px;">
+          <span class="scale-kicker">Resultados</span>
+          <h2>A validação do nosso método no mercado jurídico.</h2>
+        </div>
+        
+        <!-- Reutilizando o slider existente, mas forçando cores claras se necessário ou deixando ele puro -->
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 24px;">
+          <ScaleTestimonialSlider client:visible />
+        </div>
+      </div>
+    </section>
+
+    <div style="padding: 40px 0; background: #03050a;">
+      <LocalCTA city="Vila Velha" />
+    </div>
+
+  </main>
+
+  <script>
+    // Intersection Observer para animações
+    const revealEls = document.querySelectorAll('[class*="reveal-"]');
+    if (revealEls.length) {
+      document.querySelectorAll('.reveal-stagger').forEach((parent) => {
+        parent.querySelectorAll('[class*="reveal-"]').forEach((child, i) => {
+          (child as HTMLElement).style.setProperty('--reveal-i', String(i));
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      revealEls.forEach((el) => observer.observe(el));
+    }
+
+    // Efeito magnético de hover nos cartões bento
+    const bentoCards = document.querySelectorAll('.bento-hover-effect');
+    bentoCards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
 </BaseLayout>
