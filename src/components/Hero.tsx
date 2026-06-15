@@ -19,7 +19,7 @@ export default function Hero() {
         <img 
           src="/images/hero-mobile-bg.png" 
           alt="Scale Company" 
-          className="w-full h-full object-cover object-[center_10%]"
+          className="w-full h-full object-cover object-top"
         />
         {/* Mobile Overlay: Apenas na metade de baixo para não invadir o rosto/topo */}
         <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#020b16] to-transparent" />
