@@ -15,11 +15,11 @@ export default function Hero() {
     <section className="relative h-[100dvh] md:h-screen flex flex-col overflow-hidden bg-[#020b16] md:pb-0">
       
       {/* Mobile Image Container */}
-      <div className="absolute top-0 inset-x-0 w-full md:hidden h-[45dvh] z-0 -translate-y-4">
+      <div className="absolute top-0 inset-x-0 w-full md:hidden h-[45dvh] z-0">
         <img 
           src="/images/hero-mobile-bg.png" 
           alt="Scale Company" 
-          className="w-full h-full object-cover object-[center_30%]"
+          className="w-full h-full object-cover object-[center_10%]"
         />
         {/* Mobile Overlay: Apenas na metade de baixo para não invadir o rosto/topo */}
         <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-[#020b16] to-transparent" />
