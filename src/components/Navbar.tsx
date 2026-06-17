@@ -20,7 +20,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { open } = useLeadForm();
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHeroPage = pathname === "/" || pathname === "/google-ads-advogados";
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 100);
@@ -30,7 +30,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const showNavbar = !isHome || scrolled || mobileOpen;
+  const showNavbar = !isHeroPage || scrolled || mobileOpen;
 
   return (
     <>

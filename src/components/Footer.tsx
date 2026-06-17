@@ -91,7 +91,7 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <h4 className="text-white font-bold text-lg mb-2">Serviços Jurídicos</h4>
             <Link href="/scale-advogados" className="text-[rgba(255,255,255,0.85)] hover:text-[#3B82F6] text-sm transition-colors">Gestão de Tráfego Jurídico</Link>
-            <Link href="/scale-advogados" className="text-[rgba(255,255,255,0.85)] hover:text-[#3B82F6] text-sm transition-colors">Google Ads para Advogados</Link>
+            <Link href="/google-ads-advogados" target="_blank" className="text-[rgba(255,255,255,0.85)] hover:text-[#3B82F6] text-sm transition-colors">Google Ads para Advogados</Link>
             <Link href="/scale-advogados" className="text-[rgba(255,255,255,0.85)] hover:text-[#3B82F6] text-sm transition-colors">Meta Ads para Advocacia</Link>
             <Link href="/scale-advogados" className="text-[rgba(255,255,255,0.85)] hover:text-[#3B82F6] text-sm transition-colors">Landing Pages OAB Compliance</Link>
             <Link href="/crm-advogados" className="text-[rgba(255,255,255,0.85)] hover:text-[#3B82F6] text-sm transition-colors">CRM para Escritórios</Link>

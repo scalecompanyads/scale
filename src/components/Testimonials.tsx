@@ -10,11 +10,7 @@ const testimonials = Array.from({ length: 19 }, (_, i) => ({
   src: `/images/testimonials/testimonial-${String(i + 1).padStart(2, "0")}.png`,
 }));
 
-const landscapeVideos = [
-  { id: 1, title: "Depoimento Rafael - Bike Center", src: "https://www.youtube.com/embed/R3ID5_VP7Y8" },
-  { id: 2, title: "Depoimento Carlos Ângelo - Agência BRTM", src: "https://www.youtube.com/embed/6YA2xmW1Y4Y" },
-  { id: 3, title: "Depoimento Eduardo Macedo - Boxcar Motorsport", src: "https://www.youtube.com/embed/mVUz7iBpI6A" },
-];
+
 
 const portraitVideos = [
   { id: 1, title: "Depoimento - Bichara", src: "https://www.youtube.com/embed/hZxR3DadbTg" },
@@ -39,12 +35,10 @@ export default function Testimonials() {
         </div>
 
         {/* --- VIDEO TESTIMONIALS --- */}
-        <div className="mb-24 space-y-16">
-          
-          {/* Landscape Videos (16:9) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {landscapeVideos.map((video) => (
-              <div key={video.id} className="relative w-full aspect-video rounded-xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-2xl bg-[rgba(1,15,28,0.5)]">
+        <div className="mb-24">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 justify-center items-center max-w-2xl mx-auto">
+            {portraitVideos.map((video, idx) => (
+              <div key={`${video.id}-${idx}`} className="relative w-full aspect-[9/16] max-w-[320px] mx-auto rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-2xl bg-[rgba(1,15,28,0.5)]">
                 <iframe 
                   src={video.src} 
                   title={video.title} 
@@ -57,24 +51,6 @@ export default function Testimonials() {
               </div>
             ))}
           </div>
-
-          {/* Portrait Videos (9:16) */}
-          <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-            {portraitVideos.map((video) => (
-              <div key={video.id} className="relative w-full aspect-[9/16] max-w-[320px] mx-auto rounded-2xl overflow-hidden border border-[rgba(255,255,255,0.05)] shadow-2xl bg-[rgba(1,15,28,0.5)]">
-                <iframe 
-                  src={video.src} 
-                  title={video.title} 
-                  className="absolute top-0 left-0 w-full h-full"
-                  frameBorder="0" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                  referrerPolicy="strict-origin-when-cross-origin" 
-                  allowFullScreen
-                ></iframe>
-              </div>
-            ))}
-          </div>
-
         </div>
 
         {/* --- IMAGE TESTIMONIALS (MARQUEE) --- */}
