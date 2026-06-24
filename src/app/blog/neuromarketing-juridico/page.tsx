@@ -112,7 +112,7 @@ export default function BlogPost() {
             <ul className="space-y-4">
               <li><strong>A Estratégia do Risco:</strong> Calcule o tamanho do problema. <em>"O risco financeiro desta autuação é de R$ 3 milhões. Nossos honorários para evitar essa execução são de R$ 30.000 (ou seja, 1% do risco)."</em></li>
               <li><strong>A Estratégia de Múltiplas Opções (Decoy Effect):</strong> Apresente três opções de planos na sua proposta comercial.
-                <ul className="mt-2 text-[rgba(255,255,255,0.9)] space-y-2">
+                <ul className="mt-2 text-slate-700 space-y-2">
                   <li><span className="font-bold text-amber-500">Plano Ouro</span> (Muito caro, serviço ultracompleto premium) - R$ 80.000.</li>
                   <li><span className="font-bold text-slate-700">Plano Prata</span> (O que você realmente quer vender) - R$ 35.000.</li>
                   <li><span className="font-bold text-amber-700">Plano Bronze</span> (Básico demais, pouco atraente) - R$ 25.000.</li>
