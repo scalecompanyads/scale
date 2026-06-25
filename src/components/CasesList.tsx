@@ -11,7 +11,7 @@ export default function CasesList() {
       niche: 'Direito de Família',
       result: '+ R$ 10.500 em 30 dias',
       slug: '/cases/viniciosraider',
-      image: '/cases/viniciosraider/Captura de tela 2026-06-25 111519.png'
+      image: '/cases/viniciosraider/Captura%20de%20tela%202026-06-25%20111519.png'
     }
   ];
 

@@ -4,6 +4,7 @@ import { CheckCircle2, Target, TrendingUp, BarChart, Scale, HelpCircle, ArrowRig
 import Link from "next/link";
 import { Metadata } from "next";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
+import { CTAButton } from "@/components/ui/CTAButton";
 import '@/styles/scale-advogados-v3-hero.css';
 
 export const metadata: Metadata = {
@@ -71,10 +72,10 @@ export default function GoogleAdsAdvogados() {
 
               {/* CTAs */}
               <div className="flex flex-col items-center md:items-start gap-3 w-full md:w-auto">
-                <Link href="#contato" className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-[0.8rem] md:text-sm uppercase tracking-widest px-6 py-3 hover:bg-[#1630DF] transition-colors duration-300 w-full md:w-auto">
+                <CTAButton className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-[0.8rem] md:text-sm uppercase tracking-widest px-6 py-3 hover:bg-[#1630DF] transition-colors duration-300 w-full md:w-auto">
                   <WhatsAppIcon size={18} />
                   Agendar Diagnóstico Gratuito
-                </Link>
+                </CTAButton>
                 <div className="mt-2 flex items-center justify-center gap-2 text-xs md:text-sm text-[rgba(255,255,255,0.6)]">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                   <span>Mais de 100 escritórios atendidos</span>
@@ -123,10 +124,10 @@ export default function GoogleAdsAdvogados() {
             </div>
 
             <div className="mt-16 flex justify-center">
-              <Link href="#contato" className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
+              <CTAButton className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
                 <WhatsAppIcon size={20} />
                 Quero atrair clientes qualificados
-              </Link>
+              </CTAButton>
             </div>
           </div>
         </section>
@@ -151,10 +152,10 @@ export default function GoogleAdsAdvogados() {
               </div>
 
               <div className="mt-10">
-                <Link href="#contato" className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
+                <CTAButton className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
                   <WhatsAppIcon size={20} />
                   Analisar viabilidade do meu escritório
-                </Link>
+                </CTAButton>
               </div>
             </div>
           </div>
@@ -197,10 +198,10 @@ export default function GoogleAdsAdvogados() {
             </div>
 
             <div className="mt-16 flex justify-center">
-              <Link href="#contato" className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
+              <CTAButton className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
                 <WhatsAppIcon size={20} />
                 Quero implementar essa estratégia
-              </Link>
+              </CTAButton>
             </div>
           </div>
         </section>
@@ -223,10 +224,10 @@ export default function GoogleAdsAdvogados() {
             </div>
 
             <div className="mt-16 flex justify-center">
-              <Link href="#contato" className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
+              <CTAButton className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
                 <WhatsAppIcon size={20} />
                 Quero resultados como esses
-              </Link>
+              </CTAButton>
             </div>
           </div>
         </section>
@@ -270,10 +271,10 @@ export default function GoogleAdsAdvogados() {
             </div>
 
             <div className="mt-16 flex justify-center">
-              <Link href="#contato" className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
+              <CTAButton className="inline-flex items-center justify-center gap-2 bg-[#3B82F6] text-white font-bold text-sm md:text-base uppercase tracking-widest px-8 py-4 hover:bg-[#1630DF] transition-colors duration-300 text-center">
                 <WhatsAppIcon size={20} />
                 Tirar dúvidas com um especialista
-              </Link>
+              </CTAButton>
             </div>
           </div>
         </section>
@@ -288,10 +289,10 @@ export default function GoogleAdsAdvogados() {
             <p className="text-xl text-[rgba(255,255,255,0.7)] mb-10 max-w-2xl mx-auto">
               Não deixe seus potenciais clientes encontrarem a concorrência na primeira página do Google.
             </p>
-            <Link href="#contato" className="inline-flex px-10 py-5 bg-[#3B82F6] text-white font-bold rounded hover:bg-[#2563EB] transition-colors items-center justify-center gap-2 text-lg">
+            <CTAButton className="inline-flex px-10 py-5 bg-[#3B82F6] text-white font-bold rounded hover:bg-[#2563EB] transition-colors items-center justify-center gap-2 text-lg">
               Quero uma Análise da Minha Presença Digital
               <ArrowRight className="w-5 h-5" />
-            </Link>
+            </CTAButton>
           </div>
         </section>
 

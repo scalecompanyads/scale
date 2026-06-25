@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 
 export default function CaseStudyPage() {
   const caseImages = [
-    "/cases/viniciosraider/Group 10.png",
-    "/cases/viniciosraider/Group 12.png",
-    "/cases/viniciosraider/Group 13.png",
-    "/cases/viniciosraider/Group 14.png",
-    "/cases/viniciosraider/Group 15.png"
+    "/cases/viniciosraider/Group%2010.png",
+    "/cases/viniciosraider/Group%2012.png",
+    "/cases/viniciosraider/Group%2013.png",
+    "/cases/viniciosraider/Group%2014.png",
+    "/cases/viniciosraider/Group%2015.png"
   ];
 
   return (
@@ -73,7 +73,7 @@ export default function CaseStudyPage() {
 
             <div className="w-full h-64 md:h-[450px] rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative">
               <Image 
-                src="/cases/viniciosraider/Captura de tela 2026-06-25 111519.png" 
+                src="/cases/viniciosraider/Captura%20de%20tela%202026-06-25%20111519.png" 
                 alt="Capa da Landing Page de Direito de Família" 
                 fill 
                 className="object-cover object-top" 
