@@ -14,6 +14,7 @@ const navLinks = [
   { label: "CRM Jurídico", href: "/crm-advogados" },
   { label: "Blog", href: "/blog" },
   { label: "Depoimentos", href: "/depoimentos" },
+  { label: "Cases", href: "/cases" },
 ];
 
 export default function Navbar() {
