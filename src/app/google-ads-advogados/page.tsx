@@ -5,11 +5,20 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { pageOpenGraph } from "@/lib/og";
 import '@/styles/scale-advogados-v3-hero.css';
 
 export const metadata: Metadata = {
-  title: "Google Ads para Advogados | Scale Marketing Digital",
-  description: "Posicione seu escritório de advocacia no topo do Google exatamente no momento em que seu cliente ideal busca pelas suas áreas de atuação. Alinhado ao Provimento 205/2021 da OAB.",
+  title: "Google Ads para Advogados: Leads em 7 Dias | Scale",
+  description:
+    "Campanhas de Google Ads para advogados 100% dentro da OAB. Apareça no topo quando o cliente busca sua área. Leads qualificados desde a 1ª semana.",
+  alternates: { canonical: "/google-ads-advogados" },
+  openGraph: pageOpenGraph({
+    title: "Google Ads para Advogados: Leads em 7 Dias | Scale",
+    description:
+      "Campanhas de Google Ads para advogados 100% dentro da OAB. Apareça no topo quando o cliente busca sua área. Leads qualificados desde a 1ª semana.",
+    path: "/google-ads-advogados",
+  }),
 };
 
 export default function GoogleAdsAdvogados() {

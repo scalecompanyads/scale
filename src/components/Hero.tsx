@@ -13,7 +13,9 @@ export default function Hero() {
 
   return (
     <section className="relative h-[100dvh] md:h-screen flex flex-col overflow-hidden bg-[#020b16] md:pb-0">
-      
+      <link rel="preload" as="image" href="/images/hero-mobile-bg.png" media="(max-width: 767px)" />
+      <link rel="preload" as="image" href="/images/hero-desktop-bg.png" media="(min-width: 768px)" />
+
       {/* Mobile Image Container */}
       <div className="absolute top-0 inset-x-0 w-full md:hidden h-[45dvh] z-0">
         <img 

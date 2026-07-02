@@ -5,6 +5,11 @@ import Link from "next/link";
 import { Metadata } from "next";
 import Image from "next/image";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { JsonLd } from "@/components/JsonLd";
+import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { getPost } from "@/lib/posts";
+
+const post = getPost("melhor-agencia-marketing-juridico");
 
 const testimonials = Array.from({ length: 19 }, (_, i) => ({
   id: i + 1,
@@ -21,12 +26,21 @@ const portraitVideos = [
 export const metadata: Metadata = {
   title: "Qual a Melhor Agência de Marketing Jurídico do Brasil? (Comparativo 2026)",
   description: "Analisamos os modelos de agências disponíveis no mercado e revelamos qual estrutura entrega resultados reais, previsíveis e seguros para a sua banca.",
+  alternates: { canonical: "/blog/melhor-agencia-marketing-juridico" },
 };
 
 export default function BlogPost() {
   return (
     <>
       <Navbar />
+      <JsonLd data={articleSchema(post)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title },
+        ])}
+      />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           
@@ -89,7 +103,7 @@ export default function BlogPost() {
               <div className="p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-blue-500/30 relative">
                 <div className="absolute -top-4 -left-4 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-2xl shadow-lg shadow-blue-500/20">🏆</div>
                 <h3 className="text-2xl font-bold text-slate-900 mb-4 pl-4">1º Lugar: O Ecossistema de Performance (Scale Company)</h3>
-                <p className="text-slate-600 mb-6">Não somos apenas uma agência, mas um parceiro de tecnologia e vendas focado no crescimento da advocacia. A Scale Company desenhou uma estrutura para cobrir todas as pontas da captação de clientes.</p>
+                <p className="text-slate-600 mb-6">Não somos apenas uma agência, mas um parceiro de tecnologia e vendas focado no crescimento da advocacia. A Scale Company desenhou uma estrutura para cobrir todas as pontas da <Link href="/captacao-de-clientes-para-advogados" className="text-blue-600 hover:text-blue-700 underline underline-offset-2">captação de clientes para advogados</Link>.</p>
                 <ul className="space-y-3 text-sm md:text-base">
                   <li className="flex gap-3"><CheckCircle2 className="w-6 h-6 text-emerald-400 shrink-0" /> <span><strong>Diferencial Técnico:</strong> Desenvolvimento próprio de Landing Pages de altíssima conversão (LLP) utilizando código puro e frameworks modernos (Astro e Next.js). Isso garante velocidade máxima de carregamento, diminuindo o custo do seu clique no Google Ads.</span></li>
                   <li className="flex gap-3"><CheckCircle2 className="w-6 h-6 text-emerald-400 shrink-0" /> <span><strong>Vantagem Competitiva:</strong> Implementação de CRM com Inteligência Artificial para automação do seu atendimento.</span></li>

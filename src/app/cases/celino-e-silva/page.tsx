@@ -5,16 +5,35 @@ import Link from "next/link";
 import { Metadata } from "next";
 import Image from "next/image";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Case de Sucesso: Celino e Silva | Scale Marketing",
   description: "Virada de Jogo no Google Ads, Diagnóstico de Performance e Expansão para Direito de Família: A Estratégia do Escritório Celino e Silva.",
+  alternates: { canonical: "/cases/celino-e-silva" },
+  openGraph: {
+    title: "Case de Sucesso: Celino e Silva | Scale Marketing",
+    description: "Virada de Jogo no Google Ads, Diagnóstico de Performance e Expansão para Direito de Família.",
+    url: "/cases/celino-e-silva",
+    type: "article",
+    locale: "pt_BR",
+    siteName: "Scale Company",
+    images: [{ url: "/cases/celino-e-silva/image.png", width: 1898, height: 990, alt: "Case Celino e Silva" }],
+  },
 };
 
 export default function CelinoESilvaCaseStudyPage() {
   return (
     <>
       <Navbar />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Cases", path: "/cases" },
+          { name: "Celino e Silva" },
+        ])}
+      />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           

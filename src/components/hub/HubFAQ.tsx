@@ -2,21 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-
-const faqs = [
-  {
-    question: "Como funciona a captação de clientes para advogados de forma automatizada?",
-    answer: "Ela funciona através da criação de um ecossistema digital. Em vez de panfletagem digital, nós posicionamos o seu site no topo dos buscadores (Google Ads e SEO) exatamente quando o cliente final pesquisa pelo seu serviço. O lead clica, entra em uma página de alta conversão e aciona o seu WhatsApp."
-  },
-  {
-    question: "Anúncios no Google Ads não violam o código de ética da OAB?",
-    answer: "Não. O Provimento 205/2021 da OAB permite explicitamente o marketing de conteúdos e o patrocínio de postagens/anúncios, desde que tenham caráter puramente informativo, sóbrio e não utilizem termos mercantilistas (como \"compre já\" ou \"desconto em honorários\"). É marketing receptivo (Inbound)."
-  },
-  {
-    question: "Qual a diferença entre o Tráfego Pago e a Consultoria de SEO Local para Advogados?",
-    answer: "O Tráfego Pago gera leads de forma imediata (em até 15-30 dias), pois você paga por cada clique que recebe no anúncio. A Consultoria de SEO Local e Google Meu Negócio cria um ativo de longo prazo para o escritório: posiciona seu negócio organicamente no mapa da sua região de forma fixa, gerando contatos sem custo por clique."
-  }
-];
+import { hubFaqs as faqs } from "@/data/faqs";
 
 export default function HubFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);

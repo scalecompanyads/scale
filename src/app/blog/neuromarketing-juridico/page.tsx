@@ -5,16 +5,44 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import Link from "next/link";
 import { Metadata } from "next";
 import Image from "next/image";
+import { JsonLd } from "@/components/JsonLd";
+import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { getPost } from "@/lib/posts";
+
+const post = getPost("neuromarketing-juridico");
 
 export const metadata: Metadata = {
   title: "Neuromarketing Jurídico: A Ciência por trás da Venda de Honorários",
   description: "Descubra como usar a Economia Comportamental (Ancoragem, Aversão à Perda e Efeito Halo) para dobrar a taxa de fechamento de contratos do seu escritório de advocacia.",
+  alternates: { canonical: "/blog/neuromarketing-juridico" },
+  openGraph: {
+    title: "Neuromarketing Jurídico: A Ciência por trás da Venda de Honorários",
+    description: "Como usar a Economia Comportamental para dobrar a taxa de fechamento de contratos do seu escritório.",
+    url: "/blog/neuromarketing-juridico",
+    type: "article",
+    locale: "pt_BR",
+    siteName: "Scale Company",
+    images: [{ url: post.image, width: 1774, height: 887, alt: post.imageAlt }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Neuromarketing Jurídico: A Ciência por trás da Venda de Honorários",
+    description: "Como usar a Economia Comportamental para dobrar a taxa de fechamento de contratos do seu escritório.",
+  },
 };
 
 export default function BlogPost() {
   return (
     <>
       <Navbar />
+      <JsonLd data={articleSchema(post)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title },
+        ])}
+      />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           
@@ -61,7 +89,7 @@ export default function BlogPost() {
           {/* Conteúdo */}
           <div className="prose prose-slate prose-lg max-w-none text-slate-700">
             <p>
-              Você investiu milhares de reais em Google Ads. O marketing fez o trabalho dele e colocou um lead qualificado na sua mesa de reunião (ou na sua sala do Zoom). Vocês conversam por uma hora, você entrega uma verdadeira aula de direito, demonstra profundo conhecimento técnico e apresenta a proposta.
+              Você investiu milhares de reais em <Link href="/google-ads-advogados" className="text-blue-600 hover:text-blue-700 underline underline-offset-2">Google Ads para advogados</Link>. O marketing fez o trabalho dele e colocou um lead qualificado na sua mesa de reunião (ou na sua sala do Zoom). Vocês conversam por uma hora, você entrega uma verdadeira aula de direito, demonstra profundo conhecimento técnico e apresenta a proposta.
             </p>
             <p>
               E então, ouve a frase mais temida da advocacia: <em>"Doutor, gostei muito. Vou analisar com calma e te dou um retorno."</em>
@@ -194,7 +222,7 @@ export default function BlogPost() {
               Aplicar a ciência comportamental nas suas reuniões de fechamento não significa manipular o cliente. Significa remover os obstáculos cognitivos que o impedem de tomar a melhor decisão para o negócio dele – que é contratar o seu escritório.
             </p>
             <p>
-              Quando você une uma estratégia de captação de clientes implacável (marketing jurídico avançado) a uma técnica de fechamento baseada em ciência, a escala do seu escritório deixa de ser uma possibilidade e passa a ser uma questão de tempo.
+              Quando você une uma estratégia de <Link href="/captacao-de-clientes-para-advogados" className="text-blue-600 hover:text-blue-700 underline underline-offset-2">captação de clientes para advogados</Link> implacável (marketing jurídico avançado) a uma técnica de fechamento baseada em ciência, a escala do seu escritório deixa de ser uma possibilidade e passa a ser uma questão de tempo.
             </p>
             
             {/* Referências */}

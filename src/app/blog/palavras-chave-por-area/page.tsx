@@ -5,16 +5,30 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import { ArrowRight, Calendar, User, Tag } from "lucide-react";
 import Link from "next/link";
 import { Metadata } from "next";
+import { JsonLd } from "@/components/JsonLd";
+import { articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { getPost } from "@/lib/posts";
+
+const post = getPost("palavras-chave-por-area");
 
 export const metadata: Metadata = {
   title: "Palavras-chave e Ideias de Artigos por Área de Atuação | Blog Scale",
   description: "Descubra como estruturar sua produção de conteúdo jurídico mostrando conhecimento profundo em cada área de atuação.",
+  alternates: { canonical: "/blog/palavras-chave-por-area" },
 };
 
 export default function BlogPost() {
   return (
     <>
       <Navbar />
+      <JsonLd data={articleSchema(post)} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title },
+        ])}
+      />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           
@@ -80,7 +94,7 @@ export default function BlogPost() {
 
             <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">Como aplicar essas ideias na prática?</h2>
             <p className="mb-6">
-              Essas ideias de conteúdo e palavras-chave devem ser a espinha dorsal das suas campanhas de <strong>Google Ads</strong> e do conteúdo da sua <strong>Landing Page</strong>.
+              Essas ideias de conteúdo e palavras-chave devem ser a espinha dorsal das suas campanhas de <Link href="/google-ads-advogados" className="text-blue-600 hover:text-blue-700 underline underline-offset-2 font-bold">Google Ads para advogados</Link> e do conteúdo da sua <strong>Landing Page</strong>.
             </p>
             <p>
               Em vez de patrocinar a palavra "advogado", anuncie para "advogado especialista em divórcio" e envie o usuário para uma página dedicada ao Direito de Família, contendo as respostas para os artigos acima. Isso aumenta a taxa de conversão drasticamente e reduz o Custo por Clique (CPC).

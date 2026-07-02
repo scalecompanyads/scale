@@ -5,16 +5,35 @@ import Link from "next/link";
 import { Metadata } from "next";
 import Image from "next/image";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Case de Sucesso: Rocha & Sá | Scale Marketing",
   description: "Como a Scale Company gerou 3 contratos em apenas 4 dias no Direito de Família com o poder do follow-up.",
+  alternates: { canonical: "/cases/rocha-e-sa" },
+  openGraph: {
+    title: "Case de Sucesso: Rocha & Sá | Scale Marketing",
+    description: "3 contratos em apenas 4 dias no Direito de Família com o poder do follow-up.",
+    url: "/cases/rocha-e-sa",
+    type: "article",
+    locale: "pt_BR",
+    siteName: "Scale Company",
+    images: [{ url: "/cases/rocha-e-sa/cover-2.png", width: 1004, height: 591, alt: "Case Rocha & Sá" }],
+  },
 };
 
 export default function CaseStudyPage() {
   return (
     <>
       <Navbar />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Cases", path: "/cases" },
+          { name: "Rocha & Sá" },
+        ])}
+      />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           

@@ -1,27 +1,11 @@
 import { MetadataRoute } from 'next';
+import { SITE_URL, seoRoutes } from '@/lib/seo-routes';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.scalecompany.com.br';
-
-  const routes = [
-    '',
-    '/google-ads-advogados',
-    '/captacao-de-clientes-para-advogados',
-    '/crm-advogados',
-    '/scale-advogados',
-    '/servicos',
-    '/depoimentos',
-    '/simulador-captacao',
-    '/blog',
-    '/blog/melhor-agencia-marketing-juridico',
-    '/blog/palavras-chave-por-area',
-    '/cases/rocha-e-sa',
-  ];
-
-  return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: route === '' ? 1 : 0.8,
+  return seoRoutes.map((route) => ({
+    url: `${SITE_URL}${route.path}`,
+    lastModified: route.lastModified,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
   }));
 }

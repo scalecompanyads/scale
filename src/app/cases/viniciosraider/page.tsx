@@ -6,10 +6,22 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { JsonLd } from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Case de Sucesso: Dr. Vinício Rodrigues | Scale Marketing",
   description: "Como a Scale Company gerou 5 contratos e mais de R$ 10.500 em honorários no 1º mês para um escritório de Direito de Família.",
+  alternates: { canonical: "/cases/viniciosraider" },
+  openGraph: {
+    title: "Case de Sucesso: Dr. Vinício Rodrigues | Scale Marketing",
+    description: "5 contratos e mais de R$ 10.500 em honorários no 1º mês no Direito de Família.",
+    url: "/cases/viniciosraider",
+    type: "article",
+    locale: "pt_BR",
+    siteName: "Scale Company",
+    images: [{ url: "/cases/viniciosraider/Captura%20de%20tela%202026-06-25%20111519.png", width: 1900, height: 1032, alt: "Resultados do case Dr. Vinício Rodrigues" }],
+  },
 };
 
 export default function CaseStudyPage() {
@@ -24,6 +36,13 @@ export default function CaseStudyPage() {
   return (
     <>
       <Navbar />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Cases", path: "/cases" },
+          { name: "Dr. Vinício Rodrigues" },
+        ])}
+      />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           

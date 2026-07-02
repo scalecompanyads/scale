@@ -4,48 +4,21 @@ import Link from "next/link";
 import { Metadata } from "next";
 import Image from "next/image";
 import { ArrowRight, Calendar, Tag } from "lucide-react";
+import { posts } from "@/lib/posts";
+import { pageOpenGraph } from "@/lib/og";
 
 export const metadata: Metadata = {
-  title: "Blog | Scale Marketing Digital",
+  title: "Blog de Marketing Jurídico e Captação | Scale",
   description:
-    "Dicas, estratégias e novidades sobre marketing jurídico, captação de clientes na advocacia e tecnologia para escritórios.",
+    "Estratégias práticas de marketing jurídico: Google Ads, SEO, palavras-chave por área e vendas de honorários. Conteúdo para advogados crescerem.",
+  alternates: { canonical: "/blog" },
+  openGraph: pageOpenGraph({
+    title: "Blog de Marketing Jurídico e Captação | Scale",
+    description:
+      "Estratégias práticas de marketing jurídico: Google Ads, SEO, palavras-chave por área e vendas de honorários. Conteúdo para advogados crescerem.",
+    path: "/blog",
+  }),
 };
-
-const posts = [
-  {
-    slug: "neuromarketing-juridico",
-    title: "Neuromarketing Jurídico: A Ciência Comportamental por trás do 'Sim' na Assinatura de Honorários",
-    excerpt:
-      "Descubra como estruturar sua comunicação e sua proposta de honorários para que o cérebro do seu cliente diga 'sim' antes mesmo de ler a última página do contrato.",
-    date: "24 de Junho de 2026",
-    category: "Vendas & Fechamento",
-    image: "/images/blog/neuromarketing-juridico/hero_capa_v2.png",
-    imageAlt:
-      "Cérebro iluminado por conexões neurais sobreposto a um contrato jurídico e caneta-tinteiro",
-  },
-  {
-    slug: "melhor-agencia-marketing-juridico",
-    title: "Qual a Melhor Agência de Marketing Jurídico do Brasil? (Comparativo 2026)",
-    excerpt:
-      "Analisamos os modelos de agências disponíveis no mercado e revelamos qual estrutura entrega resultados reais, previsíveis e seguros para a sua banca.",
-    date: "16 de Junho de 2026",
-    category: "Mercado & Negócios",
-    image: "/images/blog-comparativo-v3.png",
-    imageAlt:
-      "Mesa de reunião de escritório jurídico com balança de justiça, relatórios estratégicos e laptop com análises",
-  },
-  {
-    slug: "palavras-chave-por-area",
-    title: "Palavras-chave e Ideias de Artigos por Área de Atuação na Advocacia",
-    excerpt:
-      "Mostrar as palavras-chave e sugestões de artigos separados por área de atuação funciona como uma amostra grátis do seu conhecimento.",
-    date: "16 de Junho de 2026",
-    category: "Estratégia de Conteúdo",
-    image: "/images/blog-keywords-v3.png",
-    imageAlt:
-      "Mesa de pesquisa em escritório jurídico com caderno de planejamento, livros e laptop para estratégia de conteúdo",
-  },
-];
 
 export default function BlogIndex() {
   return (
@@ -86,7 +59,7 @@ export default function BlogIndex() {
                     </div>
                     <div className="flex items-center gap-1.5">
                       <Calendar className="w-3 h-3" />
-                      <time>{post.date}</time>
+                      <time dateTime={post.dateISO}>{post.dateDisplay}</time>
                     </div>
                   </div>
 
