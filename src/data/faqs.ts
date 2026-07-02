@@ -29,10 +29,6 @@ export const homeFaqs: Faq[] = [
     answer: "Atrair clientes é apenas metade do jogo. Se o seu WhatsApp vira uma bagunça, você perde dinheiro. Nosso CRM Exclusivo é uma tecnologia implantada para o seu escritório ter controle total do funil de vendas, saber exatamente a etapa de cada negociação e garantir um follow-up agressivo, sem deixar nenhum honorário na mesa."
   },
   {
-    question: "Vocês atendem escritórios concorrentes na mesma cidade?",
-    answer: "Para teses e atuações de hiper-segmentação local (como criminal, família ou previdenciário municipal), nós garantimos exclusividade por praça. Não competimos contra nós mesmos no leilão do Google. Se já temos um escritório faturando alto com uma tese na sua região, não fecharemos com o seu concorrente."
-  },
-  {
     question: "Nunca fiz marketing jurídico na vida. Isso é para mim?",
     answer: "Com certeza. Entrar no digital com uma máquina 360º pronta já te coloca anos à frente de escritórios mais antigos que tentam fazer tudo de forma amadora. Nós construímos a sua fundação digital (Landing page, posicionamento e campanhas) já no padrão de grandes bancas."
   }
