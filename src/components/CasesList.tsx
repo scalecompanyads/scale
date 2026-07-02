@@ -5,6 +5,15 @@ import { ArrowRight, Briefcase } from 'lucide-react';
 export default function CasesList() {
   const cases = [
     {
+      id: 'feitosa-advocacia',
+      title: 'Captação B2B: Como Geramos Reuniões com Médias e Grandes Empresas',
+      client: 'Feitosa Advocacia',
+      niche: 'Direito Empresarial B2B',
+      result: '2 Contratos + Upsell',
+      slug: '/cases/feitosa-advocacia',
+      image: '/cases/feitosa-adv/CRIATIVO 4 - Feitosa Advocacia.png'
+    },
+    {
       id: 'viniciosraider',
       title: 'Como a Scale gerou 5 contratos e mais de R$ 10.500 em honorários no 1º mês',
       client: 'Dr. Vinício Rodrigues',
