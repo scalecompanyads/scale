@@ -249,7 +249,7 @@ export default function ScaleAdvogadosPage() {
         if (panel) panel.style.display = 'block';
         if (success) success.style.display = 'none';
         if (errorEl) { errorEl.style.display = 'none'; errorEl.textContent = ''; }
-        ['sfm-nome','sfm-tel','sfm-fat'].forEach(function(id) {
+        ['sfm-nome','sfm-tel','sfm-email','sfm-fat'].forEach(function(id) {
           var el = (document.getElementById(id) as HTMLInputElement);
           if (el) el.value = '';
         });
@@ -294,11 +294,13 @@ export default function ScaleAdvogadosPage() {
 
           var nome    = ((document.getElementById('sfm-nome') as HTMLInputElement) || {} as HTMLInputElement).value || '';
           var tel     = ((document.getElementById('sfm-tel') as HTMLInputElement) || {} as HTMLInputElement).value || '';
+          var email   = ((document.getElementById('sfm-email') as HTMLInputElement) || {} as HTMLInputElement).value || '';
           var arroba  = ((document.getElementById('sfm-arroba') as HTMLInputElement) || {} as HTMLInputElement).value || '';
           var fat     = ((document.getElementById('sfm-fat') as HTMLInputElement) || {} as HTMLInputElement).value || '';
 
           if (nome.trim().length < 2) { showError('Informe seu nome completo.'); return; }
           if (digitsOnly(tel).length < 10) { showError('Informe um WhatsApp válido com DDD.'); return; }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) { showError('Informe um e-mail válido.'); return; }
           if (!fat) { showError('Selecione uma faixa de faturamento.'); return; }
 
           var handle = arroba.trim();
@@ -310,6 +312,7 @@ export default function ScaleAdvogadosPage() {
           var payload = Object.assign({
             lead_id: leadId,
             nome: nome.trim(),
+            email: email.trim(),
             perfilArroba: handle,
             telefone: tel,
             telefoneDigits: digitsOnly(tel),
@@ -982,6 +985,12 @@ export default function ScaleAdvogadosPage() {
           <div>
             <label htmlFor="sfm-tel" style={{ display: 'block', marginBottom: '.35rem', color: 'rgba(255,255,255,.7)', fontSize: '.8125rem', fontWeight: '500' }}>WhatsApp</label>
             <input id="sfm-tel" type="tel" inputMode="numeric" autoComplete="tel" placeholder="(11) 99999-9999" style={{ width: '100%', padding: '.75rem 1rem', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.12)', borderRadius: '10px', color: '#fff', fontSize: '.9375rem', outline: 'none', boxSizing: 'border-box', transition: 'border-color .2s' }} />
+          </div>
+
+          {/*  Email  */}
+          <div>
+            <label htmlFor="sfm-email" style={{ display: 'block', marginBottom: '.35rem', color: 'rgba(255,255,255,.7)', fontSize: '.8125rem', fontWeight: '500' }}>E-mail</label>
+            <input id="sfm-email" type="email" autoComplete="email" inputMode="email" placeholder="seuemail@exemplo.com" style={{ width: '100%', padding: '.75rem 1rem', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.12)', borderRadius: '10px', color: '#fff', fontSize: '.9375rem', outline: 'none', boxSizing: 'border-box', transition: 'border-color .2s' }} />
           </div>
 
           {/*  Instagram  */}
