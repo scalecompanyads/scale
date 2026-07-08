@@ -127,11 +127,11 @@ export default function BlogPost() {
               {/* 3o Lugar */}
               <div className="p-8 rounded-2xl bg-slate-50 border border-slate-300 relative">
                 <div className="absolute -top-4 -left-4 w-12 h-12 bg-amber-700 rounded-full flex items-center justify-center text-2xl shadow-lg shadow-amber-900/50">🥉</div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4 pl-4">3º Lugar: Assessorias de "Métricas de Vaidade"</h3>
-                <p className="text-slate-600 mb-6">Focadas 100% em produzir artes para o Instagram e vídeos institucionais para o escritório.</p>
+                <h3 className="text-xl font-bold text-slate-900 mb-4 pl-4">3º Lugar: Assessorias de Conteúdo e Marca (sem estratégia de captação integrada)</h3>
+                <p className="text-slate-600 mb-6">Focadas em produzir conteúdo de marca (artes, vídeos institucionais e presença nas redes) sem conectar esse trabalho a uma estratégia de captação.</p>
                 <ul className="space-y-3 text-sm md:text-base">
-                  <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" /> <span><strong>Onde acertam:</strong> Melhoram a estética da marca e mantêm o escritório visualmente ativo.</span></li>
-                  <li className="flex gap-3"><XCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" /> <span><strong>Onde falham:</strong> Geram curtidas e seguidores, mas raramente trazem clientes de fundo de funil (aqueles que precisam de um advogado hoje e têm dinheiro para pagar).</span></li>
+                  <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" /> <span><strong>Onde acertam:</strong> Fortalecem a percepção de autoridade e mantêm o escritório visualmente ativo. Construir uma marca institucional forte é parte real da credibilidade de qualquer banca, inclusive perante quem está pesquisando por um advogado.</span></li>
+                  <li className="flex gap-3"><XCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" /> <span><strong>Onde falham:</strong> Quando esse conteúdo de marca não está integrado a uma estratégia de captação (tráfego, páginas de conversão e funil comercial), a autoridade que ele constrói demora mais para virar contratos fechados.</span></li>
                 </ul>
                 <div className="mt-6 inline-block bg-slate-100 px-4 py-2 rounded-lg border border-slate-300 font-bold text-slate-700">Nota Final: ⭐⭐ (5.5/10)</div>
               </div>

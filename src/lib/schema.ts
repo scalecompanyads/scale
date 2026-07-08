@@ -26,6 +26,17 @@ export function organizationSchema() {
       email: "contato@scalecompany.com.br",
       contactType: "Atendimento",
     },
+    employee: [
+      { "@type": "Person", name: "Gabriel Dias", jobTitle: "Chief Organization Officer" },
+      { "@type": "Person", name: "Pedro Clark", jobTitle: "Chief Executive Officer" },
+      { "@type": "Person", name: "Vitor Escocard", jobTitle: "Sócio da Scale Company" },
+    ],
+    hasCredential: {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "certification",
+      name: "Google Ads Search Certification (Skillshop)",
+      recognizedBy: { "@type": "Organization", name: "Google" },
+    },
   };
 }
 

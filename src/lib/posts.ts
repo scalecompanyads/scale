@@ -51,6 +51,19 @@ export const posts: BlogPost[] = [
     imageAlt:
       "Mesa de pesquisa em escritório jurídico com caderno de planejamento, livros e laptop para estratégia de conteúdo",
   },
+  {
+    slug: "autoridade-institucional-marketing-juridico",
+    title:
+      "Performance e Autoridade Não Se Excluem: Por Que Marca Também Fecha Contratos na Advocacia",
+    excerpt:
+      "Marca institucional e performance de tráfego não competem entre si. Entenda por que a autoridade percebida reduz o custo de aquisição no longo prazo.",
+    dateISO: "2026-07-08",
+    dateDisplay: "8 de Julho de 2026",
+    category: "Posicionamento & Marca",
+    image: "/images/hero-desktop-bg.png",
+    imageAlt:
+      "Equipe executiva da Scale Company reunida em escritório, representando a construção de autoridade institucional",
+  },
 ];
 
 export function getPost(slug: string): BlogPost {
