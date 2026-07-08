@@ -1,0 +1,43 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração abstrata de um escudo de confiança cruzado por uma linha ascendente de performance">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#010f1c"/>
+      <stop offset="1" stop-color="#0a2540"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="150" y1="520" x2="1080" y2="180" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1630DF"/>
+      <stop offset="1" stop-color="#3B82F6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#3B82F6" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ffffff" stroke-opacity="0.05" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <circle cx="480" cy="320" r="270" fill="url(#glow)"/>
+
+  <path d="M480 118 L624 170 V330 C624 432 562 504 480 534 C398 504 336 432 336 330 V170 Z"
+        fill="#3B82F6" fill-opacity="0.07" stroke="#3B82F6" stroke-opacity="0.55" stroke-width="3"/>
+
+  <path d="M418 322 L463 367 L544 258" fill="none" stroke="#3B82F6" stroke-width="10"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <polyline points="150,520 320,462 480,486 640,344 800,384 960,222 1080,182"
+            fill="none" stroke="url(#lineGrad)" stroke-width="6"
+            stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <g fill="#3B82F6">
+    <circle cx="150" cy="520" r="7"/>
+    <circle cx="320" cy="462" r="7"/>
+    <circle cx="480" cy="486" r="7"/>
+    <circle cx="640" cy="344" r="7"/>
+    <circle cx="800" cy="384" r="7"/>
+    <circle cx="960" cy="222" r="7"/>
+    <circle cx="1080" cy="182" r="7"/>
+  </g>
+</svg>

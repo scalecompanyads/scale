@@ -8,6 +8,7 @@ import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { getPost } from "@/lib/posts";
+import { defaultOgImage } from "@/lib/og";
 
 const post = getPost("autoridade-institucional-marketing-juridico");
 
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     type: "article",
     locale: "pt_BR",
     siteName: "Scale Company",
-    images: [{ url: post.image, width: 1200, height: 630, alt: post.imageAlt }],
+    images: [defaultOgImage],
   },
   twitter: {
     card: "summary_large_image",
@@ -106,7 +107,7 @@ export default function BlogPost() {
             </p>
 
             <div className="w-full h-64 md:h-[400px] rounded-3xl overflow-hidden border border-slate-200 shadow-2xl relative">
-              <Image src={post.image} alt={post.imageAlt} fill className="object-cover" />
+              <Image src={post.image} alt={post.imageAlt} fill unoptimized className="object-cover" />
             </div>
           </header>
 

@@ -47,6 +47,7 @@ export default function BlogIndex() {
                     src={post.image}
                     alt={post.imageAlt}
                     fill
+                    unoptimized={post.image.endsWith(".svg")}
                     sizes="(min-width: 1024px) 320px, (min-width: 768px) 50vw, 100vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />

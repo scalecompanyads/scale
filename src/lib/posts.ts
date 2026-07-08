@@ -60,9 +60,9 @@ export const posts: BlogPost[] = [
     dateISO: "2026-07-08",
     dateDisplay: "8 de Julho de 2026",
     category: "Posicionamento & Marca",
-    image: "/images/hero-desktop-bg.png",
+    image: "/images/blog/autoridade-institucional-marketing-juridico/hero.svg",
     imageAlt:
-      "Equipe executiva da Scale Company reunida em escritório, representando a construção de autoridade institucional",
+      "Ilustração abstrata de um escudo de confiança cruzado por uma linha ascendente de performance",
   },
 ];
 
