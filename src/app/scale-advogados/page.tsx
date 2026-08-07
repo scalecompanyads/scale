@@ -4,7 +4,7 @@
 import React, { useEffect } from 'react';
 import './scale-advogados.css';
 import { legalAreas, oabCompliance, acquisitionPillars, technologyImpactCards, legalTeam, legalProofAssets, legalOffer } from '@/data/legalSeo';
-import ScaleAdvogadosV3Hero from '@/components/legal/ScaleAdvogadosV3Hero';
+import ScaleAdvogadosV3Hero from '@/components/legal/ScaleAdvogados2V3Hero';
 import { MAKE_WEBHOOK_URL, EXCEL_WEBHOOK_URL } from '@/lib/webhooks';
 import { MousePointerClick, Gauge, LineChart, Layers, PlayCircle, Shield, Target, TrendingUp, Users, Scale, MessageCircle, FileText, CheckCircle2, ChevronRight, BarChart3, Smartphone, Zap, Search, Eye, Building2, Briefcase, Calculator, Handshake, Users2, Building, Scale as ScaleIcon, ArrowRight, ShieldCheck, Mail, Key } from 'lucide-react';
 
@@ -129,29 +129,6 @@ export default function ScaleAdvogadosPage() {
     
       (function initSpotlightTestimonials() {
         function run() {
-          // Tab switcher logic
-          const tabs = document.querySelectorAll('.scale-spotlight-tab');
-          const contents = document.querySelectorAll('.scale-spotlight-content');
-
-          tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-              const target = (tab as HTMLElement).dataset.target;
-
-              tabs.forEach(t => {
-                t.classList.remove('active');
-                t.setAttribute('aria-selected', 'false');
-              });
-              contents.forEach(c => c.classList.remove('active'));
-
-              tab.classList.add('active');
-              tab.setAttribute('aria-selected', 'true');
-              const targetContent = document.getElementById(target as string);
-              if (targetContent) {
-                targetContent.classList.add('active');
-              }
-            });
-          });
-
           // Lightbox trigger logic
           const triggerElements = document.querySelectorAll('.scale-spotlight-img-trigger');
           const lightbox = document.getElementById('scale-lightbox');
@@ -465,11 +442,39 @@ export default function ScaleAdvogadosPage() {
         }
 
         setInterval(function() { addTerminalLine('leads'); }, 3200);
-        setInterval(function() { addTerminalLine('whatsapp'); }, 2800);
         setInterval(function() { addTerminalLine('contratos'); }, 4000);
         setTimeout(function() { addTerminalLine('leads'); }, 800);
-        setTimeout(function() { addTerminalLine('whatsapp'); }, 1200);
         setTimeout(function() { addTerminalLine('contratos'); }, 1600);
+
+        // Mockup de WhatsApp: outras mensagens chegando
+        var whatsappMessages = [
+          'Boa tarde, preciso de um advogado trabalhista',
+          'Vi o anúncio de vocês, quanto custa uma consulta?',
+          'Meu caso é urgente, podem me atender hoje?',
+          'Quero agendar reunião sobre holding familiar',
+        ];
+        var whatsappIndex = 0;
+
+        function addWhatsappBubble() {
+          var body = document.querySelector('.scale-wa-body');
+          if (!body) return;
+          var msg = whatsappMessages[whatsappIndex % whatsappMessages.length];
+          whatsappIndex++;
+          var bubble = document.createElement('div');
+          bubble.className = 'scale-wa-bubble';
+          var p = document.createElement('p');
+          p.textContent = msg;
+          var time = document.createElement('span');
+          time.className = 'scale-wa-bubble__time';
+          time.textContent = 'agora';
+          bubble.appendChild(p);
+          bubble.appendChild(time);
+          body.appendChild(bubble);
+          if (body.children.length > 2) body.removeChild(body.children[0]);
+          body.scrollTop = body.scrollHeight;
+        }
+
+        setInterval(addWhatsappBubble, 3600);
 
 
         // Prints Infinite Marquee (Legacy) - Lightbox only
@@ -592,7 +597,7 @@ export default function ScaleAdvogadosPage() {
       headingAccent="previsível e escalável de aquisição de clientes:"
       description="Descubra como implementamos em 15 dias a maior engrenagem de aquisição para escritórios de advocacia."
       primaryCtaHref="#scale-form-modal"
-      primaryCtaLabel="Solicitar diagnóstico"
+      primaryCtaLabel="Falar com especialista"
     />
 
     {/*  PIPELINE ANIMADO + TERMINAIS  */}
@@ -670,15 +675,22 @@ export default function ScaleAdvogadosPage() {
               <p className="scale-terminal__line"><span className="scale-terminal__prompt">$</span> novo lead recebido...</p>
             </div>
           </div>
-          <div className="scale-terminal scale-terminal--highlight">
-            <div className="scale-terminal__bar">
-              <span className="scale-terminal__dot scale-terminal__dot--red"></span>
-              <span className="scale-terminal__dot scale-terminal__dot--yellow"></span>
-              <span className="scale-terminal__dot scale-terminal__dot--green"></span>
-              <span className="scale-terminal__title">~/whatsapp · rec</span>
+          <div className="scale-terminal scale-terminal--highlight scale-terminal--whatsapp">
+            <div className="scale-wa-header">
+              <div className="scale-wa-avatar">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Z"/></svg>
+              </div>
+              <div className="scale-wa-header__info">
+                <span className="scale-wa-header__name">Cliente em potencial</span>
+                <span className="scale-wa-header__status">online</span>
+              </div>
+              <svg className="scale-wa-header__icon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Z"/></svg>
             </div>
-            <div className="scale-terminal__body" data-terminal="whatsapp">
-              <p className="scale-terminal__line"><span className="scale-terminal__prompt">$</span> conectando...</p>
+            <div className="scale-wa-body">
+              <div className="scale-wa-bubble">
+                <p>Olá, vim pelo anúncio e gostaria de agendar uma reunião</p>
+                <span className="scale-wa-bubble__time">agora</span>
+              </div>
             </div>
           </div>
           <div className="scale-terminal">
@@ -693,6 +705,12 @@ export default function ScaleAdvogadosPage() {
             </div>
           </div>
         </div>
+
+        <div className="scale-spotlight-cta" style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center' }}>
+          <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
+            Falar com especialista
+          </button>
+        </div>
       </div>
     </section>
 
@@ -705,29 +723,11 @@ export default function ScaleAdvogadosPage() {
           <h2>Não são promessas, são honorários mapeados de quem superou a dependência da indicação.</h2>
         </div>
 
-        {/*  Menu de Abas (Tabs)  */}
-        <div className="scale-spotlight-tabs-wrapper">
-          <div className="scale-spotlight-tabs" role="tablist" aria-label="Casos de sucesso de advogados">
-            <button className="scale-spotlight-tab active" role="tab" aria-selected="true" data-target="spotlight-case-01">
-              R$ 300k Mapeados
-            </button>
-            <button className="scale-spotlight-tab" role="tab" aria-selected="false" data-target="spotlight-case-02">
-              R$ 14,6k em 2 Contratos
-            </button>
-            <button className="scale-spotlight-tab" role="tab" aria-selected="false" data-target="spotlight-case-03">
-              R$ 8,4k em 5 Dias
-            </button>
-            <button className="scale-spotlight-tab" role="tab" aria-selected="false" data-target="spotlight-case-04">
-              Contrato no 1º Dia
-            </button>
-          </div>
-        </div>
+        {/*  Container de Casos Spotlight (coluna única, todos visíveis) */}
+        <div className="scale-spotlight-container scale-spotlight-container--column">
 
-        {/*  Container de Casos Spotlight  */}
-        <div className="scale-spotlight-container">
-          
           {/*  Caso 01 (R$ 300k)  */}
-          <div className="scale-spotlight-content active" id="spotlight-case-01" role="tabpanel">
+          <div className="scale-spotlight-content" id="spotlight-case-01">
             <div className="scale-spotlight-visual-side">
               <div className="scale-phone-mockup scale-spotlight-img-trigger">
                 <div className="scale-phone-screen">
@@ -750,7 +750,7 @@ export default function ScaleAdvogadosPage() {
           </div>
 
           {/*  Caso 02 (R$ 14,6k)  */}
-          <div className="scale-spotlight-content" id="spotlight-case-02" role="tabpanel">
+          <div className="scale-spotlight-content" id="spotlight-case-02">
             <div className="scale-spotlight-visual-side">
               <div className="scale-phone-mockup scale-spotlight-img-trigger">
                 <div className="scale-phone-screen">
@@ -773,7 +773,7 @@ export default function ScaleAdvogadosPage() {
           </div>
 
           {/*  Caso 03 (R$ 8,4k em 5 dias)  */}
-          <div className="scale-spotlight-content" id="spotlight-case-03" role="tabpanel">
+          <div className="scale-spotlight-content" id="spotlight-case-03">
             <div className="scale-spotlight-visual-side">
               <div className="scale-phone-mockup scale-spotlight-img-trigger">
                 <div className="scale-phone-screen">
@@ -796,7 +796,7 @@ export default function ScaleAdvogadosPage() {
           </div>
 
           {/*  Caso 04 (Contrato no 1º Dia)  */}
-          <div className="scale-spotlight-content" id="spotlight-case-04" role="tabpanel">
+          <div className="scale-spotlight-content" id="spotlight-case-04">
             <div className="scale-spotlight-visual-side">
               <div className="scale-phone-mockup scale-spotlight-img-trigger">
                 <div className="scale-phone-screen">
@@ -818,15 +818,54 @@ export default function ScaleAdvogadosPage() {
             </div>
           </div>
 
+          {/*  Caso 05 (Virginio Advocacia - Previdenciário)  */}
+          <div className="scale-spotlight-content" id="spotlight-case-05">
+            <div className="scale-spotlight-visual-side">
+              <div className="scale-phone-mockup scale-spotlight-img-trigger">
+                <div className="scale-phone-screen">
+                  <img src="/cases/virginio/depoimentos.png" alt="Testemunho Virginio Advocacia - 5 contratos em 10 dias" className="scale-spotlight-img" />
+                  <div className="scale-phone-overlay">
+                    <div className="scale-phone-expand-btn">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="scale-spotlight-text-side">
+              <blockquote className="scale-spotlight-quote">
+                <p>
+                  "Fechamos 1 auxílio acidente hoje ❤️" (equipe da Virginio Advocacia, Direito Previdenciário: 5 contratos fechados nos primeiros 10 dias de campanha).
+                </p>
+              </blockquote>
+            </div>
+          </div>
+
+          {/*  Caso 06 (Dr. Vinício Rodrigues - Família)  */}
+          <div className="scale-spotlight-content" id="spotlight-case-06">
+            <div className="scale-spotlight-visual-side">
+              <div className="scale-phone-mockup scale-spotlight-img-trigger">
+                <div className="scale-phone-screen">
+                  <img src="/cases/viniciosraider/Captura%20de%20tela%202026-06-25%20111519.png" alt="Case Dr. Vinício Rodrigues - 5 contratos e R$10.500 em honorários" className="scale-spotlight-img" />
+                  <div className="scale-phone-overlay">
+                    <div className="scale-phone-expand-btn">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="scale-spotlight-text-side">
+              <p className="scale-spotlight-description">Dr. Vinício Rodrigues (Direito de Família): 5 contratos fechados e mais de R$ 10.500 em honorários rastreados já no 1º mês de campanha.</p>
+            </div>
+          </div>
+
         </div>
 
         {/*  CTA de Depoimentos  */}
         <div className="scale-spotlight-cta" style={{ marginTop: '3.5rem', display: 'flex', justifyContent: 'center' }}>
           <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-            <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true" focusable="false" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-              <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/>
-            </svg>
-            Ver plano para meu escritório
+            Falar com especialista
           </button>
         </div>
       </div>
@@ -880,7 +919,7 @@ export default function ScaleAdvogadosPage() {
 {/*  SEÇÃO PORTFÓLIO — TUDO QUE FAZEMOS  */}
     <section className="scale-section scale-section--dark scale-portfolio-section">
       <div className="scale-portfolio-heading">
-        <h2>Ecosistema 360°</h2>
+        <h2>Estrutura pronta de aquisição para o seu escritório</h2>
         <p>Cada peça de uma máquina de aquisição funcionando.</p>
       </div>
 
@@ -909,6 +948,12 @@ export default function ScaleAdvogadosPage() {
           <span className="scale-bento__label">CRM</span>
           <video src="/scale-advogados/assets/crm-demo.mp4" autoPlay muted loop playsInline style={{ objectPosition: 'center top' }}></video>
         </div>
+      </div>
+
+      <div className="scale-spotlight-cta" style={{ marginTop: '3.5rem', display: 'flex', justifyContent: 'center' }}>
+        <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
+          Falar com especialista
+        </button>
       </div>
     </section>
 
@@ -954,10 +999,7 @@ export default function ScaleAdvogadosPage() {
         </p>
         <div className="scale-final__cta">
           <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-            <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true" focusable="false" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-              <path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/>
-            </svg>
-            Construir minha Máquina de Aquisição
+            Falar com especialista
           </button>
         </div>
       </div>
@@ -1019,7 +1061,6 @@ export default function ScaleAdvogadosPage() {
 
         {/*  Submit  */}
         <button type="button" id="sfm-submit" style={{ marginTop: '1.25rem', width: '100%', padding: '.9rem 1rem', background: 'linear-gradient(135deg,#0f6fff 0%,#0954c8 100%)', border: 'none', borderRadius: '10px', color: '#fff', fontSize: '1rem', fontWeight: '600', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '.5rem', transition: 'opacity .2s,transform .15s', boxShadow: '0 8px 24px rgba(15,111,255,.28)' }}>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.03 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.74.45 3.43 1.31 4.92L2 22l5.32-1.39a9.87 9.87 0 0 0 4.71 1.2h.01c5.46 0 9.9-4.44 9.9-9.9a9.86 9.86 0 0 0-2.89-7ZM12.04 20.14h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.16.83.84-3.08-.2-.32a8.18 8.18 0 0 1-1.26-4.35c0-4.52 3.68-8.2 8.21-8.2 2.19 0 4.24.85 5.79 2.4a8.14 8.14 0 0 1 2.4 5.8c0 4.52-3.68 8.2-8.13 8.24Zm4.5-6.16c-.25-.13-1.47-.73-1.7-.82-.23-.08-.39-.12-.56.13-.16.24-.64.81-.78.97-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.36-1.69-.14-.24-.01-.37.11-.5.11-.11.25-.28.37-.42.13-.14.17-.24.25-.4.08-.16.04-.3-.02-.42-.07-.13-.56-1.35-.77-1.85-.2-.48-.4-.41-.56-.42h-.48c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.69 2.57 4.09 3.61.57.25 1.02.4 1.37.5.58.18 1.1.15 1.52.09.46-.07 1.47-.6 1.67-1.18.21-.58.21-1.08.15-1.18-.06-.1-.22-.16-.47-.29Z"/></svg>
           Enviar
         </button>
 

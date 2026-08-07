@@ -923,7 +923,17 @@
   }
 
   .scale-v3-hero-shell .hero-nav {
+    justify-content: center;
+    padding: 14px 0 10px;
+    margin-bottom: 6px;
+  }
+
+  .scale-v3-hero-shell .nav-menu {
     display: none;
+  }
+
+  .scale-v3-hero-shell .nav-logo img {
+    height: 1.7rem;
   }
 
   .scale-v3-hero-shell .hero-card {

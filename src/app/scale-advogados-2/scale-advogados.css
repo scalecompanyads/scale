@@ -13,7 +13,6 @@
       font-weight: 600;
       font-size: 1.05rem;
       line-height: 1.5;
-      white-space: nowrap;
       text-decoration: none !important;
       transition: all 0.2s ease;
       box-shadow:
@@ -347,84 +346,6 @@
     }
     @keyframes terminal-line-in {
       to { opacity: 1; }
-    }
-
-    /* Mockup de WhatsApp (substitui o terminal central) */
-    .scale-terminal--whatsapp {
-      padding: 0;
-    }
-    .scale-wa-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: #202c33;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .scale-wa-avatar {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #ffffff;
-      flex-shrink: 0;
-    }
-    .scale-wa-header__info {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      min-width: 0;
-    }
-    .scale-wa-header__name {
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: #fff;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .scale-wa-header__status {
-      font-size: 0.62rem;
-      color: #8696a0;
-    }
-    .scale-wa-header__icon {
-      color: #00d757;
-      flex-shrink: 0;
-    }
-    .scale-wa-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      gap: 8px;
-      padding: 14px;
-      background: #0b141a;
-      overflow: hidden;
-    }
-    .scale-wa-bubble {
-      position: relative;
-      max-width: 92%;
-      background: #202c33;
-      color: #e9edef;
-      padding: 8px 10px 16px;
-      border-radius: 8px 8px 8px 2px;
-      font-size: 0.76rem;
-      line-height: 1.4;
-      opacity: 0;
-      animation: terminal-line-in 0.3s ease forwards;
-    }
-    .scale-wa-bubble p {
-      margin: 0;
-    }
-    .scale-wa-bubble__time {
-      position: absolute;
-      bottom: 5px;
-      right: 10px;
-      font-size: 0.6rem;
-      color: #8696a0;
     }
 
     @media (max-width: 768px) {
@@ -2146,39 +2067,27 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
-    /* Container de Slides (agora coluna única, todos os casos visíveis) */
-    .scale-spotlight-container--column {
-      display: flex;
-      flex-direction: column;
+    /* Container de Slides */
+    .scale-spotlight-container {
+      position: relative;
       width: 100%;
-      max-width: 860px;
-      margin: 0 auto;
     }
 
     .scale-spotlight-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: none;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .scale-spotlight-content.active {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      justify-items: center;
       text-align: center;
-      gap: 1.75rem;
-      padding: 2.25rem 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .scale-spotlight-content:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    @media (min-width: 768px) {
-      .scale-spotlight-content {
-        flex-direction: row;
-        text-align: left;
-        gap: 2.5rem;
-      }
-      .scale-spotlight-text-side {
-        align-items: flex-start;
-      }
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Lado Esquerdo - Celular Mockup */
@@ -2187,17 +2096,6 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      flex-shrink: 0;
-    }
-
-    .scale-spotlight-visual-side .scale-phone-mockup {
-      max-width: 220px;
-    }
-
-    @media (max-width: 767px) {
-      .scale-spotlight-visual-side .scale-phone-mockup {
-        max-width: 320px;
-      }
     }
 
     .scale-phone-mockup {
@@ -2317,16 +2215,6 @@
       line-height: 1.7;
     }
 
-    .scale-spotlight-caselink {
-      color: #0077ff;
-      font-weight: 700;
-      font-size: 0.85rem;
-      text-decoration: none;
-    }
-    .scale-spotlight-caselink:hover {
-      text-decoration: underline;
-    }
-
     .scale-spotlight-quote {
       position: relative;
       margin: 0;
@@ -2390,11 +2278,21 @@
 
     /* Responsividade */
     @media (max-width: 991px) {
+      .scale-spotlight-content.active {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
       .scale-spotlight-visual-side {
         order: 1;
       }
       .scale-spotlight-text-side {
         order: 2;
+      }
+      .scale-phone-mockup {
+        max-width: 364px;
+      }
+      .scale-spotlight-tabs {
+        margin: 0;
       }
     }
 
