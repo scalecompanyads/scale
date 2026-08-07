@@ -64,6 +64,19 @@ export const posts: BlogPost[] = [
     imageAlt:
       "Ilustração abstrata de um escudo de confiança cruzado por uma linha ascendente de performance",
   },
+  {
+    slug: "google-meu-negocio-para-advogados",
+    title:
+      "Dominação Local: Como Transformar o Google Meu Negócio na Maior Máquina de Captação do seu Escritório",
+    excerpt:
+      "Enquanto a maioria briga por palavras-chave amplas, a busca local de alta intenção continua aberta. Veja como estruturar o Google Meu Negócio para captar quem já está pronto para contratar.",
+    dateISO: "2026-07-23",
+    dateDisplay: "23 de Julho de 2026",
+    category: "SEO & Presença Local",
+    image: "/images/blog/google-meu-negocio-para-advogados/hero.svg",
+    imageAlt:
+      "Ilustração abstrata de um pin de mapa cruzado por uma linha ascendente de performance",
+  },
 ];
 
 export function getPost(slug: string): BlogPost {
