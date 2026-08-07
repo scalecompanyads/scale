@@ -42,4 +42,5 @@ export const seoRoutes: SeoRoute[] = [
   { path: "/cases/celino-e-silva", lastModified: "2026-06-25", changeFrequency: "monthly", priority: 0.7 },
   { path: "/cases/feitosa-advocacia", lastModified: "2026-07-02", changeFrequency: "monthly", priority: 0.7 },
   { path: "/cases/viniciosraider", lastModified: "2026-06-25", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/cases/virginio-advocacia", lastModified: "2026-07-23", changeFrequency: "monthly", priority: 0.7 },
 ];

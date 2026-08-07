@@ -39,6 +39,15 @@ export default function CasesList() {
       result: '3 contratos em 4 dias',
       slug: '/cases/rocha-e-sa',
       image: '/cases/rocha-e-sa/cover-2.png'
+    },
+    {
+      id: 'virginio-advocacia',
+      title: 'Como a Scale Gerou 5 Contratos em 10 Dias no Direito Previdenciário',
+      client: 'Virginio Advocacia',
+      niche: 'Direito Previdenciário (BPC/LOAS e Auxílio-Acidente)',
+      result: '5 contratos em 10 dias',
+      slug: '/cases/virginio-advocacia',
+      image: '/cases/virginio/capa.png'
     }
   ];
 
