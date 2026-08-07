@@ -13,6 +13,7 @@
       font-weight: 600;
       font-size: 1.05rem;
       line-height: 1.5;
+      white-space: nowrap;
       text-decoration: none !important;
       transition: all 0.2s ease;
       box-shadow:

@@ -251,7 +251,6 @@ export default function ScaleAdvogados2V3Hero({
             )}
           </p>
           <a href={primaryCtaHref} className="btn-cta">
-            <WhatsAppIcon />
             {isDefaultPrimaryCta ? 'Solicitar diagnóstico' : primaryCtaLabel}
           </a>
           {supportNote ? <p className="hero-support-note">{supportNote}</p> : null}
