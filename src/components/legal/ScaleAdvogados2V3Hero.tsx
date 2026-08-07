@@ -152,7 +152,7 @@ export default function ScaleAdvogados2V3Hero({
   supportNote,
   navHelperHref = '#metodo',
   navHelperLabel = 'Ver metodo',
-  brandsLabel = 'Escritorios que confiam na Scale',
+  brandsLabel = 'Escritórios que confiam na Scale',
   channelTitle,
   channelDescription,
   channelCards = [],
@@ -259,7 +259,7 @@ export default function ScaleAdvogados2V3Hero({
 
       <div className="brands-shell">
         <p className="brands-label">{brandsLabel}</p>
-        <div className="brands" aria-label="Escritorios de advocacia que ja confiaram na Scale">
+        <div className="brands" aria-label="Escritórios de advocacia que já confiaram na Scale">
           <div className="brands-track">
             {brandLogos.map((logo) => (
               <div className="brand-item" key={logo.src}>

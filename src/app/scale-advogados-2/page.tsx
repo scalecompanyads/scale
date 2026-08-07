@@ -597,7 +597,7 @@ export default function ScaleAdvogadosPage() {
       headingAccent="previsível e escalável de aquisição de clientes:"
       description="Descubra como implementamos em 15 dias a maior engrenagem de aquisição para escritórios de advocacia."
       primaryCtaHref="#scale-form-modal"
-      primaryCtaLabel="Solicitar diagnóstico"
+      primaryCtaLabel="Falar com especialista"
     />
 
     {/*  PIPELINE ANIMADO + TERMINAIS  */}
@@ -708,7 +708,7 @@ export default function ScaleAdvogadosPage() {
 
         <div className="scale-spotlight-cta" style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center' }}>
           <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-            Quero minha máquina
+            Falar com especialista
           </button>
         </div>
       </div>
@@ -865,7 +865,7 @@ export default function ScaleAdvogadosPage() {
         {/*  CTA de Depoimentos  */}
         <div className="scale-spotlight-cta" style={{ marginTop: '3.5rem', display: 'flex', justifyContent: 'center' }}>
           <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-            Ver meu plano
+            Falar com especialista
           </button>
         </div>
       </div>
@@ -952,7 +952,7 @@ export default function ScaleAdvogadosPage() {
 
       <div className="scale-spotlight-cta" style={{ marginTop: '3.5rem', display: 'flex', justifyContent: 'center' }}>
         <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-          Quero essa estrutura
+          Falar com especialista
         </button>
       </div>
     </section>
@@ -999,7 +999,7 @@ export default function ScaleAdvogadosPage() {
         </p>
         <div className="scale-final__cta">
           <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-            Agendar diagnóstico
+            Falar com especialista
           </button>
         </div>
       </div>
