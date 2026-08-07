@@ -9,8 +9,19 @@ import { JsonLd } from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { getPost } from "@/lib/posts";
 import { defaultOgImage } from "@/lib/og";
+import { TableOfContents } from "@/components/blog/TableOfContents";
+import { NewsletterSignup } from "@/components/blog/NewsletterSignup";
 
 const post = getPost("autoridade-institucional-marketing-juridico");
+
+const sections = [
+  { id: "mito-marca-performance", label: "O Mito Marca x Performance" },
+  { id: "confianca-no-juridico", label: "Confiança no Jurídico" },
+  { id: "equacao-da-confianca", label: "A Equação da Confiança" },
+  { id: "cac-menor", label: "CAC Menor no Longo Prazo" },
+  { id: "checklist-credibilidade", label: "Checklist de Credibilidade" },
+  { id: "posicionamento-scale", label: "Onde a Scale se Posiciona" },
+];
 
 export const metadata: Metadata = {
   title: "Performance e Autoridade Não Se Excluem: Por Que Marca Também Fecha Contratos na Advocacia",
@@ -75,7 +86,8 @@ export default function BlogPost() {
         ])}
       />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_260px] gap-12 items-start">
+        <article className="w-full max-w-none">
 
           <header className="mb-12">
             <Link href="/blog" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium mb-8 transition-colors">
@@ -131,7 +143,7 @@ export default function BlogPost() {
               Na prática, essa separação não se sustenta, e existe uma razão documentada para isso, não só intuição.
             </p>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">O mito do "ou marca, ou performance"</h2>
+            <h2 id="mito-marca-performance" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">O mito do "ou marca, ou performance"</h2>
             <p>
               Tráfego pago e SEO colocam o escritório na frente de quem já está procurando. O que essa pessoa encontra ao clicar (site sem histórico, sem equipe visível, sem sinal de quem está por trás) pesa direto na decisão de continuar ou fechar a aba.
             </p>
@@ -139,13 +151,13 @@ export default function BlogPost() {
               Tráfego traz volume. Autoridade decide quanto desse volume vira conversa real.
             </p>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">Por que o jurídico exige mais confiança que quase qualquer outro nicho</h2>
+            <h2 id="confianca-no-juridico" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">Por que o jurídico exige mais confiança que quase qualquer outro nicho</h2>
             <p>
               O Google não trata todo conteúdo do mesmo jeito. Nas suas diretrizes públicas de qualidade de busca, ele classifica saúde, direito e finanças como <strong>YMYL</strong> ("Your Money or Your Life"): páginas cuja qualidade pode afetar a segurança, o patrimônio ou o bem-estar de quem pesquisa.
             </p>
 
             <div className="not-prose flex flex-wrap gap-3 my-8">
-              {["E — Experience", "E — Expertise", "A — Authoritativeness", "T — Trustworthiness"].map((label) => (
+              {["E - Experience", "E - Expertise", "A - Authoritativeness", "T - Trustworthiness"].map((label) => (
                 <span key={label} className="bg-[#3B82F6]/10 border border-[#3B82F6]/20 text-[#3B82F6] text-xs font-semibold px-4 py-2 rounded-full uppercase tracking-wider">
                   {label}
                 </span>
@@ -159,7 +171,7 @@ export default function BlogPost() {
               </p>
             </div>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">A Equação da Confiança aplicada ao marketing jurídico</h2>
+            <h2 id="equacao-da-confianca" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">A Equação da Confiança aplicada ao marketing jurídico</h2>
             <p>
               Charles Green, Robert Galford e David Maister, no livro <em>The Trusted Advisor</em>, decompõem confiança em componentes mensuráveis:
             </p>
@@ -178,7 +190,7 @@ export default function BlogPost() {
               ))}
             </div>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">Como isso se traduz em CAC menor no longo prazo</h2>
+            <h2 id="cac-menor" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">Como isso se traduz em CAC menor no longo prazo</h2>
             <p>
               Um lead que já reconhece a marca antes do primeiro contato converte com menos esforço comercial.
             </p>
@@ -207,7 +219,7 @@ export default function BlogPost() {
               Em um mercado historicamente movido a indicação como o jurídico, autoridade percebida tende a gerar recomendação espontânea: o canal de aquisição com o menor custo possível, zero.
             </p>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">Checklist: sinais de credibilidade que todo escritório deveria ter no site</h2>
+            <h2 id="checklist-credibilidade" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">Checklist: sinais de credibilidade que todo escritório deveria ter no site</h2>
             <ul className="space-y-3 not-prose my-8">
               <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> <span><strong>Credibilidade:</strong> página própria de "Quem Somos" com a equipe real, e registro oficial da empresa visível (CNPJ, sede, contato)</span></li>
               <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> <span><strong>Confiabilidade:</strong> credenciais reais, sem inflar o que não pode ser comprovado, e conteúdo que mostra metodologia</span></li>
@@ -215,13 +227,18 @@ export default function BlogPost() {
               <li className="flex gap-3"><CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 mt-0.5" /> <span><strong>Baixo autointeresse aparente:</strong> conteúdo educativo antes da oferta, sem urgência artificial</span></li>
             </ul>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">Onde a Scale Company se posiciona nesse espectro</h2>
+            <h2 id="posicionamento-scale" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">Onde a Scale Company se posiciona nesse espectro</h2>
             <p>
               Construímos a nossa operação em cima de tráfego pago, landing pages e CRM porque é isso que gera o volume de contatos que um escritório precisa todo mês. Mas essa entrega, sozinha, não fecha o ciclo de confiança que o mercado jurídico exige. Por isso também deixamos visível quem somos e como trabalhamos, direto na <Link href="/#sobre" className="text-blue-600 hover:text-blue-700 underline underline-offset-2">seção Sobre a Scale</Link>.
             </p>
           </div>
 
-          <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-blue-200 text-center shadow-2xl shadow-blue-100">
+          {/* Newsletter */}
+          <div className="mt-16">
+            <NewsletterSignup source={`blog-post:${post.slug}`} />
+          </div>
+
+          <div className="mt-8 p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-blue-200 text-center shadow-2xl shadow-blue-100">
             <h3 className="text-2xl font-bold mb-4">Quer unir performance e autoridade no seu escritório?</h3>
             <p className="text-slate-600 mb-8">
               Agende um diagnóstico gratuito e veja como estruturar captação e credibilidade institucional juntas.
@@ -233,6 +250,12 @@ export default function BlogPost() {
           </div>
 
         </article>
+
+        <aside className="hidden lg:block sticky top-32">
+          <TableOfContents items={sections} />
+        </aside>
+
+        </div>
       </main>
       <Footer />
     </>

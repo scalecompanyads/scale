@@ -8,8 +8,15 @@ import { Metadata } from "next";
 import { JsonLd } from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { getPost } from "@/lib/posts";
+import { TableOfContents } from "@/components/blog/TableOfContents";
+import { NewsletterSignup } from "@/components/blog/NewsletterSignup";
 
 const post = getPost("palavras-chave-por-area");
+
+const sections = [
+  { id: "palavras-chave-por-area", label: "Palavras-chave por Área" },
+  { id: "como-aplicar", label: "Como Aplicar na Prática" },
+];
 
 export const metadata: Metadata = {
   title: "Palavras-chave e Ideias de Artigos por Área de Atuação | Blog Scale",
@@ -30,8 +37,9 @@ export default function BlogPost() {
         ])}
       />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_260px] gap-12 items-start">
+        <article className="w-full max-w-none">
+
           {/* Header do Post */}
           <header className="mb-12">
             <Link href="/blog" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium mb-8 transition-colors">
@@ -88,11 +96,11 @@ export default function BlogPost() {
             </div>
             
             {/* Componente Interativo de Abas/Acordeão */}
-            <div className="not-prose">
+            <div id="palavras-chave-por-area" className="not-prose scroll-mt-32">
               <AreasAccordion />
             </div>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">Como aplicar essas ideias na prática?</h2>
+            <h2 id="como-aplicar" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">Como aplicar essas ideias na prática?</h2>
             <p className="mb-6">
               Essas ideias de conteúdo e palavras-chave devem ser a espinha dorsal das suas campanhas de <Link href="/google-ads-advogados" className="text-blue-600 hover:text-blue-700 underline underline-offset-2 font-bold">Google Ads para advogados</Link> e do conteúdo da sua <strong>Landing Page</strong>.
             </p>
@@ -101,8 +109,13 @@ export default function BlogPost() {
             </p>
           </div>
 
+          {/* Newsletter */}
+          <div className="mt-16">
+            <NewsletterSignup source={`blog-post:${post.slug}`} />
+          </div>
+
           {/* CTA do Artigo */}
-          <div className="mt-20 p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-blue-200 text-center">
+          <div className="mt-8 p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-blue-200 text-center">
             <h3 className="text-2xl font-bold mb-4">Precisa de ajuda para estruturar essas campanhas?</h3>
             <p className="text-slate-600 mb-8">
               A Scale Company aplica essa mesma metodologia e segmentação para todos os nossos escritórios parceiros.
@@ -114,6 +127,12 @@ export default function BlogPost() {
           </div>
 
         </article>
+
+        <aside className="hidden lg:block sticky top-32">
+          <TableOfContents items={sections} />
+        </aside>
+
+        </div>
       </main>
       <Footer />
     </>

@@ -8,8 +8,17 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import { JsonLd } from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { getPost } from "@/lib/posts";
+import { TableOfContents } from "@/components/blog/TableOfContents";
+import { NewsletterSignup } from "@/components/blog/NewsletterSignup";
 
 const post = getPost("melhor-agencia-marketing-juridico");
+
+const sections = [
+  { id: "o-ranking", label: "O Ranking das Agências" },
+  { id: "tabela-comparativa", label: "Tabela Comparativa" },
+  { id: "prova-social", label: "Resultados e Prova Social" },
+  { id: "veredito", label: "O Veredito" },
+];
 
 const testimonials = Array.from({ length: 19 }, (_, i) => ({
   id: i + 1,
@@ -42,8 +51,9 @@ export default function BlogPost() {
         ])}
       />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_260px] gap-12 items-start">
+        <article className="w-full max-w-none">
+
           {/* Header do Post */}
           <header className="mb-12">
             <Link href="/blog" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium mb-8 transition-colors">
@@ -91,7 +101,7 @@ export default function BlogPost() {
               Neste comparativo, vamos analisar os modelos de agências disponíveis no mercado, os erros mais comuns e revelar qual estrutura entrega resultados reais, previsíveis e seguros para a sua banca.
             </p>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">O Ranking: Qual é a melhor escolha para o seu Escritório?</h2>
+            <h2 id="o-ranking" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">O Ranking: Qual é a melhor escolha para o seu Escritório?</h2>
             <p className="mb-10">
               Avaliamos os principais modelos de agências que atendem advogados no Brasil com base em 5 critérios rigorosos: Adequação à OAB, Performance Técnica (Velocidade e SEO), Conversão de Leads, Suporte Comercial e Tecnologia Integrada. Confira o ranking definitivo:
             </p>
@@ -160,7 +170,7 @@ export default function BlogPost() {
                 <ArrowRight className="w-4 h-4" />
               </CTAButton>
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">Tabela Comparativa: Scale Company x Agência Padrão</h2>
+            <h2 id="tabela-comparativa" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">Tabela Comparativa: Scale Company x Agência Padrão</h2>
             <p className="mb-6">
               Para não restar dúvidas de por que os escritórios de sucesso estão migrando para o modelo de Ecossistema, veja a comparação direta:
             </p>
@@ -209,7 +219,7 @@ export default function BlogPost() {
               </table>
             </div>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">Resultados que Falam por Si: A Prova Social</h2>
+            <h2 id="prova-social" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">Resultados que Falam por Si: A Prova Social</h2>
             <p className="mb-10">
               No marketing jurídico, promessas não pagam as contas do escritório. O que importa é o Retorno sobre o Investimento (ROI) e a qualidade do cliente que senta na sua mesa de reunião. Veja os bastidores da nossa operação e o que os advogados que trabalham com a Scale Company têm a dizer:
             </p>
@@ -266,7 +276,7 @@ export default function BlogPost() {
               </div>
             </div>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">O Veredito: É hora de mudar o jogo do seu escritório</h2>
+            <h2 id="veredito" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">O Veredito: É hora de mudar o jogo do seu escritório</h2>
             <p>
               Se você está frustrado com agências que entregam desculpas em vez de resultados, ou se sente que está deixando dinheiro na mesa porque sua estrutura atual é lenta e desorganizada, é hora de evoluir.
             </p>
@@ -275,8 +285,13 @@ export default function BlogPost() {
             </p>
           </div>
 
+          {/* Newsletter */}
+          <div className="mt-16">
+            <NewsletterSignup source={`blog-post:${post.slug}`} />
+          </div>
+
           {/* CTA do Artigo */}
-          <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-blue-200 text-center shadow-2xl shadow-blue-100">
+          <div className="mt-8 p-8 rounded-2xl bg-gradient-to-br from-white to-slate-50 border border-blue-200 text-center shadow-2xl shadow-blue-100">
             <h3 className="text-2xl font-bold mb-4">Pronto para escalar sua banca com segurança?</h3>
             <p className="text-slate-600 mb-8">
               Faça como os escritórios que mais crescem no Brasil. Pare de gastar com cliques vazios e comece a investir na construção do seu patrimônio digital.
@@ -288,6 +303,12 @@ export default function BlogPost() {
           </div>
 
         </article>
+
+        <aside className="hidden lg:block sticky top-32">
+          <TableOfContents items={sections} />
+        </aside>
+
+        </div>
       </main>
       <Footer />
     </>

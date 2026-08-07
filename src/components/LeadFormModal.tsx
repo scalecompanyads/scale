@@ -3,9 +3,7 @@
 import { useCallback, useEffect, useId, useState } from "react";
 import { CheckCircle2, ChevronLeft, Loader2, X } from "lucide-react";
 import { useLeadForm } from "@/contexts/LeadFormContext";
-
-const MAKE_WEBHOOK_URL = "https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve";
-const EXCEL_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwdcXNSA-sUdCtT4JXky5JMTDihkGb1zNL41DLlgFTpOU1aMWs2xw0HmxpWiMIKYIDx/exec";
+import { MAKE_WEBHOOK_URL, EXCEL_WEBHOOK_URL } from "@/lib/webhooks";
 
 const LEAD_EVENT_NAME = "lead_submit_success";
 

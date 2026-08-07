@@ -144,41 +144,6 @@ body {
   transform: translateY(0);
 }
 
-/* ── Shiny button ──────────────────────────────────── */
-.btn-shiny {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.9rem 2rem;
-  font-weight: 700;
-  font-size: 1rem;
-  color: #fff;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #3B82F6 0%, #1630DF 100%);
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  overflow: hidden;
-  text-decoration: none;
-}
-.btn-shiny::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
-  border-radius: 9999px;
-  pointer-events: none;
-}
-.btn-shiny:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(59,130,246,0.4);
-}
-.btn-shiny:active {
-  transform: translateY(0);
-}
-
 .btn-outline {
   display: inline-flex;
   align-items: center;
@@ -244,6 +209,11 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* ── Blue-tinted elevation (blog: sumário, newsletter) ── */
+.shadow-blue-soft {
+  box-shadow: 0 14px 36px -14px rgba(59,130,246,0.22), 0 3px 10px -3px rgba(59,130,246,0.12);
 }
 
 /* ── Ambient glow helpers ──────────────────────────── */

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter } from "next/font/google";
 import { LeadFormProvider } from "@/contexts/LeadFormContext";
 import { LeadFormModal } from "@/components/LeadFormModal";
 import { JsonLd } from "@/components/JsonLd";
@@ -9,12 +9,6 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--",
   display: "swap",
 });
 
@@ -50,7 +44,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

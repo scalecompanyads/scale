@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import './scale-advogados.css';
 import { legalAreas, oabCompliance, acquisitionPillars, technologyImpactCards, legalTeam, legalProofAssets, legalOffer } from '@/data/legalSeo';
 import ScaleAdvogadosV3Hero from '@/components/legal/ScaleAdvogadosV3Hero';
+import { MAKE_WEBHOOK_URL, EXCEL_WEBHOOK_URL } from '@/lib/webhooks';
 import { MousePointerClick, Gauge, LineChart, Layers, PlayCircle, Shield, Target, TrendingUp, Users, Scale, MessageCircle, FileText, CheckCircle2, ChevronRight, BarChart3, Smartphone, Zap, Search, Eye, Building2, Briefcase, Calculator, Handshake, Users2, Building, Scale as ScaleIcon, ArrowRight, ShieldCheck, Mail, Key } from 'lucide-react';
 
 const conversionCards = [
@@ -189,8 +190,8 @@ export default function ScaleAdvogadosPage() {
       var submitBtn = document.getElementById('sfm-submit');
       var errorEl = document.getElementById('sfm-error');
 
-      var MAKE_URL  = 'https://hook.us1.make.com/bk8vzf7u1d7m0fueemgfqemutft9k6ve';
-      var EXCEL_URL = 'https://script.google.com/macros/s/AKfycbwdcXNSA-sUdCtT4JXky5JMTDihkGb1zNL41DLlgFTpOU1aMWs2xw0HmxpWiMIKYIDx/exec';
+      var MAKE_URL  = MAKE_WEBHOOK_URL;
+      var EXCEL_URL = EXCEL_WEBHOOK_URL;
 
       var faturamentoLabels = {
         menos_30k: 'Menos de R$ 30 mil',

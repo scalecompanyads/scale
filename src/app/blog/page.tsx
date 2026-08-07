@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRight, Calendar, Tag } from "lucide-react";
 import { posts } from "@/lib/posts";
 import { pageOpenGraph } from "@/lib/og";
+import { NewsletterSignup } from "@/components/blog/NewsletterSignup";
 
 export const metadata: Metadata = {
   title: "Blog de Marketing Jurídico e Captação | Scale",
@@ -35,6 +36,10 @@ export default function BlogIndex() {
               tecnologia e insights para impulsionar o seu escritório.
             </p>
           </header>
+
+          <div className="mb-16">
+            <NewsletterSignup variant="dark" source="blog-index" />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (

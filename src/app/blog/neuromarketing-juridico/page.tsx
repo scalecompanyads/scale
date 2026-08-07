@@ -8,8 +8,18 @@ import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import { articleSchema, breadcrumbSchema } from "@/lib/schema";
 import { getPost } from "@/lib/posts";
+import { TableOfContents } from "@/components/blog/TableOfContents";
+import { NewsletterSignup } from "@/components/blog/NewsletterSignup";
 
 const post = getPost("neuromarketing-juridico");
+
+const sections = [
+  { id: "aversao-a-perda", label: "1. Aversão à Perda" },
+  { id: "ancoragem-de-precos", label: "2. Ancoragem de Preços" },
+  { id: "paradoxo-da-escolha", label: "3. Paradoxo da Escolha" },
+  { id: "efeito-halo", label: "4. Efeito Halo" },
+  { id: "conclusao", label: "Conclusão" },
+];
 
 export const metadata: Metadata = {
   title: "Neuromarketing Jurídico: A Ciência por trás da Venda de Honorários",
@@ -44,8 +54,9 @@ export default function BlogPost() {
         ])}
       />
       <main className="flex flex-col min-h-screen bg-slate-50 text-slate-900 pt-32 pb-20">
-        <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_260px] gap-12 items-start">
+        <article className="w-full max-w-none">
+
           {/* Header do Post */}
           <header className="mb-12">
             <Link href="/blog" className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium mb-8 transition-colors">
@@ -102,7 +113,7 @@ export default function BlogPost() {
               Neste artigo, vamos desconstruir o momento do fechamento usando princípios validados da Economia Comportamental. Descubra como estruturar sua comunicação e sua proposta de honorários para que o cérebro do seu cliente diga "sim" antes mesmo de ler a última página do contrato.
             </p>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">1. Aversão à Perda: O Medo de Perder é Maior que o Desejo de Ganhar</h2>
+            <h2 id="aversao-a-perda" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">1. Aversão à Perda: O Medo de Perder é Maior que o Desejo de Ganhar</h2>
             <div className="bg-white border border-blue-200 p-6 rounded-2xl mb-8">
               <h4 className="text-blue-400 font-bold mb-2 flex items-center gap-2">🧠 A Ciência</h4>
               <p className="text-sm m-0">O Prêmio Nobel Daniel Kahneman e Amos Tversky, criadores da Teoria da Perspectiva (Prospect Theory), comprovaram que a dor psicológica de perder R$ 10.000 é duas vezes mais intensa do que a alegria de ganhar os mesmos R$ 10.000. O cérebro humano é programado para evitar ameaças.</p>
@@ -127,7 +138,7 @@ export default function BlogPost() {
               />
             </div>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">2. Ancoragem de Preços: Como Fazer Seus Honorários Parecerem um Investimento</h2>
+            <h2 id="ancoragem-de-precos" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">2. Ancoragem de Preços: Como Fazer Seus Honorários Parecerem um Investimento</h2>
             <div className="bg-white border border-blue-200 p-6 rounded-2xl mb-8">
               <h4 className="text-blue-400 font-bold mb-2 flex items-center gap-2">🧠 A Ciência</h4>
               <p className="text-sm m-0">O pesquisador Dan Ariely, em seu livro <em>Previsivelmente Irracional</em>, demonstra o viés da Ancoragem. O cérebro não sabe avaliar o valor absoluto das coisas; ele precisa de um ponto de comparação (uma âncora). O primeiro número que o cliente ouve molda a percepção de todos os números seguintes.</p>
@@ -162,7 +173,7 @@ export default function BlogPost() {
               />
             </div>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">3. O Paradoxo da Escolha: A Clareza Vende, a Confusão Paralisa</h2>
+            <h2 id="paradoxo-da-escolha" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">3. O Paradoxo da Escolha: A Clareza Vende, a Confusão Paralisa</h2>
             <div className="bg-white border border-blue-200 p-6 rounded-2xl mb-8">
               <h4 className="text-blue-400 font-bold mb-2 flex items-center gap-2">🧠 A Ciência</h4>
               <p className="text-sm m-0">O psicólogo Barry Schwartz cunhou o termo <em>O Paradoxo da Escolha</em>. Ele provou que, embora acreditemos que ter mais opções seja bom, dar opções demais ao consumidor causa "paralisia de análise" e ansiedade, derrubando drasticamente as taxas de conversão.</p>
@@ -189,7 +200,7 @@ export default function BlogPost() {
               />
             </div>
 
-            <h2 className="text-2xl font-bold text-slate-900 mt-16 mb-6">4. Efeito Halo: O Design da Sua Proposta "Julga" a Qualidade da Sua Peça</h2>
+            <h2 id="efeito-halo" className="text-2xl font-bold text-slate-900 mt-16 mb-6 scroll-mt-32">4. Efeito Halo: O Design da Sua Proposta "Julga" a Qualidade da Sua Peça</h2>
             <div className="bg-white border border-blue-200 p-6 rounded-2xl mb-8">
               <h4 className="text-blue-400 font-bold mb-2 flex items-center gap-2">🧠 A Ciência</h4>
               <p className="text-sm m-0">O Efeito Halo, identificado pelo psicólogo Edward Thorndike, é um viés cognitivo onde a nossa impressão geral sobre algo (ex: "é bonito e bem cuidado") influencia nosso julgamento sobre características específicas que não podemos ver (ex: "deve ser tecnicamente excelente").</p>
@@ -217,7 +228,7 @@ export default function BlogPost() {
 
             <hr className="border-slate-300 my-16" />
 
-            <h2 className="text-3xl font-bold text-slate-900 mb-6">Conclusão: Neuromarketing não é Manipulação, é Facilitação</h2>
+            <h2 id="conclusao" className="text-3xl font-bold text-slate-900 mb-6 scroll-mt-32">Conclusão: Neuromarketing não é Manipulação, é Facilitação</h2>
             <p>
               Aplicar a ciência comportamental nas suas reuniões de fechamento não significa manipular o cliente. Significa remover os obstáculos cognitivos que o impedem de tomar a melhor decisão para o negócio dele – que é contratar o seu escritório.
             </p>
@@ -237,8 +248,13 @@ export default function BlogPost() {
             </div>
           </div>
 
+          {/* Newsletter */}
+          <div className="mt-16">
+            <NewsletterSignup source={`blog-post:${post.slug}`} />
+          </div>
+
           {/* CTA do Artigo */}
-          <div className="mt-16 p-8 md:p-12 rounded-3xl bg-gradient-to-br from-white to-slate-50 border border-blue-200 text-center shadow-2xl shadow-blue-100 flex flex-col items-center">
+          <div className="mt-8 p-8 md:p-12 rounded-3xl bg-gradient-to-br from-white to-slate-50 border border-blue-200 text-center shadow-2xl shadow-blue-100 flex flex-col items-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">Como está a taxa de conversão das reuniões no seu escritório hoje?</h3>
             <p className="text-slate-600 mb-10 max-w-2xl">
               O marketing atrai, mas a inteligência de negócios é o que fecha o contrato. Se o seu escritório precisa de uma arquitetura de crescimento de ponta a ponta, a Scale pode ajudar.
@@ -253,6 +269,12 @@ export default function BlogPost() {
           </div>
 
         </article>
+
+        <aside className="hidden lg:block sticky top-32">
+          <TableOfContents items={sections} />
+        </aside>
+
+        </div>
       </main>
       <Footer />
     </>
