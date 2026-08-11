@@ -7,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "*", allow: "/" },
       { userAgent: "*", disallow: "/plano-comercial" },
       { userAgent: "*", disallow: "/scale-advogados-2" },
+      { userAgent: "*", disallow: "/treinamento-comercial" },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
   };
