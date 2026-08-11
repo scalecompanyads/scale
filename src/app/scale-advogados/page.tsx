@@ -475,6 +475,7 @@ export default function ScaleAdvogadosPage() {
         }
 
         setInterval(addWhatsappBubble, 3600);
+        setTimeout(addWhatsappBubble, 1400);
 
 
         // Prints Infinite Marquee (Legacy) - Lightbox only

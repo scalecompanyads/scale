@@ -427,10 +427,13 @@
 
 .scale-v3-hero-shell .brands-track {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 64px;
+  flex-wrap: nowrap;
+  gap: 48px;
   padding: 32px 24px 10px;
+  width: max-content;
+  justify-content: flex-start;
+  animation: brands-marquee 40s linear infinite;
+  will-change: transform;
 }
 
 .scale-v3-hero-shell .brand-item {
@@ -438,11 +441,12 @@
   align-items: center;
   justify-content: center;
   min-height: 68px;
+  flex: 0 0 auto;
   color: rgba(255, 255, 255, 0.35);
 }
 
 .scale-v3-hero-shell .brand-item--clone {
-  display: none;
+  display: flex;
 }
 
 .scale-v3-hero-shell .brand-item img {
@@ -1011,13 +1015,9 @@
   }
 
   .scale-v3-hero-shell .brands-track {
-    flex-wrap: nowrap;
     gap: 20px;
     padding: 20px 10px 8px;
-    width: max-content;
-    justify-content: flex-start;
-    animation: brands-marquee 22s linear infinite;
-    will-change: transform;
+    animation-duration: 22s;
   }
 
   .scale-v3-hero-shell .brands-label {
@@ -1030,11 +1030,6 @@
   .scale-v3-hero-shell .brand-item {
     min-width: 160px;
     min-height: 64px;
-    flex: 0 0 auto;
-  }
-
-  .scale-v3-hero-shell .brand-item--clone {
-    display: flex;
   }
 
   .scale-v3-hero-shell .brand-item img {

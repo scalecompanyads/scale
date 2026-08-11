@@ -54,7 +54,7 @@ export default function TreinamentoComercialPage() {
           </p>
 
           <h1 className="section-title !text-3xl md:!text-5xl">
-            Aprenda as 7 etapas para transformar leads que somem, enrolam ou não comparecem em clientes fechados
+            Aprenda as 7 etapas para transformar leads que somem, enrolam ou não comparecem em <span>clientes fechados</span>
           </h1>
 
           <p className="section-subtitle mx-auto mt-6 max-w-2xl">
