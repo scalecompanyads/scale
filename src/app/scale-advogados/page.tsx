@@ -197,6 +197,17 @@ export default function ScaleAdvogadosPage() {
 
       function digitsOnly(v: string) { return stripCC(v.replace(/\D/g,'')); }
 
+      var VALID_DDDS = ['11','12','13','14','15','16','17','18','19','21','22','24','27','28','31','32','33','34','35','37','38','41','42','43','44','45','46','47','48','49','51','53','54','55','61','62','63','64','65','66','67','68','69','71','73','74','75','77','79','81','82','83','84','85','86','87','88','89','91','92','93','94','95','96','97','98','99'];
+
+      function isValidPhone(v: string) {
+        var d = digitsOnly(v);
+        if (d.length !== 10 && d.length !== 11) return false;
+        if (VALID_DDDS.indexOf(d.slice(0, 2)) === -1) return false;
+        if (d.length === 11 && d.charAt(2) !== '9') return false;
+        if (/^(\d)\1+$/.test(d.slice(2))) return false;
+        return true;
+      }
+
       function getAttribution() {
         if (typeof window === 'undefined') return {};
         var p = new URLSearchParams(window.location.search);
@@ -229,8 +240,10 @@ export default function ScaleAdvogadosPage() {
         if (errorEl) { errorEl.style.display = 'none'; errorEl.textContent = ''; }
         ['sfm-nome','sfm-tel','sfm-email','sfm-fat'].forEach(function(id) {
           var el = (document.getElementById(id) as HTMLInputElement);
-          if (el) el.value = '';
+          if (el) { el.value = ''; el.style.borderColor = ''; }
         });
+        var telHintEl = document.getElementById('sfm-tel-hint');
+        if (telHintEl) telHintEl.style.display = 'none';
         var arrobaEl = (document.getElementById('sfm-arroba') as HTMLInputElement);
         if (arrobaEl) arrobaEl.value = '@';
         if (submitBtn) { (submitBtn as HTMLButtonElement).disabled = false; }
@@ -244,12 +257,20 @@ export default function ScaleAdvogadosPage() {
         if (e.target === modal) closeModal();
       });
 
-      // Phone mask
+      // Phone mask + inline validation feedback
       var telEl = (document.getElementById('sfm-tel') as HTMLInputElement);
+      var telHint = document.getElementById('sfm-tel-hint');
       if (telEl) {
         telEl.addEventListener('input', function() {
-          var pos = (this as HTMLInputElement).selectionStart;
           (this as HTMLInputElement).value = maskPhone((this as HTMLInputElement).value);
+          (this as HTMLInputElement).style.borderColor = '';
+          if (telHint) telHint.style.display = 'none';
+        });
+        telEl.addEventListener('blur', function() {
+          var val = (this as HTMLInputElement).value;
+          var invalid = !!val && !isValidPhone(val);
+          (this as HTMLInputElement).style.borderColor = invalid ? '#f87171' : '';
+          if (telHint) telHint.style.display = invalid ? 'block' : 'none';
         });
       }
 
@@ -277,7 +298,7 @@ export default function ScaleAdvogadosPage() {
           var fat     = ((document.getElementById('sfm-fat') as HTMLInputElement) || {} as HTMLInputElement).value || '';
 
           if (nome.trim().length < 2) { showError('Informe seu nome completo.'); return; }
-          if (digitsOnly(tel).length < 10) { showError('Informe um WhatsApp válido com DDD.'); return; }
+          if (!isValidPhone(tel)) { showError('Informe um WhatsApp válido com DDD, ex: (11) 99999-9999.'); return; }
           if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) { showError('Informe um e-mail válido.'); return; }
           if (!fat) { showError('Selecione uma faixa de faturamento.'); return; }
 
@@ -396,48 +417,42 @@ export default function ScaleAdvogadosPage() {
           if (e.target === videoLightbox) closeVideo();
         });
 
-        // Terminal typing simulation
+        // Atividade dos paineis de leads e contratos
         var terminalMessages = {
           leads: [
-            '→ Lead: Maria Silva · Direito Trabalhista',
-            '→ Lead: Carlos Souza · Revisão de Contrato',
-            '→ Lead: Ana Oliveira · Divórcio Consensual',
-            '→ Lead: Roberto Lima · Holding Familiar',
-            '→ Qualificação: 4/4 leads com fit',
-            '→ Lead: Fernanda Costa · Direito Imobiliário',
-            '→ Lead: Lucas Almeida · Planejamento Sucessório',
-          ],
-          whatsapp: [
-            '📱 "Boa tarde, preciso de um advogado trabalhista"',
-            '📱 "Vi o anúncio de vocês, quanto custa uma consulta?"',
-            '📱 "Meu caso é urgente, podem me atender hoje?"',
-            '📱 "Quero agendar reunião sobre holding familiar"',
-            '📱 "Recebi indicação de vocês, como funciona?"',
-            '📱 "Preciso revisar um contrato de locação"',
+            { primary: 'Maria Silva', secondary: 'Direito Trabalhista' },
+            { primary: 'Carlos Souza', secondary: 'Revisão de Contrato' },
+            { primary: 'Ana Oliveira', secondary: 'Divórcio Consensual' },
+            { primary: 'Roberto Lima', secondary: 'Holding Familiar' },
+            { primary: 'Fernanda Costa', secondary: 'Direito Imobiliário' },
+            { primary: 'Lucas Almeida', secondary: 'Planejamento Sucessório' },
           ],
           contratos: [
-            '✓ Contrato #247 · R$ 4.500 · Assinado',
-            '✓ Contrato #248 · R$ 12.000 · Assinado',
-            '⏳ Pipeline: 8 em negociação',
-            '✓ Contrato #249 · R$ 3.200 · Assinado',
-            '$ Receita mês: R$ 47.800',
-            '✓ Contrato #250 · R$ 8.900 · Assinado',
+            { primary: 'Contrato #247', secondary: 'R$ 4.500' },
+            { primary: 'Contrato #248', secondary: 'R$ 12.000' },
+            { primary: 'Contrato #249', secondary: 'R$ 3.200' },
+            { primary: 'Contrato #250', secondary: 'R$ 8.900' },
           ]
         };
-        var terminalIndexes = { leads: 0, whatsapp: 0, contratos: 0 };
+        var terminalIndexes = { leads: 0, contratos: 0 };
 
-        function addTerminalLine(key: 'leads' | 'whatsapp' | 'contratos') {
+        function addTerminalLine(key: 'leads' | 'contratos') {
           var el = document.querySelector('[data-terminal="' + key + '"]');
           if (!el) return;
           var msgs = terminalMessages[key];
           var msg = msgs[terminalIndexes[key] % msgs.length];
           terminalIndexes[key]++;
-          var p = document.createElement('p');
-          p.className = 'scale-terminal__line';
-          p.innerHTML = '<span class="scale-terminal__prompt">$</span> ' + msg;
-          p.style.animationDelay = '0s';
-          el.appendChild(p);
-          if (el.children.length > 6) el.removeChild(el.children[0]);
+          var isContrato = key === 'contratos';
+          var item = document.createElement('div');
+          item.className = 'scale-activity-item';
+          var avatarContent = isContrato
+            ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
+            : msg.primary.charAt(0);
+          item.innerHTML =
+            '<span class="scale-activity-avatar' + (isContrato ? ' scale-activity-avatar--green' : '') + '">' + avatarContent + '</span>' +
+            '<span class="scale-activity-item__text"><strong>' + msg.primary + '</strong><span class="scale-activity-item__sub">' + msg.secondary + '</span></span>';
+          el.appendChild(item);
+          if (el.children.length > 3) el.removeChild(el.children[0]);
           el.scrollTop = el.scrollHeight;
         }
 
@@ -666,15 +681,13 @@ export default function ScaleAdvogadosPage() {
         {/*  Terminais Mac  */}
         <div className="scale-pipeline-terminals">
           <div className="scale-terminal">
-            <div className="scale-terminal__bar">
-              <span className="scale-terminal__dot scale-terminal__dot--red"></span>
-              <span className="scale-terminal__dot scale-terminal__dot--yellow"></span>
-              <span className="scale-terminal__dot scale-terminal__dot--green"></span>
-              <span className="scale-terminal__title">~/leads · ativos</span>
+            <div className="scale-activity-header">
+              <div className="scale-activity-header__icon">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <span className="scale-activity-header__title">Leads ativos</span>
             </div>
-            <div className="scale-terminal__body" data-terminal="leads">
-              <p className="scale-terminal__line"><span className="scale-terminal__prompt">$</span> novo lead recebido...</p>
-            </div>
+            <div className="scale-activity-body" data-terminal="leads"></div>
           </div>
           <div className="scale-terminal scale-terminal--highlight scale-terminal--whatsapp">
             <div className="scale-wa-header">
@@ -695,15 +708,13 @@ export default function ScaleAdvogadosPage() {
             </div>
           </div>
           <div className="scale-terminal">
-            <div className="scale-terminal__bar">
-              <span className="scale-terminal__dot scale-terminal__dot--red"></span>
-              <span className="scale-terminal__dot scale-terminal__dot--yellow"></span>
-              <span className="scale-terminal__dot scale-terminal__dot--green"></span>
-              <span className="scale-terminal__title">~/contratos</span>
+            <div className="scale-activity-header">
+              <div className="scale-activity-header__icon scale-activity-header__icon--green">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <span className="scale-activity-header__title">Contratos fechados</span>
             </div>
-            <div className="scale-terminal__body" data-terminal="contratos">
-              <p className="scale-terminal__line"><span className="scale-terminal__prompt">$</span> pipeline carregando...</p>
-            </div>
+            <div className="scale-activity-body" data-terminal="contratos"></div>
           </div>
         </div>
 
@@ -1029,6 +1040,7 @@ export default function ScaleAdvogadosPage() {
           <div>
             <label htmlFor="sfm-tel" style={{ display: 'block', marginBottom: '.35rem', color: 'rgba(255,255,255,.7)', fontSize: '.8125rem', fontWeight: '500' }}>WhatsApp</label>
             <input id="sfm-tel" type="tel" inputMode="numeric" autoComplete="tel" placeholder="(11) 99999-9999" style={{ width: '100%', padding: '.75rem 1rem', background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.12)', borderRadius: '10px', color: '#fff', fontSize: '.9375rem', outline: 'none', boxSizing: 'border-box', transition: 'border-color .2s' }} />
+            <p id="sfm-tel-hint" style={{ display: 'none', margin: '.35rem 0 0', color: '#f87171', fontSize: '.75rem' }}>Confira o DDD e o número — parece incompleto ou inválido.</p>
           </div>
 
           {/*  Email  */}

@@ -197,9 +197,6 @@ export default function ScaleAdvogados2V3Hero({
 
         <div className="nav-menu">
           <div className="nav-actions">
-            <a className="btn-login" href={navHelperHref}>
-              Ver método
-            </a>
             <a className="btn-signup" href={primaryCtaHref}>
               Diagnóstico
             </a>
