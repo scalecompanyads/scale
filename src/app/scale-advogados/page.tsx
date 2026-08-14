@@ -613,7 +613,7 @@ export default function ScaleAdvogadosPage() {
       headingAccent="previsível e escalável de aquisição de clientes:"
       description="Descubra como implementamos em 15 dias a maior engrenagem de aquisição para escritórios de advocacia."
       primaryCtaHref="#scale-form-modal"
-      primaryCtaLabel="Falar com especialista"
+      primaryCtaLabel="Solicite um Diagnóstico"
     />
 
     {/*  PIPELINE ANIMADO + TERMINAIS  */}
@@ -720,7 +720,7 @@ export default function ScaleAdvogadosPage() {
 
         <div className="scale-spotlight-cta" style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center' }}>
           <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-            Falar com especialista
+            Solicite um Diagnóstico
           </button>
         </div>
       </div>
@@ -877,7 +877,7 @@ export default function ScaleAdvogadosPage() {
         {/*  CTA de Depoimentos  */}
         <div className="scale-spotlight-cta" style={{ marginTop: '3.5rem', display: 'flex', justifyContent: 'center' }}>
           <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-            Falar com especialista
+            Solicite um Diagnóstico
           </button>
         </div>
       </div>
@@ -964,7 +964,7 @@ export default function ScaleAdvogadosPage() {
 
       <div className="scale-spotlight-cta" style={{ marginTop: '3.5rem', display: 'flex', justifyContent: 'center' }}>
         <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-          Falar com especialista
+          Solicite um Diagnóstico
         </button>
       </div>
     </section>
@@ -1011,7 +1011,7 @@ export default function ScaleAdvogadosPage() {
         </p>
         <div className="scale-final__cta">
           <button type="button" className="scale-btn-cta" onClick={() => (globalThis as any).window.__openScaleModal()}>
-            Falar com especialista
+            Solicite um Diagnóstico
           </button>
         </div>
       </div>
