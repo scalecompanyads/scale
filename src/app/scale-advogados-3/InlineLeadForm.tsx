@@ -59,8 +59,8 @@ function getAttribution() {
 
 const iconClass = "pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400";
 const inputClass =
-  "w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-3.5 text-[14px] text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100";
-const labelClass = "mb-1.5 block text-[11.5px] font-semibold uppercase tracking-wide text-slate-500";
+  "w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-3.5 text-left text-[14px] text-slate-900 outline-none transition-colors placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100";
+const labelClass = "mb-1.5 block text-left text-[11.5px] font-semibold uppercase tracking-wide text-slate-500";
 
 export function InlineLeadForm() {
   const [nome, setNome] = useState("");
