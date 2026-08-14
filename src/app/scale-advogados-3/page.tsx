@@ -210,30 +210,47 @@ export default function ScaleAdvogados3Page() {
           Você recebe tudo pronto, em um lugar só: landing page, CRM, treinamento comercial e artes. Nós estruturamos o seu escritório com você.
         </p>
 
-        <div className="sa3-bento mx-auto mt-7 max-w-sm">
-          <div className="sa3-bento-item" style={{ gridArea: "trafego" }}>
-            <span className="sa3-bento-label">Tráfego</span>
-            <img src="/scale-advogados/assets/google-meta-dashboard-dark.webp" alt="Dashboard de tráfego pago" decoding="async" />
+        <div className="mx-auto mt-7 flex max-w-sm flex-col gap-4">
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
+            <p className="px-4 py-3 text-[13px] font-bold text-white">Tráfego</p>
+            <div className="aspect-video w-full">
+              <img src="/scale-advogados/assets/google-meta-dashboard-dark.webp" alt="Dashboard de tráfego pago" decoding="async" className="h-full w-full object-cover" />
+            </div>
           </div>
-          <div className="sa3-bento-item" style={{ gridArea: "landing" }}>
-            <span className="sa3-bento-label">Landing Page</span>
-            <video src="/scale-advogados/assets/landing-page-demo.mp4" autoPlay muted loop playsInline />
+
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
+            <p className="px-4 py-3 text-[13px] font-bold text-white">Landing Page</p>
+            <div className="aspect-video w-full">
+              <video src="/scale-advogados/assets/landing-page-demo.mp4" autoPlay muted loop playsInline className="h-full w-full object-cover" />
+            </div>
           </div>
-          <div className="sa3-bento-item" style={{ gridArea: "artes" }}>
-            <span className="sa3-bento-label">Artes</span>
-            <img src="/scale-advogados/assets/arte-social-damas-lima.png" alt="Arte para redes sociais" decoding="async" />
+
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
+            <p className="px-4 py-3 text-[13px] font-bold text-white">Artes</p>
+            <div className="aspect-video w-full">
+              <img src="/scale-advogados/assets/arte-social-damas-lima.png" alt="Arte para redes sociais" decoding="async" className="h-full w-full object-cover" />
+            </div>
           </div>
-          <div className="sa3-bento-item" style={{ gridArea: "video" }}>
-            <span className="sa3-bento-label">Edição de Vídeo</span>
-            <video src="/scale-advogados/assets/video-editing-bg.mp4" autoPlay muted loop playsInline style={{ objectPosition: "left center" }} />
+
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
+            <p className="px-4 py-3 text-[13px] font-bold text-white">Edição de Vídeo</p>
+            <div className="aspect-video w-full">
+              <video src="/scale-advogados/assets/video-editing-bg.mp4" autoPlay muted loop playsInline style={{ objectPosition: "left center" }} className="h-full w-full object-cover" />
+            </div>
           </div>
-          <div className="sa3-bento-item" style={{ gridArea: "crm" }}>
-            <span className="sa3-bento-label">CRM</span>
-            <video src="/scale-advogados/assets/crm-demo.mp4" autoPlay muted loop playsInline style={{ objectPosition: "center top" }} />
+
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
+            <p className="px-4 py-3 text-[13px] font-bold text-white">CRM</p>
+            <div className="aspect-video w-full">
+              <video src="/scale-advogados/assets/crm-demo.mp4" autoPlay muted loop playsInline style={{ objectPosition: "center top" }} className="h-full w-full object-cover" />
+            </div>
           </div>
-          <div className="sa3-bento-item" style={{ gridArea: "comercial" }}>
-            <span className="sa3-bento-label">Treinamento Comercial</span>
-            <video src="/scale-advogados/assets/comercial-gabriel.mp4" autoPlay muted loop playsInline />
+
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
+            <p className="px-4 py-3 text-[13px] font-bold text-white">Treinamento Comercial</p>
+            <div className="aspect-video w-full">
+              <video src="/scale-advogados/assets/comercial-gabriel.mp4" autoPlay muted loop playsInline className="h-full w-full object-cover" />
+            </div>
           </div>
         </div>
 
