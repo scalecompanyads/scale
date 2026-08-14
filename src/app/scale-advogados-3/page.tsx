@@ -5,6 +5,7 @@ import { extraLogos, extraLogoBasePath } from "@/data/legalExtraLogos";
 import { DepoimentosCarousel } from "./DepoimentosCarousel";
 import { VideoTestimonials } from "./VideoTestimonials";
 import { Laptop, UserPlus, Rocket, Globe, CheckCircle2 } from "lucide-react";
+import { CTAButton } from "@/components/ui/CTAButton";
 
 const marketPoints = [
   { Icon: Laptop, label: "Sem espaço físico" },
@@ -76,12 +77,9 @@ export default function ScaleAdvogados3Page() {
             engrenagem de aquisição para escritórios de advocacia.
           </p>
 
-          <a
-            href="#"
-            className="cta-pulse mt-7 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
-          >
+          <CTAButton className="cta-pulse mt-7 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
             Quero captar mais clientes
-          </a>
+          </CTAButton>
 
           <p className="mt-4 text-[13px] text-white/70">
             Clique no botão para falar conosco agora mesmo!
@@ -98,12 +96,12 @@ export default function ScaleAdvogados3Page() {
           <div className="sa3-brands-track">
             {brandLogos.map((logo) => (
               <div className="sa3-brand-item" key={logo.src}>
-                <img src={logo.src} alt={logo.alt} loading="lazy" decoding="async" />
+                <img src={logo.src} alt={logo.alt} decoding="async" />
               </div>
             ))}
             {brandLogos.map((logo) => (
               <div className="sa3-brand-item" key={`${logo.src}-clone`} aria-hidden="true">
-                <img src={logo.src} alt="" loading="lazy" decoding="async" />
+                <img src={logo.src} alt="" decoding="async" />
               </div>
             ))}
           </div>
@@ -133,12 +131,9 @@ export default function ScaleAdvogados3Page() {
         <VideoTestimonials />
 
         <div className="mt-10 flex justify-center">
-          <a
-            href="#"
-            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
-          >
+          <CTAButton className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
             Quero captar mais clientes
-          </a>
+          </CTAButton>
         </div>
       </section>
 
@@ -172,12 +167,9 @@ export default function ScaleAdvogados3Page() {
         </blockquote>
 
         <div className="mt-9 flex flex-col items-center">
-          <a
-            href="#"
-            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
-          >
+          <CTAButton className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
             Quero captar mais clientes
-          </a>
+          </CTAButton>
           <p className="mt-4 text-[13px] text-slate-500">
             Clique no botão para falar conosco agora mesmo!
           </p>
@@ -233,12 +225,9 @@ export default function ScaleAdvogados3Page() {
         </div>
 
         <div className="mt-9 flex flex-col items-center">
-          <a
-            href="#"
-            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
-          >
+          <CTAButton className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
             Quero captar mais clientes
-          </a>
+          </CTAButton>
         </div>
       </section>
 
@@ -263,12 +252,9 @@ export default function ScaleAdvogados3Page() {
             </footer>
           </blockquote>
 
-          <a
-            href="#"
-            className="cta-pulse mt-8 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
-          >
+          <CTAButton className="cta-pulse mt-8 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
             Quero captar mais clientes
-          </a>
+          </CTAButton>
 
           <p className="mt-4 text-[13px] text-white/75">
             Clique no botão para falar conosco agora mesmo!

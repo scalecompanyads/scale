@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const SWIPE_THRESHOLD = 40;
 
 const slides = [
   { n: "01", width: 517, height: 576 },
@@ -33,6 +35,8 @@ const slides = [
 export function DepoimentosCarousel() {
   const [index, setIndex] = useState(0);
   const slide = slides[index];
+  const touchStartX = useRef<number | null>(null);
+  const touchDeltaX = useRef(0);
 
   function prev() {
     setIndex((i) => (i - 1 + slides.length) % slides.length);
@@ -42,9 +46,34 @@ export function DepoimentosCarousel() {
     setIndex((i) => (i + 1) % slides.length);
   }
 
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX;
+    touchDeltaX.current = 0;
+  }
+
+  function handleTouchMove(e: React.TouchEvent) {
+    if (touchStartX.current === null) return;
+    touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+  }
+
+  function handleTouchEnd() {
+    if (touchDeltaX.current > SWIPE_THRESHOLD) {
+      prev();
+    } else if (touchDeltaX.current < -SWIPE_THRESHOLD) {
+      next();
+    }
+    touchStartX.current = null;
+    touchDeltaX.current = 0;
+  }
+
   return (
     <div className="mt-6">
-      <div className="mx-auto max-w-sm">
+      <div
+        className="mx-auto max-w-sm touch-pan-y select-none"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <Image
           key={slide.src}
           src={slide.src}
@@ -53,6 +82,7 @@ export function DepoimentosCarousel() {
           height={slide.height}
           sizes="380px"
           className="h-auto w-full rounded-xl"
+          draggable={false}
         />
       </div>
 
