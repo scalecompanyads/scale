@@ -44,7 +44,7 @@ export function DepoimentosCarousel() {
 
   return (
     <div className="mt-6">
-      <div className="relative mx-auto max-w-sm">
+      <div className="mx-auto max-w-sm">
         <Image
           key={slide.src}
           src={slide.src}
@@ -54,12 +54,14 @@ export function DepoimentosCarousel() {
           sizes="380px"
           className="h-auto w-full rounded-xl"
         />
+      </div>
 
+      <div className="mt-4 flex items-center justify-center gap-5">
         <button
           type="button"
           onClick={prev}
           aria-label="Depoimento anterior"
-          className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
+          className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
@@ -68,13 +70,13 @@ export function DepoimentosCarousel() {
           type="button"
           onClick={next}
           aria-label="Próximo depoimento"
-          className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
+          className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
         >
           <ChevronRight className="h-5 w-5" />
         </button>
       </div>
 
-      <div className="mt-4 flex flex-wrap justify-center gap-1.5 px-4">
+      <div className="mt-3 flex flex-wrap justify-center gap-1.5 px-4">
         {slides.map((_, i) => (
           <button
             key={i}
