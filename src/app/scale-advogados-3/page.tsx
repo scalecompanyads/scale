@@ -4,7 +4,7 @@ import { legalLogos } from "@/data/legalLogos";
 import { extraLogos, extraLogoBasePath } from "@/data/legalExtraLogos";
 import { DepoimentosCarousel } from "./DepoimentosCarousel";
 import { VideoTestimonials } from "./VideoTestimonials";
-import { Laptop, UserPlus, Rocket, Globe, CheckCircle2 } from "lucide-react";
+import { Laptop, UserPlus, Rocket, Globe, CheckCircle2, TrendingUp, Users, Globe2 } from "lucide-react";
 import { InlineLeadForm } from "./InlineLeadForm";
 
 const marketPoints = [
@@ -26,6 +26,12 @@ const investmentReasons = [
 const brandLogos = [
   ...legalLogos,
   ...extraLogos.map((logo) => ({ ...logo, src: `${extraLogoBasePath}/${logo.file}` })),
+];
+
+const valueQuestions = [
+  { Icon: TrendingUp, question: "Quanto vale escalar os fechamentos de contrato do seu escritório?" },
+  { Icon: Users, question: "Quanto vale ter uma equipe de marketing completa trabalhando pra você?" },
+  { Icon: Globe2, question: "Quanto vale expandir as fronteiras do seu escritório?" },
 ];
 
 export default function ScaleAdvogados3Page() {
@@ -241,37 +247,50 @@ export default function ScaleAdvogados3Page() {
         </div>
       </section>
 
+      <section className="bg-white px-6 py-16 text-slate-900">
+        <h2 className="text-center text-[24px] font-extrabold leading-tight">
+          Quanto custa ter tudo isso?
+        </h2>
+
+        <p className="mx-auto mt-4 max-w-sm text-center text-[14.5px] leading-relaxed text-slate-600">
+          Tudo vai depender das necessidades do seu escritório e dos resultados que você quer alcançar. A Scale entrega uma estrutura 100% personalizada, atuando em todas as frentes de captação do seu negócio. Mas responda as perguntas abaixo:
+        </p>
+
+        <div className="mx-auto mt-8 flex max-w-sm flex-col gap-3">
+          {valueQuestions.map(({ Icon, question }) => (
+            <div
+              key={question}
+              className="flex items-start gap-3.5 rounded-2xl border border-slate-200 bg-slate-50 p-4"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600/10">
+                <Icon className="h-5 w-5 text-blue-600" />
+              </div>
+              <span className="pt-1.5 text-[14px] font-medium leading-snug text-slate-800">{question}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-9 flex flex-col items-center">
+          <a
+            href="#formulario"
+            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+          >
+            Quero captar mais clientes
+          </a>
+          <p className="mt-4 text-[13px] text-slate-500">
+            Clique no botão para falar conosco agora mesmo!
+          </p>
+        </div>
+      </section>
+
       <section
         className="relative overflow-hidden px-6 py-16 text-center"
-        style={{ background: "linear-gradient(135deg, #3B82F6 0%, #1630DF 100%)" }}
+        style={{ background: "#1630DF" }}
       >
-        <div
-          className="pointer-events-none absolute inset-0"
-          style={{ background: "radial-gradient(circle at top, rgba(255,255,255,0.18), transparent 60%)" }}
-          aria-hidden="true"
-        />
         <div className="relative mx-auto max-w-xs">
           <h2 className="text-[24px] font-extrabold leading-tight text-white">
             Comece a estruturar seu escritório hoje
           </h2>
-
-          <blockquote className="mt-5 text-[14px] italic leading-relaxed text-white/90">
-            &ldquo;Você não precisa ser ótimo para começar, mas precisa começar para ser ótimo.&rdquo;
-            <footer className="mt-1.5 text-[13px] not-italic font-semibold text-white">
-              Zig Ziglar
-            </footer>
-          </blockquote>
-
-          <a
-            href="#formulario"
-            className="cta-pulse mt-8 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
-          >
-            Quero captar mais clientes
-          </a>
-
-          <p className="mt-4 text-[13px] text-white/75">
-            Clique no botão para falar conosco agora mesmo!
-          </p>
 
           <InlineLeadForm />
         </div>
