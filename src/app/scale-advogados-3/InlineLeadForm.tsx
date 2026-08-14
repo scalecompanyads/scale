@@ -148,7 +148,7 @@ export function InlineLeadForm() {
 
   if (success) {
     return (
-      <div id="formulario" className="mx-auto mt-8 max-w-sm rounded-3xl bg-white p-8 text-center text-slate-900 shadow-2xl">
+      <div id="formulario" className="mx-auto mt-8 max-w-sm rounded-3xl bg-white p-8 text-center text-slate-900 shadow-2xl md:max-w-md">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="20 6 9 17 4 12" />
@@ -161,7 +161,7 @@ export function InlineLeadForm() {
   }
 
   return (
-    <div id="formulario" className="mx-auto mt-8 max-w-sm overflow-hidden rounded-3xl bg-white shadow-2xl">
+    <div id="formulario" className="mx-auto mt-8 max-w-sm overflow-hidden rounded-3xl bg-white shadow-2xl md:max-w-md">
       <div className="px-6 pb-1 pt-6 text-center">
         <div className="mx-auto mb-3 flex h-11 w-11 items-center justify-center rounded-full bg-blue-600/10">
           <ArrowRight className="h-5 w-5 text-blue-600" />

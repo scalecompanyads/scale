@@ -21,12 +21,12 @@ export function VideoTestimonials() {
   }
 
   return (
-    <div className="mx-auto mt-6 flex max-w-xs flex-col gap-5">
+    <div className="mx-auto mt-6 flex max-w-xs flex-col gap-5 md:max-w-2xl md:flex-row">
       {videos.map((v) => (
         <div
           key={v.id}
           onClick={() => activate(v.id)}
-          className="relative aspect-[9/16] w-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-[#050505] shadow-[0_16px_40px_rgba(0,0,0,0.45)]"
+          className="relative aspect-[9/16] w-full cursor-pointer overflow-hidden rounded-2xl border border-white/10 bg-[#050505] shadow-[0_16px_40px_rgba(0,0,0,0.45)] md:flex-1"
         >
           <video
             ref={(el) => {

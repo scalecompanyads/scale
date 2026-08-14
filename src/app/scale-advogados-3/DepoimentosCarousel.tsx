@@ -69,7 +69,7 @@ export function DepoimentosCarousel() {
   return (
     <div className="mt-6">
       <div
-        className="mx-auto max-w-sm touch-pan-y select-none"
+        className="mx-auto max-w-sm touch-pan-y select-none md:max-w-md"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -80,7 +80,7 @@ export function DepoimentosCarousel() {
           alt="Print de depoimento de cliente"
           width={slide.width}
           height={slide.height}
-          sizes="380px"
+          sizes="(min-width: 768px) 448px, 380px"
           className="h-auto w-full rounded-xl"
           draggable={false}
         />

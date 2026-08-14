@@ -4,7 +4,7 @@ import { legalLogos } from "@/data/legalLogos";
 import { extraLogos, extraLogoBasePath } from "@/data/legalExtraLogos";
 import { DepoimentosCarousel } from "./DepoimentosCarousel";
 import { VideoTestimonials } from "./VideoTestimonials";
-import { Laptop, UserPlus, Rocket, Globe, CheckCircle2, TrendingUp, Users, Globe2 } from "lucide-react";
+import { Laptop, UserPlus, Rocket, Globe, CheckCircle2, TrendingUp, Users, Globe2, Target, Layout, Palette, Clapperboard, Database, GraduationCap } from "lucide-react";
 import { InlineLeadForm } from "./InlineLeadForm";
 
 const marketPoints = [
@@ -34,16 +34,25 @@ const valueQuestions = [
   { Icon: Globe2, question: "Quanto vale expandir as fronteiras do seu escritório?" },
 ];
 
+const deliverables = [
+  { Icon: Target, title: "Tráfego", description: "Campanhas no Google e Meta Ads gerenciadas para gerar leads qualificados todos os dias." },
+  { Icon: Layout, title: "Landing Page", description: "Página de captação profissional, otimizada para converter visitantes em leads." },
+  { Icon: Palette, title: "Artes", description: "Criativos para redes sociais e anúncios, prontos para publicar." },
+  { Icon: Clapperboard, title: "Edição de Vídeo", description: "Vídeos editados para anúncios e conteúdo, prontos para rodar nas campanhas." },
+  { Icon: Database, title: "CRM", description: "Sistema para organizar e acompanhar seus leads do primeiro contato ao fechamento." },
+  { Icon: GraduationCap, title: "Treinamento Comercial", description: "Capacitação da sua equipe para converter mais leads em contratos." },
+];
+
 export default function ScaleAdvogados3Page() {
   return (
     <main className="min-h-screen bg-black text-white">
-      <div className="bg-[#1a34e8] px-4 py-2.5 text-center">
-        <p className="text-[13px] font-extrabold uppercase leading-snug tracking-wide">
+      <div className="bg-[#1a34e8] px-4 py-3 text-center md:py-3.5">
+        <p className="text-[13px] font-extrabold uppercase leading-snug tracking-wide md:text-[15px]">
           Agende um diagnóstico e desbloqueie um bônus exclusivo
         </p>
       </div>
 
-      <section className="relative flex flex-col items-center overflow-hidden px-6 pb-14 pt-12 text-center">
+      <section className="relative flex flex-col items-center overflow-hidden px-6 pb-14 pt-12 text-center md:px-10 md:pb-24 md:pt-20">
         <Image
           src="/scale-advogados/assets/hero-3.png"
           alt=""
@@ -56,17 +65,17 @@ export default function ScaleAdvogados3Page() {
           aria-hidden="true"
         />
 
-        <div className="relative mt-10 max-w-md">
+        <div className="relative mt-10 max-w-md md:mt-4 md:max-w-2xl">
           <Image
             src="/images/scale-logo.svg"
             alt="Scale Company"
             width={140}
             height={35}
-            className="mx-auto mb-8"
+            className="mx-auto mb-8 h-auto w-[140px] md:w-[180px]"
             priority
           />
 
-          <h1 className="text-[28px] font-extrabold leading-[1.25] text-white">
+          <h1 className="text-[28px] font-extrabold leading-[1.25] text-white md:text-5xl lg:text-6xl">
             Sua Advocacia com
             <br />
             uma máquina
@@ -76,26 +85,26 @@ export default function ScaleAdvogados3Page() {
             captação de clientes:
           </h1>
 
-          <p className="mt-5 text-[15px] leading-relaxed text-white/85">
+          <p className="mt-5 text-[15px] leading-relaxed text-white/85 md:mx-auto md:mt-7 md:max-w-xl md:text-lg">
             Descubra como implementamos em <strong className="font-bold text-white">15 dias</strong> a maior
             engrenagem de aquisição para escritórios de advocacia.
           </p>
 
           <a
             href="#formulario"
-            className="cta-pulse mt-7 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+            className="cta-pulse mt-7 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white md:mx-auto md:mt-9 md:max-w-xs md:text-base"
           >
             Quero captar mais clientes
           </a>
 
-          <p className="mt-4 text-[13px] text-white/70">
+          <p className="mt-4 text-[13px] text-white/70 md:text-sm">
             Clique no botão para falar conosco agora mesmo!
           </p>
         </div>
       </section>
 
-      <section className="bg-black px-6 pb-16 pt-10">
-        <p className="text-center text-[11px] font-bold uppercase tracking-wide text-white/45">
+      <section className="bg-black px-6 pb-16 pt-10 md:px-10 md:pb-24 md:pt-16">
+        <p className="text-center text-[11px] font-bold uppercase tracking-wide text-white/45 md:text-[13px]">
           Escritórios que confiam na <span className="text-white">Scale</span>
         </p>
 
@@ -114,186 +123,171 @@ export default function ScaleAdvogados3Page() {
           </div>
         </div>
 
-        <div className="mt-10 text-center">
-          <h2 className="inline-block border-b-[3px] border-[#1a34e8] pb-2 text-[26px] font-extrabold text-white">
+        <div className="mt-10 text-center md:mt-16">
+          <h2 className="inline-block border-b-[3px] border-[#1a34e8] pb-2 text-[26px] font-extrabold text-white md:text-4xl">
             Alguns feedbacks
           </h2>
         </div>
 
-        <blockquote className="mx-auto mt-6 max-w-xs text-center text-[14px] italic leading-relaxed text-white/75">
+        <blockquote className="mx-auto mt-6 max-w-xs text-center text-[14px] italic leading-relaxed text-white/75 md:max-w-md md:text-base">
           &ldquo;Eficiência é fazer as coisas direito; eficácia é fazer as coisas certas.&rdquo;
-          <footer className="mt-1.5 text-[13px] not-italic font-semibold text-white/90">
+          <footer className="mt-1.5 text-[13px] not-italic font-semibold text-white/90 md:text-sm">
             Peter Drucker
           </footer>
         </blockquote>
 
         <DepoimentosCarousel />
 
-        <div className="mt-12 text-center">
-          <h3 className="inline-block border-b-[3px] border-[#1a34e8] pb-2 text-[22px] font-extrabold text-white">
+        <div className="mt-12 text-center md:mt-16">
+          <h3 className="inline-block border-b-[3px] border-[#1a34e8] pb-2 text-[22px] font-extrabold text-white md:text-3xl">
             Mais alguns feedbacks
           </h3>
         </div>
 
         <VideoTestimonials />
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex justify-center md:mt-14">
           <a
             href="#formulario"
-            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white md:max-w-xs md:text-base"
           >
             Quero captar mais clientes
           </a>
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 text-slate-900">
-        <h2 className="text-center text-[24px] font-extrabold leading-tight">
+      <section className="bg-white px-6 py-16 text-slate-900 md:px-10 md:py-24">
+        <h2 className="text-center text-[24px] font-extrabold leading-tight md:text-4xl">
           Um novo mercado está se abrindo na sua frente
         </h2>
-        <p className="mx-auto mt-3 max-w-sm text-center text-[14.5px] leading-relaxed text-slate-600">
+        <p className="mx-auto mt-3 max-w-sm text-center text-[14.5px] leading-relaxed text-slate-600 md:mt-4 md:max-w-xl md:text-lg">
           O digital é hoje a maior oportunidade de crescimento para escritórios de advocacia. Captar clientes nunca foi tão simples.
         </p>
 
-        <div className="mx-auto mt-8 grid max-w-sm grid-cols-2 gap-4">
+        <div className="mx-auto mt-8 grid max-w-sm grid-cols-2 gap-4 md:mt-12 md:max-w-3xl md:grid-cols-4">
           {marketPoints.map(({ Icon, label }) => (
             <div
               key={label}
               className="flex aspect-square flex-col items-center justify-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-center shadow-sm"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600/10">
-                <Icon className="h-5 w-5 text-blue-600" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600/10 md:h-12 md:w-12">
+                <Icon className="h-5 w-5 text-blue-600 md:h-6 md:w-6" />
               </div>
-              <span className="text-[13.5px] font-semibold leading-snug text-slate-800">{label}</span>
+              <span className="text-[13.5px] font-semibold leading-snug text-slate-800 md:text-sm">{label}</span>
             </div>
           ))}
         </div>
 
-        <blockquote className="mx-auto mt-9 max-w-xs text-center text-[14px] italic leading-relaxed text-slate-500">
+        <blockquote className="mx-auto mt-9 max-w-xs text-center text-[14px] italic leading-relaxed text-slate-500 md:mt-12 md:max-w-md md:text-base">
           &ldquo;Você é o resultado das suas decisões.&rdquo;
-          <footer className="mt-1.5 text-[13px] not-italic font-semibold text-slate-700">
+          <footer className="mt-1.5 text-[13px] not-italic font-semibold text-slate-700 md:text-sm">
             Albert Camus
           </footer>
         </blockquote>
 
-        <div className="mt-9 flex flex-col items-center">
+        <div className="mt-9 flex flex-col items-center md:mt-12">
           <a
             href="#formulario"
-            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white md:max-w-xs md:text-base"
           >
             Quero captar mais clientes
           </a>
-          <p className="mt-4 text-[13px] text-slate-500">
+          <p className="mt-4 text-[13px] text-slate-500 md:text-sm">
             Clique no botão para falar conosco agora mesmo!
           </p>
         </div>
       </section>
 
-      <section className="bg-black px-6 py-16 text-white">
-        <h2 className="text-center text-[24px] font-extrabold leading-tight">
+      <section className="bg-black px-6 py-16 text-white md:px-10 md:py-24">
+        <h2 className="text-center text-[24px] font-extrabold leading-tight md:text-4xl">
           Por que investir em uma empresa de crescimento?
         </h2>
 
-        <div className="mx-auto mt-7 grid max-w-sm grid-cols-2 gap-2.5">
+        <div className="mx-auto mt-7 grid max-w-sm grid-cols-2 gap-2.5 md:mt-12 md:max-w-2xl md:grid-cols-3">
           {investmentReasons.map((label) => (
             <div
               key={label}
               className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-3"
             >
               <CheckCircle2 className="h-4 w-4 shrink-0 text-[#379D2E]" />
-              <span className="text-[12.5px] font-medium leading-snug text-white/90">{label}</span>
+              <span className="text-[12.5px] font-medium leading-snug text-white/90 md:text-sm">{label}</span>
             </div>
           ))}
         </div>
 
-        <p className="mx-auto mt-8 max-w-sm text-center text-[14.5px] leading-relaxed text-white/70">
+        <p className="mx-auto mt-8 max-w-sm text-center text-[14.5px] leading-relaxed text-white/70 md:mt-12 md:max-w-xl md:text-lg">
           Você recebe tudo pronto, em um lugar só: landing page, CRM, treinamento comercial e artes. Nós estruturamos o seu escritório com você.
         </p>
 
-        <div className="mx-auto mt-7 flex max-w-sm flex-col gap-4">
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
-            <p className="px-4 py-3 text-[13px] font-bold text-white">Tráfego</p>
-            <img src="/scale-advogados/assets/google-meta-dashboard-dark.webp" alt="Dashboard de tráfego pago" decoding="async" className="block h-auto w-full" />
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
-            <p className="px-4 py-3 text-[13px] font-bold text-white">Landing Page</p>
-            <video src="/scale-advogados/assets/landing-page-demo.mp4" autoPlay muted loop playsInline className="block h-auto w-full" />
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
-            <p className="px-4 py-3 text-[13px] font-bold text-white">Artes</p>
-            <img src="/scale-advogados/assets/arte-social-damas-lima.png" alt="Arte para redes sociais" decoding="async" className="block h-auto w-full" />
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
-            <p className="px-4 py-3 text-[13px] font-bold text-white">Edição de Vídeo</p>
-            <video src="/scale-advogados/assets/video-editing-bg.mp4" autoPlay muted loop playsInline className="block h-auto w-full" />
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
-            <p className="px-4 py-3 text-[13px] font-bold text-white">CRM</p>
-            <video src="/scale-advogados/assets/crm-demo.mp4" autoPlay muted loop playsInline className="block h-auto w-full" />
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
-            <p className="px-4 py-3 text-[13px] font-bold text-white">Treinamento Comercial</p>
-            <video src="/scale-advogados/assets/comercial-gabriel.mp4" autoPlay muted loop playsInline className="block h-auto w-full" />
-          </div>
+        <div className="mx-auto mt-7 grid max-w-sm gap-3 md:mt-10 md:max-w-2xl md:grid-cols-2">
+          {deliverables.map(({ Icon, title, description }) => (
+            <div
+              key={title}
+              className="flex items-start gap-3.5 rounded-2xl border border-white/10 bg-white/5 p-4"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/10">
+                <Icon className="h-5 w-5 text-blue-400" />
+              </div>
+              <div>
+                <p className="text-[14px] font-bold text-white">{title}</p>
+                <p className="mt-0.5 text-[13px] leading-relaxed text-white/60">{description}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-9 flex flex-col items-center">
+        <div className="mt-9 flex flex-col items-center md:mt-12">
           <a
             href="#formulario"
-            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white md:max-w-xs md:text-base"
           >
             Quero captar mais clientes
           </a>
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16 text-slate-900">
-        <h2 className="text-center text-[24px] font-extrabold leading-tight">
+      <section className="bg-white px-6 py-16 text-slate-900 md:px-10 md:py-24">
+        <h2 className="text-center text-[24px] font-extrabold leading-tight md:text-4xl">
           Quanto custa ter tudo isso?
         </h2>
 
-        <p className="mx-auto mt-4 max-w-sm text-center text-[14.5px] leading-relaxed text-slate-600">
+        <p className="mx-auto mt-4 max-w-sm text-center text-[14.5px] leading-relaxed text-slate-600 md:mt-5 md:max-w-2xl md:text-lg">
           Tudo vai depender das necessidades do seu escritório e dos resultados que você quer alcançar. A Scale entrega uma estrutura 100% personalizada, atuando em todas as frentes de captação do seu negócio. Mas responda as perguntas abaixo:
         </p>
 
-        <div className="mx-auto mt-8 flex max-w-sm flex-col gap-3">
+        <div className="mx-auto mt-8 flex max-w-sm flex-col gap-3 md:mt-12 md:max-w-4xl md:flex-row">
           {valueQuestions.map(({ Icon, question }) => (
             <div
               key={question}
-              className="flex items-start gap-3.5 rounded-2xl border border-slate-200 bg-slate-50 p-4"
+              className="flex items-start gap-3.5 rounded-2xl border border-slate-200 bg-slate-50 p-4 md:flex-1 md:flex-col md:items-center md:gap-3 md:p-6 md:text-center"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600/10">
-                <Icon className="h-5 w-5 text-blue-600" />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600/10 md:h-12 md:w-12">
+                <Icon className="h-5 w-5 text-blue-600 md:h-6 md:w-6" />
               </div>
-              <span className="pt-1.5 text-[14px] font-medium leading-snug text-slate-800">{question}</span>
+              <span className="pt-1.5 text-[14px] font-medium leading-snug text-slate-800 md:pt-0 md:text-[15px]">{question}</span>
             </div>
           ))}
         </div>
 
-        <div className="mt-9 flex flex-col items-center">
+        <div className="mt-9 flex flex-col items-center md:mt-12">
           <a
             href="#formulario"
-            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white md:max-w-xs md:text-base"
           >
             Quero captar mais clientes
           </a>
-          <p className="mt-4 text-[13px] text-slate-500">
+          <p className="mt-4 text-[13px] text-slate-500 md:text-sm">
             Clique no botão para falar conosco agora mesmo!
           </p>
         </div>
       </section>
 
       <section
-        className="relative overflow-hidden px-6 py-16 text-center"
+        className="relative overflow-hidden px-6 py-16 text-center md:px-10 md:py-24"
         style={{ background: "#1630DF" }}
       >
-        <div className="relative mx-auto max-w-xs">
-          <h2 className="text-[24px] font-extrabold leading-tight text-white">
+        <div className="relative mx-auto max-w-xs md:max-w-lg">
+          <h2 className="text-[24px] font-extrabold leading-tight text-white md:text-4xl">
             Comece a estruturar seu escritório hoje
           </h2>
 
