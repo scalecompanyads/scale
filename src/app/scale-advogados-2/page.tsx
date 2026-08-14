@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect } from 'react';
+import Script from 'next/script';
 import './scale-advogados.css';
 import { legalAreas, oabCompliance, acquisitionPillars, technologyImpactCards, legalTeam, legalProofAssets, legalOffer } from '@/data/legalSeo';
 import ScaleAdvogadosV3Hero from '@/components/legal/ScaleAdvogadosV3Hero';
@@ -563,7 +564,8 @@ export default function ScaleAdvogadosPage() {
   return (
     <>
       {/* Google Tag Manager */}
-      <script
+      <Script
+        id="gtm-init"
         dangerouslySetInnerHTML={{
           __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
