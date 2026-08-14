@@ -213,44 +213,32 @@ export default function ScaleAdvogados3Page() {
         <div className="mx-auto mt-7 flex max-w-sm flex-col gap-4">
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
             <p className="px-4 py-3 text-[13px] font-bold text-white">Tráfego</p>
-            <div className="aspect-video w-full">
-              <img src="/scale-advogados/assets/google-meta-dashboard-dark.webp" alt="Dashboard de tráfego pago" decoding="async" className="h-full w-full object-cover" />
-            </div>
+            <img src="/scale-advogados/assets/google-meta-dashboard-dark.webp" alt="Dashboard de tráfego pago" decoding="async" className="block h-auto w-full" />
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
             <p className="px-4 py-3 text-[13px] font-bold text-white">Landing Page</p>
-            <div className="aspect-video w-full">
-              <video src="/scale-advogados/assets/landing-page-demo.mp4" autoPlay muted loop playsInline className="h-full w-full object-cover" />
-            </div>
+            <video src="/scale-advogados/assets/landing-page-demo.mp4" autoPlay muted loop playsInline className="block h-auto w-full" />
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
             <p className="px-4 py-3 text-[13px] font-bold text-white">Artes</p>
-            <div className="aspect-video w-full">
-              <img src="/scale-advogados/assets/arte-social-damas-lima.png" alt="Arte para redes sociais" decoding="async" className="h-full w-full object-cover" />
-            </div>
+            <img src="/scale-advogados/assets/arte-social-damas-lima.png" alt="Arte para redes sociais" decoding="async" className="block h-auto w-full" />
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
             <p className="px-4 py-3 text-[13px] font-bold text-white">Edição de Vídeo</p>
-            <div className="aspect-video w-full">
-              <video src="/scale-advogados/assets/video-editing-bg.mp4" autoPlay muted loop playsInline style={{ objectPosition: "left center" }} className="h-full w-full object-cover" />
-            </div>
+            <video src="/scale-advogados/assets/video-editing-bg.mp4" autoPlay muted loop playsInline className="block h-auto w-full" />
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
             <p className="px-4 py-3 text-[13px] font-bold text-white">CRM</p>
-            <div className="aspect-video w-full">
-              <video src="/scale-advogados/assets/crm-demo.mp4" autoPlay muted loop playsInline style={{ objectPosition: "center top" }} className="h-full w-full object-cover" />
-            </div>
+            <video src="/scale-advogados/assets/crm-demo.mp4" autoPlay muted loop playsInline className="block h-auto w-full" />
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0a0c12]">
             <p className="px-4 py-3 text-[13px] font-bold text-white">Treinamento Comercial</p>
-            <div className="aspect-video w-full">
-              <video src="/scale-advogados/assets/comercial-gabriel.mp4" autoPlay muted loop playsInline className="h-full w-full object-cover" />
-            </div>
+            <video src="/scale-advogados/assets/comercial-gabriel.mp4" autoPlay muted loop playsInline className="block h-auto w-full" />
           </div>
         </div>
 
