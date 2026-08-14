@@ -4,15 +4,35 @@ import { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const TOTAL_DEPOIMENTOS = 19;
-
-const slides = Array.from({ length: TOTAL_DEPOIMENTOS }, (_, i) => {
-  const n = String(i + 1).padStart(2, "0");
-  return `/scale-advogados/depoimentos-whatsapp/testimonial-${n}.webp`;
-});
+const slides = [
+  { n: "01", width: 517, height: 576 },
+  { n: "02", width: 715, height: 336 },
+  { n: "03", width: 512, height: 331 },
+  { n: "04", width: 757, height: 424 },
+  { n: "05", width: 831, height: 372 },
+  { n: "06", width: 537, height: 419 },
+  { n: "07", width: 1024, height: 298 },
+  { n: "08", width: 618, height: 309 },
+  { n: "09", width: 876, height: 362 },
+  { n: "10", width: 812, height: 805 },
+  { n: "11", width: 793, height: 385 },
+  { n: "12", width: 785, height: 506 },
+  { n: "13", width: 707, height: 513 },
+  { n: "14", width: 476, height: 841 },
+  { n: "15", width: 486, height: 820 },
+  { n: "16", width: 617, height: 862 },
+  { n: "17", width: 511, height: 797 },
+  { n: "18", width: 631, height: 887 },
+  { n: "19", width: 1024, height: 507 },
+].map((s) => ({
+  src: `/scale-advogados/depoimentos-whatsapp/testimonial-${s.n}.webp`,
+  width: s.width,
+  height: s.height,
+}));
 
 export function DepoimentosCarousel() {
   const [index, setIndex] = useState(0);
+  const slide = slides[index];
 
   function prev() {
     setIndex((i) => (i - 1 + slides.length) % slides.length);
@@ -24,31 +44,31 @@ export function DepoimentosCarousel() {
 
   return (
     <div className="mt-6">
-      <div className="mx-auto flex max-w-xs items-center justify-center gap-3">
+      <div className="relative mx-auto max-w-sm">
+        <Image
+          key={slide.src}
+          src={slide.src}
+          alt="Print de depoimento de cliente"
+          width={slide.width}
+          height={slide.height}
+          sizes="380px"
+          className="h-auto w-full rounded-xl"
+        />
+
         <button
           type="button"
           onClick={prev}
           aria-label="Depoimento anterior"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+          className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
         >
           <ChevronLeft className="h-5 w-5" />
         </button>
-
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-white/5">
-          <Image
-            src={slides[index]}
-            alt="Print de depoimento de cliente"
-            fill
-            sizes="280px"
-            className="object-contain"
-          />
-        </div>
 
         <button
           type="button"
           onClick={next}
           aria-label="Próximo depoimento"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+          className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-black/55 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
         >
           <ChevronRight className="h-5 w-5" />
         </button>
