@@ -5,7 +5,7 @@ import { extraLogos, extraLogoBasePath } from "@/data/legalExtraLogos";
 import { DepoimentosCarousel } from "./DepoimentosCarousel";
 import { VideoTestimonials } from "./VideoTestimonials";
 import { Laptop, UserPlus, Rocket, Globe, CheckCircle2 } from "lucide-react";
-import { CTAButton } from "@/components/ui/CTAButton";
+import { InlineLeadForm } from "./InlineLeadForm";
 
 const marketPoints = [
   { Icon: Laptop, label: "Sem espaço físico" },
@@ -77,9 +77,12 @@ export default function ScaleAdvogados3Page() {
             engrenagem de aquisição para escritórios de advocacia.
           </p>
 
-          <CTAButton className="cta-pulse mt-7 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
+          <a
+            href="#formulario"
+            className="cta-pulse mt-7 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+          >
             Quero captar mais clientes
-          </CTAButton>
+          </a>
 
           <p className="mt-4 text-[13px] text-white/70">
             Clique no botão para falar conosco agora mesmo!
@@ -131,9 +134,12 @@ export default function ScaleAdvogados3Page() {
         <VideoTestimonials />
 
         <div className="mt-10 flex justify-center">
-          <CTAButton className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
+          <a
+            href="#formulario"
+            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+          >
             Quero captar mais clientes
-          </CTAButton>
+          </a>
         </div>
       </section>
 
@@ -167,9 +173,12 @@ export default function ScaleAdvogados3Page() {
         </blockquote>
 
         <div className="mt-9 flex flex-col items-center">
-          <CTAButton className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
+          <a
+            href="#formulario"
+            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+          >
             Quero captar mais clientes
-          </CTAButton>
+          </a>
           <p className="mt-4 text-[13px] text-slate-500">
             Clique no botão para falar conosco agora mesmo!
           </p>
@@ -225,9 +234,12 @@ export default function ScaleAdvogados3Page() {
         </div>
 
         <div className="mt-9 flex flex-col items-center">
-          <CTAButton className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
+          <a
+            href="#formulario"
+            className="cta-pulse block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+          >
             Quero captar mais clientes
-          </CTAButton>
+          </a>
         </div>
       </section>
 
@@ -252,13 +264,18 @@ export default function ScaleAdvogados3Page() {
             </footer>
           </blockquote>
 
-          <CTAButton className="cta-pulse mt-8 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white">
+          <a
+            href="#formulario"
+            className="cta-pulse mt-8 block rounded-lg bg-[#379D2E] px-6 py-4 text-[15px] font-extrabold uppercase tracking-wide text-white"
+          >
             Quero captar mais clientes
-          </CTAButton>
+          </a>
 
           <p className="mt-4 text-[13px] text-white/75">
             Clique no botão para falar conosco agora mesmo!
           </p>
+
+          <InlineLeadForm />
         </div>
       </section>
     </main>
