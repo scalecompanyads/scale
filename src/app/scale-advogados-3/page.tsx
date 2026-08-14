@@ -33,9 +33,7 @@ export default function ScaleAdvogados3Page() {
     <main className="min-h-screen bg-black text-white">
       <div className="bg-[#1a34e8] px-4 py-2.5 text-center">
         <p className="text-[13px] font-extrabold uppercase leading-snug tracking-wide">
-          Exclusivo para advogados que desejam
-          <br />
-          faturar acima de 50 mil/mês
+          Agende um diagnóstico e desbloqueie um bônus exclusivo
         </p>
       </div>
 
