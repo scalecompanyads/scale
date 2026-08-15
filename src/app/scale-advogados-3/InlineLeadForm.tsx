@@ -93,6 +93,10 @@ export function InlineLeadForm() {
       setError("Informe um e-mail válido.");
       return;
     }
+    if (!arroba.trim() || arroba.trim() === "@") {
+      setError("Informe o @ do Instagram do escritório.");
+      return;
+    }
     if (!fat) {
       setError("Selecione uma faixa de faturamento.");
       return;
