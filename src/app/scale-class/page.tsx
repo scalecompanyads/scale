@@ -319,8 +319,14 @@ export default function ScaleClassPage() {
           .sc-in          { padding: 48px 24px 0 !important; }
           .sc-br-desktop  { display: none; }
           .sc-h1-line     { display: inline; }
-          /* Logo acima, infos de data/hora abaixo (lado a lado entre si) */
-          .sc-qtopo       { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; margin-bottom: 36px !important; }
+          /* Centraliza conteúdo da hero */
+          .sc-in          { align-items: center !important; text-align: center !important; }
+          /* Logo acima, infos de data/hora abaixo centralizadas, sem quebra */
+          .sc-qtopo       { flex-direction: column !important; align-items: center !important; gap: 12px !important; margin-bottom: 36px !important; }
+          .sc-qtopo-badge { white-space: nowrap !important; }
+          .sc-h1          { text-align: center !important; }
+          .sc-lead        { text-align: center !important; }
+          .sc-ctacol      { align-items: center !important; }
           /* Card vira coluna no mobile para imagem ficar abaixo do texto */
           .sc-qcard       { flex-direction: column !important; }
           /* CTA: largura total, sem limite de desktop, texto sem quebra */
@@ -398,7 +404,7 @@ export default function ScaleClassPage() {
                 />
 
                 {/* Date badge */}
-                <div style={{
+                <div className="sc-qtopo-badge" style={{
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
@@ -407,6 +413,7 @@ export default function ScaleClassPage() {
                   color: "rgba(20, 19, 18, 0.55)",
                   letterSpacing: "0.04em",
                   textTransform: "uppercase",
+                  whiteSpace: "nowrap",
                 }}>
                   <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
                     <circle cx="4" cy="4" r="4" fill="#FF3A24"/>
