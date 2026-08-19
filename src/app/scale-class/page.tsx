@@ -41,6 +41,7 @@ export default function ScaleClassPage() {
   const [form, setForm] = useState({ nome: "", email: "", whatsapp: "", faturamento: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [utms, setUtms] = useState<Record<string, string>>({});
 
@@ -76,6 +77,7 @@ export default function ScaleClassPage() {
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
+    setSubmitting(true);
 
     try {
       const res = await fetch("/api/live-signup", {
@@ -84,7 +86,7 @@ export default function ScaleClassPage() {
         body: JSON.stringify({
           nome: form.nome.trim(),
           email: form.email.trim(),
-          whatsapp: form.whatsapp,
+          whatsapp: form.whatsapp.replace(/\D/g, ""),
           faturamento: form.faturamento,
           ...utms,
         }),
@@ -94,6 +96,8 @@ export default function ScaleClassPage() {
       setShowModal(true);
     } catch {
       setErrors({ submit: "Não conseguimos registrar sua inscrição. Tente novamente." });
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -439,11 +443,11 @@ export default function ScaleClassPage() {
                   maxWidth: "15em",
                 }}
               >
-                <span className="sc-h1-grad">Advogado, aprenda as 7</span>
-                <span className="sc-h1-grad">etapas para</span>
-                <span className="sc-h1-manrope">transformar leads que</span>
-                <span className="sc-h1-manrope">somem e enrolam em</span>
-                <span className="sc-h1-blue">clientes fechados</span>
+                <span className="sc-h1-grad">Advogado, aprenda </span>
+               
+           
+                <span className="sc-h1-manrope">como gerar leads qualificados todos os meses</span>
+                <span className="sc-h1-blue"> no seu escritório</span>
               </h1>
 
               {/* — LEAD — */}
@@ -458,7 +462,7 @@ export default function ScaleClassPage() {
                   maxWidth: "44em",
                 }}
               >
-                Um treinamento comercial ao vivo para advogados que querem aumentar a conversão dos leads que já chegam no escritório, sem investir mais um real em marketing.
+                Um treinamento completo ao vivo para advogados que querem gerar mais leads e aumentar a conversão dos leads que já chegam no escritório, sem investir mais um real em marketing.
               </p>
 
               {/* — CTA COL — */}
@@ -853,8 +857,8 @@ export default function ScaleClassPage() {
                 )}
 
                 {/* Submit — mesma largura dos inputs */}
-                <button type="submit" className="sc-fbtn" style={{ marginTop: "8px" }}>
-                  Garanta a sua vaga
+                <button type="submit" className="sc-fbtn" style={{ marginTop: "8px" }} disabled={submitting}>
+                  {submitting ? "Enviando..." : "Garanta a sua vaga"}
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
