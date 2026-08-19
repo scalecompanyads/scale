@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 
-const WEBHOOK_URL = "https://crm.scalecompany.com.br/api/v1/webhooks/live";
 
 function maskWhatsapp(value: string) {
   const d = value.replace(/\D/g, "").slice(0, 11);
@@ -72,27 +71,29 @@ export default function ScaleClassPage() {
     return errs;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
     setErrors({});
-    setSubmitted(true);
-    setShowModal(true);
 
-    if (WEBHOOK_URL) {
-      const payload = {
-        nome: form.nome.trim(),
-        email: form.email.trim(),
-        whatsapp: form.whatsapp,
-        faturamento: form.faturamento,
-        ...utms,
-      };
-      fetch(WEBHOOK_URL, {
+    try {
+      const res = await fetch("/api/live-signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      }).catch(() => {});
+        body: JSON.stringify({
+          nome: form.nome.trim(),
+          email: form.email.trim(),
+          whatsapp: form.whatsapp,
+          faturamento: form.faturamento,
+          ...utms,
+        }),
+      });
+      if (!res.ok) throw new Error("submit failed");
+      setSubmitted(true);
+      setShowModal(true);
+    } catch {
+      setErrors({ submit: "Não conseguimos registrar sua inscrição. Tente novamente." });
     }
   }
 
@@ -844,6 +845,12 @@ export default function ScaleClassPage() {
                 </select>
                 {errors.faturamento && <p className="sc-ferr">{errors.faturamento}</p>}
                 </div>
+
+                {errors.submit && (
+                  <p style={{ textAlign: "center", fontSize: "13px", fontWeight: 600, color: "#E03131", margin: "4px 0 0" }}>
+                    {errors.submit}
+                  </p>
+                )}
 
                 {/* Submit — mesma largura dos inputs */}
                 <button type="submit" className="sc-fbtn" style={{ marginTop: "8px" }}>
