@@ -33,6 +33,7 @@ const SERVICES: Service[] = [
     title: "SEO jurídico",
     image: "/img-cards-services/seo-juridico.png",
     description: "Estratégia orgânica para ampliar autoridade, visibilidade e procura qualificada.",
+    href: "/servicos/seo-juridico",
   },
   {
     number: "04",
