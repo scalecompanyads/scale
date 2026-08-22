@@ -1,5 +1,9 @@
 @AGENTS.md
 
+# Performance — prioridade de desenvolvimento
+
+Ver `PERFORMANCE.md` na raiz do projeto. Ele lista o que já foi corrigido (config de imagem, `sizes`, prioridade de LCP) e o que ainda está pendente, na ordem: **1) logo em `public/images/scale-logo*.svg`** (raster de 123KB embutido carregado com `priority` em toda página, maior desperdício de bytes do site), 2) duas libs de animação (framer-motion + gsap) no bundle, 3) roadmap de SEO/schema/crawlabilidade/indexação/infra. Qualquer tarefa de manutenção/evolução do site institucional deve considerar esse arquivo — e nunca reduzir qualidade visual de imagem para ganhar performance.
+
 # LPs de tráfego — NÃO ALTERAR
 
 Este projeto hospeda 4 landing pages que **não fazem parte do site institucional** e que **nunca devem ser alteradas, refatoradas, restilizadas ou consideradas** em qualquer tarefa de manutenção/evolução do site institucional (home, servicos, sobre, cases, contato, conteudos, noticias, etc.). Elas são espelhadas 1:1 do repositório `scalecompany-marketing-juridico` (fonte da verdade) e usadas para tráfego pago / campanhas ao vivo. Formulários, imagens, vídeos, CSS e rotas devem permanecer exatamente como estão.
