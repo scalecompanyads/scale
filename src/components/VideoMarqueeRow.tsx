@@ -27,14 +27,14 @@ export default function VideoMarqueeRow({
         {doubled.map((item, index) => (
           <div
             key={`${item.src}-${index}`}
-            className="relative aspect-[16/9] h-32 shrink-0 overflow-hidden bg-neutral-900 sm:h-40 lg:h-48"
+            className="relative aspect-[16/9] h-44 shrink-0 overflow-hidden bg-neutral-900 sm:h-56 lg:h-72"
           >
             <Image
               src={item.src.replace("/videos-lps/", "/video-thumbnails/").replace(".mp4", ".webp")}
               alt={index < rotatedItems.length ? item.alt : ""}
               fill
               quality={72}
-              sizes="(min-width: 1024px) 341px, (min-width: 640px) 284px, 227px"
+              sizes="(min-width: 1024px) 512px, (min-width: 640px) 398px, 313px"
               className="object-cover"
             />
           </div>

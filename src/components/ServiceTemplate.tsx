@@ -168,8 +168,8 @@ export default function ServiceTemplate({
         </header>
 
         {videos ? (
-          <section className="relative overflow-hidden bg-black py-10 sm:py-12 lg:py-14">
-            <div className="space-y-4">
+          <section className="relative overflow-hidden bg-black py-16 sm:py-20 lg:py-24">
+            <div className="space-y-5 sm:space-y-6">
               <VideoMarqueeRow items={videos.items} durationSeconds={26} />
               <VideoMarqueeRow items={videos.items} reverse durationSeconds={30} offset={2} />
               <VideoMarqueeRow items={videos.items} durationSeconds={34} offset={4} />
@@ -193,11 +193,11 @@ export default function ServiceTemplate({
                     {videos.eyebrow}
                   </span>
                 ) : null}
-                <h2 className="font-canela mt-4 text-4xl leading-tight text-white sm:text-5xl">
+                <h2 className="font-canela mt-3 text-2xl leading-tight text-white sm:mt-4 sm:text-4xl lg:text-5xl">
                   {videos.heading}
                 </h2>
                 {videos.intro ? (
-                  <p className="mt-6 text-base leading-relaxed text-white/85 sm:text-lg">
+                  <p className="mt-3 hidden text-base leading-relaxed text-white/85 sm:mt-6 sm:block sm:text-lg">
                     {videos.intro}
                   </p>
                 ) : null}
