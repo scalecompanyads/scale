@@ -9,6 +9,7 @@ Regra geral: nunca reduzir qualidade visual de imagem para ganhar performance. O
 - **`next.config.ts`**: `formats: ["image/avif", "image/webp"]` — nesta versão do Next (16.x) o default mudou para `["image/webp"]` só; sem isso o site não estava servindo AVIF. `minimumCacheTTL: 2678400` (31 dias) para reduzir reprocessamento de imagens já publicadas.
 - **`sizes` ausente em `<Image fill>`** (fazia o navegador baixar a imagem em 100vw mesmo quando ela ocupa só 25–50% da tela): corrigido em `Founders.tsx` (fotos dos sócios), `Highlights.tsx` (card de destaque), `Mission.tsx` (foto da equipe) e `Services.tsx` (background da seção de serviços).
 - **`cases/page.tsx`**: removida a segunda ocorrência de `priority` (mesma imagem aparecia 2x na página, competindo pelo preload com a imagem realmente acima da dobra — isso atrasa o LCP real).
+- **`src/app/sitemap.ts` e `src/app/robots.ts`** (2026-08-22): o site não tinha nenhum dos dois. Sitemap lista as 14 rotas indexáveis do institucional + `/scale-advogados` (única LP sem `noindex`); robots aponta pro sitemap e bloqueia `/api/` e as 3 LPs com `robots: { index: false }` no próprio layout (`scale-advogados-2`, `scale-advogados-3`, `scale-class`). Falta submeter no Google Search Console (ver "Indexação forçada" abaixo).
 
 ## 🔴 Prioridade #1 — Logo em `public/images/scale-logo.svg` e `scale-logo-about.svg`
 
@@ -46,11 +47,12 @@ PNGs como `hero-home-bg.png` (1.9MB), `services-hero-bg.png` (2.4MB), `article-a
 ### Crawlabilidade e arquitetura de URL
 - Profundidade de clique: nenhuma página a mais de 3 cliques da home.
 - URLs limpas/semânticas (já é o padrão do site: `/servicos/trafego-pago`, `/conteudos/...`).
-- Checar `robots.txt` por bloqueios acidentais.
+- ✅ `robots.txt` e `sitemap.xml` gerados (`src/app/robots.ts`, `src/app/sitemap.ts`) — ver acima.
 - Canonical tags em toda página (já presentes via `metadata.alternates.canonical` nas páginas revisadas).
 - Internal linking hub-and-spoke entre pilares e clusters de conteúdo.
 
 ### Indexação forçada (GSC)
+- Cadastrar `https://www.scalecompany.com.br/sitemap.xml` no Google Search Console (Sitemaps) e no Bing Webmaster Tools — isso ainda não foi feito, precisa de acesso à conta do GSC do domínio.
 - Submissão em lote via URL Inspection API.
 - IndexNow (Bing/Yandex) para notificar mudanças.
 - Monitorar Coverage report semanalmente.
