@@ -1,7 +1,11 @@
+"use client";
+
 import { ArrowUpRightIcon } from "@/components/icons";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import NewsletterForm from "@/components/NewsletterForm";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
 const FEATURED_ARTICLE = {
   category: "Estratégia",
@@ -37,7 +41,13 @@ const ARTICLES = [
 export default function ContentHub() {
   return (
     <section id="conteudos" className="bg-[#ECE7DF] px-6 py-20 sm:px-8 lg:px-[5%] lg:py-28">
-      <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
+      <motion.div
+        className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="max-w-3xl">
           <span className="font-canela text-xs font-bold uppercase tracking-wider text-[#3A43E3]">
             Conteúdos
@@ -50,45 +60,52 @@ export default function ContentHub() {
           Estratégias de aquisição, campanhas e conversão para apoiar decisões melhores no seu
           escritório.
         </p>
-      </div>
+      </motion.div>
 
       <div className="mt-14 grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="order-2 flex flex-col gap-4 lg:order-1">
+        <StaggerGroup className="order-2 flex flex-col gap-4 lg:order-1" amount={0.1}>
           {ARTICLES.map((article) => (
-          <Link
-            key={article.title}
-            href={article.href}
-            className="group flex flex-col overflow-hidden bg-white transition-transform duration-300 hover:-translate-y-1 sm:min-h-36 sm:flex-row"
-          >
-            <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-neutral-100 sm:min-h-36 sm:w-44 sm:aspect-auto">
-              <Image
-                src={article.image}
-                alt=""
-                fill
-                quality={90}
-                sizes="(min-width: 640px) 11rem, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-[#3A43E3]">
-                  {article.category}
-                </p>
-                <h3 className="font-canela mt-3 text-xl leading-tight text-neutral-900 sm:text-2xl">
-                  {article.title}
-                </h3>
-              </div>
-              <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#3A43E3]">
-                Ler artigo
-                <ArrowUpRightIcon className="h-3.5 w-3.5" />
-              </span>
-            </div>
-          </Link>
+            <StaggerItem key={article.title}>
+              <Link
+                href={article.href}
+                className="group flex flex-col overflow-hidden bg-white transition-transform duration-300 hover:-translate-y-1 sm:min-h-36 sm:flex-row"
+              >
+                <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden bg-neutral-100 sm:min-h-36 sm:w-44 sm:aspect-auto">
+                  <Image
+                    src={article.image}
+                    alt=""
+                    fill
+                    quality={90}
+                    sizes="(min-width: 640px) 11rem, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[#3A43E3]">
+                      {article.category}
+                    </p>
+                    <h3 className="font-canela mt-3 text-xl leading-tight text-neutral-900 sm:text-2xl">
+                      {article.title}
+                    </h3>
+                  </div>
+                  <span className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#3A43E3]">
+                    Ler artigo
+                    <ArrowUpRightIcon className="h-3.5 w-3.5" />
+                  </span>
+                </div>
+              </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
 
-        <article className="group relative order-1 flex min-h-[520px] overflow-hidden bg-[#101317] p-7 text-white sm:p-10 lg:order-2">
+        <motion.article
+          className="group relative order-1 flex min-h-[520px] overflow-hidden bg-[#101317] p-7 text-white sm:p-10 lg:order-2"
+          initial={{ opacity: 0, scale: 1.04 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        >
           <Image
             src="/images/article-acquisition-cover.png"
             alt=""
@@ -116,10 +133,16 @@ export default function ContentHub() {
               <ArrowUpRightIcon className="h-3.5 w-3.5" />
             </Link>
           </div>
-        </article>
+        </motion.article>
       </div>
 
-      <div className="mt-6 grid overflow-hidden bg-[#3A43E3] text-white lg:grid-cols-[1fr_0.85fr]">
+      <motion.div
+        className="mt-6 grid overflow-hidden bg-[#3A43E3] text-white lg:grid-cols-[1fr_0.85fr]"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="p-7 sm:p-10">
           <span className="font-canela text-xs font-bold uppercase tracking-wider text-white/65">
             Cases mais recentes
@@ -143,7 +166,7 @@ export default function ContentHub() {
           buttonText="Quero receber os cases"
           disclaimer="Sem spam. Apenas conteúdos e novos resultados da Scale."
         />
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -76,7 +76,6 @@ export default function CasesPage() {
                   src="/images/case-vinicio-rodrigues-cover-v2.png"
                   alt="Capa do case do Dr. Vinício Rodrigues"
                   fill
-                  priority
                   sizes="(min-width: 1024px) 48vw, 100vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />

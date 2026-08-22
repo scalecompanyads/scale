@@ -1,9 +1,25 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
 import Header from "@/components/Header";
 import ContactTrigger from "@/components/ContactTrigger";
 import ParallaxImage from "@/components/ParallaxImage";
 import { ArrowUpRightIcon } from "@/components/icons";
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.16, delayChildren: 0.4 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 26 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] as const },
+  },
+};
 
 export default function Hero() {
   return (
@@ -21,29 +37,34 @@ export default function Hero() {
 
       <div className="relative z-10 flex flex-1 items-center justify-center lg:mt-auto lg:block lg:flex-none">
         <div className="w-full px-6 py-24 sm:px-8 lg:px-[5%] lg:pb-24 lg:pt-40">
-          <div className="flex flex-col items-center gap-8 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left">
+          <motion.div
+            className="flex flex-col items-center gap-8 text-center lg:flex-row lg:items-end lg:justify-between lg:text-left"
+            initial="hidden"
+            animate="show"
+            variants={container}
+          >
             <div className="lg:flex-1">
-              <div
-                className="hero-anim mb-6 flex items-center justify-center gap-3 lg:justify-start"
-                style={{ "--hero-delay": "0.5s" } as CSSProperties}
+              <motion.div
+                variants={item}
+                className="mb-6 flex items-center justify-center gap-3 lg:justify-start"
               >
                 <span className="h-px w-8 bg-gradient-to-r from-transparent to-white" />
                 <span className="text-sm text-white/70">
                   Especialistas em Marketing Jurídico
                 </span>
-              </div>
+              </motion.div>
 
-              <h1
-                className="hero-anim font-canela mx-auto max-w-5xl text-[2.75rem] font-normal leading-[1.08] text-white sm:text-[3.75rem] lg:mx-0 lg:text-[4.604rem]"
-                style={{ "--hero-delay": "0.65s" } as CSSProperties}
+              <motion.h1
+                variants={item}
+                className="font-canela mx-auto max-w-5xl text-[2.75rem] font-normal leading-[1.08] text-white sm:text-[3.75rem] lg:mx-0 lg:text-[4.604rem]"
               >
                 Sua máquina de aquisição jurídica,{" "}
                 <span className="text-gradient-blue">pronta para crescer.</span>
-              </h1>
+              </motion.h1>
 
-              <p
-                className="hero-anim mx-auto mt-6 max-w-lg text-lg leading-relaxed text-white/80 lg:mx-0"
-                style={{ "--hero-delay": "0.85s" } as CSSProperties}
+              <motion.p
+                variants={item}
+                className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-white/80 lg:mx-0"
               >
                 <strong className="font-semibold text-white">Estratégia</strong>,{" "}
                 <strong className="font-semibold text-white">tráfego</strong>,{" "}
@@ -54,12 +75,12 @@ export default function Hero() {
                   aquisição previsível
                 </strong>
                 .
-              </p>
+              </motion.p>
             </div>
 
-            <div
-              className="hero-anim flex shrink-0 flex-wrap items-center justify-center gap-4 lg:justify-start"
-              style={{ "--hero-delay": "1.05s" } as CSSProperties}
+            <motion.div
+              variants={item}
+              className="flex shrink-0 flex-wrap items-center justify-center gap-4 lg:justify-start"
             >
               <Link
                 href="/servicos"
@@ -79,8 +100,8 @@ export default function Hero() {
                   FALE CONOSCO
                 </ContactTrigger>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

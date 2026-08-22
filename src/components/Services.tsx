@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import ContactTrigger from "@/components/ContactTrigger";
 import { ArrowUpRightIcon, ChevronRightIcon } from "@/components/icons";
+import { staggerItemVariants } from "@/components/motion/Stagger";
 
 type Service = {
   key: string;
@@ -72,10 +74,16 @@ export default function Services() {
 
   return (
     <section className="relative overflow-hidden bg-[#050814] px-6 py-20 sm:px-8 lg:px-[5%] lg:py-28">
-      <Image src="/images/bg-services-home.png" alt="" fill className="object-cover" />
+      <Image src="/images/bg-services-home.png" alt="" fill sizes="100vw" className="object-cover" />
       <div className="absolute inset-0 bg-black/50" />
 
-      <div className="relative z-10 mb-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+      <motion.div
+        className="relative z-10 mb-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div>
           <span className="font-canela text-xs font-bold uppercase tracking-wider text-[#588DFF]">
             Serviços
@@ -91,18 +99,23 @@ export default function Services() {
           Agendar diagnóstico
           <ArrowUpRightIcon className="h-4 w-4" />
         </ContactTrigger>
-      </div>
+      </motion.div>
 
-      <div
+      <motion.div
         ref={carouselRef}
         aria-label="Serviços da Scale"
         onScroll={syncCurrentPage}
         className="relative z-10 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
       >
         {SERVICES.map((service) => (
-          <article
+          <motion.article
             key={service.key}
             data-service-card
+            variants={staggerItemVariants}
             className="group relative aspect-[4/5] w-full min-w-0 shrink-0 basis-full snap-start overflow-hidden sm:basis-[calc((100%-1rem)/2)] lg:basis-[calc((100%-3rem)/4)]"
           >
             <Image
@@ -117,9 +130,9 @@ export default function Services() {
             <span className="absolute bottom-5 left-5 text-base font-medium text-white sm:bottom-4 sm:left-4 sm:text-sm">
               {service.label}
             </span>
-          </article>
+          </motion.article>
         ))}
-      </div>
+      </motion.div>
 
       {maxPage > 0 && (
         <div className="relative z-10 mt-8 flex items-center justify-center gap-4">

@@ -1,4 +1,10 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { gsap } from "@/lib/gsap";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
 type Founder = {
   id: string;
@@ -44,9 +50,46 @@ const FOUNDERS: Founder[] = [
 ];
 
 export default function Founders() {
+  const imagesRowRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const row = imagesRowRef.current;
+    if (!row) return;
+
+    const images = row.querySelectorAll<HTMLElement>("[data-founder-image]");
+    if (images.length === 0) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        images,
+        { clipPath: "inset(100% 0% 0% 0%)", scale: 1.08 },
+        {
+          clipPath: "inset(0% 0% 0% 0%)",
+          scale: 1,
+          duration: 1.1,
+          ease: "power4.out",
+          stagger: 0.12,
+          scrollTrigger: {
+            trigger: row,
+            start: "top 80%",
+            once: true,
+          },
+        }
+      );
+    }, row);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section className="bg-[#ECE7DF]">
-      <div className="flex flex-col gap-8 px-6 pb-10 pt-12 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-[5%] lg:pt-16">
+      <motion.div
+        className="flex flex-col gap-8 px-6 pb-10 pt-12 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-[5%] lg:pt-16"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div>
           <span className="font-canela text-xs font-bold uppercase tracking-wider text-[#3A43E3]">
             Sócios
@@ -63,44 +106,48 @@ export default function Founders() {
           simples: marketing só vale quando coloca a pessoa certa em uma
           conversa de verdade. Hoje, a Scale já atendeu mais de 700 escritórios.
         </p>
-      </div>
+      </motion.div>
 
       <div className="px-6 sm:px-8 lg:px-[5%]">
-        <div className="lg:hidden">
+        <StaggerGroup className="lg:hidden" amount={0.1}>
           {FOUNDERS.map((founder, index) => (
-            <article key={`${founder.id}-mobile`} className="border-t border-neutral-300 py-7 first:border-t-0 first:pt-0">
-              <div className="relative aspect-[481/750] w-full overflow-hidden">
-                {founder.image ? (
-                  <Image
-                    src={founder.image}
-                    alt={founder.name}
-                    fill
-                    quality={90}
-                    className="object-cover"
-                    priority={index === 0}
-                  />
-                ) : (
-                  <div className="flex h-full items-end bg-[#3A43E3] p-6 text-white">
-                    <span className="font-canela text-6xl leading-none">LC</span>
-                  </div>
-                )}
-              </div>
+            <StaggerItem key={`${founder.id}-mobile`}>
+              <article className="border-t border-neutral-300 py-7 first:border-t-0 first:pt-0">
+                <div className="relative aspect-[481/750] w-full overflow-hidden">
+                  {founder.image ? (
+                    <Image
+                      src={founder.image}
+                      alt={founder.name}
+                      fill
+                      quality={90}
+                      sizes="100vw"
+                      className="object-cover"
+                      priority={index === 0}
+                    />
+                  ) : (
+                    <div className="flex h-full items-end bg-[#3A43E3] p-6 text-white">
+                      <span className="font-canela text-6xl leading-none">LC</span>
+                    </div>
+                  )}
+                </div>
 
-              <div className="pt-6">
-                <p className="font-canela text-2xl text-neutral-900">{founder.name}</p>
-                <p className="font-canela mt-2 text-xs font-semibold uppercase tracking-wider text-[#3A43E3]">
-                  {founder.role}
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-neutral-600">{founder.description}</p>
-              </div>
-            </article>
+                <div className="pt-6">
+                  <p className="font-canela text-2xl text-neutral-900">{founder.name}</p>
+                  <p className="font-canela mt-2 text-xs font-semibold uppercase tracking-wider text-[#3A43E3]">
+                    {founder.role}
+                  </p>
+                  <p className="mt-4 text-sm leading-relaxed text-neutral-600">{founder.description}</p>
+                </div>
+              </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
 
-        <div className="hidden lg:flex lg:flex-wrap">
+        <div ref={imagesRowRef} className="hidden lg:flex lg:flex-wrap">
           {FOUNDERS.map((founder, index) => (
             <div
               key={founder.id}
+              data-founder-image
               className="relative aspect-[481/750] w-1/2 overflow-hidden sm:w-1/4"
             >
               {founder.image ? (
@@ -109,6 +156,7 @@ export default function Founders() {
                   alt={founder.name}
                   fill
                   quality={90}
+                  sizes="25vw"
                   className="object-cover"
                   priority={index === 0}
                 />
@@ -123,7 +171,13 @@ export default function Founders() {
           ))}
         </div>
 
-        <div className="hidden border-t border-neutral-300 lg:flex lg:flex-wrap lg:divide-x lg:divide-neutral-300">
+        <motion.div
+          className="hidden border-t border-neutral-300 lg:flex lg:flex-wrap lg:divide-x lg:divide-neutral-300"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
           {FOUNDERS.map((founder, index) => (
             <div
               key={`${founder.id}-caption-${index}`}
@@ -138,7 +192,7 @@ export default function Founders() {
               </p>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

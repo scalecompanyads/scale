@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const LOGOS = [
   { src: "/images/logos-escritorios-adv/bastos-colomba.png", alt: "Bastos Colomba Advocacia" },
@@ -21,12 +24,24 @@ export default function ClientLogos() {
   return (
     <section aria-label="Escritórios parceiros" className="overflow-hidden bg-[#ECE7DF] pb-8 lg:pb-10">
       <div className="px-6 sm:px-8 lg:px-[5%]">
-        <p className="font-canela text-center text-xs font-bold uppercase tracking-wider text-[#3A43E3]">
+        <motion.p
+          className="font-canela text-center text-xs font-bold uppercase tracking-wider text-[#3A43E3]"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
           Escritórios que crescem com a Scale
-        </p>
+        </motion.p>
       </div>
 
-      <div className="relative mx-6 mt-8 overflow-hidden before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-12 before:bg-gradient-to-r before:from-[#ECE7DF] before:via-[#ECE7DF]/85 before:to-transparent before:backdrop-blur-[2px] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-10 after:w-12 after:bg-gradient-to-l after:from-[#ECE7DF] after:via-[#ECE7DF]/85 after:to-transparent after:backdrop-blur-[2px] sm:mx-8 sm:before:w-20 sm:after:w-20 lg:mx-[5%]">
+      <motion.div
+        className="relative mx-6 mt-8 overflow-hidden before:pointer-events-none before:absolute before:inset-y-0 before:left-0 before:z-10 before:w-12 before:bg-gradient-to-r before:from-[#ECE7DF] before:via-[#ECE7DF]/85 before:to-transparent before:backdrop-blur-[2px] after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:z-10 after:w-12 after:bg-gradient-to-l after:from-[#ECE7DF] after:via-[#ECE7DF]/85 after:to-transparent after:backdrop-blur-[2px] sm:mx-8 sm:before:w-20 sm:after:w-20 lg:mx-[5%]"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="animate-logo-marquee flex w-max items-center">
           {[0, 1].map((setIndex) => (
             <div key={setIndex} aria-hidden={setIndex === 1} className="flex shrink-0 items-center gap-10 pr-10 sm:gap-14 sm:pr-14">
@@ -44,7 +59,7 @@ export default function ClientLogos() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

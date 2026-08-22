@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 type Stat = {
   id: string;
@@ -19,41 +21,48 @@ const STATS: Stat[] = [
   { id: "leads", value: 15, rangeEnd: 30, label: "dias para os primeiros leads" },
 ];
 
-function useCountUp(end: number, active: boolean, duration = 1500) {
-  const [value, setValue] = useState(0);
+function StatItem({ stat, isAccent }: { stat: Stat; isAccent: boolean }) {
+  const valueRef = useRef<HTMLSpanElement>(null);
+  const rangeRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    if (!active) return;
+    const valueEl = valueRef.current;
+    const rangeEl = rangeRef.current;
+    if (!valueEl) return;
 
-    let start: number | null = null;
-    let frame: number;
+    const trigger = ScrollTrigger.create({
+      trigger: valueEl,
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        const counter = { val: 0 };
+        gsap.to(counter, {
+          val: stat.value,
+          duration: 1.6,
+          ease: "power3.out",
+          onUpdate: () => {
+            valueEl.textContent = String(Math.round(counter.val));
+          },
+        });
 
-    const step = (timestamp: number) => {
-      if (start === null) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setValue(Math.round(eased * end));
-      if (progress < 1) frame = requestAnimationFrame(step);
+        if (stat.rangeEnd !== undefined && rangeEl) {
+          const rangeCounter = { val: 0 };
+          gsap.to(rangeCounter, {
+            val: stat.rangeEnd,
+            duration: 1.6,
+            ease: "power3.out",
+            onUpdate: () => {
+              rangeEl.textContent = String(Math.round(rangeCounter.val));
+            },
+          });
+        }
+      },
+    });
+
+    return () => {
+      trigger.kill();
     };
-
-    frame = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(frame);
-  }, [active, end, duration]);
-
-  return value;
-}
-
-function StatItem({
-  stat,
-  active,
-  isAccent,
-}: {
-  stat: Stat;
-  active: boolean;
-  isAccent: boolean;
-}) {
-  const count = useCountUp(stat.value, active);
-  const rangeCount = useCountUp(stat.rangeEnd ?? 0, active && stat.rangeEnd !== undefined);
+  }, [stat]);
 
   return (
     <div className={`px-5 py-4 ${isAccent ? "bg-[#3A43E3]" : "bg-white"}`}>
@@ -63,8 +72,12 @@ function StatItem({
         }`}
       >
         {stat.prefix}
-        {count}
-        {stat.rangeEnd !== undefined && <>-{rangeCount}</>}
+        <span ref={valueRef}>0</span>
+        {stat.rangeEnd !== undefined && (
+          <>
+            -<span ref={rangeRef}>0</span>
+          </>
+        )}
         {stat.suffix}
       </p>
       <p className={`mt-1 text-xs leading-snug ${isAccent ? "text-white/70" : "text-neutral-500"}`}>
@@ -75,33 +88,16 @@ function StatItem({
 }
 
 export default function Mission() {
-  const statsRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
-
-  useEffect(() => {
-    const el = statsRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section className="bg-[#ECE7DF] px-6 py-20 sm:px-8 lg:px-[5%] lg:py-28">
       <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-        <div className="order-2 lg:order-1">
+        <motion.div
+          className="order-2 lg:order-1"
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
           <span className="font-canela text-xs font-bold uppercase tracking-wider text-[#3A43E3]">
             Nossa missão
           </span>
@@ -117,24 +113,28 @@ export default function Mission() {
             precisa.
           </p>
 
-          <div
-            ref={statsRef}
-            className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3"
-          >
+          <div className="mt-10 grid grid-cols-[repeat(auto-fit,minmax(130px,1fr))] gap-3">
             {STATS.map((stat, index) => (
-              <StatItem key={stat.id} stat={stat} active={active} isAccent={index % 2 === 0} />
+              <StatItem key={stat.id} stat={stat} isAccent={index % 2 === 0} />
             ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="order-1 relative aspect-[4/3] overflow-hidden sm:aspect-[16/10] lg:order-2 lg:aspect-[4/3]">
+        <motion.div
+          className="order-1 relative aspect-[4/3] overflow-hidden sm:aspect-[16/10] lg:order-2 lg:aspect-[4/3]"
+          initial={{ opacity: 0, scale: 1.08 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        >
           <Image
             src="/equipe.jpeg"
             alt="Time Scale Company"
             fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

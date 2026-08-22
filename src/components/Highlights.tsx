@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { ArrowUpRightIcon } from "@/components/icons";
 import KeywordMarquee from "@/components/KeywordMarquee";
+import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 
 type DestaqueItem = {
   image: string;
@@ -46,7 +47,7 @@ const CASES_POOL: CardItem[] = [
   {
     variant: "accent",
     label: "CASE",
-    text: "5 contratos e +R$\u00A010,5\u00A0mil em honorários no primeiro mês, estratégia de aquisição desenvolvida para um escritório de Direito de Família, combinando Google Ads, Meta Ads e Landing Page.",
+    text: "5 contratos e +R$ 10,5 mil em honorários no primeiro mês, estratégia de aquisição desenvolvida para um escritório de Direito de Família, combinando Google Ads, Meta Ads e Landing Page.",
     linkLabel: "VER CASE COMPLETO",
     href: "/cases/vinicio-rodrigues",
     image: "/images/case-vinicio-rodrigues-cover-v2.png",
@@ -84,25 +85,11 @@ function pickRandom<T>(items: T[]): T {
   return items[Math.floor(Math.random() * items.length)];
 }
 
-function HighlightCard({
-  id,
-  item,
-  visible,
-  delayMs,
-}: {
-  id: string;
-  item: CardItem;
-  visible: boolean;
-  delayMs: number;
-}) {
+function HighlightCard({ id, item }: { id: string; item: CardItem }) {
   const isAccent = item.variant === "accent";
 
   return (
-    <div
-      id={id}
-      style={{ "--reveal-delay": `${delayMs}ms` } as CSSProperties}
-      className={`reveal ${visible ? "is-visible" : ""}`}
-    >
+    <div id={id}>
       <div
         className={`group flex flex-col overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1.5 sm:flex-row ${
           isAccent
@@ -171,9 +158,6 @@ function HighlightCard({
 }
 
 export default function Highlights() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const [visible, setVisible] = useState(false);
-
   const [picks, setPicks] = useState(() => ({
     destaque: DESTAQUE_POOL[0],
     cases: CASES_POOL[0],
@@ -194,43 +178,25 @@ export default function Highlights() {
     });
   }, []);
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   const { destaque, cases, reconhecimento, depoimentos } = picks;
 
   return (
-    <section ref={sectionRef} className="bg-[#ECE7DF]">
+    <section className="bg-[#ECE7DF]">
       <div className="relative">
-        <div
+        <motion.div
           id="destaque"
-          style={{ "--reveal-delay": "0ms" } as CSSProperties}
-          className={`reveal group relative min-h-[420px] overflow-hidden lg:absolute lg:inset-y-0 lg:left-0 lg:min-h-0 lg:w-[50%] ${
-            visible ? "is-visible" : ""
-          }`}
+          className="group relative min-h-[420px] overflow-hidden lg:absolute lg:inset-y-0 lg:left-0 lg:min-h-0 lg:w-[50%]"
+          initial={{ opacity: 0, scale: 1.06 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         >
           <Image
             src={destaque.image}
             alt=""
             fill
             quality={90}
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition-colors duration-500 group-hover:from-black/80" />
@@ -253,17 +219,23 @@ export default function Highlights() {
               <ArrowUpRightIcon className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:-translate-y-0.5" />
             </a>
           </div>
-        </div>
+        </motion.div>
 
         <div className="px-6 pb-8 pt-8 sm:px-8 lg:pb-10 lg:pl-[calc(50%+1.5rem)] lg:pr-[5%] lg:pt-0">
           <span className="font-canela block text-xs font-bold uppercase tracking-wider text-[#3A43E3]">
             Destaques
           </span>
-          <div className="mt-6 flex flex-col gap-6">
-            <HighlightCard id="cases" item={cases} visible={visible} delayMs={150} />
-            <HighlightCard id="reconhecimento" item={reconhecimento} visible={visible} delayMs={300} />
-            <HighlightCard id="depoimentos" item={depoimentos} visible={visible} delayMs={450} />
-          </div>
+          <StaggerGroup className="mt-6 flex flex-col gap-6" amount={0.1}>
+            <StaggerItem>
+              <HighlightCard id="cases" item={cases} />
+            </StaggerItem>
+            <StaggerItem>
+              <HighlightCard id="reconhecimento" item={reconhecimento} />
+            </StaggerItem>
+            <StaggerItem>
+              <HighlightCard id="depoimentos" item={depoimentos} />
+            </StaggerItem>
+          </StaggerGroup>
         </div>
       </div>
 

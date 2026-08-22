@@ -1,7 +1,9 @@
 "use client";
 
 import { useRef } from "react";
+import { motion } from "framer-motion";
 import { ChevronRightIcon } from "@/components/icons";
+import { staggerItemVariants } from "@/components/motion/Stagger";
 
 const REVIEWS = [
   {
@@ -55,7 +57,13 @@ export default function Reviews() {
 
   return (
     <section id="avaliacoes" className="bg-[#ECE7DF] px-6 pb-4 pt-20 sm:px-8 lg:px-[5%] lg:pb-6 lg:pt-28">
-      <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+      <motion.div
+        className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
+        initial={{ opacity: 0, y: 28 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      >
         <div className="max-w-3xl">
           <span className="font-canela text-xs font-bold uppercase tracking-wider text-[#3A43E3]">
             Avaliações
@@ -68,7 +76,7 @@ export default function Reviews() {
           Feedbacks de empresas que encontraram uma operação mais próxima, criteriosa e focada em
           resultado.
         </p>
-      </div>
+      </motion.div>
 
       <div className="mt-12 flex justify-end gap-3">
         <button
@@ -89,18 +97,23 @@ export default function Reviews() {
         </button>
       </div>
 
-      <div
+      <motion.div
         ref={carouselRef}
         aria-label="Avaliações de clientes"
         className="mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
       >
         {REVIEWS.map((review, index) => {
           const isBlue = index % 2 !== 0;
 
           return (
-            <article
+            <motion.article
               key={review.name}
               data-review-card
+              variants={staggerItemVariants}
               className={`flex min-h-80 w-full min-w-0 shrink-0 basis-full snap-start flex-col justify-between p-7 sm:w-auto sm:basis-[calc((100%-1rem)/2)] sm:p-8 lg:basis-[calc((100%-2rem)/3)] lg:p-9 ${
                 isBlue ? "bg-[#3A43E3] text-white" : "bg-white text-neutral-900"
               }`}
@@ -116,10 +129,10 @@ export default function Reviews() {
               <footer className={`mt-10 border-t pt-5 ${isBlue ? "border-white/25" : "border-neutral-200"}`}>
                 <p className="text-sm font-semibold">{review.name}</p>
               </footer>
-            </article>
+            </motion.article>
           );
         })}
-      </div>
+      </motion.div>
     </section>
   );
 }
