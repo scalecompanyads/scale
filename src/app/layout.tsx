@@ -4,6 +4,8 @@ import localFont from "next/font/local";
 import { siteOgImage } from "@/lib/site-og";
 import { ContactFormProvider } from "@/contexts/ContactFormContext";
 import ContactFormModal from "@/components/ContactFormModal";
+import GoogleTagManager from "@/components/GoogleTagManager";
+import MicrosoftClarity from "@/components/MicrosoftClarity";
 import "./globals.css";
 
 const inter = Inter({
@@ -64,7 +66,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="pt-BR"
       className={`${inter.variable} ${canelaDeck.variable} h-full antialiased`}
     >
+      <head>
+        <MicrosoftClarity />
+      </head>
       <body className="min-h-full flex flex-col bg-black">
+        <GoogleTagManager />
         <ContactFormProvider>
           {children}
           <ContactFormModal />
