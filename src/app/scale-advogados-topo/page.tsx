@@ -611,9 +611,9 @@ export default function ScaleAdvogadosTopoPage() {
 
   <div className="paid-advogados">
     <ScaleAdvogadosV3Hero
-      eyebrow="Aquisição Jurídica"
-      heading="Captação de Clientes para Advogados"
-      headingAccent="Tráfego Pago Especializado"
+      eyebrow="TRÁFEGO PAGO P/ ADVOGADOS"
+      heading="Captação de Clientes para"
+      headingAccent="Escritórios de Advocacia"
       description="Estruturamos o marketing do seu escritório para gerar novas oportunidades com uma estrutura completa de anúncios, páginas, criativos e CRM."
       primaryCtaHref="#scale-form-modal"
       primaryCtaLabel="Solicite um Diagnóstico"
