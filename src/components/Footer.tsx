@@ -97,13 +97,13 @@ export default function Footer() {
           <span>© 2026 - Scale company</span>
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:justify-end">
             <a
-              href="https://www.letsmarketing.com.br/politica-de-privacidade/"
+              href="/politica-de-privacidade"
               className="transition-colors hover:text-white/80"
             >
               Política de privacidade
             </a>
             <a
-              href="https://www.letsmarketing.com.br/termos-de-uso/"
+              href="/termos-de-uso"
               className="transition-colors hover:text-white/80"
             >
               Termos de uso

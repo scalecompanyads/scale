@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
@@ -25,10 +25,17 @@ function StatItem({ stat, isAccent }: { stat: Stat; isAccent: boolean }) {
   const valueRef = useRef<HTMLSpanElement>(null);
   const rangeRef = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const valueEl = valueRef.current;
     const rangeEl = rangeRef.current;
     if (!valueEl) return;
+
+    // O HTML já nasce com o valor real (SSR/crawlers sempre veem o número
+    // correto). Só depois de montar no navegador é que zeramos pra rodar a
+    // contagem visual — useLayoutEffect garante que isso acontece antes do
+    // primeiro paint, sem "flash" do valor real antes de contar.
+    valueEl.textContent = "0";
+    if (stat.rangeEnd !== undefined && rangeEl) rangeEl.textContent = "0";
 
     const trigger = ScrollTrigger.create({
       trigger: valueEl,
@@ -72,10 +79,10 @@ function StatItem({ stat, isAccent }: { stat: Stat; isAccent: boolean }) {
         }`}
       >
         {stat.prefix}
-        <span ref={valueRef}>0</span>
+        <span ref={valueRef}>{stat.value}</span>
         {stat.rangeEnd !== undefined && (
           <>
-            -<span ref={rangeRef}>0</span>
+            -<span ref={rangeRef}>{stat.rangeEnd}</span>
           </>
         )}
         {stat.suffix}

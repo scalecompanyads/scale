@@ -31,6 +31,8 @@ const ROUTES: Entry[] = [
     priority: 0.6,
   },
   { path: "/scale-advogados", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/politica-de-privacidade", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/termos-de-uso", changeFrequency: "yearly", priority: 0.3 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
