@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/api/", "/scale-advogados-2", "/scale-advogados-3", "/scale-class"],
+        disallow: ["/api/", "/scale-advogados-2", "/scale-advogados-3", "/scale-advogados-topo", "/scale-class"],
       },
     ],
     sitemap: "https://www.scalecompany.com.br/sitemap.xml",
