@@ -1,4 +1,4 @@
-type CrmWebhookPath = "contato" | "cases" | "blog";
+type CrmWebhookPath = "contato" | "cases" | "blog" | "lp";
 
 export async function postToCrmWebhook(path: CrmWebhookPath, payload: Record<string, unknown>) {
   const baseUrl = process.env.CRM_WEBHOOK_URL;

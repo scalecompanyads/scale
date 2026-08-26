@@ -142,6 +142,12 @@ export function InlineLeadForm() {
       body: JSON.stringify(payload),
     }).catch(() => {});
 
+    fetch("/api/lead-lp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }).catch(() => {});
+
     fetch(EXCEL_WEBHOOK_URL, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },

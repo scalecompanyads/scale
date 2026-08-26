@@ -338,6 +338,7 @@ export default function ScaleAdvogadosPage() {
 
           // Webhooks (fire-and-forget)
           fetch(MAKE_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(function(){});
+          fetch('/api/lead-lp', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(function(){});
           fetch(EXCEL_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload), mode: 'no-cors' }).catch(function(){});
         });
       }
