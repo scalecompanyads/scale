@@ -31,3 +31,97 @@ Arquivos protegidos (não editar, não deletar, não "limpar duplicação" com o
 - dependência `lucide-react` (pinada em `1.17.0` no `package.json`, mesma versão do repo de origem — usada só por essas LPs)
 
 Qualquer atualização futura dessas LPs deve vir do repositório de origem `scalecompany-marketing-juridico` (copiar de lá, não editar aqui diretamente).
+
+**Uma exceção, aberta pelo usuário em 29/08/2026: o bloco de rastreio.** O
+submit das cinco LPs foi alterado aqui de propósito para parar de declarar a
+própria URL e passar a medi-la (`capturarTracking()`, em
+`src/lib/tracking.ts`) — ver "Rastreio é medido, não declarado" mais abaixo.
+Ao copiar qualquer coisa do repo de origem, **não reintroduza o
+`pagina: /scale-advogados-x` literal**: era ele o defeito.
+
+# Lead de LP não é lead orgânico
+
+Já quebrou **duas vezes**, e das duas o sintoma apareceu do lado do CRM: o
+grupo de WhatsApp do time recebeu lead de **tráfego pago** anunciado como
+**"🔔 NOVO LEAD ORGANICO 🔔"**. O CRM tem um aviso de grupo com esse cabeçalho
+fixo (`notifyLeadGroup()`), e ele é exclusivo do lead **orgânico** — o do
+formulário do institucional. Lead de campanha paga é avisado pelo Make, ou por
+ninguém.
+
+Os formulários deste repo não são todos a mesma coisa. Quem manda para onde:
+
+| Formulário | Endpoint local | Vira no CRM | Natureza |
+|---|---|---|---|
+| Contato, blog, cases (institucional) | `/api/lead-contato`, `/api/lead-blog`, `/api/lead-cases` (via `postToCrmWebhook` de `src/lib/crm.ts`) | `Site — Contato` / `Blog` / `Cases` | **orgânico** |
+| `/scale-advogados*` | `/api/lead-lp` (+ Make + Excel, no submit da própria página) | `LP — *` | **tráfego** |
+| `/scale-class` | `/api/live-signup` | `Site — Live` → **Quadro Live** | **tráfego (live)** |
+
+A `/scale-class` é a fácil de errar: tem cara de formulário do institucional
+(nome, email, WhatsApp, faturamento, email de confirmação bonitinho), mas é
+**LP de campanha paga** para inscrição em aula ao vivo. Ela tem classe própria
+no CRM — o Quadro Live, agrupado por evento — e **não** é orgânico. Nunca
+aponte o form dela (nem nenhum form de LP) para `postToCrmWebhook` / os
+endpoints `lead-blog|lead-cases|lead-contato`: aqueles três são exatamente os
+que fazem o CRM gritar "NOVO LEAD ORGANICO" no grupo.
+
+Detalhes que andam junto:
+
+- **`/scale-class` não dispara o Make** (diferente das `scale-advogados*`, que
+  chamam `MAKE_WEBHOOK_URL` no submit). Ela só chama `/api/live-signup` e
+  empurra o evento `lead_submit_success` no `dataLayer` do GTM. E, por decisão
+  do usuário, o CRM também não avisa o grupo nesse caminho — inscrito de live
+  é volume de campanha. **Nenhum aviso no grupo é o comportamento correto**,
+  não um bug para alguém "consertar".
+- **`EVENT_ID` em `src/app/scale-class/page.tsx`** (`"YYYY-MM-DD"`) é o que o
+  Quadro Live usa para separar uma live da outra. Reaproveitou a página para
+  uma live nova? Atualize junto com a data do badge, o título e o link do
+  grupo — e lembre que o conteúdo do email de confirmação mora no CRM
+  (`app/api/v1/webhooks/live/route.ts`), não aqui.
+- **LP nova precisa de entrada nova no CRM.** O Quadro de Tráfego filtra por
+  lista exata de origem (`ORIGEM_TRAFEGO` em
+  `components/crm/leads-workspace.tsx`); LP que não estiver lá entra no banco
+  e some do quadro.
+
+# Rastreio é medido, não declarado
+
+**Nenhum campo de origem de lead nasce de uma constante no código.** URL da
+página, UTM, referrer e click id se leem de `window.location` /
+`document.referrer` no instante do envio — é o que
+`capturarTracking()` (`src/lib/tracking.ts`) faz, e é o único jeito
+autorizado de preencher esses campos em qualquer formulário deste repo.
+
+Regra do usuário, 29/08/2026: *"cria uma regra para que url não seja inventado
+e seja feito o trackeamento real"*.
+
+O defeito que a originou morava aqui: cada LP mandava a própria URL como
+string literal dentro do payload (`pagina: '/scale-advogados-3'`). O CRM
+recebia a afirmação e a registrava como se fosse rastreamento — e a coluna
+"LP" da base tinha **exatamente os quatro valores escritos no código-fonte**,
+inclusive para lead que chegou por outra URL. A `/scale-class` era pior: não
+mandava URL nenhuma, e todo inscrito de live entrava sem origem de página.
+
+O que o helper devolve, e por que os dois campos de página:
+
+- **`pagina`** — `location.pathname`, o formato curto que o Make mapeia para a
+  coluna "LP" do Monday. Mudar o formato desse campo mexe no board.
+- **`pagina_url`** — `location.href` inteiro (domínio, caminho e query). É o
+  que o CRM grava em `lead_attribution.lp`: o caminho sozinho não distingue a
+  mesma página servida em dois domínios.
+- **`referrer`** e as UTMs completas — `utm_source/medium/campaign/content/term`,
+  `gclid`, `fbclid`. Todas as chaves sempre presentes (string vazia quando não
+  há valor), porque o mesmo objeto vai para o Make: campo que some do JSON
+  vira mapeamento vazio lá do outro lado sem ninguém perceber.
+
+`utm_content` e `utm_term` chegavam do navegador e morriam em
+`/api/lead-lp`, que não os repassava — o Make os levava para o Monday
+("Criativo" e "Público") e o CRM ficava com a atribuição pela metade. Se for
+acrescentar um campo de rastreio, ele precisa atravessar os **três** pontos:
+o helper, o repasse (`src/app/api/lead-lp/route.ts`, `/api/live-signup`) e o
+schema do webhook no CRM (`lib/api/schemas/webhooks.ts`), senão ele é
+capturado e jogado fora silenciosamente.
+
+Derivar de dado medido é permitido; chutar não é. `LP_SOURCES` em
+`/api/lead-lp` transforma o **caminho real** em rótulo de origem (`LP — Scale
+Advogados 3`) e cai em "Landing Page" quando não conhece a rota — nunca
+inventa a rota. E campo de rastreio que não veio vai **vazio**: um `lp` nulo
+diz "não sabemos", um `lp` chutado diz uma mentira indistinguível da verdade.
