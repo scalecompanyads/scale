@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Script from "next/script";
+import { capturarTracking } from "@/lib/tracking";
 
 
 function maskWhatsapp(value: string) {
@@ -66,15 +67,8 @@ export default function ScaleClassPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [utms, setUtms] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const keys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
-    const captured: Record<string, string> = {};
-    keys.forEach((k) => { const v = params.get(k); if (v) captured[k] = v; });
-    setUtms(captured);
-
     function onKey(e: KeyboardEvent) { if (e.key === "Escape") setShowModal(false); }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -102,6 +96,8 @@ export default function ScaleClassPage() {
     setErrors({});
     setSubmitting(true);
 
+    const tracking = capturarTracking();
+
     try {
       const res = await fetch("/api/live-signup", {
         method: "POST",
@@ -112,7 +108,7 @@ export default function ScaleClassPage() {
           whatsapp: form.whatsapp.replace(/\D/g, ""),
           faturamento: form.faturamento,
           evento: EVENT_ID,
-          ...utms,
+          ...tracking,
         }),
       });
       if (!res.ok) throw new Error("submit failed");
@@ -126,10 +122,9 @@ export default function ScaleClassPage() {
         faturamento: form.faturamento,
         origem: "scale-class",
         form_name: "scale_class",
-        pagina: "/scale-class",
         evento: EVENT_ID,
         criadoEm: new Date().toISOString(),
-        ...utms,
+        ...tracking,
       });
     } catch {
       setErrors({ submit: "Não conseguimos registrar sua inscrição. Tente novamente." });

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { User, Phone, Mail, AtSign, TrendingUp, ChevronDown, ShieldCheck, ArrowRight } from "lucide-react";
 import { MAKE_WEBHOOK_URL, EXCEL_WEBHOOK_URL } from "@/lib/webhooks";
+import { capturarTracking } from "@/lib/tracking";
 
 const VALID_DDDS = ["11","12","13","14","15","16","17","18","19","21","22","24","27","28","31","32","33","34","35","37","38","41","42","43","44","45","46","47","48","49","51","53","54","55","61","62","63","64","65","66","67","68","69","71","73","74","75","77","79","81","82","83","84","85","86","87","88","89","91","92","93","94","95","96","97","98","99"];
 
@@ -41,20 +42,6 @@ function isValidPhone(v: string) {
   if (d.length === 11 && d.charAt(2) !== "9") return false;
   if (/^(\d)\1+$/.test(d.slice(2))) return false;
   return true;
-}
-
-function getAttribution() {
-  if (typeof window === "undefined") return {};
-  const p = new URLSearchParams(window.location.search);
-  return {
-    utm_source: p.get("utm_source") || "",
-    utm_medium: p.get("utm_medium") || "",
-    utm_campaign: p.get("utm_campaign") || "",
-    utm_content: p.get("utm_content") || "",
-    utm_term: p.get("utm_term") || "",
-    gclid: p.get("gclid") || "",
-    fbclid: p.get("fbclid") || "",
-  };
 }
 
 const iconClass = "pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400";
@@ -124,9 +111,8 @@ export function InlineLeadForm() {
       consentiuContato: true,
       origem: "scale-advogados-3-inline",
       form_name: "scale_advogados_3_inline_lp",
-      pagina: "/scale-advogados-3",
       criadoEm: new Date().toISOString(),
-      ...getAttribution(),
+      ...capturarTracking(),
     };
 
     setSubmitting(true);

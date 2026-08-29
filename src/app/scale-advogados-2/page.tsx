@@ -7,6 +7,7 @@ import './scale-advogados.css';
 import { legalAreas, oabCompliance, acquisitionPillars, technologyImpactCards, legalTeam, legalProofAssets, legalOffer } from '@/data/legalSeo';
 import ScaleAdvogadosV3Hero from '@/components/legal/ScaleAdvogadosV3Hero';
 import { MAKE_WEBHOOK_URL, EXCEL_WEBHOOK_URL } from '@/lib/webhooks';
+import { capturarTracking } from '@/lib/tracking';
 import { MousePointerClick, Gauge, LineChart, Layers, PlayCircle, Shield, Target, TrendingUp, Users, Scale, MessageCircle, FileText, CheckCircle2, ChevronRight, BarChart3, Smartphone, Zap, Search, Eye, Building2, Briefcase, Calculator, Handshake, Users2, Building, Scale as ScaleIcon, ArrowRight, ShieldCheck, Mail, Key } from 'lucide-react';
 
 const conversionCards = [
@@ -221,19 +222,6 @@ export default function ScaleAdvogadosPage() {
 
       function digitsOnly(v: string) { return stripCC(v.replace(/\D/g,'')); }
 
-      function getAttribution() {
-        if (typeof window === 'undefined') return {};
-        var p = new URLSearchParams(window.location.search);
-        return {
-          utm_source: p.get('utm_source') || '',
-          utm_medium: p.get('utm_medium') || '',
-          utm_campaign: p.get('utm_campaign') || '',
-          utm_content: p.get('utm_content') || '',
-          utm_term: p.get('utm_term') || '',
-          gclid: p.get('gclid') || '',
-          fbclid: p.get('fbclid') || ''
-        };
-      }
 
       function openModal() {
         if (!modal) return;
@@ -309,7 +297,7 @@ export default function ScaleAdvogadosPage() {
           if (handle && !handle.startsWith('@')) handle = '@' + handle;
 
           var leadId = (typeof crypto !== 'undefined' && crypto.randomUUID) ? crypto.randomUUID() : ('lead-' + Date.now() + '-' + Math.random().toString(36).slice(2,10));
-          var attribution = getAttribution();
+          var attribution = capturarTracking();
 
           var payload = Object.assign({
             lead_id: leadId,
@@ -323,7 +311,6 @@ export default function ScaleAdvogadosPage() {
             consentiuContato: true,
             origem: 'scale-advogados-2-modal',
             form_name: 'scale_advogados_lp_2',
-            pagina: '/scale-advogados-2',
             criadoEm: new Date().toISOString()
           }, attribution);
 
