@@ -104,9 +104,11 @@ O que o helper devolve, e por que os dois campos de página:
 
 - **`pagina`** — `location.pathname`, o formato curto que o Make mapeia para a
   coluna "LP" do Monday. Mudar o formato desse campo mexe no board.
-- **`pagina_url`** — `location.href` inteiro (domínio, caminho e query). É o
-  que o CRM grava em `lead_attribution.lp`: o caminho sozinho não distingue a
-  mesma página servida em dois domínios.
+- **`pagina_url`** — `location.href` inteiro (domínio, caminho e query). É de
+  onde o CRM tira o caminho que grava em `lead_attribution.lp`: a coluna de lá
+  guarda `/scale-advogados-3`, não a URL toda (pedido do usuário), mas quem
+  extrai o caminho é o webhook, em cima da URL medida. Mandar a URL inteira
+  daqui é o que garante que o caminho gravado saiu da barra do navegador.
 - **`referrer`** e as UTMs completas — `utm_source/medium/campaign/content/term`,
   `gclid`, `fbclid`. Todas as chaves sempre presentes (string vazia quando não
   há valor), porque o mesmo objeto vai para o Make: campo que some do JSON
