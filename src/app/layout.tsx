@@ -67,12 +67,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${canelaDeck.variable} h-full antialiased`}
     >
       <head>
-        <Script
-          data-website-id="dfid_6dAvjGNjRUiU5ud1c88sT"
-          data-domain="www.scalecompany.com.br"
-          src="https://datafa.st/js/script.js"
-          strategy="afterInteractive"
-        />
+       <Script
+  src="https://war.scalecompany.com.br/tracking.js"
+  data-website-id="dfid_6dAvjGNjRUiU5ud1c88sT"
+  data-domain="www.scalecompany.com.br"
+  data-api-url="https://war.scalecompany.com.br/api/events"
+  strategy="afterInteractive"
+/>
         <MicrosoftClarity />
       </head>
       <body className="min-h-full flex flex-col bg-black">
