@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
-
+import Script from "next/script";
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -67,6 +67,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${canelaDeck.variable} h-full antialiased`}
     >
       <head>
+        <Script
+          data-website-id="dfid_6dAvjGNjRUiU5ud1c88sT"
+          data-domain="www.scalecompany.com.br"
+          src="https://datafa.st/js/script.js"
+          strategy="afterInteractive"
+        />
         <MicrosoftClarity />
       </head>
       <body className="min-h-full flex flex-col bg-black">
